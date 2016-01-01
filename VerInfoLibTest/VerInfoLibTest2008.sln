@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VerInfoLibTest", "VerInfoLibTest.vcproj", "{87690EA5-5625-4744-80F4-DA96662C1C82}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8} = {C11F4886-2504-49DB-A5D6-7591D80B51F8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VerInfoLib", "..\VerInfoLib\VerInfoLib.vcproj", "{C11F4886-2504-49DB-A5D6-7591D80B51F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Release|Win32 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Debug|Win32.ActiveCfg = Debug|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Debug|Win32.Build.0 = Debug|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Release|Win32.ActiveCfg = Release|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Release|Win32.Build.0 = Release|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{87690EA5-5625-4744-80F4-DA96662C1C82}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Debug|Win32.Build.0 = Debug|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Release|Win32.ActiveCfg = Release|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Release|Win32.Build.0 = Release|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{C11F4886-2504-49DB-A5D6-7591D80B51F8}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

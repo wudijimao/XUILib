@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window Name="MainWnd" Width="800" Height="600" >
+	<BaseControl ID="Root" Width="800" Height="600" BkgColor="#FF00FF00">
+		<XButton ID="Button1" Width="150" Height="50" Margin="50,50,0,0" HAlign="Left" VAlign="Top" />
+	</BaseControl>
+</Window>
