@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -18,13 +18,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -58,9 +58,11 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -70,6 +72,9 @@
       <OutputFile>..\$(IntDir)$(TargetName)$(TargetExt)</OutputFile>
       <Profile>true</Profile>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -81,6 +86,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -98,7 +104,7 @@
     <ClCompile Include="BaseWindow.cpp" />
     <ClCompile Include="ControlManager.cpp" />
     <ClCompile Include="GDICacheGraphics.cpp" />
-    <ClCompile Include="GDIGraphics.cpp" />
+    <ClCompile Include="GDIRender.cpp" />
     <ClCompile Include="GlobalStatus.cpp" />
     <ClCompile Include="RunTimeClass.cpp" />
     <ClCompile Include="SimpleDirectUI.cpp" />
@@ -127,6 +133,7 @@
     <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="GDICacheGraphics.h" />
     <ClInclude Include="GDICanvas.h" />
+    <ClInclude Include="GLHelper.h" />
     <ClInclude Include="GlobalStatus.h" />
     <ClInclude Include="IAnimation.h" />
     <ClInclude Include="IBaseControl.h" />
@@ -140,7 +147,7 @@
     <ClInclude Include="XButton.h" />
     <ClInclude Include="ControlManager.h" />
     <ClInclude Include="DllExport.h" />
-    <ClInclude Include="GDIGraphics.h" />
+    <ClInclude Include="GDIRender.h" />
     <ClInclude Include="SimpleDirectUI.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="WindowsManager.h" />
@@ -160,6 +167,7 @@
     <ClInclude Include="XText.h" />
     <ClInclude Include="XTextBox.h" />
     <ClInclude Include="XVScrollBar.h" />
+    <ClInclude Include="GLCanvas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

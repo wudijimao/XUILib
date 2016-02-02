@@ -1,8 +1,8 @@
 #pragma once
-#include"GDIGraphics.h"
+#include"GDIRender.h"
 
 //×¨ÃÅ»º´æ
-class SIMPLEDIRECTUI_API GDICacheGraphics : public GDIGraphics
+class SIMPLEDIRECTUI_API GDICacheGraphics : public GDIRender
 {
 public:
 	void Creat(const XResource::XRect& rect);

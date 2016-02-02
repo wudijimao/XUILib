@@ -1,8 +1,10 @@
 #include "MainWnd.h"
+
+
+
 using namespace XResource;
 MainWnd::MainWnd() : XWindow(XResource::XRect(0, 0, 800, 630))
 {
-	
 }
 
 MainWnd::~MainWnd()
@@ -46,5 +48,9 @@ void MainWnd::InitControls()
 	btn->Rect(0, 20, 50, 50);
 	btn->BkgColor(255, 255, 0, 0);
 	Contrls().GetRoot()->AddChild(btn); 
+
+
+
+	
 }
 

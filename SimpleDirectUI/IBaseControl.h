@@ -1,5 +1,5 @@
 #pragma once
-#include "GDIGraphics.h"
+#include "GDIRender.h"
 #include "IBaseWindow.h"
 #include "XRectPro.h"
 #include<boost\shared_ptr.hpp>

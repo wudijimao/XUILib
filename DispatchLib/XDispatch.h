@@ -25,7 +25,7 @@ namespace XDispatch {
 	public:
 		XThreadPool *runInPool;
 		static std::shared_ptr<XTaskQueue> getMainQueue();
-		inline static std::shared_ptr<XTaskQueue> getGlobleQueue(XTaskPriority priority);
+		static std::shared_ptr<XTaskQueue> getGlobleQueue(XTaskPriority priority);
 		bool pop(MyFun *&fun);
 		void push(MyFun *fun);
 	};
@@ -71,12 +71,14 @@ namespace XDispatch {
 	public:
 		static XDispatchManager* getSharedInstance();
 		XDispatchManager();
-		inline void dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun) {
-			taskQueue->push(copyFunction(fun));
-			if (taskQueue->runInPool) {
-				taskQueue->runInPool->onQueueChanged();
-			}
-		}
+		void dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun);
 		void dispatchAfter(std::shared_ptr<XTaskQueue> &taskQueue, const MyFun &fun, long delayMS);
 	};
+
+	inline void XDispatchManager::dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun) {
+		taskQueue->push(copyFunction(fun));
+		if (taskQueue->runInPool) {
+			taskQueue->runInPool->onQueueChanged();
+		}
+	}
 }

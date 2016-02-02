@@ -15,7 +15,6 @@ XWindow::XWindow(const XRect &rect)
 {
 	mCtrls.GetRoot()->Rect(0, 0, rect.Width(), rect.Height());
 	mCtrls.GetRoot()->BelongWnd(this);
-	mGraphics.OnDrawEvent.connect(std::bind(&XWindow::IntenalOnDraw, this, std::placeholders::_1));
 }
 const MouseStatusStruct& XWindow::MouseStauts()
 {
@@ -26,22 +25,15 @@ void XWindow::OnDraw()
 	if (mNeedReDraw)
 	{
 		mNeedReDraw = false;
-		mCtrls.GetRoot()->Draw(mGraphics);
-		mGraphics.Paint();
-	}
-}
-void XWindow::IntenalOnDraw(GDIGraphics &g)
-{
-	if (mNeedReDraw)
-	{
-		mNeedReDraw = false;
-		mCtrls.GetRoot()->Draw(g);
+		mCtrls.GetRoot()->Draw(*mGraphics);
+		mGraphics->Paint();
 	}
 }
 XWindow::~XWindow()
 {
 	//TODO:需要加上线程同步
 	//WindowsManager::GetInstanc().UnRegist(mHwnd);
+	delete this->mGraphics;
 }
 
 XControls::ControlManager& XWindow::Contrls()
@@ -113,6 +105,7 @@ HWND XWindow::Create(HINSTANCE hInstance, int iCmdShow)
 		assert("未成功创建窗口" && 0);
 		return NULL;
 	}
+
 	ShowWindow(mHwnd, iCmdShow);
 	UpdateWindow(mHwnd);
 
@@ -140,16 +133,17 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		OnDraw();
 		return 0;
 	case WM_CREATE:
-		mGraphics.Creat(hwnd);
+		mGraphics = new GDIRender(hwnd);
+		((GDIRender*)mGraphics)->Creat();
 		return 0;
 	case WM_SIZE:
-		mGraphics.ReSize(LOWORD(lParam), HIWORD(lParam));
+		mGraphics->ReSize(LOWORD(lParam), HIWORD(lParam));
 		return 0;
 	case WM_PAINT:
 		//系统托管
 		return 0;
 	case WM_DESTROY:
-		mGraphics.Destory();
+		mGraphics->Destory();
 		WindowsManager::GetInstanc().UnRegist(mHwnd);
 		PostQuitMessage(0);
 		return 0;
@@ -175,7 +169,7 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	{
 		mCtrls.GetRoot()->KeyBoardEvent(iMsg, wParam, lParam);
 		OnDraw();
-		mGraphics.Paint();
+		mGraphics->Paint();
 		return 0;
 	}
 	//窗体移动事件

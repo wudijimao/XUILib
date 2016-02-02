@@ -161,5 +161,4 @@ namespace XDispatch {
 		mutex.unlock();
 		cv.notify_one();
 	}
-
 }

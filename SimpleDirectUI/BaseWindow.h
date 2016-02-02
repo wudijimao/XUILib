@@ -1,6 +1,6 @@
 #pragma once
 #include "ControlManager.h"
-#include "GDIGraphics.h"
+#include "GDIRender.h"
 #include "XRect.h"
 #include "IBaseWindow.h"
 #include <boost/signals2.hpp>
@@ -22,13 +22,11 @@ public:
 	virtual const XResource::XRect& Rect() const;
 	virtual void Rect(const XResource::XRect& rect);
 private:
-	//内部调用GDI Create时调用，第一次绘制
-	void IntenalOnDraw(GDIGraphics &g);
-private:
+protected:
 	//一个窗口有且只有一个控件树
 	XControls::ControlManager mCtrls;
 	//还有一个绘图表面来绘制所有控件
-	GDIGraphics mGraphics;
+	IXRender *mGraphics;
 
 	std::wstring mAppNameClass;
 	HINSTANCE mHInstance;

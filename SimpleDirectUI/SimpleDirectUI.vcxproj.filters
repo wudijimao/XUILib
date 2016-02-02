@@ -62,14 +62,14 @@
     <ClCompile Include="GDICacheGraphics.cpp">
       <Filter>Render\GDIPlus</Filter>
     </ClCompile>
-    <ClCompile Include="GDIGraphics.cpp">
-      <Filter>Render\GDIPlus</Filter>
-    </ClCompile>
     <ClCompile Include="ViewController\ViewController.cpp">
       <Filter>ViewController</Filter>
     </ClCompile>
     <ClCompile Include="ViewController\View.cpp">
       <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="GDIRender.cpp">
+      <Filter>Render\GDIPlus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +167,6 @@
     <ClInclude Include="XMLLoader.h">
       <Filter>XMLManager</Filter>
     </ClInclude>
-    <ClInclude Include="GDIGraphics.h">
-      <Filter>Render\GDIPlus</Filter>
-    </ClInclude>
     <ClInclude Include="GDICacheGraphics.h">
       <Filter>Render\GDIPlus</Filter>
     </ClInclude>
@@ -187,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="View\View.h">
       <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="GLCanvas.h">
+      <Filter>Render\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="GLHelper.h">
+      <Filter>Render\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="GDIRender.h">
+      <Filter>Render\GDIPlus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,9 @@
     </Filter>
     <Filter Include="View">
       <UniqueIdentifier>{757c3579-a5e3-4736-92c4-e4f739b3d116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\OpenGL">
+      <UniqueIdentifier>{b9d75983-fc95-4b76-9767-07fd6e85a74c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
