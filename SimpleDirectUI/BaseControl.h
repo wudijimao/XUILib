@@ -42,6 +42,8 @@ namespace XControls
 			mNeedReDraw = true;
 			if (mBelongWnd)
 			{
+				//TODO:If not transparent, parent need't redraw
+				//If  opengl, parent need't run draw to recode info
 				mBelongWnd->NeedReDraw();
 			}
 		}
