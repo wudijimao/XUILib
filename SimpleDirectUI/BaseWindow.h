@@ -1,6 +1,6 @@
 #pragma once
 #include "ControlManager.h"
-#include "GDIRender.h"
+#include "IXRender.h"
 #include "XRect.h"
 #include "IBaseWindow.h"
 #include <boost/signals2.hpp>
@@ -26,7 +26,7 @@ protected:
 	//一个窗口有且只有一个控件树
 	XControls::ControlManager mCtrls;
 	//还有一个绘图表面来绘制所有控件
-	IXRender *mGraphics;
+	IXRender *mRender;
 
 	std::wstring mAppNameClass;
 	HINSTANCE mHInstance;

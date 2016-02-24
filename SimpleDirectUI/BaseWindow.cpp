@@ -7,6 +7,7 @@ windows版本
 #include "XImage.h"
 #include "XRect.h"
 #include "GlobalStatus.h"
+#include "XRenderFactory.h"
 
 
 using namespace XResource;
@@ -25,15 +26,15 @@ void XWindow::OnDraw()
 	if (mNeedReDraw)
 	{
 		mNeedReDraw = false;
-		mCtrls.GetRoot()->Draw(*mGraphics);
-		mGraphics->Paint();
+		mCtrls.GetRoot()->Draw(*mRender);
+		mRender->Paint();
 	}
 }
 XWindow::~XWindow()
 {
 	//TODO:需要加上线程同步
 	//WindowsManager::GetInstanc().UnRegist(mHwnd);
-	delete this->mGraphics;
+	delete this->mRender;
 }
 
 XControls::ControlManager& XWindow::Contrls()
@@ -133,17 +134,17 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		OnDraw();
 		return 0;
 	case WM_CREATE:
-		mGraphics = new GDIRender(hwnd);
-		((GDIRender*)mGraphics)->Creat();
+		mRender = XRenderFactory::getRender(hwnd);
+		((GDIRender*)mRender)->Creat();
 		return 0;
 	case WM_SIZE:
-		mGraphics->ReSize(LOWORD(lParam), HIWORD(lParam));
+		mRender->ReSize(LOWORD(lParam), HIWORD(lParam));
 		return 0;
 	case WM_PAINT:
 		//系统托管
 		return 0;
 	case WM_DESTROY:
-		mGraphics->Destory();
+		mRender->Destory();
 		WindowsManager::GetInstanc().UnRegist(mHwnd);
 		PostQuitMessage(0);
 		return 0;
@@ -169,7 +170,7 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	{
 		mCtrls.GetRoot()->KeyBoardEvent(iMsg, wParam, lParam);
 		OnDraw();
-		mGraphics->Paint();
+		mRender->Paint();
 		return 0;
 	}
 	//窗体移动事件

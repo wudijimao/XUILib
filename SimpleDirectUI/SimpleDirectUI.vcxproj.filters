@@ -71,6 +71,15 @@
     <ClCompile Include="GDIRender.cpp">
       <Filter>Render\GDIPlus</Filter>
     </ClCompile>
+    <ClCompile Include="GLRender.cpp">
+      <Filter>Render\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="GLCanvas.cpp">
+      <Filter>Render\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="XRenderFacotry.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleDirectUI.h" />
@@ -193,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="GDIRender.h">
       <Filter>Render\GDIPlus</Filter>
+    </ClInclude>
+    <ClInclude Include="GLRender.h">
+      <Filter>Render\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="XRenderFactory.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

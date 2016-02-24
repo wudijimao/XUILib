@@ -1,3 +1,4 @@
+#pragma once
 #include "IXCanvas.h"
 #include "XImage.h"
 #include "XText.h"
@@ -6,6 +7,8 @@ class SIMPLEDIRECTUI_API IXRender
 {
 public:
 	virtual ~IXRender(){};
+	virtual void Creat() = 0;
+
 	virtual bool Init(IXCanvas *canvas) = 0;
 	virtual void ReSize(int width, int height) = 0;
 	virtual void Paint() = 0;

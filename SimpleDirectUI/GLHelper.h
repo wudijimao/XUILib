@@ -3,31 +3,6 @@
 #define GLEW_STATIC
 #include <GL\glew.h>
 
-struct GLColor {
-	BYTE r = '\0';
-	BYTE g = '\0';
-	BYTE b = '\0';
-	BYTE a = '\0';
-};
-void creatFramBuf() {
-	GLuint colorBuf;
-	glGenRenderbuffers(1, &colorBuf);
-	glBindRenderbuffer(GL_RENDERBUFFER, colorBuf);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, 100, 100);
-	GLuint frameBuf;
-	glGenFramebuffers(1, &frameBuf);
-	glBindFramebuffer(GL_FRAMEBUFFER, frameBuf);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorBuf);
-
-	int ret = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	GLColor piexls[100 * 100];
-	if (ret == GL_FRAMEBUFFER_COMPLETE)
-	{
-		glClearColor(1, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glReadPixels(0, 0, 100, 100, GL_RGBA, GL_UNSIGNED_BYTE, piexls);
-	}
-}
 class GLHelper
 {
 public:

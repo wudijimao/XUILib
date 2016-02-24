@@ -1,6 +1,7 @@
 #pragma once
 #include "XRect.h"
 #include <string>
+#include <Windows.h>
 #include <gdiplus.h>
 namespace XResource
 {
