@@ -94,7 +94,7 @@ GLfloat square[] = {
     0, 0, 0.5,
     300, 0, 0.5,
     0, 300, 0.5,
-    300, 100, 0.5};
+    300, 200, 0.5};
 
 GLfloat transformMat[] = {
     1.0f/150.0f, 0, 0, 0,
@@ -134,7 +134,7 @@ class GLTextureManager {
 };
 
 GLuint loadTexture(NSString *text) {
-    static XImage image("/Users/ximiao/Desktop/TestGCDCPP/TestGCDCPP/test.png");
+    static XImage image("/Users/ximiao/Desktop/TestGCDCPP/TestGCDCPP/test.jpg");
     GLuint textureId;
     auto iter = textureMap.find(gifIndex);
     if (iter == textureMap.end()) {

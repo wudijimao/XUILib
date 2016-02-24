@@ -7,6 +7,7 @@
 //
 
 #include "XImage.hpp"
+#include "XJPGDecoder.hpp"
 
 
 std::vector<XImageDecoder*>* XImage::decoders = 0;
@@ -57,19 +58,6 @@ bool XImage::getImage(void *outBuf, int index) {
     return false;
 }
 
-size_t XImageDecoder::getDecoders(std::vector<XImageDecoder*> &decoders) {
-    XImageDecoder *decoder;
-    decoder = XGifDecoder::getInstance();
-    if (decoder) {
-        decoders.push_back(decoder);
-    }
-    decoder = XPngDecoder::getInstance();
-    if (decoder) {
-        decoders.push_back(decoder);
-    }
-    
-    return decoders.size();
-}
 
 
 

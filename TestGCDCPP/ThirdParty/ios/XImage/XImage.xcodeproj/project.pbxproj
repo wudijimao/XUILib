@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		3E2FC9141C7D54120012F5DB /* XString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2FC9121C7D54120012F5DB /* XString.cpp */; };
 		3E9E22AD1C73383100A7BB6B /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E22A91C73383100A7BB6B /* libpng.a */; };
+		3EBE1FF41C7D9C9100079EDC /* XJPGDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE1FF21C7D9C9100079EDC /* XJPGDecoder.cpp */; };
+		3EBE20041C7DA97100079EDC /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBE20031C7DA97100079EDC /* libjpeg.a */; };
+		3EBE20081C7DC14B00079EDC /* XImageDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE20061C7DC14B00079EDC /* XImageDecoder.cpp */; };
+		3EBE200C1C7DC31C00079EDC /* XPngDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE200A1C7DC31C00079EDC /* XPngDecoder.cpp */; };
+		3EBE200F1C7DC32900079EDC /* XGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE200D1C7DC32800079EDC /* XGifDecoder.cpp */; };
 		3EC39C881C7182F2008468A9 /* XImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC39C861C7182F2008468A9 /* XImage.cpp */; };
 		3EC39C8D1C718942008468A9 /* XData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC39C8C1C718942008468A9 /* XData.cpp */; };
 		3EC39C901C7189CA008468A9 /* XError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC39C8E1C7189CA008468A9 /* XError.cpp */; };
@@ -52,6 +57,19 @@
 		3E9E22AB1C73383100A7BB6B /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
 		3E9E22AC1C73383100A7BB6B /* pnglibconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pnglibconf.h; sourceTree = "<group>"; };
 		3E9E8BDE1C719F00009B2168 /* giflib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = giflib.xcodeproj; path = ../giflib/giflib.xcodeproj; sourceTree = "<group>"; };
+		3EBE1FF21C7D9C9100079EDC /* XJPGDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XJPGDecoder.cpp; sourceTree = "<group>"; };
+		3EBE1FF31C7D9C9100079EDC /* XJPGDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XJPGDecoder.hpp; sourceTree = "<group>"; };
+		3EBE20001C7DA97100079EDC /* jconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jconfig.h; sourceTree = "<group>"; };
+		3EBE20011C7DA97100079EDC /* jmorecfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jmorecfg.h; sourceTree = "<group>"; };
+		3EBE20021C7DA97100079EDC /* jpeglib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jpeglib.h; sourceTree = "<group>"; };
+		3EBE20031C7DA97100079EDC /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		3EBE20061C7DC14B00079EDC /* XImageDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XImageDecoder.cpp; sourceTree = "<group>"; };
+		3EBE20071C7DC14B00079EDC /* XImageDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XImageDecoder.hpp; sourceTree = "<group>"; };
+		3EBE20091C7DC1A300079EDC /* IXImage.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXImage.hpp; sourceTree = "<group>"; };
+		3EBE200A1C7DC31C00079EDC /* XPngDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XPngDecoder.cpp; sourceTree = "<group>"; };
+		3EBE200B1C7DC31C00079EDC /* XPngDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XPngDecoder.hpp; sourceTree = "<group>"; };
+		3EBE200D1C7DC32800079EDC /* XGifDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XGifDecoder.cpp; sourceTree = "<group>"; };
+		3EBE200E1C7DC32900079EDC /* XGifDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XGifDecoder.hpp; sourceTree = "<group>"; };
 		3EC39BA11C71826B008468A9 /* libXImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC39C861C7182F2008468A9 /* XImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XImage.cpp; sourceTree = "<group>"; };
 		3EC39C871C7182F2008468A9 /* XImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XImage.hpp; sourceTree = "<group>"; };
@@ -67,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E9E22AD1C73383100A7BB6B /* libpng.a in Frameworks */,
+				3EBE20041C7DA97100079EDC /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,11 +111,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3EBE1FFF1C7DA97100079EDC /* jpg */ = {
+			isa = PBXGroup;
+			children = (
+				3EBE20001C7DA97100079EDC /* jconfig.h */,
+				3EBE20011C7DA97100079EDC /* jmorecfg.h */,
+				3EBE20021C7DA97100079EDC /* jpeglib.h */,
+				3EBE20031C7DA97100079EDC /* libjpeg.a */,
+			);
+			path = jpg;
+			sourceTree = "<group>";
+		};
+		3EBE20051C7DC11E00079EDC /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				3EBE1FF31C7D9C9100079EDC /* XJPGDecoder.hpp */,
+				3EBE1FF21C7D9C9100079EDC /* XJPGDecoder.cpp */,
+				3EBE20071C7DC14B00079EDC /* XImageDecoder.hpp */,
+				3EBE20061C7DC14B00079EDC /* XImageDecoder.cpp */,
+				3EBE200B1C7DC31C00079EDC /* XPngDecoder.hpp */,
+				3EBE200A1C7DC31C00079EDC /* XPngDecoder.cpp */,
+				3EBE200E1C7DC32900079EDC /* XGifDecoder.hpp */,
+				3EBE200D1C7DC32800079EDC /* XGifDecoder.cpp */,
+			);
+			name = Decoder;
+			sourceTree = "<group>";
+		};
 		3EC39B981C71826B008468A9 = {
 			isa = PBXGroup;
 			children = (
 				3E9E8BDE1C719F00009B2168 /* giflib.xcodeproj */,
 				3EC39C891C71832F008468A9 /* libgiflib.a */,
+				3EBE1FFF1C7DA97100079EDC /* jpg */,
 				3E9E22A81C73383100A7BB6B /* png */,
 				3EC39BA31C71826B008468A9 /* XImage */,
 				3EC39BA21C71826B008468A9 /* Products */,
@@ -114,6 +160,8 @@
 		3EC39BA31C71826B008468A9 /* XImage */ = {
 			isa = PBXGroup;
 			children = (
+				3EBE20051C7DC11E00079EDC /* Decoder */,
+				3EBE20091C7DC1A300079EDC /* IXImage.hpp */,
 				3EC39C861C7182F2008468A9 /* XImage.cpp */,
 				3EC39C871C7182F2008468A9 /* XImage.hpp */,
 				3EC39C8E1C7189CA008468A9 /* XError.cpp */,
@@ -200,8 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EBE200C1C7DC31C00079EDC /* XPngDecoder.cpp in Sources */,
 				3EC39C8D1C718942008468A9 /* XData.cpp in Sources */,
+				3EBE1FF41C7D9C9100079EDC /* XJPGDecoder.cpp in Sources */,
 				3EC39C901C7189CA008468A9 /* XError.cpp in Sources */,
+				3EBE200F1C7DC32900079EDC /* XGifDecoder.cpp in Sources */,
+				3EBE20081C7DC14B00079EDC /* XImageDecoder.cpp in Sources */,
 				3EC39C881C7182F2008468A9 /* XImage.cpp in Sources */,
 				3E2FC9141C7D54120012F5DB /* XString.cpp in Sources */,
 			);
@@ -304,6 +356,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/png",
+					"$(PROJECT_DIR)/jpg",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -317,6 +370,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/png",
+					"$(PROJECT_DIR)/jpg",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
