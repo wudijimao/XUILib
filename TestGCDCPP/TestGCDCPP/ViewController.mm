@@ -12,12 +12,14 @@
 #import <OpenGLES/ES3/glext.h>
 #import "GLView.h"
 #include <glm/glm.hpp>
+#include <XString.hpp>
 #include <XImage.hpp>
 #include <map>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include "XHTTPClient.h"
+
 
 using namespace glm;
 
@@ -271,7 +273,8 @@ GLuint loadTexture(NSString *text) {
 }
 
 - (void)drawFreeType {
-    FT_UInt glyph_index = FT_Get_Char_Index( face, 0x6CA1 );
+    XString string("测试");
+    FT_UInt glyph_index = FT_Get_Char_Index( face, string.getUnicodeString()[1] );
     //If no glyph, return 0, but not error, it can show space.
     int error = FT_Load_Glyph(
                               face,          /* handle to face object */
@@ -303,6 +306,7 @@ GLuint loadTexture(NSString *text) {
 //    glGenFramebuffers(1, &frameBuffer);
 //    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 //
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
@@ -520,7 +524,7 @@ GLuint loadTexture(NSString *text) {
 
 - (void)showImage:(UIImage*)img {
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.imageView.image = img;
+        //self.imageView.image = img;
     });
 }
 - (void)showImage2:(UIImage*)img {

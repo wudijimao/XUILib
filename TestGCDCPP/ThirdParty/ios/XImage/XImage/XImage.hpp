@@ -10,7 +10,7 @@
 #define XImage_hpp
 
 #include <stdio.h>
-#include "XData.cpp"
+#include "XData.hpp"
 #include "gif_lib.h"
 #include "../png/png.h"
 #include <vector>

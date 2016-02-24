@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2FC9141C7D54120012F5DB /* XString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2FC9121C7D54120012F5DB /* XString.cpp */; };
 		3E9E22AD1C73383100A7BB6B /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E22A91C73383100A7BB6B /* libpng.a */; };
 		3EC39C881C7182F2008468A9 /* XImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC39C861C7182F2008468A9 /* XImage.cpp */; };
 		3EC39C8D1C718942008468A9 /* XData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EC39C8C1C718942008468A9 /* XData.cpp */; };
@@ -43,6 +44,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E2FC9111C7D4A790012F5DB /* XData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XData.hpp; sourceTree = "<group>"; };
+		3E2FC9121C7D54120012F5DB /* XString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XString.cpp; sourceTree = "<group>"; };
+		3E2FC9131C7D54120012F5DB /* XString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XString.hpp; sourceTree = "<group>"; };
 		3E9E22A91C73383100A7BB6B /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.a; sourceTree = "<group>"; };
 		3E9E22AA1C73383100A7BB6B /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
 		3E9E22AB1C73383100A7BB6B /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
@@ -112,9 +116,12 @@
 			children = (
 				3EC39C861C7182F2008468A9 /* XImage.cpp */,
 				3EC39C871C7182F2008468A9 /* XImage.hpp */,
-				3EC39C8C1C718942008468A9 /* XData.cpp */,
 				3EC39C8E1C7189CA008468A9 /* XError.cpp */,
 				3EC39C8F1C7189CA008468A9 /* XError.hpp */,
+				3EC39C8C1C718942008468A9 /* XData.cpp */,
+				3E2FC9111C7D4A790012F5DB /* XData.hpp */,
+				3E2FC9121C7D54120012F5DB /* XString.cpp */,
+				3E2FC9131C7D54120012F5DB /* XString.hpp */,
 			);
 			path = XImage;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 				3EC39C8D1C718942008468A9 /* XData.cpp in Sources */,
 				3EC39C901C7189CA008468A9 /* XError.cpp in Sources */,
 				3EC39C881C7182F2008468A9 /* XImage.cpp in Sources */,
+				3E2FC9141C7D54120012F5DB /* XString.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
