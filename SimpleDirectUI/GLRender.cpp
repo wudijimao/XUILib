@@ -34,22 +34,6 @@ void creatFramBuf() {
 GLRender::GLRender(HWND hwnd) {
 	GLHelper::init();
 	GLHelper::winInit(hwnd);
-	std::vector<char> buf;
-	std::vector<char> buf2;
-	char ch[120] = { 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5 };
-	clock_t t1 = clock();
-	for (int i = 0; i < 100000; i++)
-	{
-		buf.insert(buf.end(), ch, ch + 120);
-	}
-	clock_t t2 = clock();
-	for (int i = 0; i < 100000; i++)
-	{
-		std::copy(ch, ch + 120, std::back_inserter(buf2));
-	}
-	clock_t t3 = clock();
-	clock_t m1 = t2 - t1;
-	clock_t m2 = t3 - t2;
 }
 
 bool GLRender::Init(IXCanvas *canvas) {
@@ -57,13 +41,14 @@ bool GLRender::Init(IXCanvas *canvas) {
 }
 
 void GLRender::Creat() {
-
+	creatFramBuf();
 }
 
 void GLRender::ReSize(int width, int height) {
 
 }
 void GLRender::Paint() {
+
 }
 void GLRender::Destory() {
 
