@@ -19,7 +19,6 @@
 		3E9CD1F21C74487800AA196C /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CD1F11C74487800AA196C /* test.png */; };
 		3E9CD1F41C744A7A00AA196C /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CD1F31C744A7A00AA196C /* libpng.a */; };
 		3E9CD1F61C744B2300AA196C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CD1F51C744B2300AA196C /* libz.tbd */; };
-		3E9E22A71C7312E600A7BB6B /* libfreetyped.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E22A61C7312E600A7BB6B /* libfreetyped.a */; };
 		3E9E8BF21C71B71E009B2168 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E8BF11C71B71E009B2168 /* test.gif */; };
 		3E9F47BC1C572ECA00132AB0 /* FragmentShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3E9F47BA1C572ECA00132AB0 /* FragmentShader.fsh */; };
 		3E9F47BD1C572ECA00132AB0 /* VertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 3E9F47BB1C572ECA00132AB0 /* VertexShader.vsh */; };
@@ -33,6 +32,8 @@
 		3EB96D161C4F8BF500F8D71F /* TestGCDCPPUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB96D151C4F8BF500F8D71F /* TestGCDCPPUITests.m */; };
 		3EB96D251C4F8C1D00F8D71F /* XDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB96D231C4F8C1D00F8D71F /* XDispatch.cpp */; };
 		3EBE1FFE1C7DA94F00079EDC /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBE1FFD1C7DA94F00079EDC /* libjpeg.a */; };
+		3EC2749A1C7F00E40059CEFB /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC274991C7F00E40059CEFB /* libicucore.tbd */; };
+		3ECD29D31C8459DD00B62BC6 /* libfreetyped.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ECD29D21C8459DD00B62BC6 /* libfreetyped.a */; };
 		3EF73E531C72D6DB003DF84E /* test1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3EF73E511C72D6DB003DF84E /* test1.gif */; };
 		3EF73E541C72D6DB003DF84E /* test2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3EF73E521C72D6DB003DF84E /* test2.gif */; };
 /* End PBXBuildFile section */
@@ -83,7 +84,6 @@
 		3E9CD1F11C74487800AA196C /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		3E9CD1F31C744A7A00AA196C /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ThirdParty/ios/XImage/png/libpng.a; sourceTree = "<group>"; };
 		3E9CD1F51C744B2300AA196C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		3E9E22A61C7312E600A7BB6B /* libfreetyped.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetyped.a; sourceTree = "<group>"; };
 		3E9E8BE81C71B33F009B2168 /* XImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XImage.xcodeproj; path = ThirdParty/ios/XImage/XImage.xcodeproj; sourceTree = "<group>"; };
 		3E9E8BF11C71B71E009B2168 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
 		3E9F47BA1C572ECA00132AB0 /* FragmentShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = FragmentShader.fsh; sourceTree = "<group>"; };
@@ -107,6 +107,9 @@
 		3EB96D231C4F8C1D00F8D71F /* XDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XDispatch.cpp; sourceTree = "<group>"; };
 		3EB96D241C4F8C1D00F8D71F /* XDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDispatch.h; sourceTree = "<group>"; };
 		3EBE1FFD1C7DA94F00079EDC /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ThirdParty/jpg/libjpeg.a; sourceTree = "<group>"; };
+		3EC274971C7F00CE0059CEFB /* libiconv.2.4.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.4.0.tbd; path = usr/lib/libiconv.2.4.0.tbd; sourceTree = SDKROOT; };
+		3EC274991C7F00E40059CEFB /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		3ECD29D21C8459DD00B62BC6 /* libfreetyped.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfreetyped.a; sourceTree = "<group>"; };
 		3EF73E511C72D6DB003DF84E /* test1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test1.gif; sourceTree = "<group>"; };
 		3EF73E521C72D6DB003DF84E /* test2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test2.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,14 +119,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC2749A1C7F00E40059CEFB /* libicucore.tbd in Frameworks */,
 				3E9CD1F61C744B2300AA196C /* libz.tbd in Frameworks */,
 				3E90945E1C7AB13700035021 /* libcurl.a in Frameworks */,
 				3E2FC90C1C7AE2640012F5DB /* libssl.a in Frameworks */,
 				3EBE1FFE1C7DA94F00079EDC /* libjpeg.a in Frameworks */,
+				3ECD29D31C8459DD00B62BC6 /* libfreetyped.a in Frameworks */,
 				3E2FC90B1C7AE2640012F5DB /* libcrypto.a in Frameworks */,
 				3E9CD1F41C744A7A00AA196C /* libpng.a in Frameworks */,
 				3E9CD1F01C743F5700AA196C /* libXImage.a in Frameworks */,
-				3E9E22A71C7312E600A7BB6B /* libfreetyped.a in Frameworks */,
 				3E984E931C50AF1400130603 /* OpenGLES.framework in Frameworks */,
 				3E9CD1EF1C743F5700AA196C /* libgiflib.a in Frameworks */,
 			);
@@ -166,6 +170,9 @@
 		3EB96CE41C4F8BF500F8D71F = {
 			isa = PBXGroup;
 			children = (
+				3EC274991C7F00E40059CEFB /* libicucore.tbd */,
+				3EC274971C7F00CE0059CEFB /* libiconv.2.4.0.tbd */,
+				3ECD29D21C8459DD00B62BC6 /* libfreetyped.a */,
 				3E2FC9091C7AE2640012F5DB /* libcrypto.a */,
 				3E2FC90A1C7AE2640012F5DB /* libssl.a */,
 				3E90945D1C7AB13700035021 /* libcurl.a */,
@@ -173,7 +180,6 @@
 				3E9CD1F31C744A7A00AA196C /* libpng.a */,
 				3E9CD1ED1C743F5700AA196C /* libgiflib.a */,
 				3E9CD1EE1C743F5700AA196C /* libXImage.a */,
-				3E9E22A61C7312E600A7BB6B /* libfreetyped.a */,
 				3EBE1FFD1C7DA94F00079EDC /* libjpeg.a */,
 				3E9E8BE81C71B33F009B2168 /* XImage.xcodeproj */,
 				3E984E921C50AF1400130603 /* OpenGLES.framework */,
@@ -556,8 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ThirdParty/ios/XImage/XImage",
-					"/Users/ximiao/Downloads/ogl-OpenGL-tutorial_0015_21/external/glm-0.9.7.1",
-					"/Users/ximiao/Downloads/freetype-2.6.2/include",
+					"$(SRCROOT)/ThirdParty/freetypelib/freetypelib/include",
 					"$(SRCROOT)/ThirdParty/curl",
 				);
 				INFOPLIST_FILE = TestGCDCPP/Info.plist;
@@ -568,6 +573,8 @@
 					"$(PROJECT_DIR)/ThirdParty/ios/XImage/png",
 					"$(PROJECT_DIR)/ThirdParty/curl",
 					"$(PROJECT_DIR)/ThirdParty/jpg",
+					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = moemiku.TestGCDCPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -580,8 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/ThirdParty/ios/XImage/XImage",
-					"/Users/ximiao/Downloads/ogl-OpenGL-tutorial_0015_21/external/glm-0.9.7.1",
-					"/Users/ximiao/Downloads/freetype-2.6.2/include",
+					"$(SRCROOT)/ThirdParty/freetypelib/freetypelib/include",
 					"$(SRCROOT)/ThirdParty/curl",
 				);
 				INFOPLIST_FILE = TestGCDCPP/Info.plist;
@@ -592,6 +598,8 @@
 					"$(PROJECT_DIR)/ThirdParty/ios/XImage/png",
 					"$(PROJECT_DIR)/ThirdParty/curl",
 					"$(PROJECT_DIR)/ThirdParty/jpg",
+					"$(PROJECT_DIR)/ThirdParty",
+					"$(PROJECT_DIR)/Build/Products/Debug-iphonesimulator",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = moemiku.TestGCDCPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";

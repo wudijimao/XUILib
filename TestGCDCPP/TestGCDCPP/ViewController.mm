@@ -11,7 +11,7 @@
 #import <OpenGLES/ES3/gl.h>
 #import <OpenGLES/ES3/glext.h>
 #import "GLView.h"
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp> /Users/ximiao/Downloads/ogl-OpenGL-tutorial_0015_21/external/glm-0.9.7.1
 #include <XString.hpp>
 #include <XImage.hpp>
 #include <map>
@@ -20,8 +20,11 @@
 
 #include "XHTTPClient.h"
 
+#include <unicode/umachine.h>
+#include <unicode/utf.h>
 
-using namespace glm;
+
+//using namespace glm;
 
 using namespace XDispatch;
 int totalNumber(0), number1(0), number2(0);
@@ -246,7 +249,7 @@ GLuint loadTexture(NSString *text) {
         return;
     }
     error = FT_New_Face( library,
-                        "/Users/ximiao/Downloads/FZMWFont.ttf",
+                        "/System/Library/Fonts/Apple Color Emoji.ttf",
                         0,
                         &face );
     if ( error == FT_Err_Unknown_File_Format )
@@ -258,23 +261,24 @@ GLuint loadTexture(NSString *text) {
         return;
     }
     
-    
+//    error = FT_Set_Pixel_Sizes(
+//                               face,   /* handle to face object */
+//                               0,      /* pixel_width           */
+//                               1280 );   /* pixel_height          */
 //    error = FT_Set_Char_Size(
 //                             face,    /* handle to face object           */
-//                             0,       /* char_width in 1/64th of points  */
-//                             16*64,   /* char_height in 1/64th of points */
+//                             64*18,       /* char_width in 1/64th of points  */
+//                             64*26,   /* char_height in 1/64th of points */
 //                             300,     /* horizontal device resolution    */
 //                             300 );   /* vertical device resolution      */
-    error = FT_Set_Pixel_Sizes(
-                               face,   /* handle to face object */
-                               0,      /* pixel_width           */
-                               300 );   /* pixel_height          */
     
 }
 
 - (void)drawFreeType {
-    XString string("测试");
-    FT_UInt glyph_index = FT_Get_Char_Index( face, string.getUnicodeString()[1] );
+    XString string("🍀");
+    int32_t i = 0, length = (int)string.getUTF8String()->length(), index;
+    U8_NEXT(string.getUTF8String()->c_str(), i, length, index);
+    FT_UInt glyph_index = FT_Get_Char_Index( face,  index);
     //If no glyph, return 0, but not error, it can show space.
     int error = FT_Load_Glyph(
                               face,          /* handle to face object */
