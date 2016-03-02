@@ -248,8 +248,10 @@ GLuint loadTexture(NSString *text) {
     {
         return;
     }
+    FT_Int major,minor,patch;
+    FT_Library_Version(library, &major, &minor, &patch);
     error = FT_New_Face( library,
-                        "/System/Library/Fonts/Apple Color Emoji.ttf",
+                        "/System/Library/Fonts/AndroidEmoji.ttf",//Apple Color Emoji.ttf",///PingFang.ttc
                         0,
                         &face );
     if ( error == FT_Err_Unknown_File_Format )
@@ -261,10 +263,10 @@ GLuint loadTexture(NSString *text) {
         return;
     }
     
-//    error = FT_Set_Pixel_Sizes(
-//                               face,   /* handle to face object */
-//                               0,      /* pixel_width           */
-//                               1280 );   /* pixel_height          */
+    error = FT_Set_Pixel_Sizes(
+                               face,   /* handle to face object */
+                               0,      /* pixel_width           */
+                               1280 );   /* pixel_height          */
 //    error = FT_Set_Char_Size(
 //                             face,    /* handle to face object           */
 //                             64*18,       /* char_width in 1/64th of points  */
