@@ -26,8 +26,8 @@ protected:
 	//一个窗口有且只有一个控件树
 	XControls::ControlManager mCtrls;
 	//还有一个绘图表面来绘制所有控件
+	IXCanvas *mCanvas;
 	IXRender *mRender;
-
 	std::wstring mAppNameClass;
 	HINSTANCE mHInstance;
 	HWND mHwnd;//窗体句柄

@@ -1,7 +1,10 @@
 #pragma once
 #include "IXCanvas.h"
+#include "GDICanvas.h"
 
-class GDICanvas : public IXCanvas
+//Win
+
+class GLSoftwareCanvas : public GDICanvas
 {
 public:
 	virtual RenderType GetType()

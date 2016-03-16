@@ -89,8 +89,10 @@ Gdiplus::Graphics *mBkgGraphics;
 HWND mHwnd;
 HDC mMemDC;
 HBITMAP mBitMap;
+SIZE windowSize;
 
 Gdiplus::GdiplusStartupInput mGdiplusStartupInput;
+POINT ptWinPos;
 ULONG_PTR mGdiplusToken;
 //
 //   º¯Êý:  InitInstance(HINSTANCE, int)
@@ -118,7 +120,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HDC hdc = ::GetDC(hWnd);
    RECT rct;
    GetWindowRect(hWnd, &rct);
-   POINT ptWinPos = { rct.left, rct.top };
+   ptWinPos = { rct.left, rct.top };
    mWidth = rct.right - rct.left;
    mHeight = rct.bottom - rct.top;
    mMemDC = CreateCompatibleDC(hdc);
@@ -154,6 +156,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	switch (message)
 	{
+	case WM_SIZE:
+		windowSize
+		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
 		wmEvent = HIWORD(wParam);

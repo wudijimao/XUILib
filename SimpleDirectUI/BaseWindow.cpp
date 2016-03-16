@@ -9,6 +9,9 @@ windows版本
 #include "GlobalStatus.h"
 #include "XRenderFactory.h"
 
+//临时
+#include "GDIRender.h"
+
 
 using namespace XResource;
 XWindow::XWindow(const XRect &rect)
@@ -27,7 +30,7 @@ void XWindow::OnDraw()
 	{
 		mNeedReDraw = false;
 		mCtrls.GetRoot()->Draw(*mRender);
-		mRender->Paint();
+		mCanvas->Update();
 	}
 }
 XWindow::~XWindow()
@@ -134,17 +137,18 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		OnDraw();
 		return 0;
 	case WM_CREATE:
-		mRender = XRenderFactory::getRender(hwnd);
-		((GDIRender*)mRender)->Creat();
+		mCanvas = XRenderFactory::getRender(hwnd);
+		mRender = new GDIRender();
+		mRender->Init(mCanvas);
 		return 0;
 	case WM_SIZE:
-		mRender->ReSize(LOWORD(lParam), HIWORD(lParam));
+		mCanvas->ReSize(LOWORD(lParam), HIWORD(lParam));
 		return 0;
 	case WM_PAINT:
 		//系统托管
 		return 0;
 	case WM_DESTROY:
-		mRender->Destory();
+		delete mCanvas;
 		WindowsManager::GetInstanc().UnRegist(mHwnd);
 		PostQuitMessage(0);
 		return 0;
@@ -170,7 +174,7 @@ LRESULT XWindow::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	{
 		mCtrls.GetRoot()->KeyBoardEvent(iMsg, wParam, lParam);
 		OnDraw();
-		mRender->Paint();
+		mCanvas->Update();
 		return 0;
 	}
 	//窗体移动事件

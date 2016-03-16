@@ -12,6 +12,8 @@ class IXCanvas
 public:
 	virtual RenderType GetType() = 0;
 	virtual XResource::XSize GetSize() = 0;
+	virtual void Update() = 0;//¸üĞÂÏÔÊ¾
+	virtual void ReSize(int width, int height) = 0;
 protected:
 
 private:

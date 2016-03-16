@@ -80,6 +80,9 @@
     <ClCompile Include="XRenderFacotry.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="GDICanvas.cpp">
+      <Filter>Render\GDIPlus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleDirectUI.h" />

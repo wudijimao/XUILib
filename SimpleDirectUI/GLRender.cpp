@@ -32,23 +32,70 @@ void creatFramBuf() {
 }
 
 GLRender::GLRender(HWND hwnd) {
-	GLHelper::init();
-	GLHelper::winInit(hwnd);
+	mHwnd = hwnd;
+	
 }
 
 bool GLRender::Init(IXCanvas *canvas) {
 	return false;
 }
-
+Gdiplus::GdiplusStartupInput mGdiplusStartupInput;
+ULONG_PTR mGdiplusToken;
 void GLRender::Creat() {
-	creatFramBuf();
+	GdiplusStartup(&mGdiplusToken, &mGdiplusStartupInput, NULL);
+	GLHelper::init();
+	HDC hdc = ::GetDC(mHwnd);
+	RECT rct;
+	GetWindowRect(mHwnd, &rct);
+	POINT ptWinPos = { rct.left, rct.top };
+	mMemDC = hdc;// CreateCompatibleDC(hdc);
+	//mBitMap = CreateCompatibleBitmap(hdc, rct.right - rct.left, rct.bottom - rct.top);
+	//SelectObject(mMemDC, mBitMap);//???
+								  //GLHelper::winInit(mMemDC);
+
+								  // …Ë÷√≤„¥Œ¥∞ø⁄
+	DWORD dwExStyle = GetWindowLong(mHwnd, GWL_EXSTYLE);
+
+	if ((dwExStyle & WS_EX_LAYERED) != WS_EX_LAYERED)
+	{
+		SetWindowLong(mHwnd, GWL_EXSTYLE, dwExStyle ^ WS_EX_LAYERED);
+	}
+	GLHelper::winInit(mMemDC);
+	//creatFramBuf();
 }
 
 void GLRender::ReSize(int width, int height) {
 
 }
 void GLRender::Paint() {
+/*	for (int i = 0; i < 40000; i++)
+	{
+		((char*)(Bitmap.bmBits))[i] = 255;
+	}*/
 
+	HDC hdc = ::GetDC(mHwnd);
+	RECT rct;
+	GetWindowRect(mHwnd, &rct);
+	POINT ptWinPos = { rct.left, rct.top };
+
+	POINT    ptSrc = { 0, 0 };
+
+	SIZE    sizeWindow = { rct.right - rct.left, rct.bottom - rct.top };
+	
+	
+	typedef BOOL(APIENTRY *PFNWGLSWAPINTERVALFARPROC)(int);
+	PFNWGLSWAPINTERVALFARPROC wglSwapIntervalEXT = 0;
+	wglSwapIntervalEXT = (PFNWGLSWAPINTERVALFARPROC)wglGetProcAddress("wglSwapIntervalEXT");
+
+	wglSwapIntervalEXT(1);
+
+	BLENDFUNCTION    m_Blend;
+	m_Blend.BlendOp = AC_SRC_OVER; //theonlyBlendOpdefinedinWindows2000
+	m_Blend.BlendFlags = 0; //nothingelseisspecial...
+	m_Blend.AlphaFormat = AC_SRC_ALPHA; //...
+	m_Blend.SourceConstantAlpha = 255;//AC_SRC_ALPHA 
+	bool ret = UpdateLayeredWindow(mHwnd, NULL, &ptWinPos, &sizeWindow, hdc, &ptSrc, 0, &m_Blend, ULW_ALPHA);
+	
 }
 void GLRender::Destory() {
 

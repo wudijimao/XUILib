@@ -7,12 +7,7 @@ class SIMPLEDIRECTUI_API IXRender
 {
 public:
 	virtual ~IXRender(){};
-	virtual void Creat() = 0;
-
 	virtual bool Init(IXCanvas *canvas) = 0;
-	virtual void ReSize(int width, int height) = 0;
-	virtual void Paint() = 0;
-	virtual void Destory() = 0;
 	virtual void DrawBackGround(Gdiplus::Color &color, const XResource::XRect &xRect) = 0;
 	virtual void DrawLine(int x1, int y1, int x2, int y2) = 0;
 	//需要绘制的矩形区域

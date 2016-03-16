@@ -85,7 +85,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SIMPLEDIRECTUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>..\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -106,6 +106,7 @@
     <ClCompile Include="BaseWindow.cpp" />
     <ClCompile Include="ControlManager.cpp" />
     <ClCompile Include="GDICacheGraphics.cpp" />
+    <ClCompile Include="GDICanvas.cpp" />
     <ClCompile Include="GDIRender.cpp" />
     <ClCompile Include="GLCanvas.cpp" />
     <ClCompile Include="GlobalStatus.cpp" />

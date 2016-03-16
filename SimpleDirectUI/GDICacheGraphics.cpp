@@ -6,7 +6,7 @@ using namespace Gdiplus;
 void GDICacheGraphics::Creat(const XResource::XRect& rect)
 {
 	mBitmap = new Gdiplus::Bitmap(rect.Width(), rect.Height());
-	mBkgGraphics = Graphics::FromImage(mBitmap);
+	//mBkgGraphics = Graphics::FromImage(mBitmap);
 }
 GDICacheGraphics::~GDICacheGraphics()
 {

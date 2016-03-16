@@ -1,5 +1,6 @@
 #pragma once
 #include "IXRender.h"
+#include "windows.h"
 
 class GLRender : public IXRender
 {
@@ -22,6 +23,9 @@ public:
 	virtual XResource::XRect MeasureString(const std::wstring &text);
 
 private:
-
+	HWND mHwnd;
+	HDC mMemDC;
+	HBITMAP mBitMap;
+	BITMAP Bitmap;
 };
 

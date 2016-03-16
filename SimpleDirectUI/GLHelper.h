@@ -8,7 +8,7 @@ class GLHelper
 public:
 	GLHelper();
 	~GLHelper();
-	static bool winInit(HWND hWnd);
+	static bool winInit(HDC hdc);
 	static bool init();
 private:
 
@@ -22,11 +22,9 @@ GLHelper::~GLHelper()
 {
 }
 
-bool GLHelper::winInit(HWND hWnd) {
+bool GLHelper::winInit(HDC hdc) {
 	//windows
-	HDC hdc;
-	hdc = ::GetDC(hWnd);
-	int bits = 32;
+	int bits = 24;
 	static	PIXELFORMATDESCRIPTOR pfd =				// pfd Tells Windows How We Want Things To Be
 	{
 		sizeof(PIXELFORMATDESCRIPTOR),				// Size Of This Pixel Format Descriptor
@@ -37,7 +35,7 @@ bool GLHelper::winInit(HWND hWnd) {
 		PFD_TYPE_RGBA,								// Request An RGBA Format
 		bits,										// Select Our Color Depth
 		0, 0, 0, 0, 0, 0,							// Color Bits Ignored
-		0,											// No Alpha Buffer
+		8,											// No Alpha Buffer
 		0,											// Shift Bit Ignored
 		0,											// No Accumulation Buffer
 		0, 0, 0, 0,									// Accumulation Bits Ignored
@@ -57,19 +55,19 @@ bool GLHelper::winInit(HWND hWnd) {
 	if (!wglMakeCurrent(hdc, context)) {
 		return false;
 	}
-	::ReleaseDC(hWnd, hdc);//一定要释放句柄
+	//::ReleaseDC(hWnd, hdc);//一定要释放句柄
 	return init();
 }
 
 bool GLHelper::init() {
 	GLenum err = glewInit();
 	if (GLEW_OK != err)
-	{
+	{ 
 		return false;
 	}
 
 	glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
+	glClearColor(1.0f, 0.0f, 0.0f, 0.5f);				// Black Background
 	glClearDepth(1.0f);									// Depth Buffer Setup
 	glEnable(GL_DEPTH_TEST);							// Enables Depth Testing
 	glDepthFunc(GL_LEQUAL);								// The Type Of Depth Testing To Do

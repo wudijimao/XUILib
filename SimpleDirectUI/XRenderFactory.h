@@ -3,5 +3,5 @@
 
 class XRenderFactory {
 public:
-	static IXRender* getRender(HWND hwnd);
+	static IXCanvas* getRender(HWND hwnd);
 };
