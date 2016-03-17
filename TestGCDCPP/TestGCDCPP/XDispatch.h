@@ -7,9 +7,9 @@
 #include <iostream>
 #include <memory>
 #include <atomic>
+#include "XTask.hpp"
 
 namespace XDispatch {
-	typedef std::function<void(void)> MyFun;
 //    class TestMyFun {
 //    public:
 //        TestMyFun() {
@@ -26,27 +26,6 @@ namespace XDispatch {
 //        }
 //    };
 //    typedef TestMyFun MyFun;
-    
-	typedef enum XTaskPriority {
-		XTaskPriority_High,
-		XTaskPriority_Default,
-		XTaskPriority_Low,
-		XTaskPriority_Background,
-	}XTaskPriority;
-
-	class XThreadPool;
-	//TODO::ªª”√ŒﬁÀ¯∂”¡–£®lock-free£©°¢Ã·∏ﬂ–ß¬ 
-	class XTaskQueue {
-		std::mutex mutex;
-		std::queue<MyFun*> queue;
-	public:
-        ~XTaskQueue();
-		XThreadPool *runInPool;
-		static std::shared_ptr<XTaskQueue> getMainQueue();
-		static std::shared_ptr<XTaskQueue> getGlobleQueue(XTaskPriority priority);
-		bool pop(MyFun *&fun);
-		void push(MyFun *fun);
-	};
 
 
 	class XThreadPool {
@@ -67,17 +46,7 @@ namespace XDispatch {
 		virtual ~XThreadPool();
 	};
 
-	struct XTask {
-	public:
-		XTask(MyFun *in_fun,
-			std::shared_ptr<XTaskQueue> &in_queue,
-			std::chrono::time_point<std::chrono::system_clock> &&in_time);
-        ~XTask();
-		MyFun *fun;
-		std::shared_ptr<XTaskQueue> queue;
-		std::chrono::time_point<std::chrono::system_clock> time;
-		bool operator <(const XTask& rh);
-	};
+	
 
 	class XDispatchManager {
 	private:
@@ -99,4 +68,18 @@ namespace XDispatch {
 		}
 		void dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS);
 	};
+    
+    inline void dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun) {
+        XDispatchManager::getSharedInstance()->dispatchAsnyc(taskQueue, fun);
+    }
+    inline void dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS) {
+        XDispatchManager::getSharedInstance()->dispatchAfter(taskQueue, fun, delayMS);
+    }
+    inline std::shared_ptr<XTaskQueue> getMainQueue() {
+        return XTaskQueue::getMainQueue();
+    }
+    inline std::shared_ptr<XTaskQueue> getGlobleQueue(XTaskPriority priority) {
+        return XTaskQueue::getMainQueue();
+    }
 }
+
