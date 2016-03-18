@@ -1,0 +1,9 @@
+#pragma once
+#include "BaseControl.h"
+#include "XButton.h"
+#include "XPanel.h"
+#include "XRichTextBox.h"
+#include "XScrollViewer.h"
+#include "XVScrollBar.h"
+#include "XTextBox.h"
+#include "XCheckBox.h"

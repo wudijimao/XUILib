@@ -6,8 +6,19 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
+		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
+		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.m */; };
+		3E1416B11C9B94E000A84DF1 /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AF1C9B94E000A84DF1 /* GLView.m */; };
+		3E1416B41C9B9DA300A84DF1 /* XApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416B21C9B9DA300A84DF1 /* XApp.cpp */; };
+		3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988501C9BD65600B9B23E /* XWindow_ios.mm */; };
+		3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988551C9BE15C00B9B23E /* XRect.cpp */; };
+		3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9885B1C9BE21B00B9B23E /* stdafx.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		3E9A4BF01C9A9B6D00CB59AD /* CopyFiles */ = {
+		3E14159C1C9AA7C500A84DF1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
@@ -19,11 +30,42 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3E9A4BF21C9A9B6D00CB59AD /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIAppDelegate.h; sourceTree = "<group>"; };
+		3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIAppDelegate.mm; sourceTree = "<group>"; };
+		3E14166B1C9ABEFA00A84DF1 /* XDUILib_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XDUILib_ios.hpp; sourceTree = "<group>"; };
+		3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUILib_ios.mm; sourceTree = "<group>"; };
+		3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIViewController.h; sourceTree = "<group>"; };
+		3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XDUIViewController.m; sourceTree = "<group>"; };
+		3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XDUILib.hpp; sourceTree = "<group>"; };
+		3E1416A21C9B93F600A84DF1 /* GLCanvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLCanvas.hpp; sourceTree = "<group>"; };
+		3E1416A31C9B93F600A84DF1 /* GLHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLHelper.hpp; sourceTree = "<group>"; };
+		3E1416A41C9B93F600A84DF1 /* GLRender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GLRender.hpp; sourceTree = "<group>"; };
+		3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IBaseWindow.hpp; sourceTree = "<group>"; };
+		3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXCanvas.hpp; sourceTree = "<group>"; };
+		3E1416A81C9B93F600A84DF1 /* IXRender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXRender.hpp; sourceTree = "<group>"; };
+		3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SimpleDirectUI.hpp; sourceTree = "<group>"; };
+		3E1416AA1C9B93F600A84DF1 /* stdafx.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = stdafx.hpp; sourceTree = "<group>"; };
+		3E1416AC1C9B93F600A84DF1 /* XNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XNode.hpp; sourceTree = "<group>"; };
+		3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XRenderFactory.hpp; sourceTree = "<group>"; };
+		3E1416AE1C9B93F600A84DF1 /* XRoot.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XRoot.hpp; sourceTree = "<group>"; };
+		3E1416AF1C9B94E000A84DF1 /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
+		3E1416B01C9B94E000A84DF1 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
+		3E1416B21C9B9DA300A84DF1 /* XApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XApp.cpp; sourceTree = "<group>"; };
+		3E1416B31C9B9DA300A84DF1 /* XApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XApp.hpp; sourceTree = "<group>"; };
+		3EB9884F1C9BD65600B9B23E /* XWindow_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow_ios.hpp; sourceTree = "<group>"; };
+		3EB988501C9BD65600B9B23E /* XWindow_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XWindow_ios.mm; sourceTree = "<group>"; };
+		3EB988521C9BE00500B9B23E /* IBaseControl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IBaseControl.hpp; sourceTree = "<group>"; };
+		3EB988551C9BE15C00B9B23E /* XRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XRect.cpp; sourceTree = "<group>"; };
+		3EB988561C9BE15C00B9B23E /* XRect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XRect.hpp; sourceTree = "<group>"; };
+		3EB988571C9BE15C00B9B23E /* XRectPro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XRectPro.hpp; sourceTree = "<group>"; };
+		3EB988581C9BE15C00B9B23E /* XResource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XResource.hpp; sourceTree = "<group>"; };
+		3EB9885B1C9BE21B00B9B23E /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DllExport.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3E9A4BEF1C9A9B6D00CB59AD /* Frameworks */ = {
+		3E14159B1C9AA7C500A84DF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,39 +75,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3E1415531C9A9C3500A84DF1 /* XDUILib */ = {
+		3E1415951C9AA7C500A84DF1 = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = XDUILib;
-			sourceTree = "<group>";
-		};
-		3E9A4BE91C9A9B6D00CB59AD = {
-			isa = PBXGroup;
-			children = (
-				3E1415531C9A9C3500A84DF1 /* XDUILib */,
-				3E9A4BF31C9A9B6D00CB59AD /* Products */,
+				3E1416501C9ABEFA00A84DF1 /* include */,
+				3E14159F1C9AA7C500A84DF1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3E9A4BF31C9A9B6D00CB59AD /* Products */ = {
+		3E14159F1C9AA7C500A84DF1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E9A4BF21C9A9B6D00CB59AD /* libXDUILib.a */,
+				3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3E1416501C9ABEFA00A84DF1 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3E14169C1C9B93F600A84DF1 /* core */,
+				3EB988531C9BE15C00B9B23E /* res */,
+				3E1416681C9ABEFA00A84DF1 /* ios */,
+				3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */,
+			);
+			name = include;
+			path = ../../../include;
+			sourceTree = "<group>";
+		};
+		3E1416681C9ABEFA00A84DF1 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				3EB9884F1C9BD65600B9B23E /* XWindow_ios.hpp */,
+				3EB988501C9BD65600B9B23E /* XWindow_ios.mm */,
+				3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */,
+				3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */,
+				3E14166B1C9ABEFA00A84DF1 /* XDUILib_ios.hpp */,
+				3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */,
+				3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */,
+				3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.m */,
+				3E1416B01C9B94E000A84DF1 /* GLView.h */,
+				3E1416AF1C9B94E000A84DF1 /* GLView.m */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		3E14169C1C9B93F600A84DF1 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
+				3EB988521C9BE00500B9B23E /* IBaseControl.hpp */,
+				3E1416A21C9B93F600A84DF1 /* GLCanvas.hpp */,
+				3E1416A31C9B93F600A84DF1 /* GLHelper.hpp */,
+				3E1416A41C9B93F600A84DF1 /* GLRender.hpp */,
+				3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */,
+				3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */,
+				3E1416A81C9B93F600A84DF1 /* IXRender.hpp */,
+				3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */,
+				3E1416AA1C9B93F600A84DF1 /* stdafx.hpp */,
+				3EB9885B1C9BE21B00B9B23E /* stdafx.cpp */,
+				3E1416AC1C9B93F600A84DF1 /* XNode.hpp */,
+				3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */,
+				3E1416AE1C9B93F600A84DF1 /* XRoot.hpp */,
+				3E1416B21C9B9DA300A84DF1 /* XApp.cpp */,
+				3E1416B31C9B9DA300A84DF1 /* XApp.hpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		3EB988531C9BE15C00B9B23E /* res */ = {
+			isa = PBXGroup;
+			children = (
+				3EB988551C9BE15C00B9B23E /* XRect.cpp */,
+				3EB988561C9BE15C00B9B23E /* XRect.hpp */,
+				3EB988571C9BE15C00B9B23E /* XRectPro.hpp */,
+				3EB988581C9BE15C00B9B23E /* XResource.hpp */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3E9A4BF11C9A9B6D00CB59AD /* XDUILib */ = {
+		3E14159D1C9AA7C500A84DF1 /* XDUILib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E9A4BFB1C9A9B6D00CB59AD /* Build configuration list for PBXNativeTarget "XDUILib" */;
+			buildConfigurationList = 3E1415A71C9AA7C500A84DF1 /* Build configuration list for PBXNativeTarget "XDUILib" */;
 			buildPhases = (
-				3E9A4BEE1C9A9B6D00CB59AD /* Sources */,
-				3E9A4BEF1C9A9B6D00CB59AD /* Frameworks */,
-				3E9A4BF01C9A9B6D00CB59AD /* CopyFiles */,
+				3E14159A1C9AA7C500A84DF1 /* Sources */,
+				3E14159B1C9AA7C500A84DF1 /* Frameworks */,
+				3E14159C1C9AA7C500A84DF1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -73,53 +171,61 @@
 			);
 			name = XDUILib;
 			productName = XDUILib;
-			productReference = 3E9A4BF21C9A9B6D00CB59AD /* libXDUILib.a */;
+			productReference = 3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3E9A4BEA1C9A9B6D00CB59AD /* Project object */ = {
+		3E1415961C9AA7C500A84DF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = wudijimao;
 				TargetAttributes = {
-					3E9A4BF11C9A9B6D00CB59AD = {
+					3E14159D1C9AA7C500A84DF1 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 26NS455T8K;
 					};
 				};
 			};
-			buildConfigurationList = 3E9A4BED1C9A9B6D00CB59AD /* Build configuration list for PBXProject "XDUILib" */;
+			buildConfigurationList = 3E1415991C9AA7C500A84DF1 /* Build configuration list for PBXProject "XDUILib" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 3E9A4BE91C9A9B6D00CB59AD;
-			productRefGroup = 3E9A4BF31C9A9B6D00CB59AD /* Products */;
+			mainGroup = 3E1415951C9AA7C500A84DF1;
+			productRefGroup = 3E14159F1C9AA7C500A84DF1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E9A4BF11C9A9B6D00CB59AD /* XDUILib */,
+				3E14159D1C9AA7C500A84DF1 /* XDUILib */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3E9A4BEE1C9A9B6D00CB59AD /* Sources */ = {
+		3E14159A1C9AA7C500A84DF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */,
+				3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */,
+				3E1416B11C9B94E000A84DF1 /* GLView.m in Sources */,
+				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
+				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.m in Sources */,
+				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
+				3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */,
+				3E1416B41C9B9DA300A84DF1 /* XApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		3E9A4BF91C9A9B6D00CB59AD /* Debug */ = {
+		3E1415A51C9AA7C500A84DF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -162,7 +268,7 @@
 			};
 			name = Debug;
 		};
-		3E9A4BFA1C9A9B6D00CB59AD /* Release */ = {
+		3E1415A61C9AA7C500A84DF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -199,7 +305,7 @@
 			};
 			name = Release;
 		};
-		3E9A4BFC1C9A9B6D00CB59AD /* Debug */ = {
+		3E1415A81C9AA7C500A84DF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -208,7 +314,7 @@
 			};
 			name = Debug;
 		};
-		3E9A4BFD1C9A9B6D00CB59AD /* Release */ = {
+		3E1415A91C9AA7C500A84DF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
@@ -220,25 +326,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E9A4BED1C9A9B6D00CB59AD /* Build configuration list for PBXProject "XDUILib" */ = {
+		3E1415991C9AA7C500A84DF1 /* Build configuration list for PBXProject "XDUILib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E9A4BF91C9A9B6D00CB59AD /* Debug */,
-				3E9A4BFA1C9A9B6D00CB59AD /* Release */,
+				3E1415A51C9AA7C500A84DF1 /* Debug */,
+				3E1415A61C9AA7C500A84DF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E9A4BFB1C9A9B6D00CB59AD /* Build configuration list for PBXNativeTarget "XDUILib" */ = {
+		3E1415A71C9AA7C500A84DF1 /* Build configuration list for PBXNativeTarget "XDUILib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E9A4BFC1C9A9B6D00CB59AD /* Debug */,
-				3E9A4BFD1C9A9B6D00CB59AD /* Release */,
+				3E1415A81C9AA7C500A84DF1 /* Debug */,
+				3E1415A91C9AA7C500A84DF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3E9A4BEA1C9A9B6D00CB59AD /* Project object */;
+	rootObject = 3E1415961C9AA7C500A84DF1 /* Project object */;
 }

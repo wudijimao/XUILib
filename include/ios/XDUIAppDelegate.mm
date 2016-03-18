@@ -6,17 +6,19 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "XDUIAppDelegate.h"
+#import "XApp.hpp"
 
-@interface AppDelegate ()
+@interface XDUIAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation XDUIAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    XDUILib::XApp::thisApp().mainWindow->showInFront();
     return YES;
 }
 
