@@ -1,5 +1,5 @@
 #pragma once
-#include "IXCanvas.h"
+#include "IXCanvas.hpp"
 
 class GDICanvas : public IXCanvas
 {

@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "GDICanvas.h"
-#include "GDIRender.h"
+#include "stdafx.hpp"
+#include "GDICanvas.hpp"
+#include "GDIRender.hpp"
 using namespace Gdiplus;
 
 #define TWO_PI (2.0 * 3.14159)

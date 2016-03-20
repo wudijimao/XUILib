@@ -1,6 +1,7 @@
 #pragma once
-#include "XResource.h"
-#include <boost/signals2.hpp>
+#include "core\stdafx.hpp"
+#include "res\XResource.hpp"
+
 //struct MouseStatusStruct
 //{
 //	bool IsLButtonDown, IsRButtonDown, IsXButtonDown, IsX2ButtonDown, IsMButtonDown;
@@ -16,7 +17,7 @@ public:
 		static GlobalStatus instance;
 		return instance;
 	}
-	boost::signals2::signal<void(bool)> IsCaretShowChanged;
+	std::function<void(bool)> IsCaretShowChanged;
 	void IsCaretShow(bool show)
 	{
 		mIsCaretShow = show;

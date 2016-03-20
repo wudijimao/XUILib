@@ -1,5 +1,5 @@
 #pragma once
-#include"GDIRender.h"
+#include"GDIRender.hpp"
 
 //专门缓存
 class SIMPLEDIRECTUI_API GDICacheGraphics : public GDIRender

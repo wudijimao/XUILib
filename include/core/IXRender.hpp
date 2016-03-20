@@ -1,7 +1,7 @@
 #pragma once
-#include "IXCanvas.h"
-#include "XImage.h"
-#include "XText.h"
+#include "IXCanvas.hpp"
+#include "res/XImage.hpp"
+#include "res/XText.hpp"
 
 class SIMPLEDIRECTUI_API IXRender
 {

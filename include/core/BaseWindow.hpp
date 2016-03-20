@@ -1,9 +1,9 @@
 #pragma once
-#include "ControlManager.h"
-#include "IXRender.h"
-#include "XRect.h"
-#include "IBaseWindow.h"
-#include <boost/signals2.hpp>
+#include "ControlManager.hpp"
+#include "IXRender.hpp"
+#include "res/XRect.hpp"
+#include "IBaseWindow.hpp"
+
 class SIMPLEDIRECTUI_API XWindow : public IXWindow
 {
 public:

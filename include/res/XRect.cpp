@@ -1,4 +1,4 @@
-#include "stdafx.hpp"
+#include "core/stdafx.hpp"
 #include "XRect.hpp"
 
 namespace XResource {

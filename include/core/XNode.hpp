@@ -1,5 +1,4 @@
-#include <string>
-#include <boost/shared_ptr.hpp>
+#include "stdafx.hpp"
 
 class XNode
 {
@@ -18,4 +17,4 @@ XNode::XNode()
 XNode::~XNode()
 {
 }
-typedef boost::shared_ptr<XNode> PNode;
+typedef std::shared_ptr<XNode> PNode;

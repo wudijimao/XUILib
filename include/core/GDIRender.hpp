@@ -1,7 +1,7 @@
 #pragma once
 #pragma warning( disable: 4251 )
-#include "IXRender.h"
-#include <boost/signals2.hpp>
+#include "IXRender.hpp"
+//#include <boost/signals2.hpp>
 #include <windows.h>
 #include <gdiplus.h>
 

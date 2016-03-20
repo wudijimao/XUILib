@@ -1,4 +1,5 @@
-#include "XNode.h"
+#include "XNode.hpp"
+#include "stdafx.hpp"
 
 class XRoot
 {

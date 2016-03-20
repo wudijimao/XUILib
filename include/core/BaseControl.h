@@ -1,12 +1,10 @@
 #pragma once
-#include"stdafx.h"
-#include "XImage.h"
-#include "XRectPro.h"
-#include "IBaseControl.h"
-#include "IBaseWindow.h"
-#include "DllExport.h"
-#include<boost\shared_ptr.hpp>
-#include<vector>
+#include"stdafx.hpp"
+#include "res\XImage.hpp"
+#include "res\XRectPro.hpp"
+#include "IBaseControl.hpp"
+#include "IBaseWindow.hpp"
+#include "DllExport.hpp"
 
 namespace XControls
 {
@@ -44,7 +42,7 @@ namespace XControls
 			{
 				//TODO:If not transparent, parent need't redraw
 				//If  opengl, parent need't run draw to recode info
-				mBelongWnd->NeedReDraw();
+				//mBelongWnd->NeedReDraw();
 			}
 		}
 	public:
@@ -133,7 +131,7 @@ namespace XControls
 			return true;
 		}
 	protected:
-		IXWindow *mBelongWnd = {NULL};
+		IXWindow *mBelongWnd = nullptr;
 		bool mNeedReDraw;
 		XResource::XRectPro mRect;
 		std::wstring mId;
@@ -148,8 +146,9 @@ namespace XControls
 		void RefreshAbsRect();
 		virtual XResource::XPoint GetMousePos()
 		{
-			auto temp = mBelongWnd->MouseStauts();
-			XResource::XPoint point(temp.X - mAbsRect.IntX(), temp.Y - mAbsRect.IntY());
+			//auto temp = mBelongWnd->MouseStauts();
+			//XResource::XPoint point(temp.X - mAbsRect.IntX(), temp.Y - mAbsRect.IntY());
+			XResource::XPoint point;
 			return point;
 		}
 

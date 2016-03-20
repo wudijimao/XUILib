@@ -1,7 +1,6 @@
 #pragma once
-#include"DllExport.h"
-#include "WindowsManager.h"
-#include<boost\shared_ptr.hpp>
+#include"DllExport.hpp"
+#include "WindowsManager.hpp"
 #include<Windows.h>
 
 

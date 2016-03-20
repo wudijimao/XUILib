@@ -1,5 +1,6 @@
 #pragma once
-#include "XRect.h"
+#include "res/XText.hpp"
+#include "res/XRect.hpp"
 
 enum class RenderType
 {

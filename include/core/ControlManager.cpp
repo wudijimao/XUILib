@@ -1,5 +1,6 @@
-#include "stdafx.h"
-#include "ControlManager.h"
+#include "stdafx.hpp"
+#include "ControlManager.hpp"
+#include "BaseControl.h"
 
 using namespace XControls;
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "IXRender.h"
+#include "IXRender.hpp"
 
 class GLRender : public IXRender
 {

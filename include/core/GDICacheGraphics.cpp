@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "GDICacheGraphics.h"
+#include "stdafx.hpp"
+#include "GDICacheGraphics.hpp"
 
 using namespace Gdiplus;
 

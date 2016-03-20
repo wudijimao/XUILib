@@ -1,6 +1,7 @@
 #pragma once
 
-#include"stdafx.h"
+#include"stdafx.hpp"
+#include"IBaseControl.hpp"
 #include<map>
 
 namespace XControls

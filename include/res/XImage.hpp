@@ -1,5 +1,5 @@
 #pragma once
-#include "XRect.h"
+#include "res/XRect.hpp"
 #include <string>
 #include <Windows.h>
 #include <gdiplus.h>

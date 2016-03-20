@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "WindowsManager.h"
+#include "stdafx.hpp"
+#include "WindowsManager.hpp"
 using namespace std;
 LRESULT CALLBACK WindowsManager::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {

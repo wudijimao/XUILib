@@ -1,5 +1,5 @@
-#include "GLRender.h"
-#include "GLHelper.h"
+#include "GLRender.hpp"
+#include "GLHelper.hpp"
 #include <vector>
 #include <time.h>
 #include <iterator>

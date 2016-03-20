@@ -1,13 +1,13 @@
 /*
 windows版本
 */
-#include "stdafx.h"
-#include "BaseWindow.h"
-#include "WindowsManager.h"
-#include "XImage.h"
-#include "XRect.h"
-#include "GlobalStatus.h"
-#include "XRenderFactory.h"
+#include "stdafx.hpp"
+#include "BaseWindow.hpp"
+#include "WindowsManager.hpp"
+#include "res\XImage.hpp"
+#include "res\XRect.hpp"
+#include "win32\GlobalStatus.hpp"
+#include "XRenderFactory.hpp"
 
 
 using namespace XResource;
@@ -103,7 +103,6 @@ HWND XWindow::Create(HINSTANCE hInstance, int iCmdShow)
 	if (!::IsWindow(mHwnd))
 	{
 		DWORD a = ::GetLastError();
-		assert("未成功创建窗口" && 0);
 		return NULL;
 	}
 
@@ -114,7 +113,6 @@ HWND XWindow::Create(HINSTANCE hInstance, int iCmdShow)
 	//创建光标 分层窗口不能用 只能自绘,但是是否影响输入法的位置呢？？
 	if (!CreateCaret(mHwnd, NULL, 500, 500))
 	{
-		assert(L"创建光标失败");
 	}
 	return mHwnd;
 };

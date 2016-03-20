@@ -1,4 +1,4 @@
-#include"stdafx.h"
+#include"stdafx.hpp"
 #include"BaseControl.h"
 
 using namespace XControls;
@@ -50,7 +50,7 @@ const MouseStatusStruct& BaseControl::MouseStatus()
 }
 void BaseControl::KeyBoardEvent(UINT key, WPARAM wParam, LPARAM lParam)
 {
-	KeyDown(*this, wParam, lParam);
+	//KeyDown(*this, wParam, lParam);
 	for (auto child : mRealChildrens)
 	{
 		child->KeyBoardEvent(key, wParam, lParam);
@@ -58,6 +58,7 @@ void BaseControl::KeyBoardEvent(UINT key, WPARAM wParam, LPARAM lParam)
 }
 void BaseControl::MouseEvent(UINT key, int x, int y)
 {
+	/*
 	x = x - mRect.IntX();
 	y = y - mRect.IntY();
 	mClickedX = x;//临时  应该定义一套完整的事件响应、记录机制
@@ -129,7 +130,7 @@ void BaseControl::MouseEvent(UINT key, int x, int y)
 	for (auto child : mRealChildrens)
 	{
 		child->MouseEvent(key, x, y);
-	}
+	}*/
 }
 
 
@@ -161,11 +162,11 @@ void BaseControl::Rect(const XResource::XRect& rect)
 	}
 	if (temp.X() != mRect.X() || temp.Y() != mRect.Y())
 	{
-		PosChange(*this, temp);
+		//PosChange(*this, temp);
 	}
 	if (temp.Width() != mRect.Width() || temp.Height() != mRect.Height())
 	{
-		SizeChange(*this, temp);
+		//SizeChange(*this, temp);
 	}
 	mRect = temp;
 	RefreshAbsRect();

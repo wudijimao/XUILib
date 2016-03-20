@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header\core">
+      <UniqueIdentifier>{1093ae3b-a8e0-4028-903f-813f77e3eaa6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header\win32">
+      <UniqueIdentifier>{b9e0270a-c917-4089-ac06-1ae3814e292c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\res">
+      <UniqueIdentifier>{727fa374-3544-4bff-bea1-4af8ca2a2d75}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\include\core\DllExport.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GLCanvas.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GLHelper.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GLRender.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\IBaseControl.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\IBaseWindow.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\IXCanvas.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\IXRender.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\SimpleDirectUI.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\stdafx.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XApp.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XNode.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XRenderFactory.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XRoot.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XRect.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XRectPro.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XResource.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\BaseWindow.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GDICacheGraphics.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GDICanvas.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GDIRender.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\WindowsManager.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\ControlManager.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\BaseControl.h">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\include\core\GDICacheGraphics.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\GDIRender.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\GLRender.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\stdafx.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\WindowsManager.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\XApp.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XRect.cpp">
+      <Filter>Header\res</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\dllmain.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\ControlManager.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\BaseControl.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\BaseWindow.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
