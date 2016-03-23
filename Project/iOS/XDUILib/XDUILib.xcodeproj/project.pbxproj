@@ -38,6 +38,7 @@
 		3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
 		3E3FF8961CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
 		3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */; };
+		3E3FF89A1CA28D480070F6A5 /* GLCanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8981CA28D480070F6A5 /* GLCanvas.cpp */; };
 		3EAA6CD61CA23A220037291F /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* ResourceHelper.m */; };
 		3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CEE1CA248BE0037291F /* UIKit.framework */; };
@@ -153,6 +154,9 @@
 		3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLHelper.hpp; sourceTree = "<group>"; };
 		3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRenderData.cpp; sourceTree = "<group>"; };
 		3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLRenderData.hpp; sourceTree = "<group>"; };
+		3E3FF8981CA28D480070F6A5 /* GLCanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLCanvas.cpp; sourceTree = "<group>"; };
+		3E3FF8991CA28D480070F6A5 /* GLCanvas.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLCanvas.hpp; sourceTree = "<group>"; };
+		3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLHeaders.h; sourceTree = "<group>"; };
 		3EAA6CD41CA23A220037291F /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceHelper.h; sourceTree = "<group>"; };
 		3EAA6CD51CA23A220037291F /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceHelper.m; sourceTree = "<group>"; };
 		3EAA6CE01CA243210037291F /* Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,6 +259,8 @@
 				3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */,
 				3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */,
 				3E3FF88E1CA26CFD0070F6A5 /* GLRender.hpp */,
+				3E3FF8981CA28D480070F6A5 /* GLCanvas.cpp */,
+				3E3FF8991CA28D480070F6A5 /* GLCanvas.hpp */,
 				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
 				3EB988521C9BE00500B9B23E /* IBaseControl.hpp */,
 				3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */,
@@ -295,6 +301,7 @@
 			children = (
 				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
 				3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */,
+				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
 			);
 			path = GL;
 			sourceTree = "<group>";
@@ -468,6 +475,7 @@
 				3EB9886F1C9FA29200B9B23E /* GLCanvas_ios.mm in Sources */,
 				3E3FF88F1CA26CFD0070F6A5 /* GLRender.cpp in Sources */,
 				3E203C811CA15A8400757788 /* XJPGDecoder.cpp in Sources */,
+				3E3FF89A1CA28D480070F6A5 /* GLCanvas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
