@@ -7,25 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E1416931C9AC0C600A84DF1 /* libXDUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1416921C9AC0C600A84DF1 /* libXDUILib.a */; };
 		3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416941C9AC4F600A84DF1 /* Images.xcassets */; };
 		3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */; };
 		3E9A4BD41C9A9B1900CB59AD /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A4BD31C9A9B1900CB59AD /* main.mm */; };
-		3EB9885F1C9BE91500B9B23E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB9885E1C9BE91500B9B23E /* OpenGLES.framework */; };
-		3EB988651C9BEC0200B9B23E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB988641C9BEC0200B9B23E /* QuartzCore.framework */; };
-		3EB988661C9BED0500B9B23E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1416901C9AC0AA00A84DF1 /* UIKit.framework */; };
+		3EAA6CDA1CA23E050037291F /* res.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD91CA23E050037291F /* res.bundle */; };
+		3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D041CA24A1D0037291F /* UIKit.framework */; };
+		3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D061CA24A2D0037291F /* QuartzCore.framework */; };
+		3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D081CA24A350037291F /* OpenGLES.framework */; };
+		3EB3F80F1CA257320028BF3A /* libXDUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB3F80E1CA257320028BF3A /* libXDUILib.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E1416901C9AC0AA00A84DF1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		3E1416921C9AC0C600A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../XDUILib/build/Debug-iphoneos/libXDUILib.a"; sourceTree = "<group>"; };
 		3E1416941C9AC4F600A84DF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E9A4BCF1C9A9B1900CB59AD /* TestUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9A4BD31C9A9B1900CB59AD /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		3E9A4BE31C9A9B1900CB59AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EB9885E1C9BE91500B9B23E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		3EB988641C9BEC0200B9B23E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3EAA6CD91CA23E050037291F /* res.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = res.bundle; path = "/Users/ximiao/GCD-dispatch-/Project/iOS/XDUILib/../../../res.bundle"; sourceTree = "<absolute>"; };
+		3EAA6D041CA24A1D0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3EAA6D061CA24A2D0037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3EAA6D081CA24A350037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3EB3F80E1CA257320028BF3A /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../Build/Products/Debug-iphonesimulator/libXDUILib.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,10 +35,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EB988661C9BED0500B9B23E /* UIKit.framework in Frameworks */,
-				3EB988651C9BEC0200B9B23E /* QuartzCore.framework in Frameworks */,
-				3EB9885F1C9BE91500B9B23E /* OpenGLES.framework in Frameworks */,
-				3E1416931C9AC0C600A84DF1 /* libXDUILib.a in Frameworks */,
+				3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */,
+				3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */,
+				3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */,
+				3EB3F80F1CA257320028BF3A /* libXDUILib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,11 +48,12 @@
 		3E9A4BC61C9A9B1900CB59AD = {
 			isa = PBXGroup;
 			children = (
-				3EB988641C9BEC0200B9B23E /* QuartzCore.framework */,
-				3EB9885E1C9BE91500B9B23E /* OpenGLES.framework */,
+				3EB3F80E1CA257320028BF3A /* libXDUILib.a */,
+				3EAA6D081CA24A350037291F /* OpenGLES.framework */,
+				3EAA6D061CA24A2D0037291F /* QuartzCore.framework */,
+				3EAA6D041CA24A1D0037291F /* UIKit.framework */,
+				3EAA6CD91CA23E050037291F /* res.bundle */,
 				3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */,
-				3E1416921C9AC0C600A84DF1 /* libXDUILib.a */,
-				3E1416901C9AC0AA00A84DF1 /* UIKit.framework */,
 				3E9A4BD11C9A9B1900CB59AD /* TestUI */,
 				3E9A4BD01C9A9B1900CB59AD /* Products */,
 			);
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */,
+				3EAA6CDA1CA23E050037291F /* res.bundle in Resources */,
 				3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

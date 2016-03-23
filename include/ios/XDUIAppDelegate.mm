@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    XDUILib::XApp::thisApp().init();
     XDUILib::XApp::thisApp().mainWindow->showInFront();
     return YES;
 }

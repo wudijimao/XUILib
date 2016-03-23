@@ -409,12 +409,13 @@ private:
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     
-    context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
-    [EAGLContext setCurrentContext:context];
     
     glView = [[GLView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
     [self.view addSubview:glView];
     glView.backgroundColor = [UIColor clearColor];
+    
+    context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+    [EAGLContext setCurrentContext:context];
     
     
     const GLfloat  zNear = 2.2;

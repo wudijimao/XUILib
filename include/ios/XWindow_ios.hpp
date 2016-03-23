@@ -16,5 +16,6 @@ public:
     ~XWindow();
     UIWindow *window;
     void showInFront();
+    std::shared_ptr<IXCanvas> _canvas;
 private:
 };

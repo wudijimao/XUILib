@@ -1,81 +1,38 @@
 #include "GLRender.hpp"
-#include "GLHelper.hpp"
+//#include "GLHelper.hpp"
 #include <vector>
 #include <time.h>
 #include <iterator>
-
-struct GLColor {
-	BYTE r = '\0';
-	BYTE g = '\0';
-	BYTE b = '\0';
-	BYTE a = '\0';
-};
-
-void creatFramBuf() {
-	GLuint colorBuf;
-	glGenRenderbuffers(1, &colorBuf);
-	glBindRenderbuffer(GL_RENDERBUFFER, colorBuf);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, 100, 100);
-	GLuint frameBuf;
-	glGenFramebuffers(1, &frameBuf);
-	glBindFramebuffer(GL_FRAMEBUFFER, frameBuf);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorBuf);
-
-	int ret = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	GLColor piexls[100 * 100];
-	if (ret == GL_FRAMEBUFFER_COMPLETE)
-	{
-		glClearColor(1, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-		glReadPixels(0, 0, 100, 100, GL_RGBA, GL_UNSIGNED_BYTE, piexls);
-	}
-}
-
-GLRender::GLRender(HWND hwnd) {
-	GLHelper::init();
-	GLHelper::winInit(hwnd);
-}
 
 bool GLRender::Init(IXCanvas *canvas) {
 	return false;
 }
 
-void GLRender::Creat() {
-	creatFramBuf();
-}
-
-void GLRender::ReSize(int width, int height) {
+void GLRender::Submit() {
 
 }
-void GLRender::Paint() {
-
+void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
 }
-void GLRender::Destory() {
-
-}
-void GLRender::DrawBackGround(Gdiplus::Color &color, const XResource::XRect &xRect) {
-
-}
-void GLRender::DrawLine(int x1, int y1, int x2, int y2) {
-
-}
-//ĞèÒª»æÖÆµÄ¾ØĞÎÇøÓò
-void GLRender::DrawImage(XResource::XImage &img, const XResource::XRect &rect) {
-
-}
-//ÎÄ±¾Ïà¹ØÒªµ¥¶À´¦Àí£¿£¿ ÈçºÎÓëÆÕÍ¨Í¼ĞÎ·Ö¿ª ÓÖ²»¹ı¶à¶àĞ»´úÂë£¨·Ö¿ªµÄÀíÓÉÊÇOpenGlÓ¦¸ÃÒ²»áÊ¹ÓÃÆääÖÈ¾ÎÄ±¾£¬ »òÕßÊ¹ÓÃÆäËûÎÄ×ÖäÖÈ¾ÒıÇæ£¬±ÈÈçFreeType/DirectWrite£©
-void GLRender::DrawString(const std::wstring &text, const XResource::XRect &xRect) {
-
-}
-void GLRender::DrawString(const std::wstring &text, const XResource::XRect &xRect, Gdiplus::StringAlignment align) {
-
-}
-void GLRender::DrawString(const XResource::XText &text, const XResource::XRect &xRect) {
-
-}
-XResource::XRect GLRender::MeasureString(const XResource::XText &text, const XResource::XRect &xRect) {
-	return xRect;
-}
-XResource::XRect GLRender::MeasureString(const std::wstring &text) {
-	return XResource::XRect(0, 0, 0, 0);
-}
+//void GLRender::DrawLine(int x1, int y1, int x2, int y2) {
+//
+//}
+////éœ€è¦ç»˜åˆ¶çš„çŸ©å½¢åŒºåŸŸ
+//void GLRender::DrawImage(XResource::XImage &img, const XResource::XRect &rect) {
+//
+//}
+////æ–‡æœ¬ç›¸å…³è¦å•ç‹¬å¤„ç†ï¼Ÿï¼Ÿ å¦‚ä½•ä¸æ™®é€šå›¾å½¢åˆ†å¼€ åˆä¸è¿‡å¤šå¤šè°¢ä»£ç ï¼ˆåˆ†å¼€çš„ç†ç”±æ˜¯OpenGlåº”è¯¥ä¹Ÿä¼šä½¿ç”¨å…¶æ¸²æŸ“æ–‡æœ¬ï¼Œ æˆ–è€…ä½¿ç”¨å…¶ä»–æ–‡å­—æ¸²æŸ“å¼•æ“ï¼Œæ¯”å¦‚FreeType/DirectWriteï¼‰
+//void GLRender::DrawString(const std::wstring &text, const XResource::XRect &xRect) {
+//
+//}
+//void GLRender::DrawString(const std::wstring &text, const XResource::XRect &xRect, Gdiplus::StringAlignment align) {
+//
+//}
+//void GLRender::DrawString(const XResource::XText &text, const XResource::XRect &xRect) {
+//
+//}
+//XResource::XRect GLRender::MeasureString(const XResource::XText &text, const XResource::XRect &xRect) {
+//	return xRect;
+//}
+//XResource::XRect GLRender::MeasureString(const std::wstring &text) {
+//	return XResource::XRect(0, 0, 0, 0);
+//}

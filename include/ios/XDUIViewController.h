@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IXRender.hpp"
 
 @interface XDUIViewController : UIViewController
+
+- (IXCanvas *)initOpenGLES;
 
 @end

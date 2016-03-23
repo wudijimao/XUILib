@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.hpp"
 #include "../res/XRect.hpp"
+#include "IXCanvas.hpp"
+#include "IXRender.hpp"
 
 #ifdef TARGET_OS_MSWINDOWS
 struct MouseStatusStruct
@@ -48,17 +50,22 @@ class SIMPLEDIRECTUI_API IXWindow
 public:
 	virtual ~IXWindow(){};
     virtual void showInFront() = 0;
+    //virtual std::shared_ptr<IXRender> render() = 0;
 	//TODO::不应该有基于具体平台的
 	//virtual HWND Hwnd() = 0;
 	//virtual void NeedReDraw() = 0;
 	//virtual HWND Create(HINSTANCE hInstance, int iCmdShow) = 0;
 	//virtual void Drag(LPARAM lParam) = 0;
+#ifdef TARGET_OS_MSWINDOWS
 	virtual const MouseStatusStruct& MouseStauts() = 0;
+#endif
 	//virtual const std::wstring& ID() = 0;
 	//virtual void ID(const std::wstring& id) = 0;
     
     
 	//virtual const XResource::XRect& Rect() const = 0;
 	//virtual void Rect(const XResource::XRect& rect) = 0;
+protected:
+    std::shared_ptr<IXRender> _render;
 };
 

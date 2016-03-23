@@ -4,15 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Build.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Framework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>XDUILib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3E14159D1C9AA7C500A84DF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3EAA6CDF1CA243210037291F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3EAA6CE81CA244310037291F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

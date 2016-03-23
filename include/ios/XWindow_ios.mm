@@ -15,6 +15,7 @@ XWindow::XWindow() {
     
     auto controller = [[XDUIViewController alloc] init];
     this->window.rootViewController = controller;
+    _canvas.reset([controller initOpenGLES]);
 }
 
 XWindow::~XWindow() {
@@ -22,4 +23,5 @@ XWindow::~XWindow() {
 
 void XWindow::showInFront() {
     [this->window makeKeyAndVisible];
+    _canvas->Present();
 }
