@@ -12,6 +12,12 @@
 
 namespace XDUILib
 {
+    class enum XAppStatus {
+        Foreground,
+        Background,
+        Killed,
+    };
+    
     class XApp {
     public:
         static XApp& thisApp();
@@ -19,6 +25,7 @@ namespace XDUILib
         int run(int argc, char * argv[]);
     //overWrite
         bool init();
+        void onStatusChanged(XAppStatus status, XAppStatus lastStatus);
     public:
         //std::shared_ptr<WindowsManager> windowsManager;
         std::shared_ptr<IXWindow> mainWindow;

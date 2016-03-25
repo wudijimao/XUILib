@@ -1,5 +1,6 @@
 #pragma once
 #include "IXRender.hpp"
+#include "GLCanvas.hpp"
 
 class GLRender : public IXRender
 {
@@ -18,6 +19,6 @@ public:
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
 
 private:
-
+    GLCanvas *_canvas; //weak
 };
 

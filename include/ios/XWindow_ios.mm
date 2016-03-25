@@ -8,6 +8,10 @@
 
 #include "XWindow_ios.hpp"
 #import "XDUIViewController.h"
+#import "../core/GLRender.hpp"
+#import "../core/UIView.hpp"
+
+XUI::UIViewController *rootController;
 
 XWindow::XWindow() {
     CGRect rect = [UIScreen mainScreen].bounds;
@@ -15,7 +19,11 @@ XWindow::XWindow() {
     
     auto controller = [[XDUIViewController alloc] init];
     this->window.rootViewController = controller;
+    
     _canvas.reset([controller initOpenGLES]);
+    _render.reset(new GLRender());
+    _render->Init(_canvas.get());
+    rootController = new XUI::UIViewController();
 }
 
 XWindow::~XWindow() {
@@ -23,5 +31,7 @@ XWindow::~XWindow() {
 
 void XWindow::showInFront() {
     [this->window makeKeyAndVisible];
+    rootController->getView().layoutSubViews();
+    rootController->getView().draw(*(_render.get()));
     _canvas->Present();
 }

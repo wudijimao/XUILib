@@ -7,7 +7,7 @@
 //
 #pragma once
 #include "core/XApp.hpp"
-
+#include "core/UIView.hpp"
 
 
 #ifdef TARGET_OS_IPHONE

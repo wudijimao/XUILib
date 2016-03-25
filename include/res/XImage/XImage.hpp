@@ -16,7 +16,7 @@
 namespace XResource {
     class XImage : public IXImage {
     public:
-        XImageDecoder *mDecoder;
+        XImageDecoder *mDecoder = nullptr;
         XImage () {
         }
         XImage (const char *filePath);

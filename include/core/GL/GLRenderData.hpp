@@ -6,6 +6,7 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #pragma once
+
 #include "stdafx.hpp"
 #include "../../res/XResource.hpp"
 #include "GLHeaders.h"
@@ -50,7 +51,7 @@ namespace XDUILib {
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
-        void initWithRect(const XResource::XRect &rect, const XResource::XUIColor &color, const XResource::XImage &image) {
+        void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const XResource::XImage &image) {
             _square[0] = rect.X();
             _square[1] = rect.Y();
             _square[2] = 0.5;
@@ -66,6 +67,8 @@ namespace XDUILib {
             _square[3] = rect.X();
             _square[4] = rect.Y() + rect.Height();
             _square[5] = 0.5;
+            
+            buildVAO();
         }
     private:
         void buildVAO() {

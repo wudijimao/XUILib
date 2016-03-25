@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416941C9AC4F600A84DF1 /* Images.xcassets */; };
 		3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */; };
+		3E3FF9171CA2E5050070F6A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */; };
+		3E3FF91B1CA2E5120070F6A5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF91A1CA2E5120070F6A5 /* libz.tbd */; };
 		3E9A4BD41C9A9B1900CB59AD /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A4BD31C9A9B1900CB59AD /* main.mm */; };
 		3EAA6CDA1CA23E050037291F /* res.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD91CA23E050037291F /* res.bundle */; };
 		3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D041CA24A1D0037291F /* UIKit.framework */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		3E1416941C9AC4F600A84DF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		3E3FF91A1CA2E5120070F6A5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3E9A4BCF1C9A9B1900CB59AD /* TestUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9A4BD31C9A9B1900CB59AD /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		3E9A4BE31C9A9B1900CB59AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -35,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3FF91B1CA2E5120070F6A5 /* libz.tbd in Frameworks */,
+				3E3FF9171CA2E5050070F6A5 /* libiconv.tbd in Frameworks */,
 				3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */,
 				3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */,
 				3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */,
@@ -48,6 +54,8 @@
 		3E9A4BC61C9A9B1900CB59AD = {
 			isa = PBXGroup;
 			children = (
+				3E3FF91A1CA2E5120070F6A5 /* libz.tbd */,
+				3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */,
 				3EB3F80E1CA257320028BF3A /* libXDUILib.a */,
 				3EAA6D081CA24A350037291F /* OpenGLES.framework */,
 				3EAA6D061CA24A2D0037291F /* QuartzCore.framework */,

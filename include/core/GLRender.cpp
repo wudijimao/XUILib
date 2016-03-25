@@ -3,15 +3,21 @@
 #include <vector>
 #include <time.h>
 #include <iterator>
+#include "GL/GLRenderData.hpp"
 
 bool GLRender::Init(IXCanvas *canvas) {
-	return false;
+    _canvas = (GLCanvas*)canvas;
+	return true;
 }
 
 void GLRender::Submit() {
 
 }
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    XResource::XImage img;
+    data->initWithRect(xRect, color, img);
+    _canvas->pushRenderData(data);
 }
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {
 //
