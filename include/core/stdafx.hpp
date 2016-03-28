@@ -8,10 +8,15 @@
 
 #include "DllExport.hpp"
 
-#ifdef TARGET_IPHONE_SIMULATOR
+#if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 #ifndef TARGET_OS_IPHONE
 #define TARGET_OS_IPHONE
 #endif
+#endif
+
+//暂时
+#ifndef TARGET_OS_IPHONE
+#define TARGET_OS_IPHONE
 #endif
 
 #ifdef _WINDOWS

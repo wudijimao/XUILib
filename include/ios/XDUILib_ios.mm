@@ -16,17 +16,24 @@
 
 namespace XDUILib
 {
+    XApp *gThisAppTemp;//临时解决方案，先暂存在这里
     XApp& XApp::thisApp(){
-        static XApp app;
-        return app;
-    }
-    bool XApp::init() {
-        this->mainWindow.reset(new XWindow());
-        return true;
+        return *gThisAppTemp;
     }
     int XApp::run(int argc, char * argv[]) {
+        gThisAppTemp = this;
         @autoreleasepool {
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([XDUIAppDelegate class]));
         }
+    }
+    
+    bool XApp::init() {
+        setMainWindow(std::make_shared<XWindow>());
+        auto rootController = std::make_shared<XUI::UIViewController>();
+        mainWindow()->setRootViewController(rootController);
+        return true;
+    }
+    void XApp::onStatusChanged(XAppStatus status, XAppStatus lastStatus) {
+        
     }
 }

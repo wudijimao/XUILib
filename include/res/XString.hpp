@@ -37,14 +37,19 @@ namespace XResource
         static std::shared_ptr<XString> stringWithContentOfFile(const char *filePath) {
             XData data;
             data.open(filePath);
-            return std::make_shared<XString>(data.detachBuf());
+            return std::make_shared<XString>(data.getBuf(data.size()));
         }
         static std::shared_ptr<XString> stringWithContentOfFile(const char *filePath, XStringEncoding encoding) {
             XData data;
             data.open(filePath);
-            return std::make_shared<XString>(data.detachBuf(), encoding);
+            return std::make_shared<XString>(data.getBuf(data.size()), encoding);
         }
     public:
+        ~XString() {
+            if (_utf8Buf) {
+                delete _utf8Buf;
+            }
+        }
         XString();
         XString(const char *str);
         XString(const std::string& string);

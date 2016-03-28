@@ -41,7 +41,31 @@ namespace XResource
             return color;
         }
         static std::shared_ptr<XUIColor>redColor() {
-            static auto color = std::make_shared<XUIColor>(255,0,0,255);
+            static auto color = std::make_shared<XUIColor>(254,66,29,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>greenColor() {
+            static auto color = std::make_shared<XUIColor>(41,249,151,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>blueColor() {
+            static auto color = std::make_shared<XUIColor>(34,171,248,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>yellowColor() {
+            static auto color = std::make_shared<XUIColor>(255,214,68,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>grayColor() {
+            static auto color = std::make_shared<XUIColor>(198,198,198,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>lightGrayColor() {
+            static auto color = std::make_shared<XUIColor>(218,218,218,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>pinkColor() {
+            static auto color = std::make_shared<XUIColor>(255,192,203,255);
             return color;
         }
         XUIColor() {

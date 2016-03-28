@@ -24,12 +24,18 @@ namespace XDUILib
     public:
         int run(int argc, char * argv[]);
     //overWrite
-        bool init();
-        void onStatusChanged(XAppStatus status, XAppStatus lastStatus);
+        virtual bool init();
+        virtual void onStatusChanged(XAppStatus status, XAppStatus lastStatus);
     public:
         //std::shared_ptr<WindowsManager> windowsManager;
-        std::shared_ptr<IXWindow> mainWindow;
+        void setMainWindow(std::shared_ptr<IXWindow> window) {
+            _mainWindow = window;
+        }
+        inline std::shared_ptr<IXWindow> mainWindow() {
+            return _mainWindow;
+        }
     private:
+        std::shared_ptr<IXWindow> _mainWindow;
         static XApp *_thisApp;
     };
 }

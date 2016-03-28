@@ -6,8 +6,9 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #pragma once
-
+#include "../../core/stdafx.hpp"
 #ifdef TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
 #import <OpenGLES/ES3/glext.h>
+#import <OpenGLES/gltypes.h>
 #endif

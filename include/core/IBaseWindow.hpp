@@ -45,11 +45,15 @@ struct MouseStatusStruct
 };
 #endif // TARGET_OS_MSWINDOWS
 
+namespace XUI {
+    class UIViewController;
+}
 class SIMPLEDIRECTUI_API IXWindow
 {
 public:
 	virtual ~IXWindow(){};
     virtual void showInFront() = 0;
+    virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) = 0;
     //virtual std::shared_ptr<IXRender> render() = 0;
 	//TODO::不应该有基于具体平台的
 	//virtual HWND Hwnd() = 0;
