@@ -7,14 +7,7 @@
 //
 
 #include "GLCanvas.hpp"
-
-
-GLfloat transformMat[] = {
-    1.0f/150.0f, 0, 0, 0,
-    0, 1.0f/150.0f, 0, 0,
-    0, 0, 1, 0,
-    -1, -1, 0, 1,};
-
+#include "XResManager.hpp"
 
 RenderType GLCanvas::GetType()
 {
@@ -22,6 +15,10 @@ RenderType GLCanvas::GetType()
 }
 void GLCanvas::pushRenderData(XDUILib::GLRenderData *data) {
     _needRenderDatas.push_back(data);
+}
+
+bool GLCanvas::InitGLProgram() {
+    return _program.initWithFilePath(XResManager::pathForResource("shader/VertexShader", "vsh"), XResManager::pathForResource("shader/FragmentShader", "fsh"));
 }
 
 bool GLCanvas::InitFrameBuffer() {
@@ -40,90 +37,15 @@ bool GLCanvas::InitFrameBuffer() {
     return true;
 }
 
-bool GLCanvas::checkShaderCompilState(GLuint shader) {
-    GLint compileResult;
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &compileResult);
-    if (GL_FALSE == compileResult)
-    {
-        GLint logLen;
-        //得到编译日志长度
-        glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLen);
-        if (logLen > 0)
-        {
-            char *log = new char[logLen];
-            GLsizei written;
-            //得到日志信息并输出
-            glGetShaderInfoLog(shader, logLen,&written, log);
-            delete[] log;//释放空间
-        }
-        return false;
-    }
-    return true;
-}
-bool GLCanvas::checkProgramCompilState(GLuint program) {
-    GLint compileResult;
-    glGetProgramiv(program, GL_LINK_STATUS, &compileResult);
-    if (GL_FALSE == compileResult) {
-        GLint logLen;
-        //得到编译日志长度
-        glGetProgramiv(program,GL_INFO_LOG_LENGTH, &logLen);
-        if (logLen > 0)
-        {
-            char *log = new char[logLen];
-            GLsizei written;
-            //得到日志信息并输出
-            glGetProgramInfoLog(program, logLen, &written, log);
-            delete[] log;//释放空间
-        }
-        return false;
-    }
-    return true;
-}
-
-bool GLCanvas::InitGLProgram(const char *vertexShaderText, const char *fragmentShaderText) {
-    if (vertexShaderText == nullptr || fragmentShaderText == nullptr) {
-        return false;
-    }
-    // Create and compile vertex shader
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderText, NULL);
-    glCompileShader(vertexShader);
-    if (!checkShaderCompilState(vertexShader))
-    {
-        return false;
-    }
-    
-    // Create and compile fragment shader
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderText, NULL);
-    glCompileShader(fragmentShader);
-    if (!checkShaderCompilState(fragmentShader))
-    {
-        return false;
-    }
-    
-    // Create and link program
-    _program = glCreateProgram();
-    glAttachShader(_program, vertexShader);
-    glAttachShader(_program, fragmentShader);
-    glLinkProgram(_program);
-    if (!checkProgramCompilState(_program))
-    {
-        return false;
-    }
-    // Use program
-    glUseProgram(_program);
-    return true;
-}
-
 bool GLCanvas::Present() {
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::Square: {
-                glUniformMatrix4fv(0, 1, true, (GLfloat*)&transformMat);
+                glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
                 //glEnableVertexAttribArray(0);
                 //glEnableVertexAttribArray(1);
                 glBindVertexArray(data->_vectexArrayObject);
+                _program.setUniformValue("useTexture", false);
                 // Draw
                 glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
             }
@@ -134,4 +56,5 @@ bool GLCanvas::Present() {
     }
     return true;
 }
+
 

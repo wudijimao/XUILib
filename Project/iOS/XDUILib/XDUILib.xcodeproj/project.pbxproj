@@ -45,7 +45,14 @@
 		3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
 		3E3FF90E1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */; };
 		3E3FF90F1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */; };
-		3EAA6CD61CA23A220037291F /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* ResourceHelper.m */; };
+		3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608281CA7C53200FE8008 /* UIView.cpp */; };
+		3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608311CA7E8E800FE8008 /* GLProgram.hpp */; };
+		3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608321CA7E8E800FE8008 /* GLProgram.cpp */; };
+		3E9608351CA7E8E800FE8008 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608321CA7E8E800FE8008 /* GLProgram.cpp */; };
+		3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608361CA7EEF600FE8008 /* XResManager.cpp */; };
+		3E9608391CA7EEF600FE8008 /* XResManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608361CA7EEF600FE8008 /* XResManager.cpp */; };
+		3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608371CA7EEF600FE8008 /* XResManager.hpp */; };
+		3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* XResourceManager.mm */; };
 		3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CEE1CA248BE0037291F /* UIKit.framework */; };
 		3EAA6CF11CA248C90037291F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CF01CA248C90037291F /* QuartzCore.framework */; };
@@ -84,11 +91,9 @@
 		3EAA6D2B1CA24A8E0037291F /* XRect.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988561C9BE15C00B9B23E /* XRect.hpp */; };
 		3EAA6D2C1CA24A8E0037291F /* XRectPro.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988571C9BE15C00B9B23E /* XRectPro.hpp */; };
 		3EAA6D2D1CA24A8E0037291F /* XResource.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988581C9BE15C00B9B23E /* XResource.hpp */; };
-		3EAA6D2E1CA24A8E0037291F /* ResourceHelper.h in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD41CA23A220037291F /* ResourceHelper.h */; };
-		3EAA6D2F1CA24A8E0037291F /* ResourceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* ResourceHelper.m */; };
+		3EAA6D2F1CA24A8E0037291F /* XResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* XResourceManager.mm */; };
 		3EAA6D301CA24A8E0037291F /* GLCanvas_ios.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9886D1C9FA29200B9B23E /* GLCanvas_ios.hpp */; };
 		3EAA6D311CA24A8E0037291F /* GLCanvas_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9886E1C9FA29200B9B23E /* GLCanvas_ios.mm */; };
-		3EAA6D321CA24A8E0037291F /* XWindow_ios.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9884F1C9BD65600B9B23E /* XWindow_ios.hpp */; };
 		3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988501C9BD65600B9B23E /* XWindow_ios.mm */; };
 		3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */; };
 		3EAA6D351CA24A8E0037291F /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
@@ -166,14 +171,18 @@
 		3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../../../ThirdParty/prebuilt/ios/libjpeg.a; sourceTree = "<group>"; };
 		3E3FF8F71CA2E2210070F6A5 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../ThirdParty/prebuilt/ios/libpng.a; sourceTree = "<group>"; };
 		3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgiflib_d_simulater.a; path = ../../../ThirdParty/prebuilt/ios/libgiflib_d_simulater.a; sourceTree = "<group>"; };
-		3EAA6CD41CA23A220037291F /* ResourceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceHelper.h; sourceTree = "<group>"; };
-		3EAA6CD51CA23A220037291F /* ResourceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceHelper.m; sourceTree = "<group>"; };
+		3E9608271CA7B80500FE8008 /* XWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow.hpp; sourceTree = "<group>"; };
+		3E9608281CA7C53200FE8008 /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
+		3E9608311CA7E8E800FE8008 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
+		3E9608321CA7E8E800FE8008 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
+		3E9608361CA7EEF600FE8008 /* XResManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XResManager.cpp; sourceTree = "<group>"; };
+		3E9608371CA7EEF600FE8008 /* XResManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XResManager.hpp; sourceTree = "<group>"; };
+		3EAA6CD51CA23A220037291F /* XResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XResourceManager.mm; sourceTree = "<group>"; };
 		3EAA6CE01CA243210037291F /* Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAA6CE41CA243210037291F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EAA6CEE1CA248BE0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EAA6CF01CA248C90037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EAA6CF21CA248CF0037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		3EB9884F1C9BD65600B9B23E /* XWindow_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow_ios.hpp; sourceTree = "<group>"; };
 		3EB988501C9BD65600B9B23E /* XWindow_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XWindow_ios.mm; sourceTree = "<group>"; };
 		3EB988521C9BE00500B9B23E /* UIView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIView.hpp; sourceTree = "<group>"; };
 		3EB988551C9BE15C00B9B23E /* XRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XRect.cpp; sourceTree = "<group>"; };
@@ -248,11 +257,9 @@
 		3E1416681C9ABEFA00A84DF1 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				3EAA6CD41CA23A220037291F /* ResourceHelper.h */,
-				3EAA6CD51CA23A220037291F /* ResourceHelper.m */,
+				3EAA6CD51CA23A220037291F /* XResourceManager.mm */,
 				3EB9886D1C9FA29200B9B23E /* GLCanvas_ios.hpp */,
 				3EB9886E1C9FA29200B9B23E /* GLCanvas_ios.mm */,
-				3EB9884F1C9BD65600B9B23E /* XWindow_ios.hpp */,
 				3EB988501C9BD65600B9B23E /* XWindow_ios.mm */,
 				3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */,
 				3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */,
@@ -269,6 +276,7 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3E9608271CA7B80500FE8008 /* XWindow.hpp */,
 				3E3FF8911CA26F750070F6A5 /* GL */,
 				3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */,
 				3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */,
@@ -277,6 +285,7 @@
 				3E3FF8991CA28D480070F6A5 /* GLCanvas.hpp */,
 				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
 				3EB988521C9BE00500B9B23E /* UIView.hpp */,
+				3E9608281CA7C53200FE8008 /* UIView.cpp */,
 				3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */,
 				3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */,
 				3E1416A81C9B93F600A84DF1 /* IXRender.hpp */,
@@ -288,6 +297,8 @@
 				3E1416AE1C9B93F600A84DF1 /* XRoot.hpp */,
 				3E1416B21C9B9DA300A84DF1 /* XApp.cpp */,
 				3E1416B31C9B9DA300A84DF1 /* XApp.hpp */,
+				3E9608361CA7EEF600FE8008 /* XResManager.cpp */,
+				3E9608371CA7EEF600FE8008 /* XResManager.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -313,6 +324,8 @@
 		3E3FF8911CA26F750070F6A5 /* GL */ = {
 			isa = PBXGroup;
 			children = (
+				3E9608311CA7E8E800FE8008 /* GLProgram.hpp */,
+				3E9608321CA7E8E800FE8008 /* GLProgram.cpp */,
 				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
 				3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */,
 				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
@@ -375,6 +388,8 @@
 			files = (
 				3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
+				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
+				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,13 +509,15 @@
 				3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */,
 				3E1416B11C9B94E000A84DF1 /* GLView.m in Sources */,
 				3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */,
-				3EAA6CD61CA23A220037291F /* ResourceHelper.m in Sources */,
+				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
 				3E203C711CA15A7100757788 /* XString.cpp in Sources */,
 				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
+				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
+				3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */,
 				3E203C6F1CA15A7100757788 /* XData.cpp in Sources */,
 				3E203C7E1CA15A8400757788 /* XGifDecoder.cpp in Sources */,
 				3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */,
@@ -509,6 +526,7 @@
 				3EB9886F1C9FA29200B9B23E /* GLCanvas_ios.mm in Sources */,
 				3E3FF88F1CA26CFD0070F6A5 /* GLRender.cpp in Sources */,
 				3E203C811CA15A8400757788 /* XJPGDecoder.cpp in Sources */,
+				3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
 				3E3FF89A1CA28D480070F6A5 /* GLCanvas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EAA6D0C1CA24A8E0037291F /* DllExport.hpp in Sources */,
+				3E9608391CA7EEF600FE8008 /* XResManager.cpp in Sources */,
 				3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */,
 				3EAA6D0E1CA24A8E0037291F /* IBaseWindow.hpp in Sources */,
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
@@ -551,11 +570,9 @@
 				3EAA6D2B1CA24A8E0037291F /* XRect.hpp in Sources */,
 				3EAA6D2C1CA24A8E0037291F /* XRectPro.hpp in Sources */,
 				3EAA6D2D1CA24A8E0037291F /* XResource.hpp in Sources */,
-				3EAA6D2E1CA24A8E0037291F /* ResourceHelper.h in Sources */,
-				3EAA6D2F1CA24A8E0037291F /* ResourceHelper.m in Sources */,
+				3EAA6D2F1CA24A8E0037291F /* XResourceManager.mm in Sources */,
 				3EAA6D301CA24A8E0037291F /* GLCanvas_ios.hpp in Sources */,
 				3EAA6D311CA24A8E0037291F /* GLCanvas_ios.mm in Sources */,
-				3EAA6D321CA24A8E0037291F /* XWindow_ios.hpp in Sources */,
 				3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */,
 				3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */,
 				3EAA6D351CA24A8E0037291F /* XDUIAppDelegate.mm in Sources */,
@@ -563,6 +580,7 @@
 				3EAA6D371CA24A8E0037291F /* XDUILib_ios.mm in Sources */,
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
+				3E9608351CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
 				3E3FF8961CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
 				3EAA6D3A1CA24A8E0037291F /* GLView.h in Sources */,
 				3EAA6D3B1CA24A8E0037291F /* GLView.m in Sources */,

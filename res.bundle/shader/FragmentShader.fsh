@@ -12,6 +12,6 @@ void main() {
     if(useTexture) {
         fragmentColor = texture(s_texture, texCoord) * Color;
     } else {
-        fragmentColor = vec4(1,0,0,1);
+        fragmentColor = Color;
     }
 }

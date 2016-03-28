@@ -103,6 +103,9 @@ namespace XResource {
     XString::XString(const std::string&& string) {
         _utf8Buf = new std::string(string);
     }
+    XString::XString(const char *str, XStringEncoding encoding) {
+        init(str, encoding);
+    }
     //divorce buf
     std::string* XString::detachUTF8String() {
         std::string *temp = _utf8Buf;

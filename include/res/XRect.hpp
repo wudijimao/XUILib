@@ -140,6 +140,6 @@ namespace XResource
 			return (int)mHeight;
 		}
 	protected:
-		double mX = 0.0, mY = 0.0, mWidth, mHeight;
+		double mX = 0.0, mY = 0.0, mWidth = 0.0, mHeight = 0.0;
 	};
 }

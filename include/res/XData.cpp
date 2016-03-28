@@ -53,7 +53,17 @@ namespace XResource {
         }
         return nullptr;
     }
-    
+    char* XData::getBufFrom(unsigned long location) {
+        return getBuf(location, size());
+    }
+    char* XData::getBuf(unsigned long size) {
+        return getBuf(0, size);
+    }
+    char* XData::detachBuf() {
+        char *buf = getBuf(0, size());
+        mBuf = nullptr;
+        return buf;
+    }
 #pragma -mark private function
     
     void XData::clear() {

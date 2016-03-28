@@ -7,6 +7,7 @@ namespace XResource
 	{
 	public:
 		XRectPro(){}
+        XRectPro(double x, double y, double width, double height) : XResource::XRect(x,y,width,height) {}
 		XRectPro(const XRect& rect)
 		{
 			mX = rect.X();

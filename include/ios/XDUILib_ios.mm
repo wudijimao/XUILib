@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "XDUIAppDelegate.h"
 
-#import "XWindow_ios.hpp"
+#import "../core/XWindow.hpp"
 
 
 namespace XDUILib

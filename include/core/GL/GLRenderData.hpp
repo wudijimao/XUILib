@@ -46,8 +46,9 @@ namespace XDUILib {
     };
     class GLRenderSquareData : public GLRenderData {
     public:
-        GLfloat _texturePos[8];
         GLfloat _square[12];
+        GLfloat _texturePos[8];
+        GLfloat _color[16];
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
@@ -68,12 +69,17 @@ namespace XDUILib {
             _square[4] = rect.Y() + rect.Height();
             _square[5] = 0.5;
             
+            GLfloat glColor[4] = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, color.a / 255.0f };
+            size_t size = sizeof(glColor);
+            for (int i = 0; i < 4; ++i) {
+                memcpy(&_color[i * 4], glColor, size);
+            }
             buildVAO();
         }
     private:
         void buildVAO() {
-            GLuint bufObjects[2];
-            glGenBuffers(2, bufObjects);
+            GLuint bufObjects[3];
+            glGenBuffers(3, bufObjects);
             
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_square), _square, GL_STATIC_DRAW);
@@ -81,17 +87,24 @@ namespace XDUILib {
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_texturePos), _texturePos, GL_STATIC_DRAW);
             
+            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[2]);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(_color), _color, GL_STATIC_DRAW);
+            
             glGenVertexArrays(1, &_vectexArrayObject);
             glBindVertexArray(_vectexArrayObject);
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
             glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
+            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[2]);
+            glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
             glEnableVertexAttribArray(0);
             glEnableVertexAttribArray(1);
+            glEnableVertexAttribArray(2);
             glBindVertexArray(0);
             glDisableVertexAttribArray(0);
             glDisableVertexAttribArray(1);
+            glEnableVertexAttribArray(2);
         }
     };
 }

@@ -20,11 +20,11 @@
     EAGLContext *_context;
 }
 
-- (IXCanvas *)initOpenGLES {
+- (std::shared_ptr<IXCanvas>)initOpenGLES {
     GLView *glView = [[GLView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:glView];
     glView.backgroundColor = [UIColor clearColor];
-    GLCanvas_ios *canvas = new GLCanvas_ios();
+    std::shared_ptr<GLCanvas_ios> canvas = std::make_shared<GLCanvas_ios>();
     canvas->InitWithGLView(glView);
     return canvas;
 }

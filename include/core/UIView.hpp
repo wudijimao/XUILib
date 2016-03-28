@@ -10,59 +10,46 @@ namespace XUI
 		CAPCURE_CATCH = 0x01,
 		CAPCURE_REALEASE = 0x02
 	};
-
+    class UIViewController;
 	class SIMPLEDIRECTUI_API UIView
 	{
 	public:
-		virtual ~UIView(){}
-        virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color) {
-            _backGroundColor = color;
-        }
-        virtual void setBkgImg(const std::shared_ptr<XResource::XImage> &img) {
-            
-        }
+        friend class XWindow;
+        friend class UIViewController;
+        UIView();
+        virtual ~UIView();
+        virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
+        virtual void setBkgImg(const std::shared_ptr<XResource::XImage> &img);
 		
-        virtual void draw(IXRender &render) {
-            render.DrawBackGround(_backGroundColor->_color, _rect);
-        }
+        virtual void drawRect(IXRender &render);
 		
-        virtual XResource::XRectPro& getRect() {
-            return _layoutRect;
-        }
+        virtual const XResource::XRectPro& getRect();
 //		virtual void setRect(double x, double y, double width, double height) = 0;
 //		virtual void setRect(const XResource::XRect& rect) = 0;
-        virtual void setRect(const XResource::XRectPro& rect) {
-            _layoutRect = rect;
-        }
+        virtual void setRect(const XResource::XRectPro& rect);
         
-        virtual void layoutSubViews() {
-            _rect.X(10);
-            _rect.Y(10);
-            _rect.Width(200);
-            _rect.Height(200);
-        }
-        
-        
+        //override
+        virtual void layoutSubViews();
         
         //do not override these function below
-        void setNeedReDraw() {
-            
-        }
-        void setNeedLayout() {
-            
-        }
-        std::shared_ptr<UIView> getSuperView() {
-            return std::shared_ptr<UIView>();
-        }
-        void addSubView(UIView* ctrl) {
-            
-        }
-		//virtual const MouseStatusStruct& MouseStatus() = 0;
+        void setNeedReDraw();
+        void setNeedLayout();
+        std::shared_ptr<UIView> getSuperView();
+        void addSubView(const std::shared_ptr<UIView> &view);
+        const std::vector<std::shared_ptr<UIView>> subViews();
+        //virtual const MouseStatusStruct& MouseStatus() = 0;
+        
+    public://protected:
+        void layout(const XResource::XRect &absRect);
+        void draw(IXRender &render);
+        std::weak_ptr<UIView> _superView;
     private:
-        std::weak_ptr<UIView> *_superView;
+        std::vector<std::shared_ptr<UIView>> _subViews;
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
+        bool _needReDraw = true;
+        bool _needLayout = true;
 	public:
 		//鼠标事件
 		/*boost::signals2::signal<void(IBaseControl&)> MouseDown;
@@ -91,28 +78,19 @@ namespace XUI
 	};
     
     
+    
     class SIMPLEDIRECTUI_API UIViewController {
     public:
-        UIView &getView() {
-            if (!_isLoaded) {
-                LoadView();
-            }
-            return _view;
-        }
-        virtual void viewDidLoad() {
-            
-        }
+        const std::shared_ptr<UIView> getView();
+        //override
+        virtual void viewDidLoad();
+    protected:
+        friend class XWindow;
+        void onSizeChange(XResource::XSize &size);
     private:
-        void LoadView() {
-            _isLoaded = true;
-            XResource::XRectPro rect;
-            rect.HAlign(XResource::XRectPro::HAlign_Stretch);
-            rect.VAlign(XResource::XRectPro::VAlign_Stretch);
-            _view.setRect(rect);
-            viewDidLoad();
-        }
+        void LoadView();
         bool _isLoaded = false;
-        UIView _view;
+        std::shared_ptr<UIView> _view;
     };
 }
 

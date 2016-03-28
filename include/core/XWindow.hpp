@@ -8,6 +8,7 @@
 #pragma once
 
 #include "../core/IBaseWindow.hpp"
+#include "../core/UIView.hpp"
 #import <UIKit/UIKit.h>
 
 class XWindow : public IXWindow {
@@ -19,4 +20,6 @@ public:
     std::shared_ptr<IXCanvas> _canvas;
     std::shared_ptr<IXRender> _render;
 private:
+    friend class XUI::UIView;
+    XResource::XRect _rect;
 };

@@ -11,26 +11,37 @@
 #include "IXCanvas.hpp"
 #include "GL/GLRenderData.hpp"
 #include "GL/GLHeaders.h"
-
+#include "GL/GLProgram.hpp"
 
 
 class GLCanvas : public IXCanvas {
 public:
+    GLCanvas() {
+        _transformMat[10] = 1;
+        _transformMat[12] = -1;
+        _transformMat[13] = 1;
+        _transformMat[15] = 1;
+    }
     virtual RenderType GetType();
     void pushRenderData(XDUILib::GLRenderData *data);
 protected:
     GLuint _renderBuffer;
     GLuint _framebuffer;
-    GLuint _program;
     
     std::vector<XDUILib::GLRenderData*> _needRenderDatas;
 protected:
     XResource::XSize _size;
     bool InitFrameBuffer();
-private:
-    bool checkShaderCompilState(GLuint shader);
-    bool checkProgramCompilState(GLuint program);
+    bool InitGLProgram();
+    virtual void setSize(const XResource::XSize &size) {
+        _size = size;
+        _transformMat[0] = 2.0 / (float)size.Width();
+        _transformMat[5] = -2.0 / (float)size.Height();
+    }
 public:
-    bool InitGLProgram(const char *vertexShaderText, const char *fragmentShaderText);
     virtual bool Present();
+private:
+    GLfloat _transformMat[16];
+    //temp
+    GLProgram _program;
 };

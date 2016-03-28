@@ -10,6 +10,16 @@
 
 using namespace XDUILib;
 
+class XTestApp : public XApp {
+public:
+    static std::shared_ptr<XTestApp> thisApp() {
+        static std::shared_ptr<XTestApp> app = std::make_shared<XTestApp>();
+        return app;
+    }
+};
+
+
 int main(int argc, char * argv[]) {
-    XApp::thisApp().run(argc, argv);
+    auto thisApp = XTestApp::thisApp();
+    thisApp->run(argc, argv);
 }

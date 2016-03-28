@@ -12,7 +12,7 @@
 
 namespace XDUILib
 {
-    class enum XAppStatus {
+    enum class XAppStatus {
         Foreground,
         Background,
         Killed,
@@ -29,5 +29,7 @@ namespace XDUILib
     public:
         //std::shared_ptr<WindowsManager> windowsManager;
         std::shared_ptr<IXWindow> mainWindow;
+    private:
+        static XApp *_thisApp;
     };
 }

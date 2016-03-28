@@ -12,6 +12,6 @@
 
 @interface XDUIViewController : UIViewController
 
-- (IXCanvas *)initOpenGLES;
+- (std::shared_ptr<IXCanvas>)initOpenGLES;
 
 @end

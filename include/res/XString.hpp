@@ -31,14 +31,25 @@ namespace XResource
         Default = UTF8,
     };
     
-    
     //如果使用字符串的地方只支持UTF8 则不使用这个类，直接使用std::string,避免过多的依赖
     class XString {
+    public:
+        static std::shared_ptr<XString> stringWithContentOfFile(const char *filePath) {
+            XData data;
+            data.open(filePath);
+            return std::make_shared<XString>(data.detachBuf());
+        }
+        static std::shared_ptr<XString> stringWithContentOfFile(const char *filePath, XStringEncoding encoding) {
+            XData data;
+            data.open(filePath);
+            return std::make_shared<XString>(data.detachBuf(), encoding);
+        }
     public:
         XString();
         XString(const char *str);
         XString(const std::string& string);
         XString(const std::string&& string);
+        XString(const char *str, XStringEncoding encoding);
         //divorce buf
         std::string* detachUTF8String();
         bool init(const char *str, XStringEncoding encoding);

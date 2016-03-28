@@ -5,11 +5,10 @@
 //  Created by ximiao on 16/3/23.
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
+#import <UIKit/UIKit.h>
+#include "../core/XResManager.hpp"
 
-#import "ResourceHelper.h"
-
-@implementation ResourceHelper
-+ (NSString*)bundlePath {
+NSString* pathForBundle() {
     static NSString *path;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -18,16 +17,18 @@
     return path;
 }
 
-+ (NSBundle*)bundle {
+NSBundle *bundle() {
     static NSBundle *bundle;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleWithPath:[self bundlePath]];
+        bundle = [NSBundle bundleWithPath:pathForBundle()];
     });
     return bundle;
 }
 
-+ (NSString*)pathForResource:(NSString*)str ofType:(NSString*)type {
-    return [[self bundle] pathForResource:str ofType:type];
+
+
+const char* XResManager::pathForResource(const char *fileName, const char *ext) {
+    return [bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String;
 }
-@end
+

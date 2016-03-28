@@ -3,6 +3,7 @@
 #include "XRect.hpp"
 #include "XRectPro.hpp"
 #include "XImage/XImage.hpp"
+#include "XString.hpp"
 //#include "XText.h"
 namespace XResource
 {
@@ -31,6 +32,18 @@ namespace XResource
     };
     class XUIColor {
     public:
+        static std::shared_ptr<XUIColor>whiteColor() {
+            static auto color = std::make_shared<XUIColor>(255,255,255,255);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>clearColor() {
+            static auto color = std::make_shared<XUIColor>(0,0,0,0);
+            return color;
+        }
+        static std::shared_ptr<XUIColor>redColor() {
+            static auto color = std::make_shared<XUIColor>(255,0,0,255);
+            return color;
+        }
         XUIColor() {
             _color.r = 255;
             _color.g = 255;
