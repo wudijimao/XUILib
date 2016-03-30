@@ -23,7 +23,6 @@ namespace XUI
     }
     
     void UIView::drawRect(IXRender &render) {
-        render.DrawBackGround(_backGroundColor->_color, _rect);
     }
     
     const XResource::XRectPro& UIView::getRect() {

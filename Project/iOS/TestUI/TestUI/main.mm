@@ -33,7 +33,7 @@ public:
 class XTestApp : public XApp {
 public:
     virtual bool init() {
-        setMainWindow(std::make_shared<XWindow>());
+        setMainWindow(IXWindow::createWindow());
         auto vc = std::make_shared<ViewController>();
         mainWindow()->setRootViewController(vc);
         return true;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E16D6A11CA9955800F84510 /* libgiflib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E16D6A01CA9955800F84510 /* libgiflib.a */; };
 		3E2FC9141C7D54120012F5DB /* XString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E2FC9121C7D54120012F5DB /* XString.cpp */; };
 		3E9E22AD1C73383100A7BB6B /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9E22A91C73383100A7BB6B /* libpng.a */; };
 		3EBE1FF41C7D9C9100079EDC /* XJPGDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EBE1FF21C7D9C9100079EDC /* XJPGDecoder.cpp */; };
@@ -27,13 +28,6 @@
 			remoteGlobalIDString = 3EC399BC1C717E4E008468A9;
 			remoteInfo = giflib;
 		};
-		3E9E8BF31C71CE3B009B2168 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E9E8BDE1C719F00009B2168 /* giflib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3EC399BB1C717E4E008468A9;
-			remoteInfo = giflib;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E16D6A01CA9955800F84510 /* libgiflib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libgiflib.a; sourceTree = "<group>"; };
 		3E2FC9111C7D4A790012F5DB /* XData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XData.hpp; sourceTree = "<group>"; };
 		3E2FC9121C7D54120012F5DB /* XString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XString.cpp; sourceTree = "<group>"; };
 		3E2FC9131C7D54120012F5DB /* XString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XString.hpp; sourceTree = "<group>"; };
@@ -73,7 +68,6 @@
 		3EC39BA11C71826B008468A9 /* libXImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC39C861C7182F2008468A9 /* XImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XImage.cpp; sourceTree = "<group>"; };
 		3EC39C871C7182F2008468A9 /* XImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XImage.hpp; sourceTree = "<group>"; };
-		3EC39C891C71832F008468A9 /* libgiflib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgiflib.a; path = "../giflib/build/Debug-iphoneos/libgiflib.a"; sourceTree = "<group>"; };
 		3EC39C8C1C718942008468A9 /* XData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XData.cpp; sourceTree = "<group>"; };
 		3EC39C8E1C7189CA008468A9 /* XError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XError.cpp; sourceTree = "<group>"; };
 		3EC39C8F1C7189CA008468A9 /* XError.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XError.hpp; sourceTree = "<group>"; };
@@ -86,6 +80,7 @@
 			files = (
 				3E9E22AD1C73383100A7BB6B /* libpng.a in Frameworks */,
 				3EBE20041C7DA97100079EDC /* libjpeg.a in Frameworks */,
+				3E16D6A11CA9955800F84510 /* libgiflib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +135,8 @@
 		3EC39B981C71826B008468A9 = {
 			isa = PBXGroup;
 			children = (
+				3E16D6A01CA9955800F84510 /* libgiflib.a */,
 				3E9E8BDE1C719F00009B2168 /* giflib.xcodeproj */,
-				3EC39C891C71832F008468A9 /* libgiflib.a */,
 				3EBE1FFF1C7DA97100079EDC /* jpg */,
 				3E9E22A81C73383100A7BB6B /* png */,
 				3EC39BA31C71826B008468A9 /* XImage */,
@@ -188,7 +183,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3E9E8BF41C71CE3B009B2168 /* PBXTargetDependency */,
 			);
 			name = XImage;
 			productName = XImage;
@@ -260,14 +254,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3E9E8BF41C71CE3B009B2168 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = giflib;
-			targetProxy = 3E9E8BF31C71CE3B009B2168 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3EC39BA81C71826B008468A9 /* Debug */ = {
@@ -357,6 +343,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/png",
 					"$(PROJECT_DIR)/jpg",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,6 +358,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/png",
 					"$(PROJECT_DIR)/jpg",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -51,6 +51,9 @@ namespace XUI {
 class SIMPLEDIRECTUI_API IXWindow
 {
 public:
+    //fullScreen
+    static std::shared_ptr<IXWindow> createWindow();
+    
 	virtual ~IXWindow(){};
     virtual void showInFront() = 0;
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) = 0;

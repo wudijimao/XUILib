@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 3EAA6CE91CA244310037291F /* Build configuration list for PBXAggregateTarget "Build" */;
 			buildPhases = (
-				3EAA6CEC1CA2444E0037291F /* ShellScript */,
+				3EAA6CEC1CA2444E0037291F /* Run Script */,
 			);
 			dependencies = (
 			);
@@ -24,16 +24,23 @@
 		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
 		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
-		3E1416B11C9B94E000A84DF1 /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AF1C9B94E000A84DF1 /* GLView.m */; };
 		3E1416B41C9B9DA300A84DF1 /* XApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416B21C9B9DA300A84DF1 /* XApp.cpp */; };
+		3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E16D69A1CA9948A00F84510 /* XGifDecoder.cpp */; };
+		3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E16D6991CA9948A00F84510 /* XGifDecoder.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
+		3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E16D69A1CA9948A00F84510 /* XGifDecoder.cpp */; };
+		3E16D6AD1CAA007300F84510 /* libgiflib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E16D6AC1CAA007300F84510 /* libgiflib.a */; };
+		3E16D6AE1CAA007300F84510 /* libgiflib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E16D6AC1CAA007300F84510 /* libgiflib.a */; };
 		3E203C6F1CA15A7100757788 /* XData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C691CA15A7100757788 /* XData.cpp */; };
 		3E203C701CA15A7100757788 /* XError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C6B1CA15A7100757788 /* XError.cpp */; };
 		3E203C711CA15A7100757788 /* XString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C6D1CA15A7100757788 /* XString.cpp */; };
-		3E203C7E1CA15A8400757788 /* XGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C741CA15A8400757788 /* XGifDecoder.cpp */; };
 		3E203C7F1CA15A8400757788 /* XImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C761CA15A8400757788 /* XImage.cpp */; };
 		3E203C801CA15A8400757788 /* XImageDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C781CA15A8400757788 /* XImageDecoder.cpp */; };
 		3E203C811CA15A8400757788 /* XJPGDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C7A1CA15A8400757788 /* XJPGDecoder.cpp */; };
 		3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C7C1CA15A8400757788 /* XPngDecoder.cpp */; };
+		3E21D1081CAABDA200590427 /* XWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E21D1071CAABDA200590427 /* XWindow.cpp */; };
+		3E21D1091CAABDA700590427 /* XWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E21D1071CAABDA200590427 /* XWindow.cpp */; };
+		3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E21D10A1CAABEF400590427 /* XWindow_ios.hpp */; };
+		3E21D10D1CAAC7E800590427 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E21D10C1CAAC7E800590427 /* GLKit.framework */; };
 		3E3FF88F1CA26CFD0070F6A5 /* GLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */; };
 		3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
 		3E3FF8961CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
@@ -43,8 +50,6 @@
 		3E3FF9041CA2E2220070F6A5 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */; };
 		3E3FF9051CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
 		3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
-		3E3FF90E1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */; };
-		3E3FF90F1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */; };
 		3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608281CA7C53200FE8008 /* UIView.cpp */; };
 		3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608311CA7E8E800FE8008 /* GLProgram.hpp */; };
 		3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608321CA7E8E800FE8008 /* GLProgram.cpp */; };
@@ -71,8 +76,6 @@
 		3EAA6D171CA24A8E0037291F /* XApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416B21C9B9DA300A84DF1 /* XApp.cpp */; };
 		3EAA6D181CA24A8E0037291F /* XApp.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416B31C9B9DA300A84DF1 /* XApp.hpp */; };
 		3EAA6D191CA24A8E0037291F /* IXImage.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C731CA15A8400757788 /* IXImage.hpp */; };
-		3EAA6D1A1CA24A8E0037291F /* XGifDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C741CA15A8400757788 /* XGifDecoder.cpp */; };
-		3EAA6D1B1CA24A8E0037291F /* XGifDecoder.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C751CA15A8400757788 /* XGifDecoder.hpp */; };
 		3EAA6D1C1CA24A8E0037291F /* XImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C761CA15A8400757788 /* XImage.cpp */; };
 		3EAA6D1D1CA24A8E0037291F /* XImage.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C771CA15A8400757788 /* XImage.hpp */; };
 		3EAA6D1E1CA24A8E0037291F /* XImageDecoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E203C781CA15A8400757788 /* XImageDecoder.cpp */; };
@@ -101,8 +104,6 @@
 		3EAA6D371CA24A8E0037291F /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */; };
 		3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
-		3EAA6D3A1CA24A8E0037291F /* GLView.h in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416B01C9B94E000A84DF1 /* GLView.h */; };
-		3EAA6D3B1CA24A8E0037291F /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AF1C9B94E000A84DF1 /* GLView.m */; };
 		3EAA6D3C1CA24A8E0037291F /* XDUILib.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; };
 		3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988501C9BD65600B9B23E /* XWindow_ios.mm */; };
 		3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988551C9BE15C00B9B23E /* XRect.cpp */; };
@@ -139,10 +140,11 @@
 		3E1416AC1C9B93F600A84DF1 /* XNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XNode.hpp; sourceTree = "<group>"; };
 		3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XRenderFactory.hpp; sourceTree = "<group>"; };
 		3E1416AE1C9B93F600A84DF1 /* XRoot.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XRoot.hpp; sourceTree = "<group>"; };
-		3E1416AF1C9B94E000A84DF1 /* GLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLView.m; sourceTree = "<group>"; };
-		3E1416B01C9B94E000A84DF1 /* GLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLView.h; sourceTree = "<group>"; };
 		3E1416B21C9B9DA300A84DF1 /* XApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XApp.cpp; sourceTree = "<group>"; };
 		3E1416B31C9B9DA300A84DF1 /* XApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XApp.hpp; sourceTree = "<group>"; };
+		3E16D6991CA9948A00F84510 /* XGifDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XGifDecoder.hpp; sourceTree = "<group>"; };
+		3E16D69A1CA9948A00F84510 /* XGifDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XGifDecoder.cpp; sourceTree = "<group>"; };
+		3E16D6AC1CAA007300F84510 /* libgiflib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgiflib.a; path = ../../../ThirdParty/prebuilt/ios/libgiflib.a; sourceTree = "<group>"; };
 		3E203C691CA15A7100757788 /* XData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XData.cpp; sourceTree = "<group>"; };
 		3E203C6A1CA15A7100757788 /* XData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XData.hpp; sourceTree = "<group>"; };
 		3E203C6B1CA15A7100757788 /* XError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XError.cpp; sourceTree = "<group>"; };
@@ -150,8 +152,6 @@
 		3E203C6D1CA15A7100757788 /* XString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XString.cpp; sourceTree = "<group>"; };
 		3E203C6E1CA15A7100757788 /* XString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XString.hpp; sourceTree = "<group>"; };
 		3E203C731CA15A8400757788 /* IXImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IXImage.hpp; sourceTree = "<group>"; };
-		3E203C741CA15A8400757788 /* XGifDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XGifDecoder.cpp; sourceTree = "<group>"; };
-		3E203C751CA15A8400757788 /* XGifDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XGifDecoder.hpp; sourceTree = "<group>"; };
 		3E203C761CA15A8400757788 /* XImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XImage.cpp; sourceTree = "<group>"; };
 		3E203C771CA15A8400757788 /* XImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XImage.hpp; sourceTree = "<group>"; };
 		3E203C781CA15A8400757788 /* XImageDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XImageDecoder.cpp; sourceTree = "<group>"; };
@@ -160,6 +160,9 @@
 		3E203C7B1CA15A8400757788 /* XJPGDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XJPGDecoder.hpp; sourceTree = "<group>"; };
 		3E203C7C1CA15A8400757788 /* XPngDecoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XPngDecoder.cpp; sourceTree = "<group>"; };
 		3E203C7D1CA15A8400757788 /* XPngDecoder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XPngDecoder.hpp; sourceTree = "<group>"; };
+		3E21D1071CAABDA200590427 /* XWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XWindow.cpp; sourceTree = "<group>"; };
+		3E21D10A1CAABEF400590427 /* XWindow_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow_ios.hpp; sourceTree = "<group>"; };
+		3E21D10C1CAAC7E800590427 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRender.cpp; sourceTree = "<group>"; };
 		3E3FF88E1CA26CFD0070F6A5 /* GLRender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLRender.hpp; sourceTree = "<group>"; };
 		3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLHelper.hpp; sourceTree = "<group>"; };
@@ -170,7 +173,6 @@
 		3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLHeaders.h; sourceTree = "<group>"; };
 		3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../../../ThirdParty/prebuilt/ios/libjpeg.a; sourceTree = "<group>"; };
 		3E3FF8F71CA2E2210070F6A5 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../ThirdParty/prebuilt/ios/libpng.a; sourceTree = "<group>"; };
-		3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgiflib_d_simulater.a; path = ../../../ThirdParty/prebuilt/ios/libgiflib_d_simulater.a; sourceTree = "<group>"; };
 		3E9608271CA7B80500FE8008 /* XWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow.hpp; sourceTree = "<group>"; };
 		3E9608281CA7C53200FE8008 /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
 		3E9608311CA7E8E800FE8008 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
@@ -200,11 +202,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E21D10D1CAAC7E800590427 /* GLKit.framework in Frameworks */,
 				3EAA6CF31CA248CF0037291F /* OpenGLES.framework in Frameworks */,
 				3EAA6CF11CA248C90037291F /* QuartzCore.framework in Frameworks */,
+				3E16D6AD1CAA007300F84510 /* libgiflib.a in Frameworks */,
 				3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */,
 				3E3FF9051CA2E2220070F6A5 /* libpng.a in Frameworks */,
-				3E3FF90E1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */,
 				3E3FF9031CA2E2220070F6A5 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,8 +217,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3FF9041CA2E2220070F6A5 /* libjpeg.a in Frameworks */,
-				3E3FF90F1CA2E2C30070F6A5 /* libgiflib_d_simulater.a in Frameworks */,
 				3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */,
+				3E16D6AE1CAA007300F84510 /* libgiflib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +228,7 @@
 		3E1415951C9AA7C500A84DF1 = {
 			isa = PBXGroup;
 			children = (
+				3E21D10C1CAAC7E800590427 /* GLKit.framework */,
 				3E3FF8D61CA2E1570070F6A5 /* lib */,
 				3E1416501C9ABEFA00A84DF1 /* include */,
 				3EAA6CE11CA243210037291F /* Framework */,
@@ -260,6 +264,7 @@
 				3EAA6CD51CA23A220037291F /* XResourceManager.mm */,
 				3EB9886D1C9FA29200B9B23E /* GLCanvas_ios.hpp */,
 				3EB9886E1C9FA29200B9B23E /* GLCanvas_ios.mm */,
+				3E21D10A1CAABEF400590427 /* XWindow_ios.hpp */,
 				3EB988501C9BD65600B9B23E /* XWindow_ios.mm */,
 				3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */,
 				3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */,
@@ -267,8 +272,6 @@
 				3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */,
 				3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */,
 				3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */,
-				3E1416B01C9B94E000A84DF1 /* GLView.h */,
-				3E1416AF1C9B94E000A84DF1 /* GLView.m */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -276,7 +279,6 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				3E9608271CA7B80500FE8008 /* XWindow.hpp */,
 				3E3FF8911CA26F750070F6A5 /* GL */,
 				3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */,
 				3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */,
@@ -299,6 +301,8 @@
 				3E1416B31C9B9DA300A84DF1 /* XApp.hpp */,
 				3E9608361CA7EEF600FE8008 /* XResManager.cpp */,
 				3E9608371CA7EEF600FE8008 /* XResManager.hpp */,
+				3E9608271CA7B80500FE8008 /* XWindow.hpp */,
+				3E21D1071CAABDA200590427 /* XWindow.cpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -306,9 +310,9 @@
 		3E203C721CA15A8400757788 /* XImage */ = {
 			isa = PBXGroup;
 			children = (
+				3E16D6991CA9948A00F84510 /* XGifDecoder.hpp */,
+				3E16D69A1CA9948A00F84510 /* XGifDecoder.cpp */,
 				3E203C731CA15A8400757788 /* IXImage.hpp */,
-				3E203C741CA15A8400757788 /* XGifDecoder.cpp */,
-				3E203C751CA15A8400757788 /* XGifDecoder.hpp */,
 				3E203C761CA15A8400757788 /* XImage.cpp */,
 				3E203C771CA15A8400757788 /* XImage.hpp */,
 				3E203C781CA15A8400757788 /* XImageDecoder.cpp */,
@@ -343,7 +347,7 @@
 		3E3FF8D61CA2E1570070F6A5 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				3E3FF90D1CA2E2C30070F6A5 /* libgiflib_d_simulater.a */,
+				3E16D6AC1CAA007300F84510 /* libgiflib.a */,
 				3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */,
 				3E3FF8F71CA2E2210070F6A5 /* libpng.a */,
 				3EAA6CF21CA248CF0037291F /* OpenGLES.framework */,
@@ -387,9 +391,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */,
+				3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
+				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,18 +490,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3EAA6CEC1CA2444E0037291F /* ShellScript */ = {
+		3EAA6CEC1CA2444E0037291F /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n# 例如: FMK_NAME = \"MyFramework\"\n# FMK_NAME=${PROJECT_NAME}\nFMK_NAME=\"Framework\"\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos -arch armv7 -arch armv7s -arch arm64 clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch x86_64 clean build\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\nrm -r \"${WRK_DIR}\"\n\nopen \"${SRCROOT}/Products/\"";
+			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n# 例如: FMK_NAME = \"MyFramework\"\n# FMK_NAME=${PROJECT_NAME}\nFMK_NAME=\"Framework\"\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos -arch armv7 -arch armv7s -arch arm64 clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch x86_64 clean build\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\nmkdir -p \"${INSTALL_DIR}\"\n\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/${FMK_NAME}\"\n\n#rm -r \"${WRK_DIR}\"\nopen \"${WRK_DIR}\"\nopen \"${SRCROOT}/Products/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -507,7 +514,6 @@
 				3E203C7F1CA15A8400757788 /* XImage.cpp in Sources */,
 				3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */,
 				3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */,
-				3E1416B11C9B94E000A84DF1 /* GLView.m in Sources */,
 				3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
@@ -516,15 +522,16 @@
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
+				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
 				3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */,
 				3E203C6F1CA15A7100757788 /* XData.cpp in Sources */,
-				3E203C7E1CA15A8400757788 /* XGifDecoder.cpp in Sources */,
 				3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */,
 				3E1416B41C9B9DA300A84DF1 /* XApp.cpp in Sources */,
 				3E203C801CA15A8400757788 /* XImageDecoder.cpp in Sources */,
 				3EB9886F1C9FA29200B9B23E /* GLCanvas_ios.mm in Sources */,
 				3E3FF88F1CA26CFD0070F6A5 /* GLRender.cpp in Sources */,
+				3E21D1081CAABDA200590427 /* XWindow.cpp in Sources */,
 				3E203C811CA15A8400757788 /* XJPGDecoder.cpp in Sources */,
 				3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
 				3E3FF89A1CA28D480070F6A5 /* GLCanvas.cpp in Sources */,
@@ -550,8 +557,6 @@
 				3EAA6D171CA24A8E0037291F /* XApp.cpp in Sources */,
 				3EAA6D181CA24A8E0037291F /* XApp.hpp in Sources */,
 				3EAA6D191CA24A8E0037291F /* IXImage.hpp in Sources */,
-				3EAA6D1A1CA24A8E0037291F /* XGifDecoder.cpp in Sources */,
-				3EAA6D1B1CA24A8E0037291F /* XGifDecoder.hpp in Sources */,
 				3EAA6D1C1CA24A8E0037291F /* XImage.cpp in Sources */,
 				3EAA6D1D1CA24A8E0037291F /* XImage.hpp in Sources */,
 				3EAA6D1E1CA24A8E0037291F /* XImageDecoder.cpp in Sources */,
@@ -579,11 +584,11 @@
 				3EAA6D361CA24A8E0037291F /* XDUILib_ios.hpp in Sources */,
 				3EAA6D371CA24A8E0037291F /* XDUILib_ios.mm in Sources */,
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
+				3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
+				3E21D1091CAABDA700590427 /* XWindow.cpp in Sources */,
 				3E9608351CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
 				3E3FF8961CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
-				3EAA6D3A1CA24A8E0037291F /* GLView.h in Sources */,
-				3EAA6D3B1CA24A8E0037291F /* GLView.m in Sources */,
 				3EAA6D3C1CA24A8E0037291F /* XDUILib.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,9 +695,11 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/../../../ThirdParty/prebuilt/ios",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -715,6 +722,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
 		};
@@ -726,9 +734,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/gif",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../ThirdParty/prebuilt/ios",
+					"$(PROJECT_DIR)",
+				);
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = moemiku.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -747,9 +765,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/gif",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl",
+				);
 				INFOPLIST_FILE = Framework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../../../ThirdParty/prebuilt/ios",
+					"$(PROJECT_DIR)",
+				);
 				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = moemiku.Framework;
 				PRODUCT_NAME = "$(TARGET_NAME)";

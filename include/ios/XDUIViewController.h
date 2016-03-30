@@ -8,10 +8,10 @@
 #pragma once
 
 #import <UIKit/UIKit.h>
-#import "IXRender.hpp"
+#import <GLKit/GLKit.h>
 
-@interface XDUIViewController : UIViewController
-
-- (std::shared_ptr<IXCanvas>)initOpenGLES;
-
+class XWindow_ios;
+@interface XDUIViewController : GLKViewController
+- (void)setBelongWindow:(XWindow_ios*)window;
+- (void)removeBelongWindow;
 @end

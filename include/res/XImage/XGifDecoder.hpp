@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "gif_lib.h"
+#include <gif_lib.h>
 #include "XImageDecoder.hpp"
 
 namespace XResource {

@@ -6,41 +6,38 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 
-#include "../core/XWindow.hpp"
-#import "XDUIViewController.h"
-#import "../core/GLRender.hpp"
-#import "../core/UIView.hpp"
+#include "XWindow_ios.hpp"
+#include "../core/GLRender.hpp"
+#include "GLCanvas_ios.hpp"
 
+std::shared_ptr<IXWindow> IXWindow::createWindow() {
+    return std::make_shared<XWindow_ios>();
+}
 
-XWindow::XWindow() {
+XWindow_ios::~XWindow_ios() {
+    [(XDUIViewController*)this->_window.rootViewController removeBelongWindow];
+}
+
+XWindow_ios::XWindow_ios() {
     CGRect rect = [UIScreen mainScreen].bounds;
-    this->window = [[UIWindow alloc] initWithFrame:rect];
+    this->_window = [[UIWindow alloc] initWithFrame:rect];
     _rect.X(0.0);
     _rect.Y(0.0);
     _rect.Width(rect.size.width);
     _rect.Height(rect.size.height);
     
     auto controller = [[XDUIViewController alloc] init];
-    this->window.rootViewController = controller;
-    _canvas = [controller initOpenGLES];
-    _render.reset(new GLRender());
+    this->_window.rootViewController = controller;
+    auto canvas = std::make_shared<GLCanvas_ios>();
+    canvas->init((CAEAGLLayer*)controller.view.layer);
+    ((GLKView*)controller.view).context = canvas->_context;
+    _canvas = canvas;
+    _render = std::make_shared<GLRender>();
     _render->Init(_canvas.get());
+    [controller setBelongWindow:this];
 }
 
-XWindow::~XWindow() {
-}
 
-void XWindow::showInFront() {
-    [this->window makeKeyAndVisible];
-    XResource::XRect rect = _rect;
-    rect.X(0.0);
-    rect.Y(0.0);
-    auto view = _rootController->getView();
-    view->layout(rect);
-    view->draw(*(_render.get()));
-    _canvas->Present();
-}
-
-void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
-    _rootController = rootViewController;
+void XWindow_ios::showInFront() {
+    [this->_window makeKeyAndVisible];
 }

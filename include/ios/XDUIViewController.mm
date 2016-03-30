@@ -9,35 +9,36 @@
 #import "XDUIViewController.h"
 #import <OpenGLES/ES3/gl.h>
 #import <OpenGLES/ES3/glext.h>
-#import "GLView.h"
 #import "GLCanvas_ios.hpp"
+#import "XWindow_ios.hpp"
 
 @interface XDUIViewController ()
 
 @end
 
 @implementation XDUIViewController {
-    EAGLContext *_context;
-}
-
-- (std::shared_ptr<IXCanvas>)initOpenGLES {
-    GLView *glView = [[GLView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:glView];
-    glView.backgroundColor = [UIColor clearColor];
-    std::shared_ptr<GLCanvas_ios> canvas = std::make_shared<GLCanvas_ios>();
-    canvas->InitWithGLView(glView);
-    return canvas;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    XWindow_ios *_window;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)update {
+   
+}
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+    if (_window) {
+        _window->update();
+    }
+}
+
+- (void)setBelongWindow:(XWindow_ios *)window {
+    _window = window;
+}
+- (void)removeBelongWindow {
+    _window = nullptr;
 }
 
 /*

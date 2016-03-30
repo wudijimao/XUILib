@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		3E16D65F1CA9723000F84510 /* build */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3E16D6621CA9723000F84510 /* Build configuration list for PBXAggregateTarget "build" */;
+			buildPhases = (
+				3E16D6631CA9724600F84510 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = build;
+			productName = build;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3E9E8CCE1C71CE9A009B2168 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E8C2A1C71CE99009B2168 /* Makefile */; };
 		3E9E8CCF1C71CE9A009B2168 /* dgif_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E8C581C71CE9A009B2168 /* dgif_lib.c */; };
@@ -604,6 +618,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = ximiao;
 				TargetAttributes = {
+					3E16D65F1CA9723000F84510 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 26NS455T8K;
+					};
 					3EC399BB1C717E4E008468A9 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 26NS455T8K;
@@ -623,9 +641,26 @@
 			projectRoot = "";
 			targets = (
 				3EC399BB1C717E4E008468A9 /* giflib */,
+				3E16D65F1CA9723000F84510 /* build */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E16D6631CA9724600F84510 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Sets the target folders and the final framework product.\n# 如果工程名称和Framework的Target名称不一样的话，要自定义FMKNAME\n# 例如: FMK_NAME = \"MyFramework\"\n# FMK_NAME=${PROJECT_NAME}\nFMK_NAME=\"libgiflib\"\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.a\n\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.a\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.a\n\n# -configuration ${CONFIGURATION}\n# Clean and Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos -arch armv7 -arch armv7s -arch arm64 clean build\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator -arch i386 -arch x86_64 -miphoneos-version-min=7.0 clean build ARCHS='i386' VALID_ARCHS='i386'\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\n#mkdir -p \"${INSTALL_DIR}\"\n\n#cp -R \"${DEVICE_DIR}\" \"${INSTALL_DIR}\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}\" \"${SIMULATOR_DIR}\" -output \"${INSTALL_DIR}\"\n\n#rm -r \"${WRK_DIR}\"\nopen \"${WRK_DIR}\"\nopen \"${SRCROOT}/Products/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3EC399B81C717E4E008468A9 /* Sources */ = {
@@ -668,6 +703,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3E16D6601CA9723000F84510 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E16D6611CA9723000F84510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		3EC399C31C717E4E008468A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -751,9 +800,11 @@
 		3EC399C61C717E4E008468A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Debug;
 		};
@@ -763,12 +814,22 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALID_ARCHS = "arm64 armv7 armv7s x86_64 i386";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E16D6621CA9723000F84510 /* Build configuration list for PBXAggregateTarget "build" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E16D6601CA9723000F84510 /* Debug */,
+				3E16D6611CA9723000F84510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3EC399B71C717E4E008468A9 /* Build configuration list for PBXProject "giflib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
