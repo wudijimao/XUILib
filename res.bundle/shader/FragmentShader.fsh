@@ -9,5 +9,9 @@ uniform bool useTexture;
 uniform sampler2D s_texture;
 
 void main() {
-    fragmentColor = vec4(1,1,0,1);
+    if(useTexture) {
+        fragmentColor = texture(s_texture, texCoord) * Color;
+    } else {
+        fragmentColor = Color;
+    }
 }

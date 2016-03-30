@@ -90,41 +90,35 @@ bool GLProgram::init(const char *vertexShaderText, const char *fragmentShaderTex
 bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
     auto vsh = XResource::XString::stringWithContentOfFile(vFilePath);
     auto fsh = XResource::XString::stringWithContentOfFile(fFilePath);
+    //auto t = vsh->getUTF8String()->c_str();
+    //auto t2 = fsh->getUTF8String()->c_str();
     return init(vsh->getUTF8String()->c_str(), fsh->getUTF8String()->c_str());
-    /*return init("#version 300 es\
-                \
+    //return init("#version 300 es \n\
                 precision mediump float;\
-                \
                 in vec3 inPos;\
                 in vec2 vTexCoord;\
                 in vec4 inColor;\
-                \
                 out vec4 Color;\
                 out vec2 texCoord;\
-                \
                 uniform mat4 myMat;\
-                \
                 void main() {\
                 gl_Position = vec4(inPos, 1.0) * myMat;\
                 texCoord = vTexCoord;\
                 Color = inColor;\
-                }", "#version 300 es\
+                }", "#version 300 es \n\
                 precision mediump float;\
-                \
                 in vec4 Color;\
                 in vec2 texCoord;\
                 out vec4 fragmentColor;\
-                \
                 uniform bool useTexture;\
                 uniform sampler2D s_texture;\
-                \
                 void main() {\
-                    //if(useTexture) {\
-                    //    fragmentColor = texture(s_texture, texCoord) * Color;\
-                    //} else {\
-                     //   fragmentColor = Color;\
-                    //}\
-                }");*/
+                    if(useTexture) {\
+                        fragmentColor = texture(s_texture, texCoord) * Color;\
+                    } else {\
+                        fragmentColor = Color;\
+                    }\
+                }");
 }
 
 bool GLProgram::setUniformValue(const char *uniformName, const XResource::XColor &color) {

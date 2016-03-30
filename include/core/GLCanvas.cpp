@@ -37,14 +37,18 @@ bool GLCanvas::InitFrameBuffer() {
     return true;
 }
 
+void GLCanvas::clear() {
+    _needRenderDatas.clear();
+}
+
 bool GLCanvas::Present() {
-     _program.enable();
     glViewport(0, 0, _size.Width(), _size.Height());
-    glClearColor(1, 1, 1, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    glClearColor(1, 1, 1, 1.0);
+//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::Square: {
+                _program.enable();
                 glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
                 //glEnableVertexAttribArray(0);
                 //glEnableVertexAttribArray(1);

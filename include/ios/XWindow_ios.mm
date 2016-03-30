@@ -30,7 +30,6 @@ XWindow_ios::XWindow_ios() {
     this->_window.rootViewController = controller;
     auto canvas = std::make_shared<GLCanvas_ios>();
     canvas->init((CAEAGLLayer*)controller.view.layer);
-    ((GLKView*)controller.view).context = canvas->_context;
     _canvas = canvas;
     _render = std::make_shared<GLRender>();
     _render->Init(_canvas.get());
@@ -40,4 +39,5 @@ XWindow_ios::XWindow_ios() {
 
 void XWindow_ios::showInFront() {
     [this->_window makeKeyAndVisible];
+    this->update();
 }

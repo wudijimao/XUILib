@@ -11,13 +11,34 @@
 #import <OpenGLES/ES3/glext.h>
 #import "GLCanvas_ios.hpp"
 #import "XWindow_ios.hpp"
+#include "GLView.h"
 
 @interface XDUIViewController ()
 
 @end
 
 @implementation XDUIViewController {
-    XWindow_ios *_window;
+    XWindow_ios *_window; //weak
+    CADisplayLink *_dispalyLink;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.view = [[GLView alloc] initWithFrame:self.view.frame];
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+    [_dispalyLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)update {
+    if (_window) {
+        //_window->update();
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,14 +46,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)update {
-   
+- (void)viewWillAppear:(BOOL)animated {
 }
-- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
-    if (_window) {
-        _window->update();
-    }
-}
+
 
 - (void)setBelongWindow:(XWindow_ios *)window {
     _window = window;
@@ -41,14 +57,5 @@
     _window = nullptr;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

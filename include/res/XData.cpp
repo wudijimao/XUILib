@@ -30,7 +30,8 @@ namespace XResource {
             fseek(fp, 0, SEEK_SET);
             if (fileSize > 0) {
                 mSize = fileSize;
-                mBuf = new char[mSize];
+                mBuf = new char[mSize + 1];
+                mBuf[mSize] = '\0';
                 ret = true;
             } else {
                 clear();

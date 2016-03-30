@@ -40,6 +40,7 @@ protected:
     }
 public:
     virtual bool Present();
+    virtual void clear();
 private:
     GLfloat _transformMat[16];
     //temp

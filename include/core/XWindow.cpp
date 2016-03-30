@@ -20,6 +20,7 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
+    _canvas->clear();
     XResource::XRect rect = _rect;
     rect.X(0.0);
     rect.Y(0.0);

@@ -8,10 +8,9 @@
 #pragma once
 
 #import <UIKit/UIKit.h>
-#import <GLKit/GLKit.h>
 
 class XWindow_ios;
-@interface XDUIViewController : GLKViewController
+@interface XDUIViewController : UIViewController
 - (void)setBelongWindow:(XWindow_ios*)window;
 - (void)removeBelongWindow;
 @end
