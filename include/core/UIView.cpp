@@ -19,7 +19,7 @@ namespace XUI
         _backGroundColor = color;
     }
     void UIView::setBkgImg(const std::shared_ptr<XResource::XImage> &img) {
-        
+        _backGroundImage = img;
     }
     
     void UIView::drawRect(IXRender &render) {
@@ -68,7 +68,7 @@ namespace XUI
         }
     }
     void UIView::draw(IXRender &render) {
-        render.DrawBackGround(_backGroundColor->_color, _rect);
+        render.DrawBackGround(_backGroundColor->_color, _backGroundImage,  _rect);
         drawRect(render);
         for (auto subView : _subViews) {
             subView->draw(render);

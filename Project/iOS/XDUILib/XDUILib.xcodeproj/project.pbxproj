@@ -347,8 +347,8 @@
 			children = (
 				3E9608311CA7E8E800FE8008 /* GLProgram.hpp */,
 				3E9608321CA7E8E800FE8008 /* GLProgram.cpp */,
-				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
 				3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */,
+				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
 				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
 			);
 			path = GL;

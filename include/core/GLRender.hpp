@@ -7,7 +7,9 @@ class GLRender : public IXRender
 public:
 	virtual bool Init(IXCanvas *canvas);
 	virtual void Submit(); //submit paint data to canvas
-	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect);
+	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) override;
+    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &xRect) override;
+    virtual void DrawImage(const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &rect) override;
 //	virtual void DrawLine(int x1, int y1, int x2, int y2);
 //	//需要绘制的矩形区域
 //	virtual void DrawImage(XResource::XImage &img, const XResource::XRect &rect);

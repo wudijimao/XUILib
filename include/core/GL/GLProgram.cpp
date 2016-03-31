@@ -128,11 +128,16 @@ bool GLProgram::setUniformValue(const char *uniformName, const XResource::XColor
 }
 
 bool GLProgram::setUniformValue(const char *uniformName, bool b) {
-    GLuint location = glGetAttribLocation(_program, uniformName);
-    int temp = (int)b;
-    glUniform1i(location, temp);
+    GLint temp = (GLint)b;
+    setUniformValue(uniformName, temp);
     return true;
 }
+bool GLProgram::setUniformValue(const char *uniformName, GLint i) {
+    GLuint location = glGetUniformLocation(_program, uniformName);
+    glUniform1i(location, i);
+    return true;
+}
+
 bool GLProgram::enable() {
     glUseProgram(_program);
     GLint error = glGetError();

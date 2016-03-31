@@ -15,8 +15,18 @@ void GLRender::Submit() {
 }
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
-    XResource::XImage img;
-    data->initWithRect(xRect, color, img);
+    static std::shared_ptr<XResource::XImage> emptyImg;
+    data->initWithRect(xRect, color, emptyImg);
+    _canvas->pushRenderData(data);
+}
+void GLRender::DrawImage(const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &rect) {
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
+    _canvas->pushRenderData(data);
+}
+void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &xRect) {
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    data->initWithRect(xRect, color, image);
     _canvas->pushRenderData(data);
 }
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {

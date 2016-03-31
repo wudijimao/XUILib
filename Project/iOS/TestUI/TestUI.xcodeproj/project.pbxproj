@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0325CE1CAD3A4100C4063D /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E0325CD1CAD3A4100C4063D /* test.jpg */; };
 		3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416941C9AC4F600A84DF1 /* Images.xcassets */; };
 		3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */; };
 		3E16D6AB1CA9FAB200F84510 /* libXDUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E16D6AA1CA9FAB200F84510 /* libXDUILib.a */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E0325CD1CAD3A4100C4063D /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		3E1416941C9AC4F600A84DF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E16D6AA1CA9FAB200F84510 /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../Build/Products/Release-iphonesimulator/libXDUILib.a"; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		3E9A4BD11C9A9B1900CB59AD /* TestUI */ = {
 			isa = PBXGroup;
 			children = (
+				3E0325CD1CAD3A4100C4063D /* test.jpg */,
 				3E9A4BE31C9A9B1900CB59AD /* Info.plist */,
 				3E1416941C9AC4F600A84DF1 /* Images.xcassets */,
 				3E9A4BD21C9A9B1900CB59AD /* Supporting Files */,
@@ -155,6 +158,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E0325CE1CAD3A4100C4063D /* test.jpg in Resources */,
 				3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */,
 				3EAA6CDA1CA23E050037291F /* res.bundle in Resources */,
 				3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */,

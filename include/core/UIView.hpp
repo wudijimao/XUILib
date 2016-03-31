@@ -83,6 +83,7 @@ namespace XUI
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
+        std::shared_ptr<XResource::XImage> _backGroundImage;
         bool _needReDraw = true;
         bool _needLayout = true;
 	public:

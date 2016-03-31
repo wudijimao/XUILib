@@ -18,7 +18,7 @@ public:
         XUI::UIViewController ::viewDidLoad();
         _testSubView = std::make_shared<XUI::UIView>();
         _testSubView->setBkgColor(XResource::XUIColor::redColor());
-        _testSubView->setRect(XResource::XRectPro(20,20, 150,150));
+        _testSubView->setRect(XResource::XRectPro(20,20, 320,180));
         this->getView()->addSubView(_testSubView);
         auto subView2 = std::make_shared<XUI::UIView>();
         subView2->setBkgColor(XResource::XUIColor::pinkColor());
@@ -28,6 +28,8 @@ public:
         subView3->setBkgColor(XResource::XUIColor::blueColor());
         subView3->setRect(XResource::XRectPro(5,20, 15,50));
         _testSubView->addSubView(subView3);
+        auto img = std::make_shared<XResource::XImage>("/Users/ximiao/GCD-dispatch-/Project/iOS/TestUI/TestUI/test.jpg");
+        _testSubView->setBkgImg(img);
     }
     virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
         (*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());

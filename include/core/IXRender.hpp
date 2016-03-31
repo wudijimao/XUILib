@@ -10,6 +10,8 @@ public:
 	virtual bool Init(IXCanvas *canvas) = 0;
 	virtual void Submit() = 0;
 	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) = 0;
+    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &xRect) = 0;
+    virtual void DrawImage(const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &rect) = 0;
 //	virtual void DrawLine(int x1, int y1, int x2, int y2) = 0;
 	//需要绘制的矩形区域
 //	virtual void DrawImage(XResource::XImage &img, const XResource::XRect &rect) = 0;

@@ -16,6 +16,7 @@ public:
     bool initWithFilePath(const char *vFilePath, const char *fFilePath);
     bool setUniformValue(const char *uniformName, const XResource::XColor &color);
     bool setUniformValue(const char *uniformName, bool b);
+    bool setUniformValue(const char *uniformName, GLint i);
     bool enable();
 private:
     GLuint _program;
