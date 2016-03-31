@@ -7,7 +7,7 @@
 //
 #pragma once
 
-#include "stdafx.hpp"
+#include "../stdafx.hpp"
 #include "../../res/XResource.hpp"
 #include "GLHeaders.h"
 

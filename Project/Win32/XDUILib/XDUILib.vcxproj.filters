@@ -22,6 +22,15 @@
     <Filter Include="Header\res">
       <UniqueIdentifier>{727fa374-3544-4bff-bea1-4af8ca2a2d75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\res\XImage">
+      <UniqueIdentifier>{23e35236-b92d-4e58-a6b7-494b881efe4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\core\GL">
+      <UniqueIdentifier>{d2ce7f3c-7f3c-4dd4-9528-620f37f9d07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\core\input">
+      <UniqueIdentifier>{9203eb57-a646-4f3f-b8e9-faa115a67840}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\core\DllExport.hpp">
@@ -37,9 +46,6 @@
       <Filter>Header\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\IBaseWindow.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\core\IXCanvas.hpp">
@@ -66,9 +72,6 @@
     <ClInclude Include="..\..\..\include\core\XRoot.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\res\XImage.hpp">
-      <Filter>Header\res</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\res\XRect.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
@@ -81,38 +84,59 @@
     <ClInclude Include="..\..\..\include\res\XText.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\core\BaseWindow.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\GDICacheGraphics.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\GDICanvas.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\GDIRender.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\WindowsManager.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\ControlManager.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\core\BaseControl.h">
-      <Filter>Header\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp">
       <Filter>Header\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\core\IXWindow.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XData.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XError.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XString.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\IXImage.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\XGifDecoder.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\XImage.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\XImageDecoder.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\XJPGDecoder.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XImage\XPngDecoder.hpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GL\glheaders.h">
+      <Filter>Header\core\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GL\GLProgram.hpp">
+      <Filter>Header\core\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\GL\GLRenderData.hpp">
+      <Filter>Header\core\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\input\XInput.hpp">
+      <Filter>Header\core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\input\XInputs.hpp">
+      <Filter>Header\core\input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\input\XTouch.hpp">
+      <Filter>Header\core\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\include\core\GDICacheGraphics.cpp">
-      <Filter>Header\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\core\GDIRender.cpp">
-      <Filter>Header\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
       <Filter>Header\core</Filter>
     </ClCompile>
@@ -120,9 +144,6 @@
       <Filter>Header\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\stdafx.cpp">
-      <Filter>Header\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\core\WindowsManager.cpp">
       <Filter>Header\core</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\XApp.cpp">
@@ -134,14 +155,41 @@
     <ClCompile Include="..\..\..\include\win32\dllmain.cpp">
       <Filter>Header\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\core\ControlManager.cpp">
-      <Filter>Header\core</Filter>
+    <ClCompile Include="..\..\..\include\res\XData.cpp">
+      <Filter>Header\res</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\core\BaseControl.cpp">
-      <Filter>Header\core</Filter>
+    <ClCompile Include="..\..\..\include\res\XError.cpp">
+      <Filter>Header\res</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\core\BaseWindow.cpp">
-      <Filter>Header\core</Filter>
+    <ClCompile Include="..\..\..\include\res\XString.cpp">
+      <Filter>Header\res</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XImage\XGifDecoder.cpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XImage\XImage.cpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XImage\XImageDecoder.cpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XImage\XJPGDecoder.cpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XImage\XPngDecoder.cpp">
+      <Filter>Header\res\XImage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp">
+      <Filter>Header\core\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp">
+      <Filter>Header\core\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\input\XInput.cpp">
+      <Filter>Header\core\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\input\XTouch.cpp">
+      <Filter>Header\core\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

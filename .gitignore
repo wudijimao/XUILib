@@ -5,3 +5,4 @@ Debug/
 *.opendb
 *.iobj
 *.ipdb
+ipch/

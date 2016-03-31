@@ -19,46 +19,59 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\include\core\BaseControl.h" />
-    <ClInclude Include="..\..\..\include\core\BaseWindow.hpp" />
-    <ClInclude Include="..\..\..\include\core\ControlManager.hpp" />
     <ClInclude Include="..\..\..\include\core\DllExport.hpp" />
-    <ClInclude Include="..\..\..\include\core\GDICacheGraphics.hpp" />
-    <ClInclude Include="..\..\..\include\core\GDICanvas.hpp" />
-    <ClInclude Include="..\..\..\include\core\GDIRender.hpp" />
     <ClInclude Include="..\..\..\include\core\GLCanvas.hpp" />
     <ClInclude Include="..\..\..\include\core\GLHelper.hpp" />
     <ClInclude Include="..\..\..\include\core\GLRender.hpp" />
+    <ClInclude Include="..\..\..\include\core\GL\glheaders.h" />
+    <ClInclude Include="..\..\..\include\core\GL\GLProgram.hpp" />
+    <ClInclude Include="..\..\..\include\core\GL\GLRenderData.hpp" />
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp" />
-    <ClInclude Include="..\..\..\include\core\IBaseWindow.hpp" />
+    <ClInclude Include="..\..\..\include\core\input\XInput.hpp" />
+    <ClInclude Include="..\..\..\include\core\input\XInputs.hpp" />
+    <ClInclude Include="..\..\..\include\core\input\XTouch.hpp" />
     <ClInclude Include="..\..\..\include\core\IXCanvas.hpp" />
     <ClInclude Include="..\..\..\include\core\IXRender.hpp" />
+    <ClInclude Include="..\..\..\include\core\IXWindow.hpp" />
     <ClInclude Include="..\..\..\include\core\SimpleDirectUI.hpp" />
     <ClInclude Include="..\..\..\include\core\stdafx.hpp" />
-    <ClInclude Include="..\..\..\include\core\WindowsManager.hpp" />
     <ClInclude Include="..\..\..\include\core\XApp.hpp" />
     <ClInclude Include="..\..\..\include\core\XNode.hpp" />
     <ClInclude Include="..\..\..\include\core\XRenderFactory.hpp" />
     <ClInclude Include="..\..\..\include\core\XRoot.hpp" />
-    <ClInclude Include="..\..\..\include\res\XImage.hpp" />
+    <ClInclude Include="..\..\..\include\res\XData.hpp" />
+    <ClInclude Include="..\..\..\include\res\XError.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\IXImage.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XGifDecoder.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XImage.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XImageDecoder.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XJPGDecoder.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XPngDecoder.hpp" />
     <ClInclude Include="..\..\..\include\res\XRect.hpp" />
     <ClInclude Include="..\..\..\include\res\XRectPro.hpp" />
     <ClInclude Include="..\..\..\include\res\XResource.hpp" />
+    <ClInclude Include="..\..\..\include\res\XString.hpp" />
     <ClInclude Include="..\..\..\include\res\XText.hpp" />
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\include\core\BaseControl.cpp" />
-    <ClCompile Include="..\..\..\include\core\BaseWindow.cpp" />
-    <ClCompile Include="..\..\..\include\core\ControlManager.cpp" />
-    <ClCompile Include="..\..\..\include\core\GDICacheGraphics.cpp" />
-    <ClCompile Include="..\..\..\include\core\GDIRender.cpp" />
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp" />
     <ClCompile Include="..\..\..\include\core\GLRender.cpp" />
+    <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
+    <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp" />
+    <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
+    <ClCompile Include="..\..\..\include\core\input\XTouch.cpp" />
     <ClCompile Include="..\..\..\include\core\stdafx.cpp" />
-    <ClCompile Include="..\..\..\include\core\WindowsManager.cpp" />
     <ClCompile Include="..\..\..\include\core\XApp.cpp" />
+    <ClCompile Include="..\..\..\include\res\XData.cpp" />
+    <ClCompile Include="..\..\..\include\res\XError.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XGifDecoder.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XImage.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XImageDecoder.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XJPGDecoder.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XPngDecoder.cpp" />
     <ClCompile Include="..\..\..\include\res\XRect.cpp" />
+    <ClCompile Include="..\..\..\include\res\XString.cpp" />
     <ClCompile Include="..\..\..\include\win32\dllmain.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -145,12 +158,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\png\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>GdiPlus.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GdiPlus.lib;glew32s.lib;opengl32.lib;libcurl_imp.lib;libjpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\ThirdParty\prebuilt\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

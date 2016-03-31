@@ -7,9 +7,7 @@
 //
 //  Plase use UTF-8 encoded SourceFile(*.h|*.cpp)
 #pragma once
-
-#include <stdio.h>
-#include <string>
+#include "../core/stdafx.hpp"
 #include "XData.hpp"
 namespace XResource
 {

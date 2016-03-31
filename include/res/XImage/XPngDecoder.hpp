@@ -8,7 +8,7 @@
 #pragma once
 
 #include "XImageDecoder.hpp"
-#include "png.h"
+#include <png.h>
 
 namespace XResource
 {

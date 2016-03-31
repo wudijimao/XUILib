@@ -12,3 +12,8 @@
 #import <OpenGLES/ES3/glext.h>
 #import <OpenGLES/gltypes.h>
 #endif
+
+#ifdef TARGET_OS_MSWINDOWS
+#define GLEW_STATIC
+#include <GL\glew.h>
+#endif // TARGET_OS_MSWINDOWS

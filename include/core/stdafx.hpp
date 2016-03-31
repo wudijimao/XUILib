@@ -14,11 +14,6 @@
 #endif
 #endif
 
-//暂时
-#ifndef TARGET_OS_IPHONE
-#define TARGET_OS_IPHONE
-#endif
-
 #ifdef _WINDOWS
 #ifndef TARGET_OS_MSWINDOWS
 #define TARGET_OS_MSWINDOWS

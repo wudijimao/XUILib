@@ -6,7 +6,7 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #pragma once
-#include "stdafx.hpp"
+#include "../stdafx.hpp"
 #include "GLHeaders.h"
 #include "../../res/XResource.hpp"
 
