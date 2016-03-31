@@ -17,6 +17,22 @@
 
 @end
 
+void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view) {
+    XTouch *list = new XTouch[touches.count];
+    XTouch *t = list;
+    for (UITouch *touch in touches) {
+        auto point = [touch locationInView:view];
+        t->point.X(point.x);
+        t->point.Y(point.y);
+        t->_belongWindow = window;
+        t->phase = (TouchPhase)touch.phase;
+        t->tapCount = (unsigned int)touch.tapCount;
+        ++t;
+    }
+    window->input(list, (unsigned int)touches.count);
+    window->dispatchInput();
+}
+
 @implementation XDUIViewController {
     XWindow_ios *_window; //weak
     CADisplayLink *_dispalyLink;
@@ -25,20 +41,43 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.view = [[GLView alloc] initWithFrame:self.view.frame];
     }
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+}
+
 - (void)viewDidLoad {
+    GLView *view = [[GLView alloc] initWithFrame:self.view.frame];
+    self.view = view;
+    _window->init((CAEAGLLayer*)view.layer);
+    _window->update();
     _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     [_dispalyLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 - (void)update {
     if (_window) {
-        //_window->update();
+        _window->update();
     }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    remoteTouches(touches, _window, self.view);
+}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    remoteTouches(touches, _window, self.view);
+}
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    remoteTouches(touches, _window, self.view);
+}
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    remoteTouches(touches, _window, self.view);
+}
+- (void)touchesEstimatedPropertiesUpdated:(NSSet *)touches {
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,8 +85,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-}
 
 
 - (void)setBelongWindow:(XWindow_ios *)window {

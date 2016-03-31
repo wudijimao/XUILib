@@ -3,6 +3,7 @@
 #include "../res/XRect.hpp"
 #include "IXCanvas.hpp"
 #include "IXRender.hpp"
+#include "input/XInputs.hpp"
 
 #ifdef TARGET_OS_MSWINDOWS
 struct MouseStatusStruct

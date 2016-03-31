@@ -50,6 +50,12 @@
 		3E3FF9041CA2E2220070F6A5 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */; };
 		3E3FF9051CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
 		3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
+		3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */; };
+		3E8BF0961CAC0A9500A61A69 /* XTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */; };
+		3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */; };
+		3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */; };
+		3E8BF09B1CAC0ACC00A61A69 /* XInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */; };
+		3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */; };
 		3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608281CA7C53200FE8008 /* UIView.cpp */; };
 		3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608311CA7E8E800FE8008 /* GLProgram.hpp */; };
 		3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608321CA7E8E800FE8008 /* GLProgram.cpp */; };
@@ -64,7 +70,7 @@
 		3EAA6CF31CA248CF0037291F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CF21CA248CF0037291F /* OpenGLES.framework */; };
 		3EAA6D0C1CA24A8E0037291F /* DllExport.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */; };
 		3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB988521C9BE00500B9B23E /* UIView.hpp */; };
-		3EAA6D0E1CA24A8E0037291F /* IBaseWindow.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */; };
+		3EAA6D0E1CA24A8E0037291F /* IXWindow.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A61C9B93F600A84DF1 /* IXWindow.hpp */; };
 		3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */; };
 		3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A81C9B93F600A84DF1 /* IXRender.hpp */; };
 		3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */; };
@@ -133,7 +139,7 @@
 		3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIViewController.h; sourceTree = "<group>"; };
 		3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIViewController.mm; sourceTree = "<group>"; };
 		3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XDUILib.hpp; sourceTree = "<group>"; };
-		3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IBaseWindow.hpp; sourceTree = "<group>"; };
+		3E1416A61C9B93F600A84DF1 /* IXWindow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXWindow.hpp; sourceTree = "<group>"; };
 		3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXCanvas.hpp; sourceTree = "<group>"; };
 		3E1416A81C9B93F600A84DF1 /* IXRender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXRender.hpp; sourceTree = "<group>"; };
 		3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SimpleDirectUI.hpp; sourceTree = "<group>"; };
@@ -174,6 +180,11 @@
 		3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLHeaders.h; sourceTree = "<group>"; };
 		3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../../../ThirdParty/prebuilt/ios/libjpeg.a; sourceTree = "<group>"; };
 		3E3FF8F71CA2E2210070F6A5 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../ThirdParty/prebuilt/ios/libpng.a; sourceTree = "<group>"; };
+		3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTouch.cpp; sourceTree = "<group>"; };
+		3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTouch.hpp; sourceTree = "<group>"; };
+		3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XInput.cpp; sourceTree = "<group>"; };
+		3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XInput.hpp; sourceTree = "<group>"; };
+		3E8BF09D1CAC12E600A61A69 /* XInputs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XInputs.hpp; sourceTree = "<group>"; };
 		3E9608271CA7B80500FE8008 /* XWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow.hpp; sourceTree = "<group>"; };
 		3E9608281CA7C53200FE8008 /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
 		3E9608311CA7E8E800FE8008 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
@@ -284,6 +295,7 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3E8BF0921CAC07E600A61A69 /* input */,
 				3E3FF8911CA26F750070F6A5 /* GL */,
 				3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */,
 				3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */,
@@ -293,7 +305,7 @@
 				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
 				3EB988521C9BE00500B9B23E /* UIView.hpp */,
 				3E9608281CA7C53200FE8008 /* UIView.cpp */,
-				3E1416A61C9B93F600A84DF1 /* IBaseWindow.hpp */,
+				3E1416A61C9B93F600A84DF1 /* IXWindow.hpp */,
 				3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */,
 				3E1416A81C9B93F600A84DF1 /* IXRender.hpp */,
 				3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */,
@@ -362,6 +374,18 @@
 			name = lib;
 			sourceTree = "<group>";
 		};
+		3E8BF0921CAC07E600A61A69 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */,
+				3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */,
+				3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */,
+				3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */,
+				3E8BF09D1CAC12E600A61A69 /* XInputs.hpp */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
 		3EAA6CE11CA243210037291F /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,12 +419,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */,
 				3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */,
 				3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
+				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +546,7 @@
 				3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */,
 				3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */,
 				3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */,
+				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
 				3E203C711CA15A7100757788 /* XString.cpp in Sources */,
@@ -530,6 +557,7 @@
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
+				3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
 				3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */,
 				3E203C6F1CA15A7100757788 /* XData.cpp in Sources */,
 				3EB988511C9BD65600B9B23E /* XWindow_ios.mm in Sources */,
@@ -551,7 +579,7 @@
 				3EAA6D0C1CA24A8E0037291F /* DllExport.hpp in Sources */,
 				3E9608391CA7EEF600FE8008 /* XResManager.cpp in Sources */,
 				3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */,
-				3EAA6D0E1CA24A8E0037291F /* IBaseWindow.hpp in Sources */,
+				3EAA6D0E1CA24A8E0037291F /* IXWindow.hpp in Sources */,
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
 				3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */,
 				3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */,
@@ -571,6 +599,7 @@
 				3EAA6D211CA24A8E0037291F /* XJPGDecoder.hpp in Sources */,
 				3EAA6D221CA24A8E0037291F /* XPngDecoder.cpp in Sources */,
 				3EAA6D231CA24A8E0037291F /* XPngDecoder.hpp in Sources */,
+				3E8BF0961CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3EAA6D241CA24A8E0037291F /* XData.cpp in Sources */,
 				3EAA6D251CA24A8E0037291F /* XData.hpp in Sources */,
 				3EAA6D261CA24A8E0037291F /* XError.cpp in Sources */,
@@ -586,6 +615,7 @@
 				3EAA6D311CA24A8E0037291F /* GLCanvas_ios.mm in Sources */,
 				3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */,
 				3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */,
+				3E8BF09B1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
 				3EAA6D351CA24A8E0037291F /* XDUIAppDelegate.mm in Sources */,
 				3EAA6D361CA24A8E0037291F /* XDUILib_ios.hpp in Sources */,
 				3EAA6D371CA24A8E0037291F /* XDUILib_ios.mm in Sources */,

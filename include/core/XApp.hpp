@@ -6,7 +6,7 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 //#include "WindowsManager.h"
-#include "IBaseWindow.hpp"
+#include "IXWindow.hpp"
 #include "stdafx.hpp"
 
 

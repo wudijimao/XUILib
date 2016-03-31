@@ -52,11 +52,11 @@ namespace XResource
 		{
 			mY = y;
 		}
-		int X()
+		const int& X() const
 		{
 			return mX;
 		}
-		int Y()
+		const int& Y() const
 		{
 			return mY;
 		}
@@ -67,6 +67,14 @@ namespace XResource
 	class SIMPLEDIRECTUI_API XRect
 	{
 	public:
+        bool isPointIn(const XPoint &point) const {
+            if (point.X() >= mX && point.Y() >= mY
+                && point.X() <= (mX + mWidth)
+                && point.Y() <= (mY + mHeight)) {
+                return true;
+            }
+            return false;
+        }
 		XRect();
 		XRect(double x, double y, double width, double height);
 		~XRect();

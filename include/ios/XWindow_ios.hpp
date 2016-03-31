@@ -17,4 +17,5 @@ public:
     XWindow_ios();
     virtual void showInFront();
     UIWindow *_window;
+    bool init(CAEAGLLayer* drawable);
 };

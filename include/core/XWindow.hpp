@@ -7,8 +7,9 @@
 //
 #pragma once
 #include "stdafx.hpp"
-#include "../core/IBaseWindow.hpp"
+#include "../core/IXWindow.hpp"
 #include "../core/UIView.hpp"
+
 
 class XWindow : public IXWindow {
 public:
@@ -18,7 +19,10 @@ public:
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
     //do not call it by libray user
     void update();
+    void input(XTouch *touchs, unsigned int count);
+    void dispatchInput();
 protected:
+    std::vector<std::shared_ptr<XTouch>> _touchList;
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;

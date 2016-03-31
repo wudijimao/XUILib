@@ -1,17 +1,27 @@
 #pragma once
-#include "IBaseWindow.hpp"
+#include "IXWindow.hpp"
 #include "../res/XRectPro.hpp"
 
 namespace XUI
 {
+    
 	enum class MouseEventCommand
 	{
 		NONE = 0x00,
 		CAPCURE_CATCH = 0x01,
 		CAPCURE_REALEASE = 0x02
 	};
+    class UIResponder {
+    public:
+        virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
+        }
+        virtual bool hitTest(const std::shared_ptr<XTouch> &touch) {
+            return false;
+        }
+    };
+    
     class UIViewController;
-	class SIMPLEDIRECTUI_API UIView
+    class SIMPLEDIRECTUI_API UIView : public UIResponder
 	{
 	public:
         friend class XWindow;
@@ -27,10 +37,13 @@ namespace XUI
 //		virtual void setRect(double x, double y, double width, double height) = 0;
 //		virtual void setRect(const XResource::XRect& rect) = 0;
         virtual void setRect(const XResource::XRectPro& rect);
-        
-        //override
+        //must override
+        //override(not have defalut behavior)
         virtual void layoutSubViews();
-        
+        //can override(have defalut behavior)
+        virtual bool hitTest(const std::shared_ptr<XTouch> &touch) {
+            return _rect.isPointIn(touch->point);
+        }
         //do not override these function below
         void setNeedReDraw();
         void setNeedLayout();
@@ -38,12 +51,34 @@ namespace XUI
         void addSubView(const std::shared_ptr<UIView> &view);
         const std::vector<std::shared_ptr<UIView>> subViews();
         //virtual const MouseStatusStruct& MouseStatus() = 0;
-        
+        void setIsInputEnable(bool enable) {
+            _isInputEnable = enable;
+        }
+        bool isInputEnable() {
+            return _isInputEnable;
+        }
+        std::shared_ptr<XUI::UIView> getResponseSubView(const std::shared_ptr<XTouch> &touch) {
+            auto rIter =  _subViews.rbegin();
+            auto rEnd = _subViews.rend();
+            while (rIter != rEnd) {
+                if ((*rIter)->hitTest(touch)) {
+                    auto view = (*rIter)->getResponseSubView(touch);
+                    if (view == nullptr) {
+                        return *rIter;
+                    } else {
+                        return view;
+                    }
+                };
+                ++rIter;
+            }
+            return nullptr;
+        }
     public://protected:
         void layout(const XResource::XRect &absRect);
         void draw(IXRender &render);
         std::weak_ptr<UIView> _superView;
     private:
+        bool _isInputEnable = true;
         std::vector<std::shared_ptr<UIView>> _subViews;
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
@@ -79,11 +114,15 @@ namespace XUI
     
     
     
-    class SIMPLEDIRECTUI_API UIViewController {
+    class SIMPLEDIRECTUI_API UIViewController : public UIResponder {
     public:
         const std::shared_ptr<UIView> getView();
         //override
         virtual void viewDidLoad();
+        //do not override
+        std::shared_ptr<UIView> view() {
+            return _view;
+        }
     protected:
         friend class XWindow;
         void onSizeChange(XResource::XSize &size);

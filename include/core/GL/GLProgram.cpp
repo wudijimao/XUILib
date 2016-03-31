@@ -93,7 +93,7 @@ bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
     //auto t = vsh->getUTF8String()->c_str();
     //auto t2 = fsh->getUTF8String()->c_str();
     return init(vsh->getUTF8String()->c_str(), fsh->getUTF8String()->c_str());
-    //return init("#version 300 es \n\
+    //return init("#version 300 es \
                 precision mediump float;\
                 in vec3 inPos;\
                 in vec2 vTexCoord;\
@@ -116,7 +116,7 @@ bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
                     if(useTexture) {\
                         fragmentColor = texture(s_texture, texCoord) * Color;\
                     } else {\
-                        fragmentColor = Color;\
+                        fragmentColor = vec4(1,1,1,1);\
                     }\
                 }");
 }

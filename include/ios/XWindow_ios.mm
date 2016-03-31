@@ -27,17 +27,21 @@ XWindow_ios::XWindow_ios() {
     _rect.Height(rect.size.height);
     
     auto controller = [[XDUIViewController alloc] init];
+    [controller setBelongWindow:this];
     this->_window.rootViewController = controller;
+}
+
+bool XWindow_ios::init(CAEAGLLayer* drawable) {
     auto canvas = std::make_shared<GLCanvas_ios>();
-    canvas->init((CAEAGLLayer*)controller.view.layer);
+    canvas->init(drawable);
     _canvas = canvas;
     _render = std::make_shared<GLRender>();
     _render->Init(_canvas.get());
-    [controller setBelongWindow:this];
+    return true;
 }
 
 
 void XWindow_ios::showInFront() {
     [this->_window makeKeyAndVisible];
-    this->update();
+    //this->update();  可能引起黑屏渲染不出东西？
 }
