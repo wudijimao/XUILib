@@ -8,6 +8,7 @@
 
 #include "XWindow.hpp"
 #include "GLRender.hpp"
+#include "../core/UIView.hpp"
 
 XWindow::XWindow() {
     _rect.X(0.0);

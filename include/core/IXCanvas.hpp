@@ -8,11 +8,11 @@ enum class RenderType
 	OPENGL
 };
 
-class IXCanvas
+class SIMPLEDIRECTUI_API IXCanvas
 {
 public:
 	virtual RenderType GetType() = 0;
-    //virtual void setSize(const XResource::XSize &size) = 0;
+    virtual void setSize(const XResource::XSize &size) = 0;
 	virtual XResource::XSize GetSize() = 0;
     virtual void clear() = 0;
     virtual bool Present() = 0;

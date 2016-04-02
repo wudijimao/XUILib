@@ -35,10 +35,12 @@
     <ClInclude Include="..\..\..\include\core\IXWindow.hpp" />
     <ClInclude Include="..\..\..\include\core\SimpleDirectUI.hpp" />
     <ClInclude Include="..\..\..\include\core\stdafx.hpp" />
+    <ClInclude Include="..\..\..\include\core\UIView.hpp" />
     <ClInclude Include="..\..\..\include\core\XApp.hpp" />
     <ClInclude Include="..\..\..\include\core\XNode.hpp" />
-    <ClInclude Include="..\..\..\include\core\XRenderFactory.hpp" />
+    <ClInclude Include="..\..\..\include\core\XResManager.hpp" />
     <ClInclude Include="..\..\..\include\core\XRoot.hpp" />
+    <ClInclude Include="..\..\..\include\core\XWindow.hpp" />
     <ClInclude Include="..\..\..\include\res\XData.hpp" />
     <ClInclude Include="..\..\..\include\res\XError.hpp" />
     <ClInclude Include="..\..\..\include\res\XImage\IXImage.hpp" />
@@ -53,6 +55,9 @@
     <ClInclude Include="..\..\..\include\res\XString.hpp" />
     <ClInclude Include="..\..\..\include\res\XText.hpp" />
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp" />
+    <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp" />
+    <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp" />
+    <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp" />
@@ -62,7 +67,10 @@
     <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XTouch.cpp" />
     <ClCompile Include="..\..\..\include\core\stdafx.cpp" />
+    <ClCompile Include="..\..\..\include\core\UIView.cpp" />
     <ClCompile Include="..\..\..\include\core\XApp.cpp" />
+    <ClCompile Include="..\..\..\include\core\XResManager.cpp" />
+    <ClCompile Include="..\..\..\include\core\XWindow.cpp" />
     <ClCompile Include="..\..\..\include\res\XData.cpp" />
     <ClCompile Include="..\..\..\include\res\XError.cpp" />
     <ClCompile Include="..\..\..\include\res\XImage\XGifDecoder.cpp" />
@@ -73,6 +81,11 @@
     <ClCompile Include="..\..\..\include\res\XRect.cpp" />
     <ClCompile Include="..\..\..\include\res\XString.cpp" />
     <ClCompile Include="..\..\..\include\win32\dllmain.cpp" />
+    <ClCompile Include="..\..\..\include\win32\WindowsManager.cpp" />
+    <ClCompile Include="..\..\..\include\win32\XApp_win.cpp" />
+    <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp" />
+    <ClCompile Include="..\..\..\include\win32\XResManager_win.cpp" />
+    <ClCompile Include="..\..\..\include\win32\XWindow_win.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1ECAD555-F3D3-4D35-9158-9A7463A279C0}</ProjectGuid>
@@ -85,7 +98,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -145,10 +158,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>GdiPlus.lib;glew32s.lib;opengl32.lib;libcurl_imp.lib;libjpeg-2015.lib;libpng-2015.lib;giflib.lib;libzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\ThirdParty\prebuilt\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -163,7 +179,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>GdiPlus.lib;glew32s.lib;opengl32.lib;libcurl_imp.lib;libjpeg.lib;libpng.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\ThirdParty\prebuilt\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

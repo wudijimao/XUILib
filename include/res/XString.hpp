@@ -48,6 +48,9 @@ namespace XResource
                 delete _utf8Buf;
             }
         }
+		void append(const XString &str) {
+
+		}
         XString();
         XString(const char *str);
         XString(const std::string& string);

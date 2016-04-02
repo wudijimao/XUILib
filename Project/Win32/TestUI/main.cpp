@@ -39,7 +39,7 @@ public:
 };
 
 
-int main(int argc, char * argv[]) {
+XDUIMain {
 	auto thisApp = XTestApp();
-	thisApp.run(argc, argv);
+	thisApp.run(XDUI_RUN_PARAMS);
 }

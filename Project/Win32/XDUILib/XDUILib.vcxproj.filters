@@ -66,9 +66,6 @@
     <ClInclude Include="..\..\..\include\core\XNode.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\core\XRenderFactory.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\core\XRoot.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
@@ -135,6 +132,24 @@
     <ClInclude Include="..\..\..\include\core\input\XTouch.hpp">
       <Filter>Header\core\input</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XResManager.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\UIView.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XWindow.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -190,6 +205,30 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\input\XTouch.cpp">
       <Filter>Header\core\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\XResManager.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\XResManager_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\UIView.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\XApp_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\XWindow.cpp">
+      <Filter>Header\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\XWindow_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\WindowsManager.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp">
+      <Filter>Header\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -18,11 +18,16 @@ namespace XDUILib
         Killed,
     };
     
-    class XApp {
+    class SIMPLEDIRECTUI_API XApp {
     public:
         static XApp& thisApp();
     public:
-        int run(int argc, char * argv[]);
+#ifdef TARGET_OS_IPHONE
+		int run(int argc, char * argv[]);
+#endif // 
+#ifdef TARGET_OS_MSWINDOWS
+		int run(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
+#endif
     //overWrite
         virtual bool init();
         virtual void onStatusChanged(XAppStatus status, XAppStatus lastStatus);

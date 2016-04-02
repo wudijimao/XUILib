@@ -11,7 +11,7 @@ namespace XUI
 		CAPCURE_CATCH = 0x01,
 		CAPCURE_REALEASE = 0x02
 	};
-    class UIResponder {
+    class SIMPLEDIRECTUI_API UIResponder {
     public:
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
         }

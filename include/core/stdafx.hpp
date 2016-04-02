@@ -6,8 +6,6 @@
 #include <memory>
 #include <functional>
 
-#include "DllExport.hpp"
-
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 #ifndef TARGET_OS_IPHONE
 #define TARGET_OS_IPHONE
@@ -34,3 +32,4 @@
 #endif
 
 
+#include "DllExport.hpp"

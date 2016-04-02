@@ -8,7 +8,6 @@
 #pragma once
 #include "stdafx.hpp"
 #include "../core/IXWindow.hpp"
-#include "../core/UIView.hpp"
 
 
 class XWindow : public IXWindow {

@@ -9,10 +9,11 @@
 
 #define NULL_ABLE
 #define NONE_NULL
+#include "../../core/stdafx.hpp"
 
 namespace XResource {
     
-    class IXImage {
+    class SIMPLEDIRECTUI_API IXImage {
     public:
         virtual int width() = 0;
         virtual int height() = 0;

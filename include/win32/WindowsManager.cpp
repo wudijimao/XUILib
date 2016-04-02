@@ -1,18 +1,18 @@
-#include "stdafx.hpp"
 #include "WindowsManager.hpp"
 using namespace std;
+
 LRESULT CALLBACK WindowsManager::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	//TODO:需要加上线程同步
 	if (iMsg == WM_NCCREATE)
 	{
 		LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
-		XWindow* creatingWin = static_cast<XWindow*>(lpcs->lpCreateParams);
-		GetInstanc().Regist(hwnd, creatingWin);
+		XWindow_win* creatingWin = static_cast<XWindow_win*>(lpcs->lpCreateParams);
+		
 	}
 	else
 	{
-		std::map<HWND, XWindow*>::iterator iter = GetInstanc().mWndMap.find(hwnd);
+		auto iter = GetInstanc().mWndMap.find(hwnd);
 		if (iter != GetInstanc().mWndMap.end())
 		{
 			return iter->second->RealWndProc(hwnd, iMsg, wParam, lParam);
@@ -25,19 +25,19 @@ WindowsManager& WindowsManager::GetInstanc()
 	static WindowsManager manager;
 	return manager;
 }
-bool WindowsManager::Regist(HWND hwnd, XWindow* win)
+bool WindowsManager::Regist(HWND hwnd, XWindow_win* win)
 {
 	if (mWndMap.find(hwnd) != mWndMap.end())
 	{
 		return false;
 	}
-	mWndMap.insert(pair<HWND, XWindow*>(hwnd, win));
+	mWndMap.insert(pair<HWND, XWindow_win*>(hwnd, win));
 	return true;
 }
 bool WindowsManager::UnRegist(HWND hwnd)
 {
 	//TODO:需要加上线程同步
-	std::map<HWND, XWindow*>::iterator iter = mWndMap.find(hwnd);
+	auto iter = mWndMap.find(hwnd);
 	if (iter != mWndMap.end())
 	{
 		mWndMap.erase(iter);

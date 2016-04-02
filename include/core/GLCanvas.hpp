@@ -24,6 +24,9 @@ public:
     }
     virtual RenderType GetType();
     void pushRenderData(XDUILib::GLRenderData *data);
+	XResource::XSize GetSize() {
+		return _size;
+	}
 protected:
     GLuint _renderBuffer;
     GLuint _framebuffer;

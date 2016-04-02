@@ -14,7 +14,7 @@
 #include "XImageDecoder.hpp"
 
 namespace XResource {
-    class XImage : public IXImage {
+    class SIMPLEDIRECTUI_API XImage : public IXImage {
     public:
         XImageDecoder *mDecoder = nullptr;
         XImage () {
