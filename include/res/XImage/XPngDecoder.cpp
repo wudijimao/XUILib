@@ -33,8 +33,11 @@ namespace XResource
     }
     bool XPngDecoder::isThisFormart(XData *data) {
         png_const_bytep buf = (png_const_bytep)data->getBuf(0, 8);
-        bool is_png = !png_sig_cmp(buf, 0, 8);
-        return is_png;
+		if (buf != nullptr)
+		{
+			bool is_png = !png_sig_cmp(buf, 0, 8);
+			return is_png;
+		}
     }
     bool XPngDecoder::initWithData(XData *data) {
         this->XImageDecoder::initWithData(data);

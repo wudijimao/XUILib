@@ -1,17 +1,64 @@
 #include "core\stdafx.hpp"
 #include "core\GLCanvas.hpp"
+#include "GDIRender.hpp"
+#include <gdiplus.h>
 
-class GLCanvas_ios : public GLCanvas
+class SIMPLEDIRECTUI_API_DEBUG GLCanvas_ios : public GLCanvas
 {
 public:
 	~GLCanvas_ios() {
+		::ReleaseDC(mHWND, mHDC);
 	}
+	HWND mHWND = nullptr;
+	HDC mHDC = nullptr;
 	bool init(HWND hWnd) {
+		RECT rct;
+		GetWindowRect(mHWND, &rct);
+		setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top));
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		mHWND = hWnd;
+		mHDC = ::GetDC(hWnd);
+		initMemDC();
+		CreateDIB();
+		initOpengl(mDIB_DC);
+		return true;
+	}
+	virtual bool Present() {
+		this->GLCanvas::Present();
+		//TODO::drawtowin by gdi+
+		XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
+		glClearColor(1, 0, 0, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+		//SwapBuffers(mDIB_DC);
+		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_RGBA, GL_UNSIGNED_BYTE, piexls);
 
-		HDC hdc;
-		hdc = ::GetDC(hWnd);
+		if (!BitBlt(mMemDC, 0, 0, _size.Width(), _size.Height(), mDIB_DC, 0, 0, SRCCOPY)) {
+			return false;
+		}
+
+		RECT rct;
+		GetWindowRect(mHWND, &rct);
+		POINT ptWinPos = { rct.left, rct.top };
+		POINT    ptSrc = { 0, 0 };
+		SIZE    sizeWindow = { _size.Width(), _size.Height() };
+
+		BLENDFUNCTION    m_Blend;
+		m_Blend.BlendOp = AC_SRC_OVER; //theonlyBlendOpdefinedinWindows2000
+		m_Blend.BlendFlags = 0; //nothingelseisspecial...
+		m_Blend.AlphaFormat = AC_SRC_ALPHA; //...
+		m_Blend.SourceConstantAlpha = 255;//AC_SRC_ALPHA 
+		UpdateLayeredWindow(mHWND, mHDC, &ptWinPos, &sizeWindow, mMemDC, &ptSrc, 0, &m_Blend, ULW_ALPHA);
+		return true;
+	}
+private:
+	HBITMAP mBitMap = nullptr;
+	HDC mMemDC = nullptr;
+	HDC mDIB_DC = nullptr;
+	HBITMAP mDIBBitMap;
+	Gdiplus::Graphics *mBkgGraphics;
+
+	bool initOpengl(HDC hdc) {
 		int bits = 32;
 		static	PIXELFORMATDESCRIPTOR pfd =				// pfd Tells Windows How We Want Things To Be
 		{
@@ -40,25 +87,82 @@ public:
 		}
 
 		_context = wglCreateContext(hdc);
+
 		if (!wglMakeCurrent(hdc, _context)) {
 			return false;
 		}
-		::ReleaseDC(hWnd, hdc);//一定要释放句柄
 
+		GLenum err = glewInit();
+		if (GLEW_OK != err)
+		{
+			return false;
+		}
+		//::ReleaseDC(hWnd, mHDC);//一定要释放句柄
 		glGenRenderbuffers(1, &_renderBuffer);
 		glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, 100, 100);
+		glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, _size.Width(), _size.Height());
 		if (!this->InitGLProgram()) {
 			return false;
 		}
 		if (!this->InitFrameBuffer()) {
 			return false;
-		}		return true;
+		}
+		return true;
 	}
-	bool Present() {
-		this->GLCanvas::Present();
+	void CreateDIB()
+	{
+		BITMAPINFOHEADER BIH;
+		int iSize = sizeof(BITMAPINFOHEADER);
+		memset(&BIH, 0, iSize);
+		BIH.biSize = iSize;
+		BIH.biWidth = _size.Width();
+		BIH.biHeight = _size.Height();
+		BIH.biPlanes = 1;
+		BIH.biBitCount = 32;
+		BIH.biCompression = BI_RGB;
 
-		//TODO::drawtowin by gdi+
+		if (mDIB_DC)
+			DeleteDC(mDIB_DC);
+		if (mDIBBitMap)
+			DeleteObject(mDIBBitMap);
+		mDIB_DC = CreateCompatibleDC(NULL);
+		
+		void *bmp_cnt = nullptr;
+		mDIBBitMap = CreateDIBSection(
+			mDIB_DC,
+			(BITMAPINFO*)&BIH,
+			DIB_RGB_COLORS,
+			&bmp_cnt,
+			NULL,
+			0);
+		if (mDIBBitMap) {
+			SelectObject(mDIB_DC, mDIBBitMap);
+		}
+	}
+	bool initMemDC() {
+		static GDIPlusInitHelper helper;
+		RECT rct;
+		GetWindowRect(mHWND, &rct);
+		POINT ptWinPos = { rct.left, rct.top };
+		_size.Width(rct.right - rct.left);
+		_size.Height(rct.bottom - rct.top);
+
+		mMemDC = CreateCompatibleDC(mHDC);
+		mBitMap = CreateCompatibleBitmap(mHDC, _size.Width(), _size.Height());
+		SelectObject(mMemDC, mBitMap);//???
+		mBkgGraphics = new Gdiplus::Graphics(mMemDC);
+		mBkgGraphics->SetCompositingMode(Gdiplus::CompositingMode::CompositingModeSourceOver);
+		mBkgGraphics->SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);//抗锯齿，不开启画颜色会有问题
+		mBkgGraphics->SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);//图片缩放质量
+
+																				
+		DWORD dwExStyle = GetWindowLong(mHWND, GWL_EXSTYLE);  // 设置层次窗口
+
+		if ((dwExStyle & WS_EX_LAYERED) != WS_EX_LAYERED)
+		{
+			SetWindowLong(mHWND, GWL_EXSTYLE, dwExStyle ^ WS_EX_LAYERED);
+		}
+		mBkgGraphics->Clear(Gdiplus::Color(254, 0, 0, 0));
 		return true;
 	}
 public:

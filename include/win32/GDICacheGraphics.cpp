@@ -1,4 +1,4 @@
-#include "stdafx.hpp"
+#include "../core/stdafx.hpp"
 #include "GDICacheGraphics.hpp"
 
 using namespace Gdiplus;

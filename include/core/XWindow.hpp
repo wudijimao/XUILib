@@ -10,7 +10,7 @@
 #include "../core/IXWindow.hpp"
 
 
-class XWindow : public IXWindow {
+class SIMPLEDIRECTUI_API_DEBUG XWindow : public IXWindow {
 public:
     ~XWindow();
     std::shared_ptr<IXCanvas> _canvas;
@@ -20,6 +20,8 @@ public:
     void update();
     void input(XTouch *touchs, unsigned int count);
     void dispatchInput();
+	virtual void setSize(const XResource::XSize &size) override;
+	virtual void setPositon(const XResource::XPoint &pos) override;
 protected:
     std::vector<std::shared_ptr<XTouch>> _touchList;
     XWindow();

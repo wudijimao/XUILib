@@ -8,7 +8,7 @@ LRESULT CALLBACK WindowsManager::WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LP
 	{
 		LPCREATESTRUCT lpcs = reinterpret_cast<LPCREATESTRUCT>(lParam);
 		XWindow_win* creatingWin = static_cast<XWindow_win*>(lpcs->lpCreateParams);
-		
+		WindowsManager::GetInstanc().Regist(hwnd, creatingWin);
 	}
 	else
 	{

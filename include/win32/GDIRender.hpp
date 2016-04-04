@@ -1,7 +1,6 @@
 #pragma once
 #pragma warning( disable: 4251 )
-#include "IXRender.hpp"
-//#include <boost/signals2.hpp>
+#include "../core/IXRender.hpp"
 #include <windows.h>
 #include <gdiplus.h>
 
@@ -41,13 +40,13 @@ public:
 		mBkgGraphics->DrawLine(&pen, x1, y1, x2, y2);
 	}
 	//需要绘制的矩形区域
-	void DrawImage(XResource::XImage &img, const XResource::XRect &rect);
+/*	void DrawImage(XResource::XImage &img, const XResource::XRect &rect);
 	void DrawImage(Gdiplus::Bitmap &img, const XResource::XRect &rect, int x, int y);
 	void DrawString(const std::wstring &text, const XResource::XRect &xRect);
 	void DrawString(const std::wstring &text, const XResource::XRect &xRect, Gdiplus::StringAlignment align);
 	void DrawString(const XResource::XText &text, const XResource::XRect &xRect);
 	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect);
-	virtual XResource::XRect MeasureString(const std::wstring &text);
+	virtual XResource::XRect MeasureString(const std::wstring &text);*/
 private:
 	bool mIsCreated;
 	//绘图表面大小

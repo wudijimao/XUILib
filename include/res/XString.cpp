@@ -95,7 +95,10 @@ namespace XResource {
     
     XString::XString(){}
     XString::XString(const char *str) {
-        _utf8Buf->assign(str);
+		if (str != nullptr)
+		{
+			_utf8Buf->assign(str);
+		}
     }
     XString::XString(const std::string& string) {
         _utf8Buf->assign(string.c_str());
@@ -113,6 +116,10 @@ namespace XResource {
         return temp;
     }
     bool XString::init(const char *str, XStringEncoding encoding) {
+		if (str == nullptr)
+		{
+			return false;
+		}
         bool ret = false;
         switch (encoding) {
             case XStringEncoding::UTF8:

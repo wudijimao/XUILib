@@ -150,6 +150,15 @@
     <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp">
       <Filter>Header\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\GDICacheGraphics.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\GDICanvas.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\GDIRender.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -228,6 +237,12 @@
       <Filter>Header\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\GDIRender.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\GDICacheGraphics.cpp">
       <Filter>Header\win32</Filter>
     </ClCompile>
   </ItemGroup>

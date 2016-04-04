@@ -15,7 +15,7 @@ void XWindow_win::showInFront() {
 XWindow_win::XWindow_win() {
 }
 
-bool XWindow_win::init(PSTR szCmdLine, int iCmdShow)  {
+bool XWindow_win::init(PSTR szCmdLine, int iCmdShow) {
 	HINSTANCE hInstance = GetModuleHandle(NULL);
 	std::string appNameClass = "appNameClass";
 	WNDCLASSEX wndclass;
@@ -42,7 +42,7 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow)  {
 	}
 
 	mHwnd = CreateWindowEx(
-		/*WS_EX_TOPMOST | */WS_EX_LAYERED,
+		WS_EX_APPWINDOW | WS_EX_LAYERED,
 		appNameClass.c_str(),
 		"",
 		WS_POPUP | WS_MINIMIZEBOX,
@@ -62,8 +62,7 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow)  {
 	ShowWindow(mHwnd, iCmdShow);
 	UpdateWindow(mHwnd);
 
-	/*SetTimer(mHwnd, 0, TimerMS, NULL);
-	//创建光标 分层窗口不能用 只能自绘,但是是否影响输入法的位置呢？？
+	/*//创建光标 分层窗口不能用 只能自绘,但是是否影响输入法的位置呢？？
 	if (!CreateCaret(mHwnd, NULL, 500, 500))
 	{
 		assert(L"创建光标失败");
@@ -77,6 +76,7 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	switch (iMsg)
 	{
 	case WM_TIMER:
+		this->update();
 		/*addMs += TimerMS;
 		if (addMs >= CaretShowMs)
 		{
@@ -85,16 +85,20 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		}
 		OnDraw();*/
 		return 0;
-	case WM_CREATE:
-		_canvas = std::make_shared<GLCanvas_ios>();
+	case WM_CREATE: {
+		auto canvas = std::make_shared<GLCanvas_ios>();
+		canvas->init(hwnd);
+		_canvas = canvas;
 		_render = std::make_shared<GLRender>();
 		_render->Init(_canvas.get());
-		return 0;
+		SetTimer(hwnd, 0, 1, NULL);
+	}
+					return 0;
 	case WM_SIZE: {
 		XResource::XSize size(LOWORD(lParam), HIWORD(lParam));
 		_canvas->setSize(size);
 	}
-		return 0;
+				  return 0;
 	case WM_PAINT:
 		//系统托管
 		return 0;

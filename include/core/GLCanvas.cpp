@@ -21,7 +21,9 @@ void GLCanvas::pushRenderData(XDUILib::GLRenderData *data) {
 }
 
 bool GLCanvas::InitGLProgram() {
-    return _program.initWithFilePath(XResManager::pathForResource("shader/VertexShader", "vsh"), XResManager::pathForResource("shader/FragmentShader", "fsh"));
+	auto vsh = XResManager::pathForResource("shader/VertexShader", "vsh");
+	auto fsh = XResManager::pathForResource("shader/FragmentShader", "fsh");
+    return _program.initWithFilePath(vsh.getUTF8String()->c_str() , fsh.getUTF8String()->c_str());
 }
 
 bool GLCanvas::InitFrameBuffer() {

@@ -26,7 +26,7 @@ class XFileInfo {
 
 class XResManager {
 public:
-	static const char* pathForResource(const char *fileName, const char *ext);
+	static XResource::XString pathForResource(const char *fileName, const char *ext);
 	void openRes();
 	//const char* pathForResource(const char *fileName, const char *ext);
 };

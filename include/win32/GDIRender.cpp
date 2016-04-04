@@ -1,4 +1,4 @@
-#include "stdafx.hpp"
+#include "../core/stdafx.hpp"
 #include "GDICanvas.hpp"
 #include "GDIRender.hpp"
 using namespace Gdiplus;
@@ -128,6 +128,7 @@ void GDIRender::DrawBackGround(Gdiplus::Color &color, const XResource::XRect &r)
 	Gdiplus::SolidBrush brush(c);
 	mBkgGraphics->FillRectangle(&brush, r.IntX(), r.IntY(), r.IntWidth(), r.IntHeight());
 }
+/*
 void GDIRender::DrawImage(Gdiplus::Bitmap &img, const XResource::XRect &rect, int x, int y)
 {
 	Gdiplus::Rect temp(rect.X(), rect.Y(), rect.Width(), rect.Height());
@@ -214,7 +215,7 @@ XRect GDIRender::MeasureString(const XResource::XText &text, const XResource::XR
 	mBkgGraphics->MeasureString(text.mText.c_str(), -1, &font, rect, &stringFormat, &temp);
 	return XRect(temp.X, temp.Y, temp.Width, temp.Height);
 }
-
+*/
 bool GDIRender::Init(IXCanvas *canvas)
 {
 	if (canvas->GetType() == RenderType::GDIPlus)

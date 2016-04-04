@@ -54,6 +54,9 @@
     <ClInclude Include="..\..\..\include\res\XResource.hpp" />
     <ClInclude Include="..\..\..\include\res\XString.hpp" />
     <ClInclude Include="..\..\..\include\res\XText.hpp" />
+    <ClInclude Include="..\..\..\include\win32\GDICacheGraphics.hpp" />
+    <ClInclude Include="..\..\..\include\win32\GDICanvas.hpp" />
+    <ClInclude Include="..\..\..\include\win32\GDIRender.hpp" />
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp" />
     <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp" />
     <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp" />
@@ -81,6 +84,8 @@
     <ClCompile Include="..\..\..\include\res\XRect.cpp" />
     <ClCompile Include="..\..\..\include\res\XString.cpp" />
     <ClCompile Include="..\..\..\include\win32\dllmain.cpp" />
+    <ClCompile Include="..\..\..\include\win32\GDICacheGraphics.cpp" />
+    <ClCompile Include="..\..\..\include\win32\GDIRender.cpp" />
     <ClCompile Include="..\..\..\include\win32\WindowsManager.cpp" />
     <ClCompile Include="..\..\..\include\win32\XApp_win.cpp" />
     <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp" />

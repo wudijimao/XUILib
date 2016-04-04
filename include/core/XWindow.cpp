@@ -13,8 +13,8 @@
 XWindow::XWindow() {
     _rect.X(0.0);
     _rect.Y(0.0);
-    _rect.Width(200.0);
-    _rect.Height(200.0);
+    _rect.Width(375.0);
+    _rect.Height(625.0);
 }
 
 XWindow::~XWindow() {
@@ -53,6 +53,15 @@ void XWindow::dispatchInput() {
         viewPtrMap[iter.first]->onTouch(iter.second);
         _rootController->onTouch(iter.second);
     }
+}
+
+void XWindow::setSize(const XResource::XSize &size) {
+	_rect.Width(size.Width());
+	_rect.Height(size.Height());
+}
+void XWindow::setPositon(const XResource::XPoint &pos) {
+	_rect.X(pos.X());
+	_rect.Y(pos.Y());
 }
 
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
