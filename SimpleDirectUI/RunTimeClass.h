@@ -3,7 +3,6 @@
 #include <map>
 #include <string>
 #include <functional>
-#include <boost/shared_ptr.hpp>
 #include <assert.h>
 
 
@@ -91,7 +90,7 @@ public:
 	~RunTimeInfo()
 	{
 	}
-	void Regist(const std::string& name, boost::shared_ptr<ClassInfoBase> info)
+	void Regist(const std::string& name, std::shared_ptr<ClassInfoBase> info)
 	{
 		mClassInfos.insert(std::make_pair(name, info));
 	}
@@ -123,7 +122,7 @@ public:
 	}
 private:
 	static RunTimeInfo mInctance;
-	std::map<std::string, boost::shared_ptr<ClassInfoBase>> mClassInfos;
+	std::map<std::string, std::shared_ptr<ClassInfoBase>> mClassInfos;
 };
 
 template<class T, const std::string &Name>
@@ -141,7 +140,7 @@ public:
 		return new T;
 	}
 protected:
-	boost::shared_ptr<ClassInfo<T, Name>> *mClassInfo;
+	std::shared_ptr<ClassInfo<T, Name>> *mClassInfo;
 };
 
 template<class T, const std::string &Name>

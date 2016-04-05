@@ -25,7 +25,7 @@ namespace XControls
 			mChangableY = mMiddleHeight - dragBarHeight;
 		}
 
-		boost::signals2::signal<void(double)> ScrollPostionChange;
+		std::function<void(double)> ScrollPostionChange;
 	private:
 		double CurrentContentPosition()
 		{

@@ -20,8 +20,8 @@ int SimpleDirectUI::Show(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	return msg.wParam;
 }
 
-boost::shared_ptr<SimpleDirectUI> SimpleDirectUI::getInstance()
+std::shared_ptr<SimpleDirectUI> SimpleDirectUI::getInstance()
 {
-	static boost::shared_ptr<SimpleDirectUI> ui(new SimpleDirectUI());
+	static std::shared_ptr<SimpleDirectUI> ui(new SimpleDirectUI());
 	return  ui;
 }

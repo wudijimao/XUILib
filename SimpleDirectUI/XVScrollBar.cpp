@@ -14,17 +14,17 @@ XVScrollBar::XVScrollBar(const std::wstring& id) : BaseControl(id)
 	mDragBar.Rect(1, 10, 8, 10);
 	mRect.Width(10);
 	mRect.Height(30);
-	mUpBar.MouseDown.connect([this](IBaseControl&){
+	mUpBar.MouseDown=[this](IBaseControl&){
 		SetCurrentY(mCurrentY - 10.0);
 		ScrollPostionChange(CurrentContentPosition());
-	});
-	mDownBar.MouseDown.connect([this](IBaseControl&){
+	};
+	mDownBar.MouseDown=[this](IBaseControl&){
 		SetCurrentY(mCurrentY + 10.0);
 		ScrollPostionChange(CurrentContentPosition());
-	});
-	mDragBar.MouseMove.connect(std::bind(&XVScrollBar::OnDrag, this, std::placeholders::_1));
+	};
+	mDragBar.MouseMove=std::bind(&XVScrollBar::OnDrag, this, std::placeholders::_1);
 
-	SizeChange.connect(std::bind(&XVScrollBar::OnSizeChange, this, std::placeholders::_1, std::placeholders::_2));
+	SizeChange=std::bind(&XVScrollBar::OnSizeChange, this, std::placeholders::_1, std::placeholders::_2);
 }
 
 XVScrollBar::~XVScrollBar()

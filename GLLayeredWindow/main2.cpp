@@ -1,4 +1,4 @@
-#define _WIN32_WINNT 0x0500
+/*#define _WIN32_WINNT 0x0500
 
 #include <windows.h>
 #include <windowsx.h>
@@ -214,7 +214,7 @@ LRESULT CALLBACK WindowFunc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 	return 0;
 }
-/*
+
 int WINAPI WinMain(HINSTANCE hThisInst, HINSTANCE hPrevInst, LPSTR str, int nWinMode)
 {
 	WNDCLASSEX wc;

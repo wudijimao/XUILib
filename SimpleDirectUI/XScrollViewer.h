@@ -10,10 +10,10 @@ namespace XControls
 		XScrollViewer(const std::wstring& id) : BaseControl(id)
 		{
 			AddChildIntenal(&mBar);
-			SizeChange.connect(std::bind(&XScrollViewer::OnSizeChange, this, std::placeholders::_1, std::placeholders::_2));
-			mBar.ScrollPostionChange.connect([this](double p){
+			SizeChange = std::bind(&XScrollViewer::OnSizeChange, this, std::placeholders::_1, std::placeholders::_2);
+			mBar.ScrollPostionChange = [this](double p){
 				mScrollY = p;
-			});
+			};
 		}
 		void AddContent(IBaseControl *content)
 		{
@@ -23,7 +23,7 @@ namespace XControls
 			temp.Height(9999);
 			mCacheGraphics.Creat(temp);
 			mBar.ContentHeight(mContent->Rect().Height());
-			mContent->SizeChange.connect(std::bind(&XScrollViewer::OnContentSizeChange, this, std::placeholders::_1, std::placeholders::_2));
+			mContent->SizeChange=std::bind(&XScrollViewer::OnContentSizeChange, this, std::placeholders::_1, std::placeholders::_2);
 		}
 		void Draw(IXRender &g)
 		{

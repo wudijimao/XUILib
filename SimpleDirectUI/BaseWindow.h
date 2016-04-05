@@ -3,7 +3,6 @@
 #include "IXRender.h"
 #include "XRect.h"
 #include "IBaseWindow.h"
-#include <boost/signals2.hpp>
 class SIMPLEDIRECTUI_API XWindow : public IXWindow
 {
 public:

@@ -10,7 +10,7 @@ mText(id + L"_Text")
 {
 	mBtnChecked.Visable(mIsChecked);
 	mBtnUnChecked.Visable(!mIsChecked);
-	MouseUp.connect(std::bind(&XCheckBox::OnMouseUp, this, std::placeholders::_1));
+	MouseUp = std::bind(&XCheckBox::OnMouseUp, this, std::placeholders::_1);
 	AddChildIntenal(&mBtnChecked);
 	AddChildIntenal(&mBtnUnChecked);
 	AddChildIntenal(&mText);

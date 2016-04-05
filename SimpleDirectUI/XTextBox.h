@@ -10,11 +10,11 @@ namespace XControls
 	public:
 		XTextBox(const std::wstring& id) : BaseControl(id)
 		{
-			GlobalStatus::GetInstance().IsCaretShowChanged.connect(std::bind(&XTextBox::IsCaretShowChanged, this, std::placeholders::_1));
-			MouseDown.connect(std::bind(&XTextBox::OnMouseDown, this, std::placeholders::_1));
-			GotFocus.connect(std::bind(&XTextBox::OnGotFocus, this, std::placeholders::_1));
-			LostFocus.connect(std::bind(&XTextBox::OnLostFocus, this, std::placeholders::_1));
-			KeyDown.connect(std::bind(&XTextBox::OnKeyDown, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+			GlobalStatus::GetInstance().IsCaretShowChanged = std::bind(&XTextBox::IsCaretShowChanged, this, std::placeholders::_1);
+			MouseDown=std::bind(&XTextBox::OnMouseDown, this, std::placeholders::_1);
+			GotFocus=std::bind(&XTextBox::OnGotFocus, this, std::placeholders::_1);
+			LostFocus=std::bind(&XTextBox::OnLostFocus, this, std::placeholders::_1);
+			KeyDown=std::bind(&XTextBox::OnKeyDown, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
 		}
 		XResource::XText& Text()
 		{

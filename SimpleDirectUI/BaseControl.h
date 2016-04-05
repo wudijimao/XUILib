@@ -5,7 +5,6 @@
 #include "IBaseControl.h"
 #include "IBaseWindow.h"
 #include "DllExport.h"
-#include<boost\shared_ptr.hpp>
 #include<vector>
 
 namespace XControls

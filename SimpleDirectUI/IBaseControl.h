@@ -2,7 +2,6 @@
 #include "GDIRender.h"
 #include "IBaseWindow.h"
 #include "XRectPro.h"
-#include<boost\shared_ptr.hpp>
 namespace XControls
 {
 	enum class MouseEventCommand
@@ -41,29 +40,29 @@ namespace XControls
 		virtual const MouseStatusStruct& MouseStatus() = 0;
 	public:
 		//鼠标事件
-		boost::signals2::signal<void(IBaseControl&)> MouseDown;
-		boost::signals2::signal<void(IBaseControl&)> MouseUp;
-		boost::signals2::signal<void(IBaseControl&)> MouseClick;
-		boost::signals2::signal<void(IBaseControl&)> MouseEnter;
-		boost::signals2::signal<void(IBaseControl&)> MouseWheel;
-		boost::signals2::signal<void(IBaseControl&)> MouseLeave;
-		boost::signals2::signal<void(IBaseControl&)> MouseMove;
+		std::function<void(IBaseControl&)> MouseDown;
+		std::function<void(IBaseControl&)> MouseUp;
+		std::function<void(IBaseControl&)> MouseClick;
+		std::function<void(IBaseControl&)> MouseEnter;
+		std::function<void(IBaseControl&)> MouseWheel;
+		std::function<void(IBaseControl&)> MouseLeave;
+		std::function<void(IBaseControl&)> MouseMove;
 	public:
 		//键盘事件
-		boost::signals2::signal<void(IBaseControl&, WPARAM, LPARAM)> KeyDown;
+		std::function<void(IBaseControl&, WPARAM, LPARAM)> KeyDown;
 	public:
 		//其他事件
-		boost::signals2::signal<void(IBaseControl&)> GotFocus;
-		boost::signals2::signal<void(IBaseControl&)> LostFocus;
+		std::function<void(IBaseControl&)> GotFocus;
+		std::function<void(IBaseControl&)> LostFocus;
 		//第二个参数是将要设置成的，从控件里可以获取到之前的size
-		boost::signals2::signal<void(IBaseControl&, XResource::XRect&)> SizeChange;
-		boost::signals2::signal<void(IBaseControl&, XResource::XRect&)> PosChange;
+		std::function<void(IBaseControl&, XResource::XRect&)> SizeChange;
+		std::function<void(IBaseControl&, XResource::XRect&)> PosChange;
 	protected:
 		virtual void Parent(IBaseControl* parent) = 0;
 		virtual void RefreshAbsRect() = 0;
 		virtual void AbsRect(const XResource::XRect& rect) = 0;
 		virtual XResource::XPoint GetMousePos() = 0;
 	};
-	typedef boost::shared_ptr<IBaseControl> BaseControlPtr;
+	typedef std::shared_ptr<IBaseControl> BaseControlPtr;
 
 }

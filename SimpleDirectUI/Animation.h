@@ -18,7 +18,7 @@ public:
 	virtual bool Play();
 	virtual bool Stop();
 	virtual bool Pause();
-	boost::signals2::signal<void(XControls::IBaseControl&)> Completed;
+	std::function<void(XControls::IBaseControl&)> Completed;
 protected:
 	void Tick(int ms);
 private:

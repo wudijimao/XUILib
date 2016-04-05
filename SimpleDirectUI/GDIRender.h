@@ -2,7 +2,6 @@
 #pragma warning( disable: 4251 )
 #include "IXRender.h"
 #include "GDICanvas.h"
-#include <boost/signals2.hpp>
 #include <windows.h>
 #include <gdiplus.h>
 

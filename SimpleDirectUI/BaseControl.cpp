@@ -71,11 +71,17 @@ void BaseControl::MouseEvent(UINT key, int x, int y)
 		{
 		case WM_LBUTTONDOWN:
 			mIsLButtonDown = true;
-			MouseDown(*this);
+			if (MouseDown)
+			{
+				MouseDown(*this);
+			}
 			if (!mHasFocus)
 			{
 				mHasFocus = true;
-				GotFocus(*this);
+				if (GotFocus)
+				{
+					GotFocus(*this);
+				}
 			}
 			if (mDragWindowEnable)
 			{
@@ -87,18 +93,28 @@ void BaseControl::MouseEvent(UINT key, int x, int y)
 			if (mIsLButtonDown)
 			{
 				mIsLButtonDown = false;
-				MouseClick(*this);
+				if (MouseClick)
+				{
+					MouseClick(*this);
+				}
 			}
-
-			MouseUp(*this);
+			if (MouseUp)
+			{
+				MouseUp(*this);
+			}
 			break;
 		case WM_MOUSEMOVE:
 			if (!mIsMouseEntered)
 			{
 				mIsMouseEntered = true;
-				MouseEnter(*this);
+				if (MouseEnter) {
+					MouseEnter(*this);
+				}
 			}
-			MouseMove(*this);
+			if (MouseMove)
+			{
+				MouseMove(*this);
+			}
 			break;
 		case WM_MOUSEWHEEL:
 			{
@@ -118,12 +134,18 @@ void BaseControl::MouseEvent(UINT key, int x, int y)
 			{
 				child->MouseEvent(key, x, y);
 			}
-			MouseLeave(*this);
+			if (MouseLeave)
+			{
+				MouseLeave(*this);
+			}
 		}
 		if (key == WM_LBUTTONDOWN && mHasFocus)
 		{
 			mHasFocus = false;
-			LostFocus(*this);
+			if (LostFocus)
+			{
+				LostFocus(*this);
+			}
 		}
 	}
 	for (auto child : mRealChildrens)
@@ -159,11 +181,11 @@ void BaseControl::Rect(const XResource::XRect& rect)
 	{
 		return;
 	}
-	if (temp.X() != mRect.X() || temp.Y() != mRect.Y())
+	if (PosChange &&( temp.X() != mRect.X() || temp.Y() != mRect.Y()))
 	{
 		PosChange(*this, temp);
 	}
-	if (temp.Width() != mRect.Width() || temp.Height() != mRect.Height())
+	if (SizeChange && (temp.Width() != mRect.Width() || temp.Height() != mRect.Height()))
 	{
 		SizeChange(*this, temp);
 	}

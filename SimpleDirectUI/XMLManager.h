@@ -4,7 +4,6 @@
 #include "tinyxml2.h"
 #include <string>
 #include <stdio.h>
-#include <boost/shared_ptr.hpp>
 #include "XRect.h"
 
 
@@ -49,5 +48,5 @@ private:
 		return true;
 	}
 	tinyxml2::XMLDocument mXML;
-	boost::shared_ptr<IXWindow> mRoot;
+	std::shared_ptr<IXWindow> mRoot;
 };

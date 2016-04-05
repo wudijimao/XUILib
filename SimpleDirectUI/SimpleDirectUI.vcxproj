@@ -72,7 +72,7 @@
       <AdditionalDependencies>GdiPlus.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>..\$(IntDir)$(TargetName)$(TargetExt)</OutputFile>
       <Profile>true</Profile>
-      <AdditionalLibraryDirectories>C:\Users\wudijimao\Documents\GCD-dispatch-\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

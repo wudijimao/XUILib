@@ -8,5 +8,5 @@ public:
 	virtual bool Stop() = 0;
 	virtual bool Pause() = 0;
 	virtual void Tick(int ms) = 0;
-	boost::signals2::signal<void(XControls::IBaseControl&)> Completed;
+	std::function<void(XControls::IBaseControl&)> Completed;
 };

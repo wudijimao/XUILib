@@ -3,10 +3,10 @@
 using namespace XControls;
 XButton::XButton(const std::wstring& id) : BaseControl(id)
 {
-	MouseDown.connect(std::bind(&XButton::OnMouseDown, this, std::placeholders::_1));
-	MouseUp.connect(std::bind(&XButton::OnMouseUp, this, std::placeholders::_1));
-	MouseEnter.connect(std::bind(&XButton::OnMouseEnter, this, std::placeholders::_1));
-	MouseLeave.connect(std::bind(&XButton::OnMouseLeave, this, std::placeholders::_1));
+	this->MouseDown = std::bind(&XButton::OnMouseDown, this, std::placeholders::_1);
+	this->MouseUp = std::bind(&XButton::OnMouseUp, this, std::placeholders::_1);
+	this->MouseEnter = std::bind(&XButton::OnMouseEnter, this, std::placeholders::_1);
+	this->MouseLeave = std::bind(&XButton::OnMouseLeave, this, std::placeholders::_1);
 }
 XButton::XButton(const std::wstring& id,
 	const std::wstring& normalImg,
@@ -21,10 +21,10 @@ XButton::XButton(const std::wstring& id,
 	mForceImg(forceImg),
 	mDisableImg(disableImg)
 {
-	MouseDown.connect(std::bind(&XButton::OnMouseDown, this, std::placeholders::_1));
-	MouseUp.connect(std::bind(&XButton::OnMouseUp, this, std::placeholders::_1));
-	MouseEnter.connect(std::bind(&XButton::OnMouseEnter, this, std::placeholders::_1));
-	MouseLeave.connect(std::bind(&XButton::OnMouseLeave, this, std::placeholders::_1));
+	this->MouseDown = std::bind(&XButton::OnMouseDown, this, std::placeholders::_1);
+	this->MouseUp = std::bind(&XButton::OnMouseUp, this, std::placeholders::_1);
+	this->MouseEnter = std::bind(&XButton::OnMouseEnter, this, std::placeholders::_1);
+	this->MouseLeave = std::bind(&XButton::OnMouseLeave, this, std::placeholders::_1);
 }
 
 XButton::~XButton()

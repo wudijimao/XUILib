@@ -2,7 +2,6 @@
 #include "BaseWindow.h"
 #include <map>
 #include <windows.h>
-#include <boost/signals2.hpp>
 
 //不直接使用，创建窗口时会自动注册，销毁时自动反注册
 //窗体销毁时会自动反注册，所以保存指针也是安全的
