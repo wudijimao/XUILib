@@ -14,7 +14,7 @@ using namespace XDUILib;
 class ViewController : public XUI::UIViewController {
 public:
     std::shared_ptr<XUI::UIView> _testSubView;
-    virtual void viewDidLoad() {
+    virtual void viewDidLoad() override {
         XUI::UIViewController ::viewDidLoad();
         _testSubView = std::make_shared<XUI::UIView>();
         _testSubView->setBkgColor(XResource::XUIColor::redColor());

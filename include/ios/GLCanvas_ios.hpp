@@ -22,7 +22,10 @@ public:
         
         glGenRenderbuffers(1, &_renderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
-        [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:drawable];
+        if(![_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:drawable]) {
+            assert(false);
+            return false;
+        }
         if(!this->InitGLProgram()) {
             assert(false);
             return false;
