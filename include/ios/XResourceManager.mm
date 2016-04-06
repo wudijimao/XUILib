@@ -28,7 +28,7 @@ NSBundle *bundle() {
 
 
 
-const char* XResManager::pathForResource(const char *fileName, const char *ext) {
-    return [bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String;
+XResource::XString XResManager::pathForResource(const char *fileName, const char *ext) {
+    return XResource::XString([bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String);
 }
 

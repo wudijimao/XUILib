@@ -38,6 +38,7 @@ namespace XResource
 			bool is_png = !png_sig_cmp(buf, 0, 8);
 			return is_png;
 		}
+        return false;
     }
     bool XPngDecoder::initWithData(XData *data) {
         this->XImageDecoder::initWithData(data);
