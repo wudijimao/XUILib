@@ -68,12 +68,15 @@ BOOL renderSC()
 	
 	glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
 	glColor3f(0, 1, 1);
-	/*glVertex3f(0.0f, 1.0f, 0.0f);                  // Top
+	glVertex3f(0.0f, 1.0f, 0.0f);                  // Top
 	glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
 	glVertex3f(-1.0f, -1.0f, 0.0f);                  // Bottom Left
 	glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
-	glVertex3f(1.0f, -1.0f, 0.0f);                  // Bottom Right*/
+	glVertex3f(1.0f, -1.0f, 0.0f);                  // Bottom Right
 	glEnd();
+
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPopMatrix();
 	glFlush();
@@ -245,10 +248,10 @@ void ImagePreMultAlpha()
 		for (int i = 0; i < totalBytes; i += 4)
 		{
 			pPixel = bmp_cnt + i;
-			pPixel[0] = '\254';// (BYTE)(pPixel[0] * (float)pPixel[3] / 255.0f);
-			pPixel[1] = '\254';// (BYTE)(pPixel[1] * (float)pPixel[3] / 255.0f);
-			pPixel[2] = '\254';// (BYTE)(pPixel[2] * (float)pPixel[3] / 255.0f);
-			pPixel[3] = '\254';
+			//pPixel[0] = 255;// (BYTE)(pPixel[0] * (float)pPixel[3] / 255.0f);
+			//pPixel[1] = 255;// (BYTE)(pPixel[1] * (float)pPixel[3] / 255.0f);
+			//pPixel[2] = 255;// (BYTE)(pPixel[2] * (float)pPixel[3] / 255.0f);
+			pPixel[3] = 255;
 		}
 }
 
@@ -269,13 +272,13 @@ void RedrawLayeredWindow()
 		SIZE client = { w, h };
 		BLENDFUNCTION blendFunc = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
-		hPrevObj = SelectObject(pdcDIB, hbmpDIB);
+		//hPrevObj = SelectObject(pdcDIB, hbmpDIB);
 		ClientToScreen(g_hWnd, &ptDest);
 
 		UpdateLayeredWindow(g_hWnd, hdc, &ptDest, &client,
 			pdcDIB, &ptSrc, 0, &blendFunc, ULW_ALPHA);
 
-		SelectObject(pdcDIB, hPrevObj);
+		//SelectObject(pdcDIB, hPrevObj);
 		ReleaseDC(g_hWnd, hdc);
 	}
 }

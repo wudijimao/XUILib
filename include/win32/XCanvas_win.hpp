@@ -27,15 +27,10 @@ public:
 	virtual bool Present() {
 		this->GLCanvas::Present();
 		//TODO::drawtowin by gdi+
-		XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
-		glClearColor(1, 0, 0, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
+		//XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
 		//SwapBuffers(mDIB_DC);
-		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_RGBA, GL_UNSIGNED_BYTE, piexls);
+		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_RGBA, GL_UNSIGNED_BYTE, bmp_cnt);
 
-		if (!BitBlt(mMemDC, 0, 0, _size.Width(), _size.Height(), mDIB_DC, 0, 0, SRCCOPY)) {
-			return false;
-		}
 
 		RECT rct;
 		GetWindowRect(mHWND, &rct);
@@ -48,7 +43,7 @@ public:
 		m_Blend.BlendFlags = 0; //nothingelseisspecial...
 		m_Blend.AlphaFormat = AC_SRC_ALPHA; //...
 		m_Blend.SourceConstantAlpha = 255;//AC_SRC_ALPHA 
-		UpdateLayeredWindow(mHWND, mHDC, &ptWinPos, &sizeWindow, mMemDC, &ptSrc, 0, &m_Blend, ULW_ALPHA);
+		UpdateLayeredWindow(mHWND, mHDC, &ptWinPos, &sizeWindow, mDIB_DC, &ptSrc, 0, &m_Blend, ULW_ALPHA);
 		return true;
 	}
 private:
@@ -56,6 +51,7 @@ private:
 	HDC mMemDC = nullptr;
 	HDC mDIB_DC = nullptr;
 	HBITMAP mDIBBitMap;
+	unsigned char *bmp_cnt = nullptr;
 	Gdiplus::Graphics *mBkgGraphics;
 
 	bool initOpengl(HDC hdc) {
@@ -65,8 +61,9 @@ private:
 			sizeof(PIXELFORMATDESCRIPTOR),				// Size Of This Pixel Format Descriptor
 			1,											// Version Number
 			PFD_DRAW_TO_WINDOW |						// Format Must Support Window
-			PFD_SUPPORT_OPENGL |						// Format Must Support OpenGL
-			PFD_DOUBLEBUFFER,							// Must Support Double Buffering
+			//PFD_DRAW_TO_BITMAP |
+			PFD_SUPPORT_OPENGL,				// Format Must Support OpenGL
+			//PFD_DOUBLEBUFFER,							// Must Support Double Buffering
 			PFD_TYPE_RGBA,								// Request An RGBA Format
 			bits,										// Select Our Color Depth
 			0, 0, 0, 0, 0, 0,							// Color Bits Ignored
@@ -81,14 +78,14 @@ private:
 			0,											// Reserved
 			0, 0, 0										// Layer Masks Ignored
 		};
-		int piexelFormat = ChoosePixelFormat(hdc, &pfd);
-		if (!SetPixelFormat(hdc, piexelFormat, &pfd)) {
+		int piexelFormat = ChoosePixelFormat(mHDC, &pfd);
+		if (!SetPixelFormat(mHDC, piexelFormat, &pfd)) {
 			return false;
 		}
 
-		_context = wglCreateContext(hdc);
+		_context = wglCreateContext(mHDC);
 
-		if (!wglMakeCurrent(hdc, _context)) {
+		if (!wglMakeCurrent(mHDC, _context)) {
 			return false;
 		}
 
@@ -97,6 +94,9 @@ private:
 		{
 			return false;
 		}
+		
+		const GLubyte* OpenGLVersion = glGetString(GL_VERSION); //返回当前OpenGL实现的版本号
+
 		//::ReleaseDC(hWnd, mHDC);//一定要释放句柄
 		glGenRenderbuffers(1, &_renderBuffer);
 		glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
@@ -127,12 +127,12 @@ private:
 			DeleteObject(mDIBBitMap);
 		mDIB_DC = CreateCompatibleDC(NULL);
 		
-		void *bmp_cnt = nullptr;
+		
 		mDIBBitMap = CreateDIBSection(
 			mDIB_DC,
 			(BITMAPINFO*)&BIH,
 			DIB_RGB_COLORS,
-			&bmp_cnt,
+			(void**)&bmp_cnt,
 			NULL,
 			0);
 		if (mDIBBitMap) {

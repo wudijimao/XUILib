@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------------
+/*//-----------------------------------------------------------------------------
 // Copyright (c) 2006-2010 dhpoware. All Rights Reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -41,7 +41,7 @@
 //  WGL_ARB_pixel_format
 //
 //-----------------------------------------------------------------------------
-/*
+
 // Force the layered windows APIs to be visible.
 #define _WIN32_WINNT 0x0500
 
@@ -637,13 +637,13 @@ void CopyPBufferToImage()
     glPixelStorei(GL_PACK_ALIGNMENT, 1);
     glReadPixels(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, GL_BGRA_EXT, GL_UNSIGNED_BYTE, g_image.pPixels);
 
-    /*for (int i = 0; i < IMAGE_HEIGHT; ++i)
-    {
-        memcpy(&g_image.pPixels[g_image.pitch * i],
-            &pixels[((IMAGE_HEIGHT - 1) - i) * (IMAGE_WIDTH * 4)],
-            IMAGE_WIDTH * 4);
-    }*/
-/*
+    //for (int i = 0; i < IMAGE_HEIGHT; ++i)
+    //{
+   //     memcpy(&g_image.pPixels[g_image.pitch * i],
+    //        &pixels[((IMAGE_HEIGHT - 1) - i) * (IMAGE_WIDTH * 4)],
+    //        IMAGE_WIDTH * 4);
+   // }
+
 }
 
 void DrawFrame()
@@ -681,9 +681,14 @@ void DrawFrame()
 
     glDrawArrays(GL_TRIANGLES, 0, sizeof(g_cube) / sizeof(g_cube[0]));
 
+
+
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     glDisableClientState(GL_NORMAL_ARRAY);
     glDisableClientState(GL_VERTEX_ARRAY);
+
+	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // At this stage the pbuffer will contain our scene. Now we make a system
     // memory copy of the pbuffer.
@@ -751,8 +756,8 @@ void DetectMemoryLeaks()
     _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
     _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
     #endif
-}*/
-/*int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+}
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nShowCmd)
 {
     DetectMemoryLeaks();
