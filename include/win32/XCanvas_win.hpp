@@ -29,7 +29,8 @@ public:
 		//TODO::drawtowin by gdi+
 		//XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
 		//SwapBuffers(mDIB_DC);
-		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_RGBA, GL_UNSIGNED_BYTE, bmp_cnt);
+		glPixelStorei(GL_PACK_ALIGNMENT, 1);
+		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_BGRA, GL_UNSIGNED_BYTE, bmp_cnt);
 
 
 		RECT rct;
@@ -94,8 +95,6 @@ private:
 		{
 			return false;
 		}
-		
-		const GLubyte* OpenGLVersion = glGetString(GL_VERSION); //返回当前OpenGL实现的版本号
 
 		//::ReleaseDC(hWnd, mHDC);//一定要释放句柄
 		glGenRenderbuffers(1, &_renderBuffer);
