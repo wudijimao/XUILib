@@ -11,6 +11,7 @@
 class IXWindow;
 enum class XInputType {
     Touch,
+	Mouse,
 };
 
 class XInput {

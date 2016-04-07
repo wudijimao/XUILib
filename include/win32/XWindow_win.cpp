@@ -4,6 +4,8 @@
 #include "XCanvas_win.hpp"
 #include "core\GLRender.hpp"
 
+#include "../core/input/XMouse.hpp"
+
 std::shared_ptr<IXWindow> IXWindow::createWindow() {
 	return std::make_shared<XWindow_win>();
 }
@@ -111,18 +113,18 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 
 	case WM_LBUTTONDOWN:
 		SetCapture(hwnd);
-		goto SENDMOUSEEVENT;//捕获窗口外鼠标消息，同一时间只能有一个窗口设置为此属性
 	case WM_LBUTTONUP:
 		ReleaseCapture();
 		//鼠标滚轮事件
 	case WM_MOUSEWHEEL:
 	case WM_MOUSEMOVE:
-	{
-	SENDMOUSEEVENT:
-		mMouseStatus.SetMouseStatus(wParam, lParam);
-		//TODO::mouseMove
-		return 0;
-	}
+	case WM_RBUTTONDOWN:
+	case WM_RBUTTONUP:
+	case WM_LBUTTONDBLCLK:
+	case WM_XBUTTONUP:
+	case WM_XBUTTONDOWN:
+
+		return processMouseEvent(iMsg, wParam, lParam);
 	case WM_KEYDOWN:
 	{
 		//TODO::Key
@@ -135,4 +137,36 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		return 0;
 	}
 	return DefWindowProc(hwnd, iMsg, wParam, lParam);
+}
+
+LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
+{
+	XMouse *mouse = new XMouse();
+	switch (iMsg)
+	{
+	case WM_LBUTTONDOWN:
+		mouse->eventButton = MouseEventButton::Left;
+		mouse->eventType = MouseEventType::Down;
+		break;
+	case WM_LBUTTONUP:
+		mouse->eventButton = MouseEventButton::Left;
+		mouse->eventType = MouseEventType::Down;
+		break;
+	case WM_RBUTTONDOWN:
+		mouse->eventButton = MouseEventButton::Left;
+		mouse->eventType = MouseEventType::Down;
+		break;
+	case WM_RBUTTONUP:
+		mouse->eventButton = MouseEventButton::Left;
+		mouse->eventType = MouseEventType::Down;
+		break;
+	case WM_MOUSEMOVE:
+		mouse->eventType = MouseEventType::Move;
+		break;
+	//case WM_LBUTTONDBLCLK:
+	//case WM_MOUSEWHEEL:
+	}
+	//TODO::processinput
+	//this->input(mouse, 1);
+	return 0;
 }

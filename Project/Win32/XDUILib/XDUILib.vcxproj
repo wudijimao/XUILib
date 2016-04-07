@@ -29,6 +29,7 @@
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInput.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInputs.hpp" />
+    <ClInclude Include="..\..\..\include\core\input\XMouse.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XTouch.hpp" />
     <ClInclude Include="..\..\..\include\core\IXCanvas.hpp" />
     <ClInclude Include="..\..\..\include\core\IXRender.hpp" />
@@ -68,6 +69,7 @@
     <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
+    <ClCompile Include="..\..\..\include\core\input\XMouse.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XTouch.cpp" />
     <ClCompile Include="..\..\..\include\core\stdafx.cpp" />
     <ClCompile Include="..\..\..\include\core\UIView.cpp" />

@@ -159,6 +159,9 @@
     <ClInclude Include="..\..\..\include\win32\GDIRender.hpp">
       <Filter>Header\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\core\input\XMouse.hpp">
+      <Filter>Header\core\input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -244,6 +247,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\win32\GDICacheGraphics.cpp">
       <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\input\XMouse.cpp">
+      <Filter>Header\core\input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
