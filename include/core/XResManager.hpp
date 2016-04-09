@@ -10,7 +10,17 @@
 #include "stdafx.hpp"
 #include <sys/stat.h>
 #include <sys/types.h>  //TODO::put into .cpp
-#include <dirent.h>
+#ifdef TARGET_OS_MSWINDOWS
+	#include "../win32/dirent.h"
+	//#include <direct.h>
+#include  <io.h>
+#include  <stdio.h>
+#include  <stdlib.h>
+#include <sys/stat.h>  
+#else
+	#include <dirent.h>
+	#define _mkdir(str) mkdir(str, S_IRWXU | S_IRWXG | S_IRWXO)
+#endif
 #include "../res/XString.hpp"
 
 class XFileInfo;
@@ -25,7 +35,7 @@ public:
     virtual bool isExist() {
         if (!mHasCheckExist) {
             int a = access(mPath.getUTF8String().c_str(), 1);
-            mIsExist = (a == 0);
+			setIsExist(a == 0);
         }
         return mIsExist;
     }
@@ -56,6 +66,20 @@ public:
     XDictionaryInfo(const char* fullPath) {
         init(fullPath);
     }
+#ifdef TARGET_OS_MSWINDOWS
+	virtual bool isExist() override {
+		WIN32_FIND_DATA  wfd;
+		bool rValue = false;
+		HANDLE hFind = FindFirstFile(mPath.UTF8CStr(), &wfd);
+		if ((hFind != INVALID_HANDLE_VALUE) && (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		{
+			rValue = true;
+		}
+		FindClose(hFind);
+		return rValue;
+	}
+#endif // TARGET_OS_MSWINDOWS
+
     virtual bool init(const char* fullPath) override {
         if(XPathInfo::init(fullPath)) {
             mHasReadChildren = false;
@@ -95,7 +119,7 @@ public:
         if (isExist()) {
             return XPathCrateResault::Exists;
         }
-        int status = mkdir(mPath.getUTF8String().c_str(), 1);
+        int status = _mkdir(mPath.getUTF8String().c_str());
         if (status == 1) {
             return XPathCrateResault::Success;
         }
@@ -126,13 +150,13 @@ protected:
             }
             struct dirent* ent = NULL;
             char dir[1024];
-            struct stat statbuf;
+            struct _stat statbuf;
             while ((ent = readdir(pDir)) != NULL)
             { //统计当前文件夹下有多少文件（不包括文件夹）
                 //得到读取文件的绝对路径名
                 snprintf(dir, 512, "%s/%s", path, ent->d_name);
                 //得到文件信息
-                lstat(dir, &statbuf);
+				_stat(dir, &statbuf);
                 if (S_ISDIR(statbuf.st_mode))
                 {
                     mDicts.push_back(std::make_shared<XDictionaryInfo>(dir));
@@ -166,6 +190,18 @@ public:
             return fileInfo;
         }
     }
+
+#ifdef TARGET_OS_MSWINDOWS
+	virtual bool isExist() override {
+		FILE *file = fopen(mPath.UTF8CStr(), "r");
+		if (file)
+		{
+			fclose(file);
+			return true;
+		}
+		return false;
+	}
+#endif // TARGET_OS_MSWINDOWS
     
     XFileInfo(const char *path) {
         init(path);

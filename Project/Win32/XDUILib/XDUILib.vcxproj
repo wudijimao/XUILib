@@ -55,6 +55,7 @@
     <ClInclude Include="..\..\..\include\res\XResource.hpp" />
     <ClInclude Include="..\..\..\include\res\XString.hpp" />
     <ClInclude Include="..\..\..\include\res\XText.hpp" />
+    <ClInclude Include="..\..\..\include\win32\dirent.h" />
     <ClInclude Include="..\..\..\include\win32\GDICacheGraphics.hpp" />
     <ClInclude Include="..\..\..\include\win32\GDICanvas.hpp" />
     <ClInclude Include="..\..\..\include\win32\GDIRender.hpp" />
