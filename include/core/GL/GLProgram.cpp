@@ -92,7 +92,7 @@ bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
     auto fsh = XResource::XString::stringWithContentOfFile(fFilePath);
     //auto t = vsh->getUTF8String()->c_str();
     //auto t2 = fsh->getUTF8String()->c_str();
-    return init(vsh->getUTF8String()->c_str(), fsh->getUTF8String()->c_str());
+    return init(vsh->UTF8CStr(), fsh->UTF8CStr());
     //return init("#version 300 es \
                 precision mediump float;\
                 in vec3 inPos;\

@@ -92,7 +92,6 @@ namespace XResource {
         return conv.from_bytes( src );
     }
     
-    
     XString::XString(){}
     XString::XString(const char *str) {
 		if (str != nullptr)

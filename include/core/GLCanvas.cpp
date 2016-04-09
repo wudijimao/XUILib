@@ -21,9 +21,10 @@ void GLCanvas::pushRenderData(XDUILib::GLRenderData *data) {
 }
 
 bool GLCanvas::InitGLProgram() {
-	auto vsh = XResManager::pathForResource("shader/VertexShader", "vsh");
-	auto fsh = XResManager::pathForResource("shader/FragmentShader", "fsh");
-    return _program.initWithFilePath(vsh.getUTF8String()->c_str() , fsh.getUTF8String()->c_str());
+    std::shared_ptr<XBundle> bundle = XBundle::libBundle();
+	auto vsh = bundle->pathForResource("shader/VertexShader", "vsh");
+	auto fsh = bundle->pathForResource("shader/FragmentShader", "fsh");
+    return _program.initWithFilePath(vsh.UTF8CStr() , fsh.UTF8CStr());
 }
 
 bool GLCanvas::InitFrameBuffer() {

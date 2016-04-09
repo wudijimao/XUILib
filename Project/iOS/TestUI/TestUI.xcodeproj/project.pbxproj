@@ -15,7 +15,7 @@
 		3E3FF9171CA2E5050070F6A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */; };
 		3E3FF91B1CA2E5120070F6A5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF91A1CA2E5120070F6A5 /* libz.tbd */; };
 		3E9A4BD41C9A9B1900CB59AD /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A4BD31C9A9B1900CB59AD /* main.mm */; };
-		3EAA6CDA1CA23E050037291F /* res.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD91CA23E050037291F /* res.bundle */; };
+		3EAA6CDA1CA23E050037291F /* XDUILIB.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD91CA23E050037291F /* XDUILIB.bundle */; };
 		3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D041CA24A1D0037291F /* UIKit.framework */; };
 		3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D061CA24A2D0037291F /* QuartzCore.framework */; };
 		3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D081CA24A350037291F /* OpenGLES.framework */; };
@@ -32,7 +32,7 @@
 		3E9A4BCF1C9A9B1900CB59AD /* TestUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9A4BD31C9A9B1900CB59AD /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		3E9A4BE31C9A9B1900CB59AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EAA6CD91CA23E050037291F /* res.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = res.bundle; path = "/Users/ximiao/GCD-dispatch-/Project/iOS/XDUILib/../../../res.bundle"; sourceTree = "<absolute>"; };
+		3EAA6CD91CA23E050037291F /* XDUILIB.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = XDUILIB.bundle; path = "/Users/ximiao/GCD-dispatch-/XDUILIB.bundle"; sourceTree = "<absolute>"; };
 		3EAA6D041CA24A1D0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EAA6D061CA24A2D0037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EAA6D081CA24A350037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -66,7 +66,7 @@
 				3EAA6D081CA24A350037291F /* OpenGLES.framework */,
 				3EAA6D061CA24A2D0037291F /* QuartzCore.framework */,
 				3EAA6D041CA24A1D0037291F /* UIKit.framework */,
-				3EAA6CD91CA23E050037291F /* res.bundle */,
+				3EAA6CD91CA23E050037291F /* XDUILIB.bundle */,
 				3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */,
 				3E9A4BD11C9A9B1900CB59AD /* TestUI */,
 				3E9A4BD01C9A9B1900CB59AD /* Products */,
@@ -160,7 +160,7 @@
 			files = (
 				3E0325CE1CAD3A4100C4063D /* test.jpg in Resources */,
 				3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */,
-				3EAA6CDA1CA23E050037291F /* res.bundle in Resources */,
+				3EAA6CDA1CA23E050037291F /* XDUILIB.bundle in Resources */,
 				3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

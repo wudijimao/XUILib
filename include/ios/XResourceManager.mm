@@ -8,27 +8,24 @@
 #import <UIKit/UIKit.h>
 #include "../core/XResManager.hpp"
 
-NSString* pathForBundle() {
-    static NSString *path;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        path = [[NSBundle mainBundle] pathForResource:@"res" ofType:@"bundle"];
-    });
-    return path;
+
+std::shared_ptr<XDictionaryInfo> XSandBox::homeDict() {
+    if (!mHomeDict) {
+        NSString *nsStr = NSHomeDirectory();
+        mHomeDict = XDictionaryInfo::dictInfoForPath(nsStr.UTF8String);
+    }
+    return mHomeDict;
 }
 
-NSBundle *bundle() {
-    static NSBundle *bundle;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        bundle = [NSBundle bundleWithPath:pathForBundle()];
-    });
-    return bundle;
+std::shared_ptr<XDictionaryInfo> XSandBox::appDict() {
+    if (!mAppDict) {
+        NSString *nsStr = [NSBundle mainBundle].bundlePath;
+        mAppDict = XDictionaryInfo::dictInfoForPath(nsStr.UTF8String);
+    }
+    return mAppDict;
 }
 
-
-
-XResource::XString XResManager::pathForResource(const char *fileName, const char *ext) {
-    return XResource::XString([bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String);
-}
+//XResource::XString XResManager::pathForResource(const char *fileName, const char *ext) {
+//    return XResource::XString([bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String);
+//}
 
