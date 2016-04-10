@@ -75,6 +75,13 @@ namespace XResource
             return *this;
         }
         
+		XString operator+(const XString&in)
+		{
+			XString ret = *this;
+			ret.append(in);
+			return ret;
+		}
+
 		XString& append(const XString &str) {
             return append(str.getUTF8String());
 		}
@@ -104,7 +111,7 @@ namespace XResource
             return find(str.getUTF8String(), options);
         }
         long find(const char *str, XStringCompareOptions options = XStringCompareOptions::Default) {
-            return find(str, options);
+            return find(std::string(str), options);
         }
         long find(const std::string &str, XStringCompareOptions options = XStringCompareOptions::Default) {
             unsigned long pos = XString::npos;
@@ -144,7 +151,8 @@ namespace XResource
             return insert(location, str.getUTF8String());
         }
         XString& insert(unsigned long location, const std::string &str) {
-            return insert(location, str);
+			_utf8Buf->insert(location, str);
+			return *this;
         }
         XString& insert(unsigned long location, const char *str) {
             _utf8Buf->insert(location, str);

@@ -6,3 +6,4 @@ Debug/
 *.iobj
 *.ipdb
 ipch/
+Project/Win32/TestUI/XDUILIB.bundle/

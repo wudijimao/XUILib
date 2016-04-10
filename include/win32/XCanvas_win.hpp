@@ -26,6 +26,10 @@ public:
 	}
 	virtual bool Present() {
 		this->GLCanvas::Present();
+		//test Opengl
+		//glClearColor(1, 0, 1, 1);
+		//glClear(GL_COLOR_BUFFER_BIT);
+
 		//TODO::drawtowin by gdi+
 		//XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
 		//SwapBuffers(mDIB_DC);
