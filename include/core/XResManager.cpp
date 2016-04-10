@@ -19,7 +19,7 @@
 
 #else
 #include <dirent.h>
-#define _mkdir(str) mkdir(str, S_IRWXU | S_IRWXG | S_IRWXO)
+#define _stat stat
 #endif
 
 std::map<std::string, std::shared_ptr<XDictionaryInfo>>  XDictionaryInfo::sDictMap;

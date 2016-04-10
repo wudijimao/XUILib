@@ -7,7 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 #include "../core/XResManager.hpp"
-
+#include <sys/stat.h>
+#define _mkdir(str) mkdir(str, S_IRWXU | S_IRWXG | S_IRWXO)
 
 std::shared_ptr<XDictionaryInfo> XSandBox::homeDict() {
     if (!mHomeDict) {
@@ -25,7 +26,13 @@ std::shared_ptr<XDictionaryInfo> XSandBox::appDict() {
     return mAppDict;
 }
 
-//XResource::XString XResManager::pathForResource(const char *fileName, const char *ext) {
-//    return XResource::XString([bundle() pathForResource:[NSString stringWithUTF8String:fileName] ofType:[NSString stringWithUTF8String:ext]].UTF8String);
-//}
-
+XPathCrateResault XDictionaryInfo::create() {
+    if (isExist()) {
+        return XPathCrateResault::Exists;
+    }
+    int status = _mkdir(mPath.getUTF8String().c_str());
+    if (status == 1) {
+        return XPathCrateResault::Success;
+    }
+    return XPathCrateResault::NoPermission;
+}
