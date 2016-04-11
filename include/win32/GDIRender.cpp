@@ -5,7 +5,7 @@ using namespace Gdiplus;
 
 #define TWO_PI (2.0 * 3.14159)
 using namespace XResource;
-
+using namespace Gdiplus;
 
 GDIPlusInitHelper::GDIPlusInitHelper()
 {
@@ -67,7 +67,7 @@ void GDIRender::Creat()
 	mMemDC = CreateCompatibleDC(hdc);
 	mBitMap = CreateCompatibleBitmap(hdc, mWidth, mHeight);
 	SelectObject(mMemDC, mBitMap);//???
-	mBkgGraphics = new Gdiplus::Graphics(mMemDC);
+	mBkgGraphics = new Graphics(mMemDC);
 	mBkgGraphics->SetCompositingMode(CompositingMode::CompositingModeSourceOver);
 	//mBkgGraphics->SetSmoothingMode(SmoothingMode::SmoothingModeAntiAlias);//抗锯齿，不开启画颜色会有问题
 	mBkgGraphics->SetInterpolationMode(InterpolationModeHighQualityBicubic);//图片缩放质量

@@ -92,20 +92,26 @@ namespace XResource {
         return conv.from_bytes( src );
     }
     
-    XString::XString(){}
+    XString::XString(){
+		_utf8Buf = new std::string();
+	}
     XString::XString(const char *str) {
 		if (str != nullptr)
 		{
-			_utf8Buf->assign(str);
+			_utf8Buf = new std::string(str);
+		}
+		else {
+			_utf8Buf = new std::string();
 		}
     }
     XString::XString(const std::string& string) {
-        _utf8Buf->assign(string.c_str());
+        _utf8Buf = new std::string(string);
     }
     XString::XString(const std::string&& string) {
         _utf8Buf = new std::string(string);
     }
     XString::XString(const char *str, XStringEncoding encoding) {
+		_utf8Buf = new std::string();
         init(str, encoding);
     }
     //divorce buf

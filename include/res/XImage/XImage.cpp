@@ -15,7 +15,7 @@ namespace XResource {
     std::vector<XImageDecoder*>* XImage::decoders = 0;
     
     XImage::XImage (const char *filePath) {
-        if (decoders == 0) {
+        if (decoders == nullptr) {
             decoders = new std::vector<XImageDecoder*>();
             XImageDecoder::getDecoders(*decoders);
         }

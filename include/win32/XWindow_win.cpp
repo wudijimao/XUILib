@@ -168,5 +168,6 @@ LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 	}
 	//TODO::processinput
 	//this->input(mouse, 1);
+	delete mouse;
 	return 0;
 }

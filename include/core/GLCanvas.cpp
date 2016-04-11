@@ -41,6 +41,10 @@ bool GLCanvas::InitFrameBuffer() {
 }
 
 void GLCanvas::clear() {
+	for (auto data : _needRenderDatas)
+	{
+		delete data;
+	}
     _needRenderDatas.clear();
 }
 
@@ -98,6 +102,7 @@ bool GLCanvas::Present() {
                 break;
         }
     }
+	return true;
 
 	GLuint vectexArrayObject;
 

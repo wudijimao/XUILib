@@ -1,12 +1,17 @@
+#include <Windows.h>
+#include <gdiplus.h>
 #include "core\stdafx.hpp"
 #include "core\GLCanvas.hpp"
 #include "GDIRender.hpp"
-#include <gdiplus.h>
 
 class SIMPLEDIRECTUI_API_DEBUG GLCanvas_ios : public GLCanvas
 {
 public:
 	~GLCanvas_ios() {
+		if (mBkgGraphics != nullptr)
+		{
+			delete mBkgGraphics;
+		}
 		::ReleaseDC(mHWND, mHDC);
 	}
 	HWND mHWND = nullptr;
@@ -142,32 +147,7 @@ private:
 			SelectObject(mDIB_DC, mDIBBitMap);
 		}
 	}
-	bool initMemDC() {
-		static GDIPlusInitHelper helper;
-		RECT rct;
-		GetWindowRect(mHWND, &rct);
-		POINT ptWinPos = { rct.left, rct.top };
-		_size.Width(rct.right - rct.left);
-		_size.Height(rct.bottom - rct.top);
-
-		mMemDC = CreateCompatibleDC(mHDC);
-		mBitMap = CreateCompatibleBitmap(mHDC, _size.Width(), _size.Height());
-		SelectObject(mMemDC, mBitMap);//???
-		mBkgGraphics = new Gdiplus::Graphics(mMemDC);
-		mBkgGraphics->SetCompositingMode(Gdiplus::CompositingMode::CompositingModeSourceOver);
-		mBkgGraphics->SetSmoothingMode(Gdiplus::SmoothingMode::SmoothingModeAntiAlias);//抗锯齿，不开启画颜色会有问题
-		mBkgGraphics->SetInterpolationMode(Gdiplus::InterpolationModeHighQualityBicubic);//图片缩放质量
-
-																				
-		DWORD dwExStyle = GetWindowLong(mHWND, GWL_EXSTYLE);  // 设置层次窗口
-
-		if ((dwExStyle & WS_EX_LAYERED) != WS_EX_LAYERED)
-		{
-			SetWindowLong(mHWND, GWL_EXSTYLE, dwExStyle ^ WS_EX_LAYERED);
-		}
-		mBkgGraphics->Clear(Gdiplus::Color(254, 0, 0, 0));
-		return true;
-	}
+	bool initMemDC();
 public:
 	HGLRC _context;
 };

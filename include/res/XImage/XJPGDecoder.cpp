@@ -11,8 +11,8 @@
 namespace XResource {
     XJPGDecoder::~XJPGDecoder() {
         //TODO::这块逻辑没对上号~可能引起释放时崩溃
-        jpeg_finish_decompress(&_cinfo);
-        jpeg_destroy_decompress(&_cinfo);
+		//jpeg_finish_decompress(&_cinfo);
+		//jpeg_destroy_decompress(&_cinfo);
     }
     NULL_ABLE XImageDecoder* XJPGDecoder::getInstance() {
         XImageDecoder *decoder = new XJPGDecoder();

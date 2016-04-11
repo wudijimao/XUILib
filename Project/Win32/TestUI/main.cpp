@@ -3,6 +3,18 @@
 
 using namespace XDUILib;
 
+void DetectMemoryLeaks()
+{
+	// Enable the memory leak tracking tools built into the CRT runtime.
+
+#if defined(_DEBUG)
+	//_CrtDumpMemoryLeaks();
+	_CrtSetDbgFlag(_CRTDBG_LEAK_CHECK_DF | _CRTDBG_ALLOC_MEM_DF);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
+#endif
+}
+
 class ViewController : public XUI::UIViewController {
 public:
 	std::shared_ptr<XUI::UIView> _testSubView;
@@ -40,6 +52,7 @@ public:
 
 
 XDUIMain {
+	DetectMemoryLeaks();
 	auto thisApp = XTestApp();
 	thisApp.run(XDUI_RUN_PARAMS);
 }

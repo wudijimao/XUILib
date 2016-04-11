@@ -1,8 +1,9 @@
 #pragma once
 #pragma warning( disable: 4251 )
-#include "../core/IXRender.hpp"
 #include <windows.h>
 #include <gdiplus.h>
+#include "../core/IXRender.hpp"
+
 
 class GDIPlusInitHelper
 {
