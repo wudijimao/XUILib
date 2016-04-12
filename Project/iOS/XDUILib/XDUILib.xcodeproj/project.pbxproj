@@ -743,7 +743,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = TARGET_OS_IPHONE;
-				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
