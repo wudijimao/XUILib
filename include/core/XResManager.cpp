@@ -292,6 +292,20 @@ XResource::XString XBundle::pathForResource(const char *resName, const char *ext
 	}
 	return XResource::XString::emptyStr();
 }
+
+XResource::XString XBundle::pathForResource(const char *resName) {
+	std::string str = resName;
+	int pos = str.find_last_of('.');
+	if (pos != std::string::npos)
+	{
+		std::string name = str.substr(0, pos);
+		++pos;
+		std::string ext = str.substr(pos, str.length() - pos);
+		return pathForResource(name.c_str(), ext.c_str());
+	}
+	return XResource::XString::emptyStr();
+}
+
 //const char* pathForResource(const char *fileName, const char *ext);
 XBundle::XBundle(const char *bundlePath) {
 	mDict = XDictionaryInfo::dictInfoForPath(bundlePath);

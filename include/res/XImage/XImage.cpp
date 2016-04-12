@@ -8,6 +8,7 @@
 
 #include "XImage.hpp"
 #include "XJPGDecoder.hpp"
+#include "core\XResManager.hpp"
 
 namespace XResource {
     
@@ -59,7 +60,10 @@ namespace XResource {
         }
         return false;
     }
-    
+	std::shared_ptr<XImage> XImage::imageNamed(const char *name) {
+		auto path = XBundle::mainBundle()->pathForResource(name);
+		return std::make_shared<XImage>(path.UTF8CStr());
+	}
     
 }
 

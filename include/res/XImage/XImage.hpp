@@ -16,6 +16,7 @@
 namespace XResource {
     class SIMPLEDIRECTUI_API XImage : public IXImage {
     public:
+		static std::shared_ptr<XImage> imageNamed(const char *name);
         XImageDecoder *mDecoder = nullptr;
         XImage () {
         }

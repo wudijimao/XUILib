@@ -32,11 +32,25 @@ public:
 		subView3->setBkgColor(XResource::XUIColor::blueColor());
 		subView3->setRect(XResource::XRectPro(5, 20, 15, 50));
 		_testSubView->addSubView(subView3);
-		auto img = std::make_shared<XResource::XImage>("X:/Users/wudijimao/Documents/GCD_dispatch/Project/Win32/TestUI/test.jpg");
+		auto img = XResource::XImage::imageNamed("test.jpg");
 		_testSubView->setBkgImg(img);
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
+	}
+	virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) override {
+		auto event = (*mouseEvents.begin());
+		if (event->eventType == MouseEventType::Up)
+		{
+			if (event->eventButton == MouseEventButton::Left)
+			{
+				event->_belongView->setBkgColor(XResource::XUIColor::grayColor());
+			}
+			else {
+				event->_belongView->setBkgColor(XResource::XUIColor::redColor());
+			}
+		}
+		
 	}
 };
 

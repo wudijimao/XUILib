@@ -7,6 +7,7 @@
 //
 #pragma once
 #include "../stdafx.hpp"
+#include "../../res/XResource.hpp"
 
 class IXWindow;
 enum class XInputType {
@@ -19,5 +20,14 @@ public:
     virtual ~XInput(){};
     IXWindow *_belongWindow;
     virtual XInputType type() = 0;
-    
+};
+
+namespace XUI {
+	class UIView;
+}
+
+class XInputWithPostion : public XInput {
+public:
+	XResource::XPoint mPosition;
+	XUI::UIView *_belongView;
 };

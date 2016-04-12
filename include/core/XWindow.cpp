@@ -36,24 +36,55 @@ void XWindow::input(XTouch *touchs, unsigned int count) {
         _touchList.push_back(std::shared_ptr<XTouch>(touchs));
     }
 }
-void XWindow::dispatchInput() {
-    std::map<XUI::UIView *, std::vector<std::shared_ptr<XTouch>>> touchsMap;
-    std::map<XUI::UIView *, std::shared_ptr<XUI::UIView>> viewPtrMap;
-    for (auto touch : _touchList) {
-        auto view = _rootController->view()->getResponseSubView(touch);
-        if (view != nullptr) {
-            touch->_belongView = view.get();
-            touchsMap[view.get()];
-            auto iter = touchsMap.find(view.get());
-            iter->second.push_back(touch);
-            viewPtrMap[view.get()] = view;
-        }
-    }
-    for (auto iter : touchsMap) {
-        viewPtrMap[iter.first]->onTouch(iter.second);
-        _rootController->onTouch(iter.second);
-    }
+void XWindow::input(XMouse *mouseEvents, unsigned int count) {
+	for (int i = 0; i < count; ++i, ++mouseEvents) {
+		_mouseEventList.push_back(std::shared_ptr<XMouse>(mouseEvents));
+	}
 }
+void XWindow::dispatchInput() {
+	dispatchTouchs();
+	dispatchMouseEvents();
+}
+
+void XWindow::dispatchTouchs() {
+	std::map<XUI::UIView *, std::vector<std::shared_ptr<XTouch>>> touchsMap;
+	std::map<XUI::UIView *, std::shared_ptr<XUI::UIView>> viewPtrMap;
+	for (auto touch : _touchList) {
+		auto view = _rootController->view()->getResponseSubView(touch);
+		if (view != nullptr) {
+			touch->_belongView = view.get();
+			touchsMap[view.get()];
+			auto iter = touchsMap.find(view.get());
+			iter->second.push_back(touch);
+			viewPtrMap[view.get()] = view;
+		}
+	}
+	for (auto iter : touchsMap) {
+		viewPtrMap[iter.first]->onTouch(iter.second);
+		_rootController->onTouch(iter.second);
+	}
+	_touchList.clear();
+}
+void XWindow::dispatchMouseEvents() {
+	std::map<XUI::UIView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
+	std::map<XUI::UIView *, std::shared_ptr<XUI::UIView>> viewPtrMap;
+	for (auto touch : _mouseEventList) {
+		auto view = _rootController->view()->getResponseSubView(touch);
+		if (view != nullptr) {
+			touch->_belongView = view.get();
+			touchsMap[view.get()];
+			auto iter = touchsMap.find(view.get());
+			iter->second.push_back(touch);
+			viewPtrMap[view.get()] = view;
+		}
+	}
+	for (auto iter : touchsMap) {
+		viewPtrMap[iter.first]->onMouseEvent(iter.second);
+		_rootController->onMouseEvent(iter.second);
+	}
+	_mouseEventList.clear();
+}
+
 
 void XWindow::setSize(const XResource::XSize &size) {
 	_rect.Width(size.Width());

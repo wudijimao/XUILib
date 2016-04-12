@@ -11,11 +11,6 @@
 #include "../../res/XResource.hpp"
 
 
-
-namespace XUI {
-    class UIView;
-}
-
 enum class MouseEventType {
 	UnSet,
 	Down,
@@ -37,10 +32,9 @@ class MourceStatus {
 
 };
 
-class XMouse : public XInput {
+class XMouse : public XInputWithPostion {
 public:
 	static MourceStatus sMouseStatus;
-    XUI::UIView *_belongView;
 	MouseEventType eventType;
 	MouseEventButton eventButton = MouseEventButton::None;
     unsigned int clickCount;

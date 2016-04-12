@@ -15,7 +15,9 @@ namespace XUI
     public:
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
         }
-        virtual bool hitTest(const std::shared_ptr<XTouch> &touch) {
+		virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &touch) {
+		}
+        virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &touch) {
             return false;
         }
     };
@@ -41,8 +43,8 @@ namespace XUI
         //override(not have defalut behavior)
         virtual void layoutSubViews();
         //can override(have defalut behavior)
-        virtual bool hitTest(const std::shared_ptr<XTouch> &touch) {
-            return _rect.isPointIn(touch->point);
+        virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &input) {
+            return _rect.isPointIn(input->mPosition);
         }
         //do not override these function below
         void setNeedReDraw();
@@ -57,7 +59,7 @@ namespace XUI
         bool isInputEnable() {
             return _isInputEnable;
         }
-        std::shared_ptr<XUI::UIView> getResponseSubView(const std::shared_ptr<XTouch> &touch) {
+        std::shared_ptr<XUI::UIView> getResponseSubView(const std::shared_ptr<XInputWithPostion> &touch) {
             auto rIter =  _subViews.rbegin();
             auto rEnd = _subViews.rend();
             while (rIter != rEnd) {

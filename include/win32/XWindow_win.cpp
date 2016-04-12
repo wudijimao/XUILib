@@ -6,6 +6,8 @@
 
 #include "../core/input/XMouse.hpp"
 
+
+
 std::shared_ptr<IXWindow> IXWindow::createWindow() {
 	return std::make_shared<XWindow_win>();
 }
@@ -123,7 +125,6 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	case WM_LBUTTONDBLCLK:
 	case WM_XBUTTONUP:
 	case WM_XBUTTONDOWN:
-
 		return processMouseEvent(iMsg, wParam, lParam);
 	case WM_KEYDOWN:
 	{
@@ -142,6 +143,8 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
 	XMouse *mouse = new XMouse();
+	mouse->mPosition.X(LOWORD(lParam));
+	mouse->mPosition.Y(HIWORD(lParam));
 	switch (iMsg)
 	{
 	case WM_LBUTTONDOWN:
@@ -150,15 +153,15 @@ LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_LBUTTONUP:
 		mouse->eventButton = MouseEventButton::Left;
-		mouse->eventType = MouseEventType::Down;
+		mouse->eventType = MouseEventType::Up;
 		break;
 	case WM_RBUTTONDOWN:
-		mouse->eventButton = MouseEventButton::Left;
+		mouse->eventButton = MouseEventButton::Right;
 		mouse->eventType = MouseEventType::Down;
 		break;
 	case WM_RBUTTONUP:
-		mouse->eventButton = MouseEventButton::Left;
-		mouse->eventType = MouseEventType::Down;
+		mouse->eventButton = MouseEventButton::Right;
+		mouse->eventType = MouseEventType::Up;
 		break;
 	case WM_MOUSEMOVE:
 		mouse->eventType = MouseEventType::Move;
@@ -167,7 +170,7 @@ LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 	//case WM_MOUSEWHEEL:
 	}
 	//TODO::processinput
-	//this->input(mouse, 1);
-	delete mouse;
+	this->input(mouse, 1);
+	this->dispatchMouseEvents();
 	return 0;
 }

@@ -9,6 +9,7 @@
 
 #include "XInput.hpp"
 #include "XTouch.hpp"
+#include "XMouse.hpp"
 
 
 typedef std::shared_ptr<std::vector<std::shared_ptr<XInput>>> XInputList;

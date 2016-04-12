@@ -19,16 +19,11 @@ enum class TouchPhase {
     Ended,             // whenever a finger leaves the surface.
     Cancelled,         // whenever a touch doesn't end but we need to stop tracking (e.g. putting device to face)
 };
-namespace XUI {
-    class UIView;
-}
 
-class XTouch : public XInput {
+class XTouch : public XInputWithPostion {
 public:
-    XUI::UIView *_belongView;
     TouchPhase phase;
     unsigned int tapCount;
-    XResource::XPoint point;
     virtual XInputType type() {
         return XInputType::Touch;
     }

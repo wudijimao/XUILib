@@ -10,6 +10,8 @@
 #include "core/UIView.hpp"
 #include "core/XApp.hpp"
 #include "core/IXWindow.hpp"
+#include "res/XImage/XImage.hpp"
+#include "core/XResManager.hpp"
 
 
 #ifdef TARGET_OS_IPHONE
