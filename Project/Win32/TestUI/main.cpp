@@ -23,11 +23,11 @@ public:
 		_testSubView = std::make_shared<XUI::UIView>();
 		_testSubView->setBkgColor(XResource::XUIColor::redColor());
 		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 180));
-		this->getView()->addSubView(_testSubView);
+		this->view()->addSubView(_testSubView);
 		auto subView2 = std::make_shared<XUI::UIView>();
 		subView2->setBkgColor(XResource::XUIColor::pinkColor());
 		subView2->setRect(XResource::XRectPro(20, 120, 100, 320));
-		this->getView()->addSubView(subView2);
+		this->view()->addSubView(subView2);
 		auto subView3 = std::make_shared<XUI::UIView>();
 		subView3->setBkgColor(XResource::XUIColor::blueColor());
 		subView3->setRect(XResource::XRectPro(5, 20, 15, 50));

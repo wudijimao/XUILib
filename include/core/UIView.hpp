@@ -119,13 +119,10 @@ namespace XUI
     
     class SIMPLEDIRECTUI_API UIViewController : public UIResponder {
     public:
-        const std::shared_ptr<UIView> getView();
         //override
         virtual void viewDidLoad();
         //do not override
-        std::shared_ptr<UIView> view() {
-            return _view;
-        }
+		const std::shared_ptr<UIView> view();
     protected:
         friend class XWindow;
         void onSizeChange(XResource::XSize &size);

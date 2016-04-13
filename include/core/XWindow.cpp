@@ -25,7 +25,7 @@ void XWindow::update() {
     XResource::XRect rect = _rect;
     rect.X(0.0);
     rect.Y(0.0);
-    auto view = _rootController->getView();
+    auto view = _rootController->view();
     view->layout(rect);
     view->draw(*(_render.get()));
     _canvas->Present();
