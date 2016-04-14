@@ -4,6 +4,7 @@
 //
 //  Created by ximiao on 16/3/17.
 //  Copyright © 2016年 wudijimao. All rights reserved.
+//  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 //
 #pragma once
 #include "core/stdafx.hpp"
