@@ -8,7 +8,7 @@
 
 #include "XImage.hpp"
 #include "XJPGDecoder.hpp"
-#include "core\XResManager.hpp"
+#include "../../core/XResManager.hpp"
 
 namespace XResource {
     

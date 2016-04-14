@@ -31,15 +31,11 @@ void XWindow::update() {
     _canvas->Present();
 }
 
-void XWindow::input(XTouch *touchs, unsigned int count) {
-    for (int i = 0; i < count; ++i, ++touchs) {
-        _touchList.push_back(std::shared_ptr<XTouch>(touchs));
-    }
+void XWindow::input(std::shared_ptr<XTouch> touch) {
+    _touchList.push_back(touch);
 }
-void XWindow::input(XMouse *mouseEvents, unsigned int count) {
-	for (int i = 0; i < count; ++i, ++mouseEvents) {
-		_mouseEventList.push_back(std::shared_ptr<XMouse>(mouseEvents));
-	}
+void XWindow::input(std::shared_ptr<XMouse> mouseEvent) {
+    _mouseEventList.push_back(mouseEvent);
 }
 void XWindow::dispatchInput() {
 	dispatchTouchs();

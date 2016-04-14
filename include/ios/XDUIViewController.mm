@@ -18,19 +18,17 @@
 @end
 
 void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view) {
-    XTouch *list = new XTouch[touches.count];
-    XTouch *t = list;
     for (UITouch *touch in touches) {
         auto point = [touch locationInView:view];
-        t->point.X(point.x);
-        t->point.Y(point.y);
+        XTouch *t = new XTouch();
+        t->mPosition.X(point.x);
+        t->mPosition.Y(point.y);
         t->_belongWindow = window;
         t->phase = (TouchPhase)touch.phase;
         t->tapCount = (unsigned int)touch.tapCount;
-        ++t;
+        window->input(std::shared_ptr<XTouch>(t));
     }
-    window->input(list, (unsigned int)touches.count);
-    window->dispatchInput();
+    window->dispatchTouchs();
 }
 
 @implementation XDUIViewController {

@@ -18,15 +18,15 @@ public:
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
 	virtual void setSize(const XResource::XSize &size) override;
 	virtual void setPositon(const XResource::XPoint &pos) override;
-protected:
+public:
 	//do not call it by libray user
 	void update();
-	void input(XTouch *touchs, unsigned int count);
-	void input(XMouse *mouseEvents, unsigned int count);
+    void input(std::shared_ptr<XTouch> touch);
+	void input(std::shared_ptr<XMouse> mouseEvents);
 	void dispatchInput();
 	void dispatchTouchs();
 	void dispatchMouseEvents();
-
+protected:
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;

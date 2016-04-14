@@ -17,7 +17,7 @@
 #ifdef TARGET_OS_IPHONE
     #include "ios/XDUILib_ios.hpp"
     #define XDUIMain int main(int argc, char * argv[])
-    #define XDUIRUN int run(argc, argv)
+    #define XDUI_RUN_PARAMS argc, argv
 #endif
 
 #ifdef TARGET_OS_MAC
