@@ -31,6 +31,15 @@
     <Filter Include="Header\core\input">
       <UniqueIdentifier>{9203eb57-a646-4f3f-b8e9-faa115a67840}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\res\XText">
+      <UniqueIdentifier>{14c5503a-0a11-4fdc-b1aa-47b641cabd5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\core\MutiThread">
+      <UniqueIdentifier>{9ddc0e78-d69f-4eb4-8e2f-066cb3b4b522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\http">
+      <UniqueIdentifier>{c43d5c08-2c32-43b5-9b88-5300019da44a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\core\DllExport.hpp">
@@ -66,9 +75,6 @@
     <ClInclude Include="..\..\..\include\core\XNode.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\core\XRoot.hpp">
-      <Filter>Header\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\res\XRect.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
@@ -76,9 +82,6 @@
       <Filter>Header\res</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\res\XResource.hpp">
-      <Filter>Header\res</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\res\XText.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp">
@@ -164,6 +167,33 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\win32\dirent.h">
       <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XText.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XFont.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XRoot.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\MutiThread\XTaskQueue.hpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\MutiThread\XRunLoop.hpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\MutiThread\XTask.hpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\core\MutiThread\XDispatch.h">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPClient.hpp">
+      <Filter>Header\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPClientImpl.hpp">
+      <Filter>Header\http</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +283,27 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\input\XMouse.cpp">
       <Filter>Header\core\input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XFont.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\MutiThread\XRunLoop.cpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\MutiThread\XTask.cpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\MutiThread\XTaskQueue.cpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\MutiThread\XDispatch.cpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\win32\XMainRunLoop_win32.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\http\XHTTPClient.cpp">
+      <Filter>Header\http</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

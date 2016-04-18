@@ -14,7 +14,7 @@
 #include "GL/GLProgram.hpp"
 
 
-class GLCanvas : public IXCanvas {
+class SIMPLEDIRECTUI_API GLCanvas : public IXCanvas {
 public:
     GLCanvas() {
         _transformMat[10] = 1;

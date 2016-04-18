@@ -12,9 +12,6 @@
 #include <map>
 #include <vector>
 #include <list>
-//put this into impl
-#include <curl.h>
-#include <condition_variable>
 
 
 typedef enum XHTTPRequestMethod {
@@ -83,9 +80,11 @@ public:
 };
 
 class XHTTPRequestHandler;
+class IXHTTPClient;
 class XHTTPResponse {
     friend XHTTPRequestHandler;
     friend XHTTPClient;
+	friend IXHTTPClient;
 public:
     XHTTPResponsStatus _status;
     const XHTTPHeader* header();
@@ -107,15 +106,15 @@ protected:
     std::vector<char> _headerBuf;
 };
 
-class XHTTPRequestHandler {
+class SIMPLEDIRECTUI_API XHTTPRequestHandler {
 public:
-    void stopRequest() {
+    virtual void stopRequest() {
         
     }
-    void pauseRequest() {
+	virtual void pauseRequest() {
         
     }
-    void continueRequest() {
+	virtual void continueRequest() {
         
     }
     XHTTPRequest *request() {
@@ -126,28 +125,14 @@ public:
     }
 public:
     std::shared_ptr<XHTTPResponse> _response;
-    CURL *_handle;
     XHTTPClient *_weakHttpClient;
 };
 
-class SIMPLEDIRECTUI_API XHTTPClient {
+class SIMPLEDIRECTUI_API IXHTTPClient {
 public:
-    XHTTPClient();
-    static XHTTPClient *getSharedInstanc();
+    static IXHTTPClient *getSharedInstanc();
     //return nullptr when request is exist
-    std::shared_ptr<XHTTPRequestHandler> sendRequest(std::shared_ptr<XHTTPRequest> pRequest);
-protected:
-    static int sOnProgress(void *userdata, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
-    void onProgress(XHTTPRequestHandler *httpRequest, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
-    CURLM *_curl;
-    std::condition_variable cv;
-    std::mutex mutex;
-    std::map<CURL*, std::shared_ptr<XHTTPRequestHandler>> _handlerMap;
-    std::map<XHTTPRequest*, CURL*> _requestMap;
-private:
-    void runLoop();
-    //only called by runLoop()
-    void requestFinised(CURL *handle);
+	virtual std::shared_ptr<XHTTPRequestHandler> sendRequest(std::shared_ptr<XHTTPRequest> pRequest) = 0;
 };
 
 

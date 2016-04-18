@@ -33,8 +33,15 @@ public:
 		subView3->setBkgColor(XResource::XUIColor::blueColor());
 		subView3->setRect(XResource::XRectPro(5, 20, 15, 50));
 		_testSubView->addSubView(subView3);
-		auto img = XResource::XImage::imageNamed("test.jpg");
-		_testSubView->setBkgImg(img);
+		//auto img = XResource::XImage::imageNamed("test.jpg");
+		//_testSubView->setBkgImg(img);
+		auto request = std::make_shared<XHTTPRequest>();
+		request->url = "http://pic27.nipic.com/20130327/12143305_143942699176_2.jpg";
+		request->finishCallBack = [](std::shared_ptr<XHTTPResponse> response) {
+			auto image = XRe
+		};
+		IXHTTPClient::getSharedInstanc()->sendRequest(request);
+		
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());

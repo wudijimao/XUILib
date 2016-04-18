@@ -6,10 +6,11 @@
 //  Copyright © 2016年 ximiao. All rights reserved.
 //
 #include "XHTTPClient.hpp"
+#include "XHTTPClientImpl.hpp"
 #include <stdio.h>
 
 #include <thread>
-#include "XDispatch.h"
+#include "../core/MutiThread/XDispatch.h"
 
 const std::string XHTTPHeader::cUserAgentKey = "User-Agent";
 
@@ -78,7 +79,7 @@ size_t onWriteData(char *ptr, size_t size, size_t nmemb, void *userdata) {
     return realsize; //?
 }
 
-XHTTPClient* XHTTPClient::getSharedInstanc() {
+IXHTTPClient* IXHTTPClient::getSharedInstanc() {
     static XHTTPClient client; //thread safe in c++11
     return &client;
 }
@@ -141,7 +142,7 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
     if (iter != this->_requestMap.end()) {
         return nullptr;
     }
-    std::shared_ptr<XHTTPRequestHandler> handler(new XHTTPRequestHandler());
+    std::shared_ptr<XHTTPRequestHandlerImpl> handler(new XHTTPRequestHandlerImpl());
     handler->_response.reset(new XHTTPResponse());
     handler->_response->_request = pRequest;
     handler->_weakHttpClient = this;

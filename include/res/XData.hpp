@@ -6,13 +6,12 @@
 //  Copyright © 2016年 ximiao. All rights reserved.
 //
 #pragma once
-
-#include <string>
+#include "../core/stdafx.hpp"
 
 namespace XResource
 {
     
-    class XData {
+    class SIMPLEDIRECTUI_API XData {
     public:
         XData();
         unsigned long mSeekLocation = 0;

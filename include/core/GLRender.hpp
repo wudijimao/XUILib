@@ -2,7 +2,7 @@
 #include "IXRender.hpp"
 #include "GLCanvas.hpp"
 
-class GLRender : public IXRender
+class SIMPLEDIRECTUI_API GLRender : public IXRender
 {
 public:
 	virtual bool Init(IXCanvas *canvas);

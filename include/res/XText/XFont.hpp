@@ -1,8 +1,8 @@
 #pragma once
-#include "../core/stdafx.hpp"
+#include "../../core/stdafx.hpp"
 
 
 namespace XResource
 {
-
+	
 }

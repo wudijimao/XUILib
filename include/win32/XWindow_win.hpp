@@ -18,6 +18,9 @@ public:
 	virtual void showInFront() override;
 public://protected
 	bool  init(PSTR szCmdLine, int iCmdShow); //set friend to XApp not Work?
+	HWND getHwnd() {
+		return mHwnd;
+	}
 protected:
 	friend class WindowsManager;
 	friend class XApp;

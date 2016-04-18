@@ -142,7 +142,7 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 
 LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 {
-	XMouse *mouse = new XMouse();
+	auto mouse = std::make_shared<XMouse>();
 	mouse->mPosition.X(LOWORD(lParam));
 	mouse->mPosition.Y(HIWORD(lParam));
 	switch (iMsg)
@@ -170,7 +170,7 @@ LRESULT XWindow_win::processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam)
 	//case WM_MOUSEWHEEL:
 	}
 	//TODO::processinput
-	this->input(mouse, 1);
+	this->input(mouse);
 	this->dispatchMouseEvents();
 	return 0;
 }

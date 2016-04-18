@@ -8,7 +8,7 @@
 #pragma once
 
 #include <stdio.h>
-#include "../XData.hpp"
+#include "core/stdafx.hpp"
 #include <vector>
 #include "IXImage.hpp"
 #include "XImageDecoder.hpp"
@@ -21,7 +21,9 @@ namespace XResource {
         XImage () {
         }
         XImage (const char *filePath);
+		XImage(XData *data);
         ~XImage();
+		bool initWithData(XData *data);
         virtual int width() override;
         virtual int height() override;
         virtual int count() override;

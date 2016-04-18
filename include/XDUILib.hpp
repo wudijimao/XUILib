@@ -13,6 +13,8 @@
 #include "core/IXWindow.hpp"
 #include "res/XImage/XImage.hpp"
 #include "core/XResManager.hpp"
+#include "core/MutiThread/XDispatch.h"
+#include "http/XHTTPClient.hpp"
 
 
 #ifdef TARGET_OS_IPHONE

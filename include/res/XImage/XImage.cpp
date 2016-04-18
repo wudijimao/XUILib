@@ -7,6 +7,7 @@
 //
 
 #include "XImage.hpp"
+#include "res/XData.hpp"
 #include "XJPGDecoder.hpp"
 #include "../../core/XResManager.hpp"
 
@@ -22,14 +23,20 @@ namespace XResource {
         }
         XData *data = new XData();
         data->open(filePath);
-        for(auto decoder : *decoders) {
-            if (decoder->isThisFormart(data)) {
-                mDecoder = decoder->fork();
-                mDecoder->initWithData(data);
-                break;
-            }
-        }
+		initWithData(data);
     }
+	XImage(XData *data) {
+		initWithData(data);
+	}
+	bool XImage::initWithData(XData *data) {
+		for (auto decoder : *decoders) {
+			if (decoder->isThisFormart(data)) {
+				mDecoder = decoder->fork();
+				mDecoder->initWithData(data);
+				break;
+			}
+		}
+	}
     XImage::~XImage() {
         if (mDecoder != nullptr) {
             delete mDecoder;
