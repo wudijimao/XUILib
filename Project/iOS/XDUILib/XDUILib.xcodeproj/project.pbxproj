@@ -56,6 +56,12 @@
 		3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */; };
 		3E8BF09B1CAC0ACC00A61A69 /* XInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */; };
 		3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */; };
+		3E8D12061CBFA2F900EC385D /* XHTTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D12041CBFA2F900EC385D /* XHTTPClient.cpp */; };
+		3E8D12071CBFA2F900EC385D /* XHTTPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D12041CBFA2F900EC385D /* XHTTPClient.cpp */; };
+		3E8D12081CBFA2F900EC385D /* XHTTPClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8D12051CBFA2F900EC385D /* XHTTPClient.hpp */; };
+		3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8D12091CBFA3B900EC385D /* XMouse.hpp */; };
+		3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D120A1CBFA3B900EC385D /* XMouse.cpp */; };
+		3E8D120D1CBFA3B900EC385D /* XMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8D120A1CBFA3B900EC385D /* XMouse.cpp */; };
 		3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608281CA7C53200FE8008 /* UIView.cpp */; };
 		3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608311CA7E8E800FE8008 /* GLProgram.hpp */; };
 		3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608321CA7E8E800FE8008 /* GLProgram.cpp */; };
@@ -74,7 +80,6 @@
 		3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */; };
 		3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A81C9B93F600A84DF1 /* IXRender.hpp */; };
 		3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */; };
-		3EAA6D121CA24A8E0037291F /* SimpleDirectUI.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */; };
 		3EAA6D131CA24A8E0037291F /* stdafx.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AA1C9B93F600A84DF1 /* stdafx.hpp */; };
 		3EAA6D141CA24A8E0037291F /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9885B1C9BE21B00B9B23E /* stdafx.cpp */; };
 		3EAA6D151CA24A8E0037291F /* XNode.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416AC1C9B93F600A84DF1 /* XNode.hpp */; };
@@ -142,7 +147,6 @@
 		3E1416A61C9B93F600A84DF1 /* IXWindow.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXWindow.hpp; sourceTree = "<group>"; };
 		3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXCanvas.hpp; sourceTree = "<group>"; };
 		3E1416A81C9B93F600A84DF1 /* IXRender.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IXRender.hpp; sourceTree = "<group>"; };
-		3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SimpleDirectUI.hpp; sourceTree = "<group>"; };
 		3E1416AA1C9B93F600A84DF1 /* stdafx.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = stdafx.hpp; sourceTree = "<group>"; };
 		3E1416AC1C9B93F600A84DF1 /* XNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XNode.hpp; sourceTree = "<group>"; };
 		3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XRenderFactory.hpp; sourceTree = "<group>"; };
@@ -185,6 +189,10 @@
 		3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XInput.cpp; sourceTree = "<group>"; };
 		3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XInput.hpp; sourceTree = "<group>"; };
 		3E8BF09D1CAC12E600A61A69 /* XInputs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = XInputs.hpp; sourceTree = "<group>"; };
+		3E8D12041CBFA2F900EC385D /* XHTTPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XHTTPClient.cpp; sourceTree = "<group>"; };
+		3E8D12051CBFA2F900EC385D /* XHTTPClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPClient.hpp; sourceTree = "<group>"; };
+		3E8D12091CBFA3B900EC385D /* XMouse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XMouse.hpp; sourceTree = "<group>"; };
+		3E8D120A1CBFA3B900EC385D /* XMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XMouse.cpp; sourceTree = "<group>"; };
 		3E9608271CA7B80500FE8008 /* XWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow.hpp; sourceTree = "<group>"; };
 		3E9608281CA7C53200FE8008 /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
 		3E9608311CA7E8E800FE8008 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
@@ -262,6 +270,7 @@
 		3E1416501C9ABEFA00A84DF1 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3E8D12031CBFA2F900EC385D /* http */,
 				3E14169C1C9B93F600A84DF1 /* core */,
 				3E3FF89C1CA29CAB0070F6A5 /* ui */,
 				3EB988531C9BE15C00B9B23E /* res */,
@@ -309,7 +318,6 @@
 				3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */,
 				3E1416A81C9B93F600A84DF1 /* IXRender.hpp */,
 				3E1416AD1C9B93F600A84DF1 /* XRenderFactory.hpp */,
-				3E1416A91C9B93F600A84DF1 /* SimpleDirectUI.hpp */,
 				3E1416AA1C9B93F600A84DF1 /* stdafx.hpp */,
 				3EB9885B1C9BE21B00B9B23E /* stdafx.cpp */,
 				3E1416AC1C9B93F600A84DF1 /* XNode.hpp */,
@@ -377,6 +385,8 @@
 		3E8BF0921CAC07E600A61A69 /* input */ = {
 			isa = PBXGroup;
 			children = (
+				3E8D12091CBFA3B900EC385D /* XMouse.hpp */,
+				3E8D120A1CBFA3B900EC385D /* XMouse.cpp */,
 				3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */,
 				3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */,
 				3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */,
@@ -384,6 +394,15 @@
 				3E8BF09D1CAC12E600A61A69 /* XInputs.hpp */,
 			);
 			path = input;
+			sourceTree = "<group>";
+		};
+		3E8D12031CBFA2F900EC385D /* http */ = {
+			isa = PBXGroup;
+			children = (
+				3E8D12041CBFA2F900EC385D /* XHTTPClient.cpp */,
+				3E8D12051CBFA2F900EC385D /* XHTTPClient.hpp */,
+			);
+			path = http;
 			sourceTree = "<group>";
 		};
 		3EAA6CE11CA243210037291F /* Framework */ = {
@@ -421,12 +440,14 @@
 			files = (
 				3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */,
 				3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */,
+				3E8D12081CBFA2F900EC385D /* XHTTPClient.hpp in Headers */,
 				3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
 				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
+				3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +570,7 @@
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
+				3E8D12061CBFA2F900EC385D /* XHTTPClient.cpp in Sources */,
 				3E203C711CA15A7100757788 /* XString.cpp in Sources */,
 				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
@@ -556,6 +578,7 @@
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
+				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
 				3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
 				3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */,
@@ -583,7 +606,6 @@
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
 				3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */,
 				3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */,
-				3EAA6D121CA24A8E0037291F /* SimpleDirectUI.hpp in Sources */,
 				3EAA6D131CA24A8E0037291F /* stdafx.hpp in Sources */,
 				3EAA6D141CA24A8E0037291F /* stdafx.cpp in Sources */,
 				3EAA6D151CA24A8E0037291F /* XNode.hpp in Sources */,
@@ -598,7 +620,9 @@
 				3EAA6D201CA24A8E0037291F /* XJPGDecoder.cpp in Sources */,
 				3EAA6D211CA24A8E0037291F /* XJPGDecoder.hpp in Sources */,
 				3EAA6D221CA24A8E0037291F /* XPngDecoder.cpp in Sources */,
+				3E8D12071CBFA2F900EC385D /* XHTTPClient.cpp in Sources */,
 				3EAA6D231CA24A8E0037291F /* XPngDecoder.hpp in Sources */,
+				3E8D120D1CBFA3B900EC385D /* XMouse.cpp in Sources */,
 				3E8BF0961CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3EAA6D241CA24A8E0037291F /* XData.cpp in Sources */,
 				3EAA6D251CA24A8E0037291F /* XData.hpp in Sources */,
@@ -724,7 +748,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
-					"$(PROJECT_DIR)/../../../ThirdParty/curl",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios/curl",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -747,7 +771,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
-					"$(PROJECT_DIR)/../../../ThirdParty/curl",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios/curl",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

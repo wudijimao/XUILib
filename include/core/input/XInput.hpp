@@ -15,7 +15,7 @@ enum class XInputType {
 	Mouse,
 };
 
-class XInput {
+class SIMPLEDIRECTUI_API XInput {
 public:
     virtual ~XInput(){};
     IXWindow *_belongWindow;
@@ -26,7 +26,7 @@ namespace XUI {
 	class UIView;
 }
 
-class XInputWithPostion : public XInput {
+class SIMPLEDIRECTUI_API XInputWithPostion : public XInput {
 public:
 	XResource::XPoint mPosition;
 	XUI::UIView *_belongView;

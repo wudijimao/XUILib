@@ -126,7 +126,6 @@
 		3E9968591C881D550069BEBD /* XRunLoop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XRunLoop.hpp; sourceTree = "<group>"; };
 		3E9968621C8827720069BEBD /* XTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTime.cpp; sourceTree = "<group>"; };
 		3E9968631C8827720069BEBD /* XTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTime.hpp; sourceTree = "<group>"; };
-		3E9968651C882C460069BEBD /* XMainRunLoop_IOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMainRunLoop_IOS.h; sourceTree = "<group>"; };
 		3E9968661C882C460069BEBD /* XMainRunLoop_IOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XMainRunLoop_IOS.mm; sourceTree = "<group>"; };
 		3E9CD1ED1C743F5700AA196C /* libgiflib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgiflib.a; path = "../../Library/Developer/Xcode/DerivedData/TestGCDCPP-dixorimafphoigchpwcjtklwyvbg/Build/Products/Debug-iphonesimulator/libgiflib.a"; sourceTree = "<group>"; };
 		3E9CD1EE1C743F5700AA196C /* libXImage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXImage.a; path = "../../Library/Developer/Xcode/DerivedData/TestGCDCPP-dixorimafphoigchpwcjtklwyvbg/Build/Products/Debug-iphonesimulator/libXImage.a"; sourceTree = "<group>"; };
@@ -279,7 +278,6 @@
 				3E9968561C881CEE0069BEBD /* XTimer.hpp */,
 				3E9968581C881D550069BEBD /* XRunLoop.cpp */,
 				3E9968591C881D550069BEBD /* XRunLoop.hpp */,
-				3E9968651C882C460069BEBD /* XMainRunLoop_IOS.h */,
 				3E9968661C882C460069BEBD /* XMainRunLoop_IOS.mm */,
 				3EC57FEB1C8965470045586C /* XTaskQueue.cpp */,
 				3EC57FEC1C8965470045586C /* XTaskQueue.hpp */,

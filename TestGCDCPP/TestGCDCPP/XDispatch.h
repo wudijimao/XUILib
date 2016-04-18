@@ -8,25 +8,9 @@
 #include <memory>
 #include <atomic>
 #include "XTask.hpp"
+#include "XRunLoop.hpp"
 
 namespace XDispatch {
-//    class TestMyFun {
-//    public:
-//        TestMyFun() {
-//            
-//        }
-//        ~TestMyFun() {
-//            
-//        }
-//        void operator() (void) {
-//            int b = 0;
-//            for (int i = 0; i < 10000; ++i) {
-//                b += 2;
-//            }
-//        }
-//    };
-//    typedef TestMyFun MyFun;
-
 
 	class XThreadPool {
 	private:
@@ -60,12 +44,7 @@ namespace XDispatch {
 		static XDispatchManager* getSharedInstance();
 		XDispatchManager();
         ~XDispatchManager();
-		inline void dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun) {
-			taskQueue->push(copyFunction(fun));
-			if (taskQueue->runInPool) {
-				taskQueue->runInPool->onQueueChanged();
-			}
-		}
+        void dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun);
 		void dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS);
 	};
     

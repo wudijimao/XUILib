@@ -3,7 +3,7 @@
 //  TestGCDCPP
 //
 //  Created by ximiao on 16/3/4.
-//  Copyright © 2016年 ximiao. All rights reserved.
+//  Copyright �0�8 2016�� ximiao. All rights reserved.
 //
 #pragma once
 #include <queue>
@@ -19,7 +19,7 @@ namespace XDispatch {
     typedef std::function<void(void)> MyFun;
     
     class XThreadPool;
-    //TODO::ªª”√ŒﬁÀ¯∂”¡–£®lock-free£©°¢Ã·∏ﬂ–ß¬
+    
     class XTaskQueue {
         std::mutex mutex;
         std::queue<MyFun*> queue;

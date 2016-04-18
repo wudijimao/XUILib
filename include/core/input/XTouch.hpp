@@ -20,7 +20,7 @@ enum class TouchPhase {
     Cancelled,         // whenever a touch doesn't end but we need to stop tracking (e.g. putting device to face)
 };
 
-class XTouch : public XInputWithPostion {
+class SIMPLEDIRECTUI_API XTouch : public XInputWithPostion {
 public:
     TouchPhase phase;
     unsigned int tapCount;

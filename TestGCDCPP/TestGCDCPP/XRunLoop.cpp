@@ -7,3 +7,24 @@
 //
 
 #include "XRunLoop.hpp"
+
+
+
+void XRunLoop::run() {
+    while (_do()){}
+}
+
+bool XRunLoop::weakUp(XRunLoopSource *source) {
+    IXRunLoop::weakUp(source);
+    cv.notify_one();
+    return true;
+}
+void XRunLoop::wait() {
+    std::unique_lock<std::mutex> lk(mutex);
+    cv.wait(lk);
+}
+bool XRunLoop::waitUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time) {
+    std::unique_lock<std::mutex> lk(mutex);
+    cv.wait_until(lk, in_time);
+    return true;
+}

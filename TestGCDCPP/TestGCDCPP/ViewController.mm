@@ -24,6 +24,8 @@
 #include <unicode/umachine.h>
 #include <unicode/utf.h>
 
+#include "XRunLoop.hpp"
+
 
 //using namespace glm;
 
@@ -652,9 +654,12 @@ std::shared_ptr<XHTTPRequest> request3(new XHTTPRequest());
 std::shared_ptr<XHTTPRequest> request4(new XHTTPRequest());
 std::shared_ptr<XHTTPRequest> request5(new XHTTPRequest());
 - (void)viewDidLoad {
+    startMainRunLoop();
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
     });
+    
     
     
     XThreadPool::initGlobelPool();

@@ -1,6 +1,20 @@
 #include "XDispatch.h"
+#include "XRunLoop.hpp"
 
 namespace XDispatch {
+    class XRunLoopDispatchSource : public XRunLoopSource {
+    public:
+        void _do() {
+            MyFun *fun = NULL;
+            while (mTaskQueue->pop(fun)) {
+                (*fun)();
+                delete fun;
+            }
+        }
+    public:
+        std::shared_ptr<XTaskQueue> mTaskQueue;
+    };
+    std::shared_ptr<XRunLoopDispatchSource> source;
 
 	std::shared_ptr<XTaskQueue> XTaskQueue::getMainQueue() {
 		//TODO::maybe mutithread cause problem
@@ -75,10 +89,11 @@ namespace XDispatch {
 		mutex.unlock();
 	}
 	void XThreadPool::initGlobelPool() {
-		static XThreadPool mainThread;
-		mainThread.taskQueue.push_back(XTaskQueue::getMainQueue());
-		XTaskQueue::getMainQueue()->runInPool = &mainThread;
-		mainThread.startNewThread();
+//		static XThreadPool mainThread;
+//		mainThread.taskQueue.push_back(XTaskQueue::getMainQueue());
+//		XTaskQueue::getMainQueue()->runInPool = &mainThread;
+//		mainThread.startNewThread();
+        
 		static XThreadPool backgroundThreadsPool;
 		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_High));
 		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_Default));
@@ -91,6 +106,10 @@ namespace XDispatch {
 		for (int i = 0; i < 4; ++i) {
 			backgroundThreadsPool.startNewThread();
 		}
+        
+        source = std::make_shared<XRunLoopDispatchSource>();
+        source->mTaskQueue = XTaskQueue::getMainQueue();
+        getMainRunLoop()->addSource(source);
 	}
 	void XThreadPool::startNewThread() {
 		std::thread thread(std::bind(&XThreadPool::runLoop, this));
@@ -154,6 +173,14 @@ namespace XDispatch {
 		std::thread thread(std::bind(&XDispatchManager::runLoop, this));
 		thread.detach();
 	}
+    void XDispatchManager::dispatchAsnyc(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun) {
+        taskQueue->push(copyFunction(fun));
+        if (taskQueue->runInPool) {
+            taskQueue->runInPool->onQueueChanged();
+        } else {
+            getMainRunLoop()->weakUp(source.get());
+        }
+    }
 	void XDispatchManager::dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS) {
 		XTask *task = new XTask(copyFunction(fun), taskQueue, std::chrono::system_clock::now() + std::chrono::milliseconds(delayMS));
 		mutex.lock();

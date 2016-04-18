@@ -32,7 +32,7 @@ class MourceStatus {
 
 };
 
-class XMouse : public XInputWithPostion {
+class SIMPLEDIRECTUI_API XMouse : public XInputWithPostion {
 public:
 	static MourceStatus sMouseStatus;
 	MouseEventType eventType;

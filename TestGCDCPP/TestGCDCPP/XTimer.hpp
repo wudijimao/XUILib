@@ -40,7 +40,7 @@ public:
         }
     }
     bool start() {
-        auto runloop = XRunLoop::currentRunLoop();
+        auto runloop = getCurrentRunLoop();
         auto delegate = _delegate.lock();
         if (delegate) {
             delegate->onTimmerStatusChange(*this, XTimmerStatus::Start);

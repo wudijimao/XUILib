@@ -7,29 +7,74 @@
 //
 #pragma once
 
+#include <memory.h>
+#include <map>
+#include <vector>
+
 #include <stdio.h>
 #include <chrono>
 #include <thread>
 
-
-enum class XRunloopMode {
-    Default,
+class XRunLoopSource {
+public:
+    virtual void _do() = 0;
 };
 
-class XRunLoop {
+class IXRunLoop {
 public:
-    static std::shared_ptr<XRunLoop>& currentRunLoop();
-    bool run();
-    bool run(XRunloopMode mode);
-    //bool run(XRunloopMode mode, const std::chrono::duration<std::_Rep, std::_Period> time;
+    virtual void run() = 0;
+    //void runUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time);
+    virtual bool weakUp(XRunLoopSource *source) {
+        if (mIsSleeping) {
+            mRunList.push_back(source);
+        } else {
+            mWaitRunList.push_back(source);
+        }
+        return true;
+    };
+    bool _do() {
+        mIsSleeping = true;
+        for (auto source : mRunList) {
+            source->_do();
+        }
+        mIsSleeping = true;
+        wait();
+        return true;
+    }
+    virtual void wait() = 0;
+    virtual bool waitUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time) = 0;
+    void addSource(const std::shared_ptr<XRunLoopSource> &source) {
+        mSourcesMap[source.get()] = source;
+    }
+protected:
+    bool mIsSleeping = false;
+    std::vector<XRunLoopSource*> mRunList;
+    std::vector<XRunLoopSource*> mWaitRunList;
+    std::map<XRunLoopSource*, std::shared_ptr<XRunLoopSource>> mSourcesMap;
+};
+
+
+void startMainRunLoop();
+std::shared_ptr<IXRunLoop> getMainRunLoop();
+std::shared_ptr<IXRunLoop> getCurrentRunLoop();
+
+class XRunLoop : IXRunLoop {
+public:
+    virtual void run() override;
+    virtual bool weakUp(XRunLoopSource *source) override;
+    virtual void wait() override;
+    virtual bool waitUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time) override;
+protected:
+    XRunLoop() {
+    }
 private:
-    XRunLoop(){
-        
-    }
-    void defaultRunLoop() {
-        
-    }
-    inline void readQuerry() {
-        
-    }
+    std::mutex mutex;
+    std::condition_variable cv;
+};
+
+class XMainRunloop : public IXRunLoop {
+    virtual void run() override;
+    virtual bool weakUp(XRunLoopSource *source) override;
+    virtual void wait() override;
+    virtual bool waitUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time) override;
 };
