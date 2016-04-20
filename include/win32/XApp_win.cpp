@@ -18,10 +18,11 @@ namespace XDUILib
 		winWindow->init(szCmdLine, iCmdShow);
 		mHwnd = winWindow->getHwnd();
 		gXMainRunloop = std::make_shared<XMainRunloop>();
+		this->internalInit();
 		MSG msg;
 		while (GetMessage(&msg, NULL, 0, 0))
 		{
-			if (msg.lParam == 2300)
+			if (msg.message == RunLoopMsg)
 			{
 				getMainRunLoop()->_do();
 			}
