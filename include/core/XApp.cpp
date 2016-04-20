@@ -8,6 +8,7 @@
 
 #include "XApp.hpp"
 #include "UIView.hpp"
+#include "MutiThread/XDispatch.h"
 
 namespace XDUILib
 {
@@ -20,5 +21,8 @@ namespace XDUILib
 	void XApp::onStatusChanged(XAppStatus status, XAppStatus lastStatus) {
 
 	}
+    void XApp::internalInit() {
+        XDispatch::XThreadPool::initGlobelPool();
+    }
 
 }

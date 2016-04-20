@@ -4,7 +4,7 @@
 namespace XDispatch {
     class XRunLoopDispatchSource : public XRunLoopSource {
     public:
-        void _do() {
+        virtual void _do() override {
             MyFun *fun = NULL;
             while (mTaskQueue->pop(fun)) {
                 (*fun)();

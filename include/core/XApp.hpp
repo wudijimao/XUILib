@@ -39,7 +39,9 @@ namespace XDUILib
         inline std::shared_ptr<IXWindow> mainWindow() {
             return _mainWindow;
         }
+        void internalInit();
     private:
+       
         std::shared_ptr<IXWindow> _mainWindow;
         static XApp *_thisApp;
     };

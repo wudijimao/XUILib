@@ -31,7 +31,7 @@ namespace XResource
     NULL_ABLE XImageDecoder * XPngDecoder::fork() {
         return new XPngDecoder(*this);
     }
-    bool XPngDecoder::isThisFormart(XData *data) {
+    bool XPngDecoder::isThisFormart(std::shared_ptr<XData> &data) {
         png_const_bytep buf = (png_const_bytep)data->getBuf(0, 8);
 		if (buf != nullptr)
 		{
@@ -40,7 +40,7 @@ namespace XResource
 		}
         return false;
     }
-    bool XPngDecoder::initWithData(XData *data) {
+    bool XPngDecoder::initWithData(std::shared_ptr<XData> &data) {
         this->XImageDecoder::initWithData(data);
         png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
         if (!png_ptr)
@@ -52,7 +52,7 @@ namespace XResource
             return false;
         }
         data->mSeekLocation = 0;
-        png_set_read_fn(png_ptr, data, pngReadCallback);
+        png_set_read_fn(png_ptr, data.get(), pngReadCallback);
         png_read_info(png_ptr, info_ptr);
         
         png_byte bit_depth = png_get_bit_depth(png_ptr, info_ptr);

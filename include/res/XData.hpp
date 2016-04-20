@@ -13,20 +13,40 @@ namespace XResource
     
     class SIMPLEDIRECTUI_API XData {
     public:
+        virtual ~XData(){}
         XData();
-        unsigned long mSeekLocation = 0;
+        XData(char *buf, unsigned long size) {
+            mBuf = buf;
+            mBufferedSize = size;
+            mSize = size;
+        }
         unsigned long size();
-        std::string mFileName;
-        bool open(const char *fileName);
-        char *getBuf(unsigned long location, unsigned long size);
-        char *getBufFrom(unsigned long location);
-        char *getBuf(unsigned long size);
-        char *detachBuf();
-    private:
+        virtual char *getBuf(unsigned long location, unsigned long size);
+        virtual char *getBufFrom(unsigned long location);
+        virtual char *getBuf(unsigned long size);
+        virtual char *detachBuf();
+        static std::shared_ptr<XData> dataForContentOfFile(const char *fileName);
+    protected:
+        //virtual bool readBuf(unsigned long size);
         unsigned long mBufferedSize;
         unsigned long mSize = 0;
         char *mBuf = nullptr;
-        void clear();
+        virtual void clear();
+    public:
+        unsigned long mSeekLocation = 0;
+    };
+    
+    class XFileData : public XData {
+    public:
+        bool open(const char *fileName);
+        virtual char *getBuf(unsigned long location, unsigned long size) override;
+        virtual char *getBufFrom(unsigned long location) override;
+        virtual char *getBuf(unsigned long size) override;
+        virtual char *detachBuf() override;
+    private:
+        virtual void clear() override;
+        std::string mFileName;
     };
     
 }
+

@@ -32,7 +32,7 @@ namespace XResource {
 	NULL_ABLE XImageDecoder * XGifDecoder::fork() {
 		return new XGifDecoder(*this);
 	}
-	bool XGifDecoder::isThisFormart(XData *data) {
+	bool XGifDecoder::isThisFormart(std::shared_ptr<XData> &data) {
 		char *buf = data->getBuf(0, 6);
 		if (buf != nullptr) {
 			static std::string key1 = "GIF89a";
@@ -44,7 +44,7 @@ namespace XResource {
 		}
 		return false;
 	}
-	bool XGifDecoder::initWithData(XData *data) {
+	bool XGifDecoder::initWithData(std::shared_ptr<XData> &data) {
 		this->XImageDecoder::initWithData(data);
 		int err;
 		char *buf = data->getBuf(0, data->size());

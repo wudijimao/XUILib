@@ -37,8 +37,12 @@ public:
 		//_testSubView->setBkgImg(img);
 		auto request = std::make_shared<XHTTPRequest>();
 		request->url = "http://pic27.nipic.com/20130327/12143305_143942699176_2.jpg";
-		request->finishCallBack = [](std::shared_ptr<XHTTPResponse> response) {
-			auto image = XRe
+		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
+            char *buf = new char[response->bufSize()];
+            memcpy(buf, response->buf(), response->bufSize());
+            auto data = std::make_shared<XResource::XData>(buf, response->bufSize());
+            auto image = std::make_shared<XResource::XImage>(data);
+            _testSubView->setBkgImg(image);
 		};
 		IXHTTPClient::getSharedInstanc()->sendRequest(request);
 		

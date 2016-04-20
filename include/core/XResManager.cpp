@@ -18,6 +18,7 @@
 #include <sys/stat.h>  
 
 #else
+#include <unistd.h>
 #include <dirent.h>
 #define _stat stat
 #endif

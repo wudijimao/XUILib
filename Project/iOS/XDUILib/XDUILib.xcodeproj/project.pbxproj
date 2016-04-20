@@ -50,6 +50,27 @@
 		3E3FF9041CA2E2220070F6A5 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */; };
 		3E3FF9051CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
 		3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF8F71CA2E2210070F6A5 /* libpng.a */; };
+		3E466D451CC681840068A4E6 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D431CC681840068A4E6 /* libcurl.a */; };
+		3E466D461CC681840068A4E6 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D431CC681840068A4E6 /* libcurl.a */; };
+		3E466D4B1CC682080068A4E6 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D491CC682080068A4E6 /* libcrypto.a */; };
+		3E466D4C1CC682080068A4E6 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D491CC682080068A4E6 /* libcrypto.a */; };
+		3E466D4D1CC682080068A4E6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D4A1CC682080068A4E6 /* libssl.a */; };
+		3E466D4E1CC682080068A4E6 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E466D4A1CC682080068A4E6 /* libssl.a */; };
+		3E7F4F101CC60A49001D0C58 /* XHTTPClientImpl.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F0F1CC60A49001D0C58 /* XHTTPClientImpl.hpp */; };
+		3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */; };
+		3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */; };
+		3E7F4F1C1CC60A61001D0C58 /* XDispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F131CC60A61001D0C58 /* XDispatch.h */; };
+		3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F141CC60A61001D0C58 /* XRunLoop.cpp */; };
+		3E7F4F1E1CC60A61001D0C58 /* XRunLoop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F141CC60A61001D0C58 /* XRunLoop.cpp */; };
+		3E7F4F1F1CC60A61001D0C58 /* XRunLoop.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F151CC60A61001D0C58 /* XRunLoop.hpp */; };
+		3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F161CC60A61001D0C58 /* XTask.cpp */; };
+		3E7F4F211CC60A61001D0C58 /* XTask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F161CC60A61001D0C58 /* XTask.cpp */; };
+		3E7F4F221CC60A61001D0C58 /* XTask.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F171CC60A61001D0C58 /* XTask.hpp */; };
+		3E7F4F231CC60A61001D0C58 /* XTaskQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F181CC60A61001D0C58 /* XTaskQueue.cpp */; };
+		3E7F4F241CC60A61001D0C58 /* XTaskQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F181CC60A61001D0C58 /* XTaskQueue.cpp */; };
+		3E7F4F251CC60A61001D0C58 /* XTaskQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F191CC60A61001D0C58 /* XTaskQueue.hpp */; };
+		3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F261CC60A73001D0C58 /* XMainRunLoop_IOS.mm */; };
+		3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F261CC60A73001D0C58 /* XMainRunLoop_IOS.mm */; };
 		3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */; };
 		3E8BF0961CAC0A9500A61A69 /* XTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */; };
 		3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */; };
@@ -184,6 +205,19 @@
 		3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLHeaders.h; sourceTree = "<group>"; };
 		3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = ../../../ThirdParty/prebuilt/ios/libjpeg.a; sourceTree = "<group>"; };
 		3E3FF8F71CA2E2210070F6A5 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../../../ThirdParty/prebuilt/ios/libpng.a; sourceTree = "<group>"; };
+		3E466D431CC681840068A4E6 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../../ThirdParty/prebuilt/ios/libcurl.a; sourceTree = "<group>"; };
+		3E466D491CC682080068A4E6 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../ThirdParty/prebuilt/ios/libcrypto.a; sourceTree = "<group>"; };
+		3E466D4A1CC682080068A4E6 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../ThirdParty/prebuilt/ios/libssl.a; sourceTree = "<group>"; };
+		3E7F4F0F1CC60A49001D0C58 /* XHTTPClientImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPClientImpl.hpp; sourceTree = "<group>"; };
+		3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XDispatch.cpp; sourceTree = "<group>"; };
+		3E7F4F131CC60A61001D0C58 /* XDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDispatch.h; sourceTree = "<group>"; };
+		3E7F4F141CC60A61001D0C58 /* XRunLoop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XRunLoop.cpp; sourceTree = "<group>"; };
+		3E7F4F151CC60A61001D0C58 /* XRunLoop.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XRunLoop.hpp; sourceTree = "<group>"; };
+		3E7F4F161CC60A61001D0C58 /* XTask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTask.cpp; sourceTree = "<group>"; };
+		3E7F4F171CC60A61001D0C58 /* XTask.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTask.hpp; sourceTree = "<group>"; };
+		3E7F4F181CC60A61001D0C58 /* XTaskQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTaskQueue.cpp; sourceTree = "<group>"; };
+		3E7F4F191CC60A61001D0C58 /* XTaskQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTaskQueue.hpp; sourceTree = "<group>"; };
+		3E7F4F261CC60A73001D0C58 /* XMainRunLoop_IOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XMainRunLoop_IOS.mm; sourceTree = "<group>"; };
 		3E8BF0931CAC0A9500A61A69 /* XTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTouch.cpp; sourceTree = "<group>"; };
 		3E8BF0941CAC0A9500A61A69 /* XTouch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTouch.hpp; sourceTree = "<group>"; };
 		3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XInput.cpp; sourceTree = "<group>"; };
@@ -224,13 +258,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E466D4D1CC682080068A4E6 /* libssl.a in Frameworks */,
 				3E21D10D1CAAC7E800590427 /* GLKit.framework in Frameworks */,
 				3EAA6CF31CA248CF0037291F /* OpenGLES.framework in Frameworks */,
 				3EAA6CF11CA248C90037291F /* QuartzCore.framework in Frameworks */,
 				3E16D6AD1CAA007300F84510 /* libgiflib.a in Frameworks */,
 				3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */,
+				3E466D451CC681840068A4E6 /* libcurl.a in Frameworks */,
 				3E3FF9051CA2E2220070F6A5 /* libpng.a in Frameworks */,
 				3E3FF9031CA2E2220070F6A5 /* libjpeg.a in Frameworks */,
+				3E466D4B1CC682080068A4E6 /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +276,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3FF9041CA2E2220070F6A5 /* libjpeg.a in Frameworks */,
+				3E466D4C1CC682080068A4E6 /* libcrypto.a in Frameworks */,
+				3E466D4E1CC682080068A4E6 /* libssl.a in Frameworks */,
+				3E466D461CC681840068A4E6 /* libcurl.a in Frameworks */,
 				3E3FF9061CA2E2220070F6A5 /* libpng.a in Frameworks */,
 				3E16D6AE1CAA007300F84510 /* libgiflib.a in Frameworks */,
 			);
@@ -284,6 +324,7 @@
 		3E1416681C9ABEFA00A84DF1 /* ios */ = {
 			isa = PBXGroup;
 			children = (
+				3E7F4F261CC60A73001D0C58 /* XMainRunLoop_IOS.mm */,
 				3EC92D991CAB9B9D00CF012C /* GLView.h */,
 				3EC92D9A1CAB9B9D00CF012C /* GLView.m */,
 				3EAA6CD51CA23A220037291F /* XResourceManager.mm */,
@@ -304,6 +345,7 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3E7F4F111CC60A61001D0C58 /* MutiThread */,
 				3E8BF0921CAC07E600A61A69 /* input */,
 				3E3FF8911CA26F750070F6A5 /* GL */,
 				3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */,
@@ -372,6 +414,9 @@
 		3E3FF8D61CA2E1570070F6A5 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				3E466D491CC682080068A4E6 /* libcrypto.a */,
+				3E466D4A1CC682080068A4E6 /* libssl.a */,
+				3E466D431CC681840068A4E6 /* libcurl.a */,
 				3E16D6AC1CAA007300F84510 /* libgiflib.a */,
 				3E3FF8F61CA2E2210070F6A5 /* libjpeg.a */,
 				3E3FF8F71CA2E2210070F6A5 /* libpng.a */,
@@ -380,6 +425,21 @@
 				3EAA6CEE1CA248BE0037291F /* UIKit.framework */,
 			);
 			name = lib;
+			sourceTree = "<group>";
+		};
+		3E7F4F111CC60A61001D0C58 /* MutiThread */ = {
+			isa = PBXGroup;
+			children = (
+				3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */,
+				3E7F4F131CC60A61001D0C58 /* XDispatch.h */,
+				3E7F4F141CC60A61001D0C58 /* XRunLoop.cpp */,
+				3E7F4F151CC60A61001D0C58 /* XRunLoop.hpp */,
+				3E7F4F161CC60A61001D0C58 /* XTask.cpp */,
+				3E7F4F171CC60A61001D0C58 /* XTask.hpp */,
+				3E7F4F181CC60A61001D0C58 /* XTaskQueue.cpp */,
+				3E7F4F191CC60A61001D0C58 /* XTaskQueue.hpp */,
+			);
+			path = MutiThread;
 			sourceTree = "<group>";
 		};
 		3E8BF0921CAC07E600A61A69 /* input */ = {
@@ -399,6 +459,7 @@
 		3E8D12031CBFA2F900EC385D /* http */ = {
 			isa = PBXGroup;
 			children = (
+				3E7F4F0F1CC60A49001D0C58 /* XHTTPClientImpl.hpp */,
 				3E8D12041CBFA2F900EC385D /* XHTTPClient.cpp */,
 				3E8D12051CBFA2F900EC385D /* XHTTPClient.hpp */,
 			);
@@ -446,6 +507,11 @@
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
+				3E7F4F251CC60A61001D0C58 /* XTaskQueue.hpp in Headers */,
+				3E7F4F221CC60A61001D0C58 /* XTask.hpp in Headers */,
+				3E7F4F101CC60A49001D0C58 /* XHTTPClientImpl.hpp in Headers */,
+				3E7F4F1C1CC60A61001D0C58 /* XDispatch.h in Headers */,
+				3E7F4F1F1CC60A61001D0C58 /* XRunLoop.hpp in Headers */,
 				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
 				3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */,
 			);
@@ -568,17 +634,22 @@
 				3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */,
 				3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
+				3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */,
+				3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
 				3E8D12061CBFA2F900EC385D /* XHTTPClient.cpp in Sources */,
+				3E7F4F231CC60A61001D0C58 /* XTaskQueue.cpp in Sources */,
 				3E203C711CA15A7100757788 /* XString.cpp in Sources */,
 				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
 				3EC92D9B1CAB9B9D00CF012C /* GLView.m in Sources */,
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
+				3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
 				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
+				3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
 				3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
 				3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */,
@@ -604,7 +675,9 @@
 				3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */,
 				3EAA6D0E1CA24A8E0037291F /* IXWindow.hpp in Sources */,
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
+				3E7F4F1E1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
 				3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */,
+				3E7F4F211CC60A61001D0C58 /* XTask.cpp in Sources */,
 				3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */,
 				3EAA6D131CA24A8E0037291F /* stdafx.hpp in Sources */,
 				3EAA6D141CA24A8E0037291F /* stdafx.cpp in Sources */,
@@ -640,11 +713,14 @@
 				3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */,
 				3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */,
 				3E8BF09B1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
+				3E7F4F241CC60A61001D0C58 /* XTaskQueue.cpp in Sources */,
 				3EAA6D351CA24A8E0037291F /* XDUIAppDelegate.mm in Sources */,
 				3EAA6D361CA24A8E0037291F /* XDUILib_ios.hpp in Sources */,
 				3EAA6D371CA24A8E0037291F /* XDUILib_ios.mm in Sources */,
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
 				3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */,
+				3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
+				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
 				3E21D1091CAABDA700590427 /* XWindow.cpp in Sources */,
 				3E9608351CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
@@ -748,7 +824,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
-					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios/curl",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -771,7 +847,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/jpeg/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/png/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
-					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios/curl",
+					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

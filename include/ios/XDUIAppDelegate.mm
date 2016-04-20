@@ -8,6 +8,7 @@
 
 #import "XDUIAppDelegate.h"
 #import "XApp.hpp"
+#import "XRunLoop.hpp"
 
 @interface XDUIAppDelegate ()
 
@@ -18,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    startMainRunLoop();
+    XDUILib::XApp::thisApp().internalInit();
     XDUILib::XApp::thisApp().init();
     XDUILib::XApp::thisApp().mainWindow()->showInFront();
     return YES;

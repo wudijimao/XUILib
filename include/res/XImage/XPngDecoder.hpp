@@ -22,8 +22,8 @@ protected:
     virtual ~XPngDecoder();
     static NULL_ABLE XImageDecoder *getInstance();
     virtual NULL_ABLE XImageDecoder *fork();
-    bool isThisFormart(XData *data);
-    bool initWithData(XData *data);
+    bool isThisFormart(std::shared_ptr<XData> &data);
+    bool initWithData(std::shared_ptr<XData> &data);
     int width();
     int height();
     int count();

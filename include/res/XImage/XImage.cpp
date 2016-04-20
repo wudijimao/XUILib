@@ -7,7 +7,7 @@
 //
 
 #include "XImage.hpp"
-#include "res/XData.hpp"
+#include "../XData.hpp"
 #include "XJPGDecoder.hpp"
 #include "../../core/XResManager.hpp"
 
@@ -17,25 +17,27 @@ namespace XResource {
     std::vector<XImageDecoder*>* XImage::decoders = 0;
     
     XImage::XImage (const char *filePath) {
+        auto data = XData::dataForContentOfFile(filePath);
+		initWithData(data);
+    }
+    XImage::XImage(std::shared_ptr<XData> &data) {
+		initWithData(data);
+	}
+	bool XImage::initWithData(std::shared_ptr<XData> &data) {
         if (decoders == nullptr) {
             decoders = new std::vector<XImageDecoder*>();
             XImageDecoder::getDecoders(*decoders);
         }
-        XData *data = new XData();
-        data->open(filePath);
-		initWithData(data);
-    }
-	XImage(XData *data) {
-		initWithData(data);
-	}
-	bool XImage::initWithData(XData *data) {
+        bool ret = false;
 		for (auto decoder : *decoders) {
 			if (decoder->isThisFormart(data)) {
 				mDecoder = decoder->fork();
 				mDecoder->initWithData(data);
+                ret = true;
 				break;
 			}
 		}
+        return ret;
 	}
     XImage::~XImage() {
         if (mDecoder != nullptr) {

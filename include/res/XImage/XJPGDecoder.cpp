@@ -21,7 +21,7 @@ namespace XResource {
     NULL_ABLE XImageDecoder* XJPGDecoder::fork() {
         return new XJPGDecoder(*this);
     }
-    bool XJPGDecoder::isThisFormart(XData *data) {
+    bool XJPGDecoder::isThisFormart(std::shared_ptr<XData> &data) {
         char *buf = data->getBuf(0, 2);
         if (buf) {
             static const unsigned char JPG_SOI[] = {0xFF, 0xD8};
@@ -29,7 +29,7 @@ namespace XResource {
         }
         return false;
     }
-    bool XJPGDecoder::initWithData(XData *data) {
+    bool XJPGDecoder::initWithData(std::shared_ptr<XData> &data) {
         this->XImageDecoder::initWithData(data);
         struct jpeg_error_mgr jerr;
         

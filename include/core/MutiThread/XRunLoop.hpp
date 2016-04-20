@@ -34,7 +34,7 @@ public:
         return true;
     };
     bool _do() {
-        mIsSleeping = true;
+        mIsSleeping = false;
         for (auto source : mRunList) {
             source->_do();
         }
@@ -48,7 +48,7 @@ public:
         mSourcesMap[source.get()] = source;
     }
 protected:
-    bool mIsSleeping = false;
+    bool mIsSleeping = true;
     std::vector<XRunLoopSource*> mRunList;
     std::vector<XRunLoopSource*> mWaitRunList;
     std::map<XRunLoopSource*, std::shared_ptr<XRunLoopSource>> mSourcesMap;

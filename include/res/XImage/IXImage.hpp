@@ -10,7 +10,7 @@
 #define NULL_ABLE
 #define NONE_NULL
 #include "../../core/stdafx.hpp"
-#include "res/XData.hpp"
+#include "../XData.hpp"
 namespace XResource {
     
     class SIMPLEDIRECTUI_API IXImage {

@@ -13,15 +13,11 @@
 
 namespace XResource {
     
-    bool XImageDecoder::initWithData(XData *data) {
+    bool XImageDecoder::initWithData(std::shared_ptr<XData> &data) {
         mData = data;
         return true;
     }
     XImageDecoder::~XImageDecoder() {
-        if (mData != nullptr) {
-            delete mData;
-            mData = nullptr;
-        }
     }
     
     size_t XImageDecoder::getDecoders(std::vector<XImageDecoder*> &decoders) {

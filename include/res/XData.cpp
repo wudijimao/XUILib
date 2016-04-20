@@ -12,14 +12,40 @@
 
 namespace XResource {
     
+    std::shared_ptr<XData> XData::dataForContentOfFile(const char *fileName) {
+        auto data = std::make_shared<XFileData>();
+        data->open(fileName);
+        return data;
+    }
+    
     XData::XData() {
         
     }
     unsigned long XData::size() {
         return mSize;
     }
+    char *XData::getBuf(unsigned long location, unsigned long size) {
+        if(location + size <= mSize) {
+            return mBuf + location;
+        }
+        return nullptr;
+    }
+    char *XData::getBufFrom(unsigned long location){
+        return mBuf + location;
+    }
+    char *XData::getBuf(unsigned long size){
+        if (size <= mSize) {
+            return mBuf;
+        }
+        return nullptr;
+    }
+    char *XData::detachBuf(){
+        char *buf = mBuf;
+        mBuf = nullptr;
+        return buf;
+    }
     
-    bool XData::open(const char *fileName) {
+    bool XFileData::open(const char *fileName) {
         clear();
         bool ret = false;
         mFileName = fileName;
@@ -40,7 +66,7 @@ namespace XResource {
         }
         return ret;
     }
-    char* XData::getBuf(unsigned long location, unsigned long size) {
+    char* XFileData::getBuf(unsigned long location, unsigned long size) {
         if (mBuf) {
             unsigned long needBufferedSize = mSeekLocation = location + size;
             if (needBufferedSize > mBufferedSize && needBufferedSize <= mSize) {
@@ -54,13 +80,13 @@ namespace XResource {
         }
         return nullptr;
     }
-    char* XData::getBufFrom(unsigned long location) {
+    char* XFileData::getBufFrom(unsigned long location) {
         return getBuf(location, size());
     }
-    char* XData::getBuf(unsigned long size) {
+    char* XFileData::getBuf(unsigned long size) {
         return getBuf(0, size);
     }
-    char* XData::detachBuf() {
+    char* XFileData::detachBuf() {
         char *buf = getBuf(0, size());
         mBuf = nullptr;
         return buf;
@@ -71,8 +97,11 @@ namespace XResource {
         delete [] mBuf;
         mBufferedSize = 0;
         mBuf = nullptr;
-        mFileName = "";
         mSize = 0;
+    }
+    void XFileData::clear() {
+        XData::clear();
+        mFileName = "";
     }
     
 }
