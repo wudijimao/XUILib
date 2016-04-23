@@ -12,7 +12,7 @@
 #include <thread>
 #include "../core/MutiThread/XDispatch.h"
 
-const std::string XHTTPHeader::cUserAgentKey = "User-Agent";
+
 
 //#include <memory>
 
