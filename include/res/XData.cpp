@@ -18,28 +18,32 @@ namespace XResource {
         return data;
     }
     
-    XData::XData() {
+    std::shared_ptr<XData> XData::dataForBuf(char *buf, unsigned long size) {
+        return std::make_shared<XFixedBufData>(buf, size);
+    }
+    
+    XFixedBufData::XFixedBufData() {
         
     }
     unsigned long XData::size() {
         return mSize;
     }
-    char *XData::getBuf(unsigned long location, unsigned long size) {
+    char *XFixedBufData::getBuf(unsigned long location, unsigned long size) {
         if(location + size <= mSize) {
             return mBuf + location;
         }
         return nullptr;
     }
-    char *XData::getBufFrom(unsigned long location){
+    char *XFixedBufData::getBufFrom(unsigned long location){
         return mBuf + location;
     }
-    char *XData::getBuf(unsigned long size){
+    char *XFixedBufData::getBuf(unsigned long size){
         if (size <= mSize) {
             return mBuf;
         }
         return nullptr;
     }
-    char *XData::detachBuf(){
+    char *XFixedBufData::detachBuf(){
         char *buf = mBuf;
         mBuf = nullptr;
         return buf;
@@ -93,14 +97,14 @@ namespace XResource {
     }
 #pragma -mark private function
     
-    void XData::clear() {
+    void XFixedBufData::clear() {
         delete [] mBuf;
-        mBufferedSize = 0;
         mBuf = nullptr;
         mSize = 0;
     }
     void XFileData::clear() {
-        XData::clear();
+        XFixedBufData::clear();
+        mBufferedSize = 0;
         mFileName = "";
     }
     

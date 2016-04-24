@@ -36,11 +36,11 @@ public:
 		//auto img = XResource::XImage::imageNamed("test.jpg");
 		//_testSubView->setBkgImg(img);
 		auto request = std::make_shared<XHTTPRequest>();
-		request->url = "http://pic27.nipic.com/20130327/12143305_143942699176_2.jpg";
+		request->url = "http://ww2.sinaimg.cn/mw690/4e3af31cjw1f3711zjgz1j21hc0xc122.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
             char *buf = new char[response->bufSize()];
             memcpy(buf, response->buf(), response->bufSize());
-            auto data = std::make_shared<XResource::XData>(buf, response->bufSize());
+            auto data = XResource::XData::dataForBuf(buf, response->bufSize());
             auto image = std::make_shared<XResource::XImage>(data);
             _testSubView->setBkgImg(image);
 		};
