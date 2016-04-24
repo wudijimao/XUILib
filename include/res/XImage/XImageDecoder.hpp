@@ -19,8 +19,8 @@ namespace XResource {
         friend XImage;
     protected:
         virtual NULL_ABLE XImageDecoder *fork() = 0;
-        virtual bool isThisFormart(std::shared_ptr<XData> &data) = 0;
-        virtual bool initWithData(std::shared_ptr<XData> &data);
+        virtual bool isThisFormart(const std::shared_ptr<XData> &data) = 0;
+        virtual bool initWithData(const std::shared_ptr<XData> &data);
         virtual ~XImageDecoder();
         
         static size_t getDecoders(std::vector<XImageDecoder*> &decoders);

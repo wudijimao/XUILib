@@ -13,7 +13,7 @@ namespace XResource
     static void pngReadCallback(png_structp png_ptr, png_bytep buf, png_size_t length)
     {
         XData* data = (XData*)png_get_io_ptr(png_ptr);
-        char *ptr = data->getBuf(data->mSeekLocation, length);
+        const void *ptr = data->getBuf(data->seekLocation(), length);
         memcpy(buf, ptr, length);
     }
     
@@ -31,7 +31,7 @@ namespace XResource
     NULL_ABLE XImageDecoder * XPngDecoder::fork() {
         return new XPngDecoder(*this);
     }
-    bool XPngDecoder::isThisFormart(std::shared_ptr<XData> &data) {
+    bool XPngDecoder::isThisFormart(const std::shared_ptr<XData> &data) {
         png_const_bytep buf = (png_const_bytep)data->getBuf(0, 8);
 		if (buf != nullptr)
 		{
@@ -40,7 +40,7 @@ namespace XResource
 		}
         return false;
     }
-    bool XPngDecoder::initWithData(std::shared_ptr<XData> &data) {
+    bool XPngDecoder::initWithData(const std::shared_ptr<XData> &data) {
         this->XImageDecoder::initWithData(data);
         png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
         if (!png_ptr)
@@ -51,7 +51,7 @@ namespace XResource
             png_destroy_read_struct(&png_ptr, (png_infopp)nullptr, (png_infopp)nullptr);
             return false;
         }
-        data->mSeekLocation = 0;
+        data->seek(0);
         png_set_read_fn(png_ptr, data.get(), pngReadCallback);
         png_read_info(png_ptr, info_ptr);
         

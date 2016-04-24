@@ -19,34 +19,40 @@ namespace XResource {
     }
     
     std::shared_ptr<XData> XData::dataForBuf(char *buf, unsigned long size) {
-        return std::make_shared<XFixedBufData>(buf, size);
+        auto data = std::make_shared<XData>();
+        data->attachBuf(buf, size);
+        return data;
     }
     
-    XFixedBufData::XFixedBufData() {
-        
-    }
+
     unsigned long XData::size() {
         return mSize;
     }
-    char *XFixedBufData::getBuf(unsigned long location, unsigned long size) {
-        if(location + size <= mSize) {
+    const void * XData::getBuf(unsigned long location, unsigned long size) {
+        mSeekLocation = location + size;
+        if(mSeekLocation <= mSize) {
             return mBuf + location;
         }
         return nullptr;
     }
-    char *XFixedBufData::getBufFrom(unsigned long location){
+    const void * XData::getBufFrom(unsigned long location){
         return mBuf + location;
     }
-    char *XFixedBufData::getBuf(unsigned long size){
+    const void * XData::getBuf(unsigned long size){
         if (size <= mSize) {
             return mBuf;
         }
         return nullptr;
     }
-    char *XFixedBufData::detachBuf(){
+    void * XData::detachBuf(){
         char *buf = mBuf;
         mBuf = nullptr;
         return buf;
+    }
+    void XData::clear() {
+        delete [] mBuf;
+        mBuf = nullptr;
+        mSize = 0;
     }
     
     bool XFileData::open(const char *fileName) {
@@ -59,9 +65,9 @@ namespace XResource {
             long fileSize = ftell(fp);
             fseek(fp, 0, SEEK_SET);
             if (fileSize > 0) {
-                mSize = fileSize;
-                mBuf = new char[mSize + 1];
-                mBuf[mSize] = '\0';
+                mFileSize = fileSize;
+                resize(fileSize + 1);
+                setDataAt(fileSize, '\0');
                 ret = true;
             } else {
                 clear();
@@ -70,41 +76,36 @@ namespace XResource {
         }
         return ret;
     }
-    char* XFileData::getBuf(unsigned long location, unsigned long size) {
-        if (mBuf) {
-            unsigned long needBufferedSize = mSeekLocation = location + size;
-            if (needBufferedSize > mBufferedSize && needBufferedSize <= mSize) {
-                FILE *fp = fopen(mFileName.c_str(), "rb");
-                fseek(fp, mBufferedSize, SEEK_SET);
-                fread(mBuf + mBufferedSize, 1, needBufferedSize - mBufferedSize, fp);
-                mBufferedSize = needBufferedSize;
-                fclose(fp);
-            }
-            return mBuf + location;
-        }
-        return nullptr;
+    unsigned long XFileData::size() {
+        return mFileSize;
     }
-    char* XFileData::getBufFrom(unsigned long location) {
+    const void* XFileData::getBuf(unsigned long location, unsigned long size) {
+        const void *ret = XData::getBuf(location, size);
+        if (ret == nullptr) {
+            ret = getBufIntenal();
+            FILE *fp = fopen(mFileName.c_str(), "rb");
+            unsigned long bufferedSize = XData::size();
+            fseek(fp, bufferedSize, SEEK_SET);
+            fread((char*)ret + bufferedSize, 1, seekLocation() - bufferedSize, fp);
+            setSizeIntenal(seekLocation());
+            fclose(fp);
+        }
+        return ret;
+    }
+    const void* XFileData::getBufFrom(unsigned long location) {
         return getBuf(location, size());
     }
-    char* XFileData::getBuf(unsigned long size) {
+    const void* XFileData::getBuf(unsigned long size) {
         return getBuf(0, size);
     }
-    char* XFileData::detachBuf() {
-        char *buf = getBuf(0, size());
-        mBuf = nullptr;
-        return buf;
+    void* XFileData::detachBuf() {
+        getBuf(0, size());
+        return XData::detachBuf();
     }
-#pragma -mark private function
-    
-    void XFixedBufData::clear() {
-        delete [] mBuf;
-        mBuf = nullptr;
-        mSize = 0;
-    }
+
     void XFileData::clear() {
-        XFixedBufData::clear();
-        mBufferedSize = 0;
+        XData::clear();
+        mFileSize = 0;
         mFileName = "";
     }
     

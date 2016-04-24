@@ -38,10 +38,7 @@ public:
 		auto request = std::make_shared<XHTTPRequest>();
 		request->url = "http://ww2.sinaimg.cn/mw690/4e3af31cjw1f3711zjgz1j21hc0xc122.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
-            char *buf = new char[response->bufSize()];
-            memcpy(buf, response->buf(), response->bufSize());
-            auto data = XResource::XData::dataForBuf(buf, response->bufSize());
-            auto image = std::make_shared<XResource::XImage>(data);
+            auto image = std::make_shared<XResource::XImage>(response->data());
             _testSubView->setBkgImg(image);
 		};
 		IXHTTPClient::getSharedInstanc()->sendRequest(request);

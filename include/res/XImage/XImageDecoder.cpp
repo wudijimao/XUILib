@@ -13,7 +13,7 @@
 
 namespace XResource {
     
-    bool XImageDecoder::initWithData(std::shared_ptr<XData> &data) {
+    bool XImageDecoder::initWithData(const std::shared_ptr<XData> &data) {
         mData = data;
         return true;
     }

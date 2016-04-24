@@ -23,7 +23,7 @@ namespace XResource {
     XImage::XImage(std::shared_ptr<XData> &data) {
 		initWithData(data);
 	}
-	bool XImage::initWithData(std::shared_ptr<XData> &data) {
+	bool XImage::initWithData(const std::shared_ptr<XData> &data) {
         if (decoders == nullptr) {
             decoders = new std::vector<XImageDecoder*>();
             XImageDecoder::getDecoders(*decoders);

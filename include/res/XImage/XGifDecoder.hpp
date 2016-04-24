@@ -17,8 +17,8 @@ namespace XResource {
         //if .lib not exsist return null
         static NULL_ABLE XImageDecoder *getInstance();
         virtual NULL_ABLE XImageDecoder *fork();
-        bool isThisFormart(std::shared_ptr<XData> &data);
-        bool initWithData(std::shared_ptr<XData> &data);
+        bool isThisFormart(const std::shared_ptr<XData> &data);
+        bool initWithData(const std::shared_ptr<XData> &data);
         int width();
         int height();
         int count();

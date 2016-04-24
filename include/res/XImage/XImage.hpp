@@ -23,7 +23,7 @@ namespace XResource {
         XImage (const char *filePath);
 		XImage(std::shared_ptr<XData> &data);
         ~XImage();
-        bool initWithData(std::shared_ptr<XData> &data);
+        bool initWithData(const std::shared_ptr<XData> &data);
         virtual int width() override;
         virtual int height() override;
         virtual int count() override;

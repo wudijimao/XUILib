@@ -74,8 +74,8 @@ int curl_multi_select(CURLM * curl_m)
 
 size_t onWriteData(char *ptr, size_t size, size_t nmemb, void *userdata) {
     size_t realsize = size * nmemb;
-    std::vector<char> *buf = static_cast<std::vector<char>*>(userdata);
-    buf->insert(buf->end(), ptr, ptr + nmemb);
+    XResource::XData *buf = static_cast<XResource::XData*>(userdata);
+    buf->appendData(ptr, realsize);
     return realsize; //?
 }
 
@@ -150,11 +150,11 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
     handler->_handle = handle;
     this->_requestMap[pRequest.get()] = handle;
     this->_handlerMap[handle] = handler;
-    
+    handler->_response->_buf = std::make_shared<XResource::XData>();
     curl_easy_setopt(handle, CURLOPT_FAILONERROR, 1L);
     curl_easy_setopt(handle, CURLOPT_URL, pRequest->url.c_str());
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, onWriteData);
-    curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)&(handler->_response->_buf));
+    curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
     curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
     curl_easy_setopt(handle, CURLOPT_XFERINFOFUNCTION, XHTTPClient::sOnProgress);
     XHTTPRequest *req = pRequest.get();

@@ -10,6 +10,7 @@
 #include "../core/stdafx.hpp"
 #include "XHTTPHeader.hpp"
 #include "XHTTPRequest.hpp"
+#include "../res/XData.hpp"
 
 enum class XHTTPResponsStatus {
     Connecting,
@@ -27,21 +28,15 @@ class XHTTPResponse {
     friend IXHTTPClient;
 public:
     XHTTPResponsStatus _status;
-    const XHTTPHeader* header();
-    const char *buf() {
-        return &_buf[0];
+    //const XHTTPHeader* header();
+    std::shared_ptr<XResource::XData>& data(){
+        return _buf;
     }
-    size_t bufSize() {
-        return _buf.size();
-    }
-    const char *headerBuf() {
-        return &_headerBuf[0];
-    }
-    size_t headerBufSize() {
-        return _headerBuf.size();
+    std::shared_ptr<XResource::XData>& headerData() {
+        return _headerBuf;
     }
 protected:
     std::shared_ptr<XHTTPRequest> _request;
-    std::vector<char> _buf;
-    std::vector<char> _headerBuf;
+    std::shared_ptr<XResource::XData> _buf;
+    std::shared_ptr<XResource::XData> _headerBuf;
 };
