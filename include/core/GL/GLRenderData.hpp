@@ -75,6 +75,7 @@ namespace XDUILib {
     };
     class GLRenderData {
     public:
+        virtual ~GLRenderData(){};
         GLuint _vectexArrayObject;
         virtual GLRenderDataType Type() {
             return GLRenderDataType::UnKnown;
@@ -130,8 +131,13 @@ namespace XDUILib {
         virtual void apply() override {
         }
     private:
+        virtual ~GLRenderSquareData() {
+            GLRenderData::~GLRenderData();
+            glDeleteBuffers(3, bufObjects);
+            glDeleteVertexArrays(1, &_vectexArrayObject);
+        }
+        GLuint bufObjects[3];
         void buildVAO() {
-            GLuint bufObjects[3];
             glGenBuffers(3, bufObjects);
             
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
