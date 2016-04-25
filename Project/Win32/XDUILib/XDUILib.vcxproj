@@ -48,6 +48,10 @@
     <ClInclude Include="..\..\..\include\core\XWindow.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPClient.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPClientImpl.hpp" />
+    <ClInclude Include="..\..\..\include\http\XHTTPHeader.hpp" />
+    <ClInclude Include="..\..\..\include\http\XHTTPRequest.hpp" />
+    <ClInclude Include="..\..\..\include\http\XHTTPRequestHandler.hpp" />
+    <ClInclude Include="..\..\..\include\http\XHTTPResponse.hpp" />
     <ClInclude Include="..\..\..\include\res\XData.hpp" />
     <ClInclude Include="..\..\..\include\res\XError.hpp" />
     <ClInclude Include="..\..\..\include\res\XImage\IXImage.hpp" />
@@ -89,6 +93,10 @@
     <ClCompile Include="..\..\..\include\core\XResManager.cpp" />
     <ClCompile Include="..\..\..\include\core\XWindow.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPClient.cpp" />
+    <ClCompile Include="..\..\..\include\http\XHTTPHeader.cpp" />
+    <ClCompile Include="..\..\..\include\http\XHTTPRequest.cpp" />
+    <ClCompile Include="..\..\..\include\http\XHTTPRequestHandler.cpp" />
+    <ClCompile Include="..\..\..\include\http\XHTTPResponse.cpp" />
     <ClCompile Include="..\..\..\include\res\XData.cpp" />
     <ClCompile Include="..\..\..\include\res\XError.cpp" />
     <ClCompile Include="..\..\..\include\res\XImage\XGifDecoder.cpp" />

@@ -20,8 +20,6 @@ public:
 		RECT rct;
 		GetWindowRect(mHWND, &rct);
 		setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top));
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		mHWND = hWnd;
 		mHDC = ::GetDC(hWnd);
 		initMemDC();
@@ -115,6 +113,11 @@ private:
 		if (!this->InitFrameBuffer()) {
 			return false;
 		}
+		//see docoment https://www.opengl.org/wiki/Blending
+		glEnable(GL_BLEND);
+		//glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+		//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 		return true;
 	}
 	void CreateDIB()

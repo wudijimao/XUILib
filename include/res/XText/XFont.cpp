@@ -2,10 +2,22 @@
 #include <ft2build.h>
 #include <freetype/ftglyph.h>
 #include FT_FREETYPE_H
-/*
+
 namespace XResource
 {
+	class TextGlyph {
+
+	};
+
 	class XFont {
+	public:
+		static std::shared_ptr<XFont> fontWithName();
+	private:
+		FT_Face mFace;
+	};
+
+	class XFreeType {
+	public:
 		bool init(const char *path) {
 			FT_Error error = FT_New_Face(_library, path, 0, &mFace);
 			if (error == FT_Err_Unknown_File_Format)
@@ -82,12 +94,6 @@ namespace XResource
 			}
 			return false;
 		}
-	private:
-		FT_Face mFace;
-	};
-
-	class XFreeType {
-	public:
 		FT_Library  _library;   // handle to library
 		std::vector<FT_Face> _faces;
 		std::map<std::string, FT_Face> _faceMap;
@@ -166,4 +172,3 @@ namespace XResource
 	private:
 	};
 }
-*/

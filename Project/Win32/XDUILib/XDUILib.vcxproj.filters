@@ -195,6 +195,18 @@
     <ClInclude Include="..\..\..\include\http\XHTTPClientImpl.hpp">
       <Filter>Header\http</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPHeader.hpp">
+      <Filter>Header\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPRequest.hpp">
+      <Filter>Header\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPRequestHandler.hpp">
+      <Filter>Header\http</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\http\XHTTPResponse.hpp">
+      <Filter>Header\http</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -303,6 +315,18 @@
       <Filter>Header\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\http\XHTTPClient.cpp">
+      <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\http\XHTTPHeader.cpp">
+      <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\http\XHTTPRequest.cpp">
+      <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\http\XHTTPRequestHandler.cpp">
+      <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\http\XHTTPResponse.cpp">
       <Filter>Header\http</Filter>
     </ClCompile>
   </ItemGroup>

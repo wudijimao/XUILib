@@ -81,14 +81,16 @@ namespace XResource {
     }
     const void* XFileData::getBuf(unsigned long location, unsigned long size) {
         const void *ret = XData::getBuf(location, size);
-        if (ret == nullptr) {
-            ret = getBufIntenal();
-            FILE *fp = fopen(mFileName.c_str(), "rb");
-            unsigned long bufferedSize = XData::size();
-            fseek(fp, bufferedSize, SEEK_SET);
-            fread((char*)ret + bufferedSize, 1, seekLocation() - bufferedSize, fp);
-            setSizeIntenal(seekLocation());
-            fclose(fp);
+		if (ret == nullptr) {
+			ret = getBufIntenal();
+			FILE *fp = fopen(mFileName.c_str(), "rb");
+			if (fp != nullptr) {
+				unsigned long bufferedSize = XData::size();
+				fseek(fp, bufferedSize, SEEK_SET);
+				fread((char*)ret + bufferedSize, 1, seekLocation() - bufferedSize, fp);
+				setSizeIntenal(seekLocation());
+				fclose(fp);
+			}
         }
         return ret;
     }
