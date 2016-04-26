@@ -40,6 +40,14 @@ bool GLCanvas::InitFrameBuffer() {
     return true;
 }
 
+void GLCanvas::enableGLSettings() {
+    //see docoment https://www.opengl.org/wiki/Blending
+    glEnable(GL_BLEND);
+    //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+}
+
 void GLCanvas::clear() {
 	for (auto data : _needRenderDatas)
 	{

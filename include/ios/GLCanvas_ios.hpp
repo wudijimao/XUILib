@@ -34,6 +34,7 @@ public:
             assert(false);
             return false;
         }
+        this->enableGLSettings();
         return true;
     }
     void updateSize(CAEAGLLayer* drawable) {

@@ -36,6 +36,7 @@ protected:
     XResource::XSize _size;
     bool InitFrameBuffer();
     bool InitGLProgram();
+    void enableGLSettings();
     virtual void setSize(const XResource::XSize &size) {
         _size = size;
         _transformMat[0] = 2.0 / (float)size.Width();
