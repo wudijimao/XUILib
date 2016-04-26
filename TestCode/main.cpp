@@ -20,7 +20,7 @@ class TestTextView : public XUI::UIView {
     virtual void drawRect(IXRender &render) {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
-        render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 255, 255)->_color , rect);
+        render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
     }
 };
 
@@ -35,7 +35,7 @@ public:
 		this->view()->addSubView(_testSubView);
 		auto subView2 = std::make_shared<TestTextView>();
         auto color = XResource::XUIColor::pinkColor()->copy();
-        color->_color.a = 100;
+        color->_color.a = 200;
 		subView2->setBkgColor(color);
 		subView2->setRect(XResource::XRectPro(20, 120, 100, 320));
 		this->view()->addSubView(subView2);

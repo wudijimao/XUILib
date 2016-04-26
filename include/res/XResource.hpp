@@ -30,7 +30,7 @@ namespace XResource
         unsigned char b;
         unsigned char a;
     };
-    class XUIColor {
+    class SIMPLEDIRECTUI_API XUIColor {
     public:
         static std::shared_ptr<XUIColor>whiteColor() {
             static auto color = std::make_shared<XUIColor>(255,255,255,255);

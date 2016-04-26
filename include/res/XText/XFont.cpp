@@ -2,7 +2,7 @@
 #include <ft2build.h>
 #include <freetype/ftglyph.h>
 #include FT_FREETYPE_H
-
+/*
 namespace XResource
 {
 	class TextGlyph {
@@ -11,7 +11,6 @@ namespace XResource
 
 	class XFont {
 	public:
-		static std::shared_ptr<XFont> fontWithName();
 	private:
 		FT_Face mFace;
 	};
@@ -172,3 +171,4 @@ namespace XResource
 	private:
 	};
 }
+*/
