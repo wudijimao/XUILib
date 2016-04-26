@@ -67,6 +67,24 @@ namespace XResource
 	class SIMPLEDIRECTUI_API XRect
 	{
 	public:
+        XRect &moveX(double x) {
+            mX += x;
+            return *this;
+        }
+        XRect &moveY(double y) {
+            mY += y;
+            return *this;
+        }
+        XRect &increaceWidth(double width) {
+            mWidth += width;
+            return *this;
+        }
+        XRect &increaceHeight(double height) {
+            mHeight += height;
+            return *this;
+        }
+
+        
         bool isPointIn(const XPoint &point) const {
             if (point.X() >= mX && point.Y() >= mY
                 && point.X() <= (mX + mWidth)

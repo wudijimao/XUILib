@@ -16,6 +16,14 @@ void DetectMemoryLeaks()
 #endif
 }
 
+class TestTextView : public XUI::UIView {
+    virtual void drawRect(IXRender &render) {
+        XResource::XRect rect = getFixRect();
+        rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
+        render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 255, 100)->_color , rect);
+    }
+};
+
 class ViewController : public XUI::UIViewController {
 public:
 	std::shared_ptr<XUI::UIView> _testSubView;
@@ -25,7 +33,7 @@ public:
 		_testSubView->setBkgColor(XResource::XUIColor::redColor());
 		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 180));
 		this->view()->addSubView(_testSubView);
-		auto subView2 = std::make_shared<XUI::UIView>();
+		auto subView2 = std::make_shared<TestTextView>();
 		subView2->setBkgColor(XResource::XUIColor::pinkColor());
 		subView2->setRect(XResource::XRectPro(20, 120, 100, 320));
 		this->view()->addSubView(subView2);

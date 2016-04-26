@@ -75,6 +75,10 @@ namespace XUI
             }
             return nullptr;
         }
+    protected:
+        const XResource::XRect &getFixRect() {
+            return _rect;
+        }
     public://protected:
         void layout(const XResource::XRect &absRect);
         void draw(IXRender &render);
