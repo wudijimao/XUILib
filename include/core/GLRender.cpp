@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iterator>
 #include "GL/GLRenderData.hpp"
+#include "../res/XText/XText.hpp"
 
 bool GLRender::Init(IXCanvas *canvas) {
     _canvas = (GLCanvas*)canvas;
@@ -29,6 +30,15 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_
     data->initWithRect(xRect, color, image);
     _canvas->pushRenderData(data);
 }
+void GLRender::DrawString(const XResource::XString &str, const XResource::XRect &xRect) {
+    XResource::XAttributeString attrStr(str);
+    auto frame = attrStr.createFrame();
+    static std::shared_ptr<XResource::XImage> emptyImg;
+    for (auto c : frame->mLines.front()->mGroups.front()->mChars) {
+        this->DrawBackGround(XResource::XUIColor::redColor()->_color, emptyImg, c->mRect);
+    }
+}
+
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {
 //
 //}

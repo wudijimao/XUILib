@@ -16,7 +16,7 @@ public:
 //	//文本相关要单独处理？？ 如何与普通图形分开 又不过多多谢代码（分开的理由是OpenGl应该也会使用其渲染文本， 或者使用其他文字渲染引擎，比如FreeType/DirectWrite）
 //	virtual void DrawString(const std::wstring &text, const XResource::XRect &xRect);
 //	virtual void DrawString(const std::wstring &text, const XResource::XRect &xRect, Gdiplus::StringAlignment align);
-//	virtual void DrawString(const XResource::XText &text, const XResource::XRect &xRect);
+    virtual void DrawString(const XResource::XString &str, const XResource::XRect &xRect) override;
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect);
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
 

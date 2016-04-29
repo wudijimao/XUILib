@@ -13,12 +13,18 @@
 #include "../XData.hpp"
 namespace XResource {
     
+    enum class XImagePixelFormart {
+        RGBA32,
+        Gray,
+    };
+    
     class SIMPLEDIRECTUI_API IXImage {
     public:
         virtual int width() = 0;
         virtual int height() = 0;
         virtual int count() = 0;
         virtual bool getImage(void *outBuf, int index) = 0;
+        virtual
     };
     
 }

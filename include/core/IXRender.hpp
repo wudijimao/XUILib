@@ -21,4 +21,5 @@ public:
 //	virtual void DrawString(const XResource::XText &text, const XResource::XRect &xRect) = 0;
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect) = 0;
 //	virtual XResource::XRect MeasureString(const std::wstring &text) = 0;
+    virtual void DrawString(const XResource::XString &str, const XResource::XRect &xRect) = 0;
 };

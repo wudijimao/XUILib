@@ -21,13 +21,14 @@ class TestTextView : public XUI::UIView {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
         render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
+        render.DrawString("ABCDE", rect);
     }
 };
 
 class ViewController : public XUI::UIViewController {
 public:
 	std::shared_ptr<XUI::UIView> _testSubView;
-	virtual void viewDidLoad() {
+	virtual void viewDidLoad() override {
 		XUI::UIViewController::viewDidLoad();
 		_testSubView = std::make_shared<XUI::UIView>();
 		_testSubView->setBkgColor(XResource::XUIColor::redColor());
@@ -61,15 +62,12 @@ public:
 		auto event = (*mouseEvents.begin());
 		if (event->eventType == MouseEventType::Up)
 		{
-			if (event->eventButton == MouseEventButton::Left)
-			{
+			if (event->eventButton == MouseEventButton::Left) {
 				event->_belongView->setBkgColor(XResource::XUIColor::grayColor());
-			}
-			else {
+			} else {
 				event->_belongView->setBkgColor(XResource::XUIColor::redColor());
 			}
 		}
-		
 	}
 };
 
