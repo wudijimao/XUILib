@@ -5,29 +5,29 @@
 
 namespace XResource {
     
-    class XCoreTextChar {
+    class SIMPLEDIRECTUI_API XCoreTextChar {
     public:
         XRect mRect;
         wchar_t mUnicodeChar;
     };
     
-    class XCoreTextGroup {
+    class SIMPLEDIRECTUI_API XCoreTextGroup {
     public:
         std::vector<XCoreTextChar*> mChars;
     };
     
-    class XCoreTextLine {
+    class SIMPLEDIRECTUI_API XCoreTextLine {
     public:
         std::vector<XCoreTextGroup*> mGroups;
     };
     
-    class XCoreTextFrame {
+    class SIMPLEDIRECTUI_API XCoreTextFrame {
     public:
         std::vector<XCoreTextLine*> mLines;
     };
     
     
-	class XAttributeString {
+	class SIMPLEDIRECTUI_API XAttributeString {
     public:
 		XAttributeString(const XString &str) {
 			mStr = str;

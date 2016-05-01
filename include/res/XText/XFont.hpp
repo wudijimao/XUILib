@@ -5,7 +5,7 @@
 
 namespace XResource
 {
-	class XFont {
+	class SIMPLEDIRECTUI_API XFont {
 	public:
 		//systomFonts
 		static std::shared_ptr<XFont> fontWithName(const char *fontName);

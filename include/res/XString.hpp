@@ -35,7 +35,7 @@ namespace XResource
     };
     
     //如果使用字符串的地方只支持UTF8 则不使用这个类，直接使用std::string,避免过多的依赖
-    class XString {
+    class SIMPLEDIRECTUI_API XString {
     public:
         static const long npos = -1;
         static const XString& emptyStr() {
