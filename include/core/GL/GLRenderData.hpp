@@ -10,6 +10,7 @@
 #include "../stdafx.hpp"
 #include "../../res/XResource.hpp"
 #include "GLHeaders.h"
+#include "GLProgram.hpp"
 
 namespace XDUILib {
     class GLTexture {
@@ -84,6 +85,7 @@ namespace XDUILib {
     };
     class GLRenderSquareData : public GLRenderData {
     public:
+		static GLProgram sProgram;
         GLfloat _square[12];
         GLfloat _texturePos[8];
         GLfloat _color[16];
@@ -138,32 +140,41 @@ namespace XDUILib {
         }
         GLuint bufObjects[3];
         void buildVAO() {
+			//must first create on gl 4 core
+			glGenVertexArrays(1, &_vectexArrayObject);
+			glBindVertexArray(_vectexArrayObject);
+
+			GLuint inPos = sProgram.getAttributeIndex("inPos");
+			GLuint vTexCoord = sProgram.getAttributeIndex("vTexCoord"); 
+			GLuint inColor = sProgram.getAttributeIndex("inColor");
+
             glGenBuffers(3, bufObjects);
             
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_square), _square, GL_STATIC_DRAW);
+			glVertexAttribPointer((GLuint)inPos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+			
             
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_texturePos), _texturePos, GL_STATIC_DRAW);
+			glVertexAttribPointer((GLuint)vTexCoord, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
+			
             
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[2]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_color), _color, GL_STATIC_DRAW);
+			glVertexAttribPointer((GLuint)inColor, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+
+			glEnableVertexAttribArray(inPos);
+			glEnableVertexAttribArray(vTexCoord);
+			glEnableVertexAttribArray(inColor);
+           
             
-            glGenVertexArrays(1, &_vectexArrayObject);
-            glBindVertexArray(_vectexArrayObject);
-            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
-            glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
-            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[2]);
-            glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
-            glEnableVertexAttribArray(0);
-            glEnableVertexAttribArray(1);
-            glEnableVertexAttribArray(2);
+            
+            
             glBindVertexArray(0);
-            glDisableVertexAttribArray(0);
+            /*glDisableVertexAttribArray(0);
             glDisableVertexAttribArray(1);
-            glEnableVertexAttribArray(2);
+            glDisableVertexAttribArray(2);*/
         }
     };
 }

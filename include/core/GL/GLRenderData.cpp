@@ -7,3 +7,8 @@
 //
 
 #include "GLRenderData.hpp"
+
+namespace XDUILib {
+	GLProgram GLRenderSquareData::sProgram;
+
+}

@@ -137,6 +137,9 @@ bool GLProgram::setUniformValue(const char *uniformName, GLint i) {
     glUniform1i(location, i);
     return true;
 }
+GLuint GLProgram::getAttributeIndex(const char *name) {
+	return glGetAttribLocation(_program, name);
+}
 
 bool GLProgram::enable() {
     glUseProgram(_program);

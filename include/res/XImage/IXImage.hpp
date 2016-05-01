@@ -14,6 +14,7 @@
 namespace XResource {
     
     enum class XImagePixelFormart {
+		UnKnown,
         RGBA32,
         Gray,
     };
@@ -24,7 +25,8 @@ namespace XResource {
         virtual int height() = 0;
         virtual int count() = 0;
         virtual bool getImage(void *outBuf, int index) = 0;
-        virtual
+	protected:
+		XImagePixelFormart mPeixlFormart = XImagePixelFormart::UnKnown;
     };
     
 }

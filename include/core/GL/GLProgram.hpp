@@ -18,6 +18,7 @@ public:
     bool setUniformValue(const char *uniformName, bool b);
     bool setUniformValue(const char *uniformName, GLint i);
     bool enable();
+	GLuint getAttributeIndex(const char *name);
 private:
     GLuint _program;
     

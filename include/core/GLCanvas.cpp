@@ -24,7 +24,11 @@ bool GLCanvas::InitGLProgram() {
     std::shared_ptr<XBundle> bundle = XBundle::libBundle();
 	auto vsh = bundle->pathForResource("shader/VertexShader", "vsh");
 	auto fsh = bundle->pathForResource("shader/FragmentShader", "fsh");
-    return _program.initWithFilePath(vsh.UTF8CStr() , fsh.UTF8CStr());
+    bool ret = _program.initWithFilePath(vsh.UTF8CStr() , fsh.UTF8CStr());
+	if (ret) {
+		XDUILib::GLRenderSquareData::sProgram = _program;
+	}
+	return ret;
 }
 
 bool GLCanvas::InitFrameBuffer() {
