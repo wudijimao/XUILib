@@ -16,16 +16,12 @@ namespace XResource {
     
 	bool IXImage::saveToFile(const char *fileName) {
 		auto data = getPixelsData(0);
-		char *pixels = new char[data->size()];
-		memcpy(pixels, data->getBuf(), data->size());
-			//(const char*)data->getBuf();
+		const char *pixels = (const char*)data->getBuf();
 
-		int j, i, pos;
 		png_byte color_type;
 
 		png_structp png_ptr;
 		png_infop info_ptr;
-		png_bytep * row_pointers;
 		/* create file */
 		FILE *fp = fopen(fileName, "wb");
 		if (!fp)
@@ -62,20 +58,24 @@ namespace XResource {
 		int width = this->width();
 		int height = this->height();
 		int rowByteSize;
+		int perPixelSize;
 		/* 判断要写入至文件的图片数据是否有透明度，来选择色彩类型 */
 		switch (pixelFormat())
 		{
 		case XImagePixelFormat::RGBA32:
 			color_type = PNG_COLOR_TYPE_RGB_ALPHA;
 			rowByteSize = width * 4;
+			perPixelSize = 4;
 			break;
 		case XImagePixelFormat::RGB24:
 			color_type = PNG_COLOR_TYPE_RGB;
 			rowByteSize = width * 3;
+			perPixelSize = 3;
 			break;
 		case XImagePixelFormat::Gray:
 			color_type = PNG_COLOR_TYPE_GRAY;
 			rowByteSize = width;
+			perPixelSize = 1;
 			break;
 		default:
 			return false;
@@ -94,13 +94,15 @@ namespace XResource {
 			printf("[write_png_file] Error during writing bytes");
 			return false;
 		}
-		//if (graph->flag == HAVE_ALPHA) temp = (4 * graph->width);
-		
-		row_pointers = new png_bytep[height];
-		for (i = 0; i < height; i++)
+		int pos = 0;
+		png_bytep *row_pointers = new png_bytep[height];
+		for (int i = 0; i < height; i++)
 		{
-			row_pointers[i] = (png_bytep)pixels[i*rowByteSize];
+			//row_pointers[i] = (png_bytep)pixels[i*rowByteSize];
+			row_pointers[i] = new png_byte[rowByteSize];
+			memcpy(row_pointers[i], &pixels[i*rowByteSize], rowByteSize);
 		}
+
 		png_write_image(png_ptr, row_pointers);
 
 		/* end write */
@@ -110,6 +112,11 @@ namespace XResource {
 			return false;
 		}
 		png_write_end(png_ptr, NULL);
+		for (int i = 0; i < height; i++)
+		{
+			delete[] row_pointers[i];
+		}
+
 		delete[] row_pointers;
 		fclose(fp);
 		return true;

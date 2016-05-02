@@ -66,6 +66,11 @@ namespace XDUILib {
 			switch (image->pixelFormat())
 			{
 			case XResource::XImagePixelFormat::RGBA32:
+			{
+				std::stringstream s;
+				s << "a" << (void*)image << ".png";
+				image->saveToFile(s.str().c_str());
+			}
 				format = GL_RGBA;
 				break;
 			case XResource::XImagePixelFormat::RGB24:
@@ -77,6 +82,11 @@ namespace XDUILib {
 				format = GL_RGB;
 				break;
 			case XResource::XImagePixelFormat::Gray:
+			{
+				std::stringstream s;
+				s << "a" << (void*)image << ".png";
+				image->saveToFile(s.str().c_str());
+			}
 				format = GL_ALPHA;
 				break;
 			default:
