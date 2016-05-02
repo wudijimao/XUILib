@@ -1,4 +1,4 @@
-//
+﻿//
 //  XString.cpp
 //  XImage
 //
@@ -6,6 +6,7 @@
 //  Copyright © 2016年 ximiao. All rights reserved.
 //
 
+#include <assert.h>
 #include "XString.hpp"
 #include <locale>
 #include <codecvt>
@@ -88,8 +89,15 @@ namespace XResource {
     //utf8 => utf16(Unicode)
     inline const std::wstring utf8_2_ws( const std::string& src )
     {
-        std::wstring_convert<std::codecvt_utf8<wchar_t> > conv;
-        return conv.from_bytes( src );
+		std::wstring_convert<std::codecvt_utf8<wchar_t> > conv;
+		try {
+		unsigned char *str = (unsigned char*)&src[0];
+			return conv.from_bytes( src );
+		}
+		catch (std::range_error) {
+			//assert(false);
+			return L"E我";
+		}
     }
     
     XString::XString(){

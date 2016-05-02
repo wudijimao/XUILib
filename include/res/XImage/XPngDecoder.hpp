@@ -30,4 +30,5 @@ protected:
     bool getImage(void *outBuf, int index);
 };
 
+
 }

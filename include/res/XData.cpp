@@ -14,8 +14,10 @@ namespace XResource {
     
     std::shared_ptr<XData> XData::dataForContentOfFile(const char *fileName) {
         auto data = std::make_shared<XFileData>();
-        data->open(fileName);
-        return data;
+		if (data->open(fileName)) {
+			return data;
+		}
+		return nullptr;
     }
     
     std::shared_ptr<XData> XData::dataForBuf(char *buf, unsigned long size) {
@@ -44,6 +46,9 @@ namespace XResource {
         }
         return nullptr;
     }
+	const void * XData::getBuf() {
+		return mBuf;
+	}
     void * XData::detachBuf(){
         char *buf = mBuf;
         mBuf = nullptr;
@@ -82,14 +87,15 @@ namespace XResource {
     const void* XFileData::getBuf(unsigned long location, unsigned long size) {
         const void *ret = XData::getBuf(location, size);
 		if (ret == nullptr) {
-			ret = getBufIntenal();
 			FILE *fp = fopen(mFileName.c_str(), "rb");
 			if (fp != nullptr) {
 				unsigned long bufferedSize = XData::size();
+				char *buf = (char*)getBufIntenal() + bufferedSize;
 				fseek(fp, bufferedSize, SEEK_SET);
-				fread((char*)ret + bufferedSize, 1, seekLocation() - bufferedSize, fp);
+				fread(buf, 1, seekLocation() - bufferedSize, fp);
 				setSizeIntenal(seekLocation());
 				fclose(fp);
+				ret = (char*)getBufIntenal() + location;
 			}
         }
         return ret;
@@ -100,6 +106,9 @@ namespace XResource {
     const void* XFileData::getBuf(unsigned long size) {
         return getBuf(0, size);
     }
+	const void * XFileData::getBuf() {
+		return getBuf(size());
+	}
     void* XFileData::detachBuf() {
         getBuf(0, size());
         return XData::detachBuf();

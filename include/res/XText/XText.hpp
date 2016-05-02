@@ -9,6 +9,7 @@ namespace XResource {
     public:
         XRect mRect;
         wchar_t mUnicodeChar;
+		std::shared_ptr<IXImage> mImage;
     };
     
     class SIMPLEDIRECTUI_API XCoreTextGroup {
@@ -39,25 +40,7 @@ namespace XResource {
 		const wchar_t *getUinicodeCStr() {
 			return mUnicodeCacheStr.c_str();
 		}
-        std::shared_ptr<XCoreTextFrame> createFrame(){
-            auto frame = std::make_shared<XCoreTextFrame>();
-            auto line = new XCoreTextLine();
-            frame->mLines.push_back(line);
-            auto group = new XCoreTextGroup();
-            line->mGroups.push_back(group);
-            double x = 0;
-            for (auto c : mUnicodeCacheStr) {
-                auto textChar = new XCoreTextChar();
-                textChar->mUnicodeChar = c;
-                textChar->mRect.X(x);
-                textChar->mRect.Y(10.0);
-                textChar->mRect.Width(20.0);
-                textChar->mRect.Height(20.0);
-                group->mChars.push_back(textChar);
-                x += 30.0;
-            }
-            return frame;
-        }
+		std::shared_ptr<XCoreTextFrame> createFrame();
 	private:
 		XString mStr;
 		std::wstring mUnicodeCacheStr;

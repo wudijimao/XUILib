@@ -94,16 +94,16 @@ namespace XResource
         switch (color_type)
         {
             case PNG_COLOR_TYPE_GRAY:
-                //_renderFormat = Texture2D::PixelFormat::I8;
+				mPixelFormart = XResource::XImagePixelFormat::Gray;
                 break;
             case PNG_COLOR_TYPE_GRAY_ALPHA:
                 //_renderFormat = Texture2D::PixelFormat::AI88;
                 break;
             case PNG_COLOR_TYPE_RGB:
-                //_renderFormat = Texture2D::PixelFormat::RGB888;
+				mPixelFormart = XResource::XImagePixelFormat::RGB24;
                 break;
             case PNG_COLOR_TYPE_RGB_ALPHA:
-                //_renderFormat = Texture2D::PixelFormat::RGBA8888;
+				mPixelFormart = XResource::XImagePixelFormat::RGBA32;
                 break;
             default:
                 break;
@@ -129,10 +129,13 @@ namespace XResource
         png_size_t rowbytes;
         png_bytep* row_pointers = new png_bytep[this->height()];
         
+		
+
         rowbytes = png_get_rowbytes(png_ptr, info_ptr);
         
         //unsigned long dataSize = rowbytes * this->height() * sizeof(char);
-        unsigned char *data;
+
+		unsigned char *data;// = (unsigned char*)malloc(rowbytes * height());;
         //data = static_cast<char*>(malloc(dataSize));
         data = (unsigned char *)outBuf;
         if (!data)
@@ -150,7 +153,20 @@ namespace XResource
         }
         png_read_image(png_ptr, row_pointers);
         png_read_end(png_ptr, nullptr);
-        return false;
+
+		/*unsigned char *outData = (unsigned char *)outBuf;
+		for (unsigned short i = 0; i < this->height(); ++i)
+		{
+			for (size_t i = 0; i < this->width(); i++, outData+=4, data+=3)
+			{
+				outData[0] = data[0];
+				outData[1] = data[1];
+				outData[2] = data[2];
+				outData[3] = 255;
+			}
+		}*/
+        return true;
     }
+
     
 }

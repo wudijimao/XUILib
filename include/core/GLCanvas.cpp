@@ -87,27 +87,8 @@ bool GLCanvas::Present() {
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::Square: {
-                _program.enable();
-                
-                GLuint textureId = ((XDUILib::GLRenderSquareData*)data)->_textureId;
-                if (textureId < 10) {
-                    glActiveTexture(GL_ACTIVE_TEXTURE - 1);
-                    glBindTexture(GL_TEXTURE_2D, textureId);
-                    _program.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
-                    
-                    _program.setUniformValue("useTexture", true);
-                } else {
-                    _program.setUniformValue("useTexture", false);
-                }
-                
-                glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
-                //glEnableVertexAttribArray(0);
-                //glEnableVertexAttribArray(1);
-                glBindVertexArray(data->_vectexArrayObject);
-                
-                // Draw
-                glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-                std::cout << "present HOme" << std::endl;
+				glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
+				data->render();
             }
                 break;
             default:

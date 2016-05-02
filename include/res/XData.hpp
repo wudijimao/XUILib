@@ -12,6 +12,10 @@ namespace XResource
 {
     class SIMPLEDIRECTUI_API XData {
     public:
+		static std::shared_ptr<XData> data() {
+			return std::make_shared<XData>();
+		}
+
         typedef std::allocator<char> _Allocator;
         _Allocator mAllocator;
         virtual ~XData(){
@@ -21,6 +25,7 @@ namespace XResource
         virtual const void *getBuf(unsigned long location, unsigned long size);
         virtual const void *getBufFrom(unsigned long location);
         virtual const void *getBuf(unsigned long size);
+		virtual const void *getBuf();
         virtual void *detachBuf();
         virtual const void *attachBuf(void *buf, unsigned long size) {
             mBuf = (char*)buf;
@@ -92,6 +97,7 @@ namespace XResource
         virtual const void *getBuf(unsigned long location, unsigned long size) override;
         virtual const void *getBufFrom(unsigned long location) override;
         virtual const void *getBuf(unsigned long size) override;
+		virtual const void *getBuf() override;
         virtual void *detachBuf() override;
     private:
         unsigned long mFileSize = 0;

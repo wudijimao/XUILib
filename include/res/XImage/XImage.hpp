@@ -28,8 +28,52 @@ namespace XResource {
         virtual int height() override;
         virtual int count() override;
         virtual bool getImage(void *outBuf, int index) override;
+		virtual XImagePixelFormat pixelFormat() override {
+			if (mDecoder != nullptr) {
+				return mDecoder->pixelFormat();
+			}
+			return XImagePixelFormat::UnKnown;
+		}
     private:
+		friend IXImage;
         static std::vector<XImageDecoder*> *decoders;
     };
+
+	class SIMPLEDIRECTUI_API XPixelImage : public IXImage {
+	public:
+		virtual int width() override {
+			return mWidth;
+		}
+		virtual int height() override {
+			return mHeight;
+		}
+		virtual int count() override {
+			return 1;
+		}
+		virtual bool getImage(void *outBuf, int index) override {
+			if(mData) {
+				memcpy(outBuf, mData->getBuf(), mData->size());
+				return true;
+			}
+			return false;
+		}
+		virtual std::shared_ptr<XData> getPixelsData(int index) override {
+			return mData;
+		}
+		XPixelImage(const std::shared_ptr<XData> &pixelsData, int width, int height, XImagePixelFormat format) {
+			mPixelFormart = format;
+			mWidth = width;
+			mHeight = height;
+			mData = pixelsData;
+		}
+		virtual XImagePixelFormat pixelFormat() override {
+			return mPixelFormart;
+		}
+	private:
+		XImagePixelFormat mPixelFormart = XImagePixelFormat::RGBA32;
+		int mWidth;
+		int mHeight;
+		std::shared_ptr<XData> mData;
+	};
 }
 

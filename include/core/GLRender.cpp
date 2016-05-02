@@ -20,12 +20,12 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::X
     data->initWithRect(xRect, color, emptyImg);
     _canvas->pushRenderData(data);
 }
-void GLRender::DrawImage(const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &rect) {
+void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
     _canvas->pushRenderData(data);
 }
-void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::XImage> &image, const XResource::XRect &xRect) {
+void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(xRect, color, image);
     _canvas->pushRenderData(data);
@@ -33,9 +33,8 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_
 void GLRender::DrawString(const XResource::XString &str, const XResource::XRect &xRect) {
     XResource::XAttributeString attrStr(str);
     auto frame = attrStr.createFrame();
-    static std::shared_ptr<XResource::XImage> emptyImg;
-    for (auto c : frame->mLines.front()->mGroups.front()->mChars) {
-        this->DrawBackGround(XResource::XUIColor::redColor()->_color, emptyImg, c->mRect);
+    for (auto f : frame->mLines.front()->mGroups.front()->mChars) {
+        this->DrawBackGround(XResource::XUIColor::redColor()->_color, f->mImage, f->mRect);
     }
 }
 

@@ -193,7 +193,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>GdiPlus.lib;glew32s.lib;opengl32.lib;libcurl_imp.lib;ws2_32.lib;libjpeg-2015.lib;libpng-2015.lib;giflib.lib;libzlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GdiPlus.lib;glew32s.lib;opengl32.lib;libcurl_imp.lib;ws2_32.lib;libjpeg-2015.lib;libpng-2015.lib;giflib.lib;libzlib.lib;freetype250.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\..\..\ThirdParty\prebuilt\win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

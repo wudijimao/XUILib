@@ -1,4 +1,4 @@
-#include <XDUILib.hpp>
+﻿#include <XDUILib.hpp>
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
@@ -20,8 +20,8 @@ class TestTextView : public XUI::UIView {
     virtual void drawRect(IXRender &render) {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
-        render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
-        render.DrawString("ABCDE", rect);
+       // render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
+        render.DrawString("HELLOWWORLD!", rect);
     }
 };
 
@@ -44,10 +44,10 @@ public:
 		subView3->setBkgColor(XResource::XUIColor::blueColor());
 		subView3->setRect(XResource::XRectPro(5, 20, 15, 50));
 		_testSubView->addSubView(subView3);
-		//auto img = XResource::XImage::imageNamed("test.jpg");
-		//_testSubView->setBkgImg(img);
+		auto img = XResource::XImage::imageNamed("test.png");
+		subView2->setBkgImg(img);
 		auto request = std::make_shared<XHTTPRequest>();
-		request->url = "http://ww2.sinaimg.cn/mw690/4e3af31cjw1f3711zjgz1j21hc0xc122.jpg";
+		request->url = "http://ww1.sinaimg.cn/mw690/4e3af31cjw1f3gtjp10lhj20ci071t8w.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
             auto image = std::make_shared<XResource::XImage>(response->data());
             _testSubView->setBkgImg(image);

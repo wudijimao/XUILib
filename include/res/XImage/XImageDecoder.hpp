@@ -24,6 +24,11 @@ namespace XResource {
         virtual ~XImageDecoder();
         
         static size_t getDecoders(std::vector<XImageDecoder*> &decoders);
+		virtual XImagePixelFormat pixelFormat() override {
+			return mPixelFormart;
+		}
+	protected:
+		XImagePixelFormat mPixelFormart = XImagePixelFormat::RGBA32;
     protected:
         std::shared_ptr<XData> mData;
     };

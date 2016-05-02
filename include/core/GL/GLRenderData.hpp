@@ -11,59 +11,83 @@
 #include "../../res/XResource.hpp"
 #include "GLHeaders.h"
 #include "GLProgram.hpp"
+#include <sstream>
 
 namespace XDUILib {
-    class GLTexture {
-    public:
-        std::shared_ptr<XResource::XImage> Img() {
-            return std::shared_ptr<XResource::XImage>(_img);
-        }
-        GLuint glTextureIndex() {
-            return _glTextureIndex;
-        }
-    protected:
-        GLTexture(std::shared_ptr<XResource::XImage> img, int glTextureIndex) {
-            _img = img;
-            _glTextureIndex = glTextureIndex;
-        }
-    private:
-        std::weak_ptr<XResource::XImage> _img;
-        GLuint _glTextureIndex;
-    };
-    class GLTextureManager {
-        std::map<XResource::XImage *, GLuint> textureMap;
-    public:
-        //临时  应该一个Canvas对应一个manager？
-        static GLTextureManager &sharedInstance() {
-            static GLTextureManager manager;
-            return manager;
-        }
-        
-        //TODO::需要支持淘汰机制 和 多图（gif）
-        GLuint getTextureID(const std::shared_ptr<XResource::XImage> &image) {
-            XResource::XImage *img = image.get();
-            auto iter = textureMap.find(img);
-            GLuint textureId;
-            if (iter == textureMap.end()) {
-                textureId = loadTexture(img);
-                textureMap[img] = textureId;
-            } else {
-                textureId = iter->second;
-            }
-            return textureId;
-        }
-        GLuint loadTexture(XResource::XImage *image) {
-            GLuint textureId;
-            int width = image->width();
-            int height = image->height();
-            XResource::XColor *rawData = new XResource::XColor[width * height];
-            image->getImage(rawData, 0);
-            glGenTextures(1, &textureId);
-            glBindTexture(GL_TEXTURE_2D, textureId);
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawData);
+	class GLTexture {
+	public:
+		std::shared_ptr<XResource::XImage> Img() {
+			return std::shared_ptr<XResource::XImage>(_img);
+		}
+		GLuint glTextureIndex() {
+			return _glTextureIndex;
+		}
+	protected:
+		GLTexture(std::shared_ptr<XResource::XImage> img, int glTextureIndex) {
+			_img = img;
+			_glTextureIndex = glTextureIndex;
+		}
+	private:
+		std::weak_ptr<XResource::XImage> _img;
+		GLuint _glTextureIndex;
+	};
+	class GLTextureManager {
+		std::map<XResource::IXImage *, GLuint> textureMap;
+	public:
+		//临时  应该一个Canvas对应一个manager？
+		static GLTextureManager &sharedInstance() {
+			static GLTextureManager manager;
+			return manager;
+		}
+
+		//TODO::需要支持淘汰机制 和 多图（gif）
+		GLuint getTextureID(const std::shared_ptr<XResource::IXImage> &image) {
+			XResource::IXImage *img = image.get();
+			auto iter = textureMap.find(img);
+			GLuint textureId;
+			if (iter == textureMap.end()) {
+				textureId = loadTexture(img);
+				textureMap[img] = textureId;
+			}
+			else {
+				textureId = iter->second;
+			}
+			return textureId;
+		}
+		GLuint loadTexture(XResource::IXImage *image) {
+			GLuint textureId;
+			int width = image->width();
+			int height = image->height();
+			auto data = image->getPixelsData(0);
+			
+			glGenTextures(1, &textureId);
+			glBindTexture(GL_TEXTURE_2D, textureId);
+			GLuint format = 0;
+			switch (image->pixelFormat())
+			{
+			case XResource::XImagePixelFormat::RGBA32:
+				format = GL_RGBA;
+				break;
+			case XResource::XImagePixelFormat::RGB24:
+			{
+				std::stringstream s;
+				s << "a" << (void*)image << ".png";
+				image->saveToFile(s.str().c_str());
+			}
+				format = GL_RGB;
+				break;
+			case XResource::XImagePixelFormat::Gray:
+				format = GL_ALPHA;
+				break;
+			default:
+				return 0;
+			}
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, data->getBuf());
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			delete rawData;
             return textureId;
         }
     };
@@ -81,7 +105,7 @@ namespace XDUILib {
         virtual GLRenderDataType Type() {
             return GLRenderDataType::UnKnown;
         }
-        virtual void apply() = 0;
+        virtual void render() = 0;
     };
     class GLRenderSquareData : public GLRenderData {
     public:
@@ -89,11 +113,11 @@ namespace XDUILib {
         GLfloat _square[12];
         GLfloat _texturePos[8];
         GLfloat _color[16];
-        GLuint  _textureId = 10000;
+        GLuint  _textureId = 0;
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
-        void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::XImage> &image) {
+        void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
             _square[0] = rect.X();
             _square[1] = rect.Y();
             _square[2] = 0.5;
@@ -130,7 +154,24 @@ namespace XDUILib {
             }
             buildVAO();
         }
-        virtual void apply() override {
+       virtual void render() override {
+		   GLRenderSquareData::sProgram.enable();
+		   if (_textureId > 0) {
+			   glActiveTexture(GL_ACTIVE_TEXTURE - 1);
+			   glBindTexture(GL_TEXTURE_2D, _textureId);
+			   GLRenderSquareData::sProgram.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
+
+			   GLRenderSquareData::sProgram.setUniformValue("useTexture", true);
+		   }
+		   else {
+			   GLRenderSquareData::sProgram.setUniformValue("useTexture", false);
+		   }
+		   //glEnableVertexAttribArray(0);
+		   //glEnableVertexAttribArray(1);
+		   glBindVertexArray(_vectexArrayObject);
+
+		   // Draw
+		   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
     private:
         virtual ~GLRenderSquareData() {
