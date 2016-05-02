@@ -1,8 +1,10 @@
 ﻿#include <XDUILib.hpp>
+#pragma execution_character_set("utf-8")
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
 using namespace XDUILib;
+
 
 void DetectMemoryLeaks()
 {
@@ -21,7 +23,7 @@ class TestTextView : public XUI::UIView {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
        // render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
-        render.DrawString("HELLOWWORLD!", rect);
+        render.DrawString("黄静我爱你！！", rect);
     }
 };
 
