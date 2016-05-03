@@ -182,7 +182,8 @@ namespace XResource
 			auto group = new XCoreTextGroup();
 			line->mGroups.push_back(group);
 			double x = 20;
-			auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
+			//auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
+            auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
 			face->setSize(130);
 			for (auto c : mUnicodeCacheStr) {
 				auto textChar = new XCoreTextChar();

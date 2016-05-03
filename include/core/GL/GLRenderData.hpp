@@ -69,7 +69,7 @@ namespace XDUILib {
 			{
 				std::stringstream s;
 				s << "a" << (void*)image << ".png";
-				image->saveToFile(s.str().c_str());
+				//image->saveToFile(s.str().c_str());
 			}
 				format = GL_RGBA;
 				break;
@@ -77,7 +77,7 @@ namespace XDUILib {
 			{
 				std::stringstream s;
 				s << "a" << (void*)image << ".png";
-				image->saveToFile(s.str().c_str());
+				//image->saveToFile(s.str().c_str());
 			}
 				format = GL_RGB;
 				break;
@@ -85,7 +85,7 @@ namespace XDUILib {
 			{
 				std::stringstream s;
 				s << "a" << (void*)image << ".png";
-				image->saveToFile(s.str().c_str());
+				//image->saveToFile(s.str().c_str());
 			}
 				format = GL_ALPHA;
 				break;
@@ -94,8 +94,8 @@ namespace XDUILib {
 			}
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, format, GL_UNSIGNED_BYTE, data->getBuf());
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             return textureId;

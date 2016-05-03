@@ -22,6 +22,7 @@ namespace XResource {
     
     class SIMPLEDIRECTUI_API IXImage {
     public:
+        virtual ~IXImage() {}
         virtual int width() = 0;
         virtual int height() = 0;
         virtual int count() = 0;

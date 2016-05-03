@@ -17,11 +17,11 @@ namespace XResource {
     class SIMPLEDIRECTUI_API XImage : public IXImage {
     public:
 		static std::shared_ptr<XImage> imageNamed(const char *name);
+        static std::shared_ptr<XImage> imageFromData(std::shared_ptr<XData> &data);
+        static std::shared_ptr<XImage> imageFromFile(const char *filePath);
         XImageDecoder *mDecoder = nullptr;
         XImage () {
         }
-        XImage (const char *filePath);
-		XImage(std::shared_ptr<XData> &data);
         ~XImage();
         bool initWithData(const std::shared_ptr<XData> &data);
         virtual int width() override;

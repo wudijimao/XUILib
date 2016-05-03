@@ -233,7 +233,7 @@ std::shared_ptr<XDictionaryInfo> XSandBox::cacheDict() {
 		auto path = homeDict()->getPath();
 		path.append("/Library/Caches");
 		mCacheDict = std::make_shared<XDictionaryInfo>(path.UTF8CStr());
-		if ((int)mCacheDict->create() > 0) {
+		if ((int)mCacheDict->create() < 0) {
 			mCacheDict.reset();
 		}
 	}
@@ -244,7 +244,7 @@ std::shared_ptr<XDictionaryInfo> XSandBox::documentDict() {
 		auto path = homeDict()->getPath();
 		path.append("/Documents");
 		mDocDict = std::make_shared<XDictionaryInfo>(path.UTF8CStr());
-		if ((int)mDocDict->create() > 0) {
+		if ((int)mDocDict->create() < 0) {
 			mDocDict.reset();
 		}
 	}
@@ -255,7 +255,7 @@ std::shared_ptr<XDictionaryInfo> XSandBox::libaryDict() {
 		auto path = homeDict()->getPath();
 		path.append("/Library");
 		mLibaryDict = std::make_shared<XDictionaryInfo>(path.UTF8CStr());
-		if ((int)mLibaryDict->create() > 0) {
+		if ((int)mLibaryDict->create() < 0) {
 			mLibaryDict.reset();
 		}
 	}
@@ -266,7 +266,7 @@ std::shared_ptr<XDictionaryInfo> XSandBox::tmpDict() {
 		auto path = homeDict()->getPath();
 		path.append("tmp");
 		mTmpDict = std::make_shared<XDictionaryInfo>(path.UTF8CStr());
-		if ((int)mTmpDict->create() > 0) {
+		if ((int)mTmpDict->create() < 0) {
 			mTmpDict.reset();
 		}
 	}

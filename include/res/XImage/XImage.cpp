@@ -12,9 +12,12 @@
 #include "../../core/XResManager.hpp"
 #include <png.h>
 
+
 namespace XResource {
     
 	bool IXImage::saveToFile(const char *fileName) {
+        auto path = XSandBox::sharedSandBox().documentDict()->fileInfoFor(fileName)->getPath();
+        
 		auto data = getPixelsData(0);
 		const char *pixels = (const char*)data->getBuf();
 
@@ -23,7 +26,7 @@ namespace XResource {
 		png_structp png_ptr;
 		png_infop info_ptr;
 		/* create file */
-		FILE *fp = fopen(fileName, "wb");
+		FILE *fp = fopen(path.UTF8CStr(), "wb");
 		if (!fp)
 		{
 			return false;
@@ -124,27 +127,22 @@ namespace XResource {
   
     std::vector<XImageDecoder*>* XImage::decoders = 0;
     
-    XImage::XImage (const char *filePath) {
-        auto data = XData::dataForContentOfFile(filePath);
-		initWithData(data);
-    }
-    XImage::XImage(std::shared_ptr<XData> &data) {
-		initWithData(data);
-	}
 	bool XImage::initWithData(const std::shared_ptr<XData> &data) {
         if (decoders == nullptr) {
             decoders = new std::vector<XImageDecoder*>();
             XImageDecoder::getDecoders(*decoders);
         }
         bool ret = false;
-		for (auto decoder : *decoders) {
-			if (decoder->isThisFormart(data)) {
-				mDecoder = decoder->fork();
-				mDecoder->initWithData(data);
-                ret = true;
-				break;
-			}
-		}
+        if(data) {
+            for (auto decoder : *decoders) {
+                if (decoder->isThisFormart(data)) {
+                    mDecoder = decoder->fork();
+                    mDecoder->initWithData(data);
+                    ret = true;
+                    break;
+                }
+            }
+        }
         return ret;
 	}
     XImage::~XImage() {
@@ -177,9 +175,22 @@ namespace XResource {
         }
         return false;
     }
+    //static
+    std::shared_ptr<XImage> XImage::imageFromData(std::shared_ptr<XData> &data) {
+        auto img = std::make_shared<XImage>();
+        if(img->initWithData(data)) {
+            return img;
+        } else {
+            return nullptr;
+        }
+    }
+    std::shared_ptr<XImage> XImage::imageFromFile(const char *filePath) {
+        auto data = XData::dataForContentOfFile(filePath);
+        return imageFromData(data);
+    }
 	std::shared_ptr<XImage> XImage::imageNamed(const char *name) {
 		auto path = XBundle::mainBundle()->pathForResource(name);
-		return std::make_shared<XImage>(path.UTF8CStr());
+        return imageFromFile(path.UTF8CStr());
 	}
     
 }

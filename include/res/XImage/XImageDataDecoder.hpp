@@ -17,7 +17,7 @@ namespace XResource
         friend XImageDecoder;
     private:
     protected:
-        virtual ~XPngDecoder();
+        virtual ~XImageDataDecoder();
         static NULL_ABLE XImageDecoder *getInstance();
         virtual NULL_ABLE XImageDecoder *fork();
         bool isThisFormart(const std::shared_ptr<XData> &data) {
