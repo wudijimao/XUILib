@@ -34,7 +34,7 @@ void GLRender::DrawString(const XResource::XString &str, const XResource::XRect 
     XResource::XAttributeString attrStr(str);
     auto frame = attrStr.createFrame();
     for (auto f : frame->mLines.front()->mGroups.front()->mChars) {
-        this->DrawBackGround(XResource::XUIColor::redColor()->_color, f->mImage, f->mRect);
+        this->DrawBackGround(XResource::XUIColor::redColor()->_color, f->mGlyph->mImage, f->mRect);
     }
 }
 

@@ -7,7 +7,6 @@
 
 namespace XResource
 {
-
 	class XFreeTypeFace {
 	public:
 		FT_Face mFace;
@@ -57,7 +56,8 @@ namespace XResource
 				return nullptr; //TODO loadFromOtherFont
 			}
 		}
-		std::shared_ptr<IXImage>getImage(wchar_t utf8CharctorCode) {
+		XGlyphPtr getXGlyph(wchar_t utf8CharctorCode) {
+            XGlyphPtr gly = std::make_shared<XGlyph>();
 			std::shared_ptr<IXImage> image;
 			FT_GlyphSlot glyph = this->getGlyph(utf8CharctorCode);
 			if (glyph != nullptr) {
@@ -69,17 +69,22 @@ namespace XResource
 					}
 				}
 				const FT_Bitmap *bitMap = &(glyph->bitmap);
+                memcpy(&gly->mMetrics, &glyph->metrics, sizeof(FT_Glyph_Metrics));
+                memcpy(&gly->mFontMetrics, &mFace->size->metrics, sizeof(FT_Size_Metrics));
 				if (bitMap->pixel_mode == FT_PIXEL_MODE_GRAY) {
 					auto data = XData::data();
 					data->appendData(bitMap->buffer, bitMap->width * bitMap->rows);
 					image.reset(new XPixelImage(data, bitMap->width, bitMap->rows, XImagePixelFormat::Gray));
+                    gly->mImage = image;
+                    gly->mImageLeft = glyph->bitmap_left;
+                    gly->mImageTop = glyph->bitmap_top;
 					//image = XImage::imageNamed("a0619F6F8.png");
 					//CGDataProvider *provider = CGDataProviderCreateWithData(NULL, bitMap->buffer, bitMap->width * bitMap->rows, NULL);
 					//CGImage *cgImage = CGImageCreate(bitMap->width, bitMap->rows, 8, 8, bitMap->width, CGColorSpaceCreateDeviceGray(), kCGBitmapByteOrderDefault, provider, NULL, NO, kCGRenderingIntentDefault);
 					//UIImage *image = [UIImage imageWithCGImage : cgImage];
 				}
 			}
-			return image;
+			return gly;
 		}
 
 	};
@@ -184,21 +189,22 @@ namespace XResource
 			double x = 20;
 			//auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
             auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
-			face->setSize(130);
+			face->setSize(30);
 			for (auto c : mUnicodeCacheStr) {
 				auto textChar = new XCoreTextChar();
-				textChar->mUnicodeChar = c;
-				textChar->mRect.X(x);
-				textChar->mRect.Y(10.0);
-				textChar->mRect.Width(15.0);
-				textChar->mRect.Height(20.0);
-				if (face) {
-					textChar->mImage = face->getImage(c);
-				}
+                if (face) {
+                    textChar->mGlyph = face->getXGlyph(c);
+                }
+				textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
+				textChar->mRect.Y(10.0 + textChar->mGlyph->mFontMetrics.ascender / 64 - textChar->mGlyph->mImageTop);
+				textChar->mRect.Width(textChar->mGlyph->mImage->width());
+				textChar->mRect.Height(textChar->mGlyph->mImage->height());
 				group->mChars.push_back(textChar);
-				x += 20.0;
+				x += (textChar->mGlyph->mMetrics.width / 64 + 3);
 			}
 		}
 		return frame;
 	}
 }
+
+

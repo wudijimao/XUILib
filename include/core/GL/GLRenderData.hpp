@@ -155,6 +155,9 @@ namespace XDUILib {
             
             if (image.get() != nullptr) {
                 _textureId = GLTextureManager::sharedInstance().getTextureID(image);
+                if (image->pixelFormat() == XResource::XImagePixelFormat::Gray) {
+                    mIsAlphaTexture = true;
+                }
             }
             
             GLfloat glColor[4] = {color.r / 255.0f, color.g / 255.0f, color.b / 255.0f, color.a / 255.0f };
@@ -172,6 +175,7 @@ namespace XDUILib {
 			   GLRenderSquareData::sProgram.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
 
 			   GLRenderSquareData::sProgram.setUniformValue("useTexture", true);
+               GLRenderSquareData::sProgram.setUniformValue("isAlphaTexture", mIsAlphaTexture);
 		   }
 		   else {
 			   GLRenderSquareData::sProgram.setUniformValue("useTexture", false);
@@ -184,6 +188,7 @@ namespace XDUILib {
 		   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
     private:
+        bool mIsAlphaTexture;
         virtual ~GLRenderSquareData() {
             GLRenderData::~GLRenderData();
             glDeleteBuffers(3, bufObjects);

@@ -14,6 +14,9 @@ std::shared_ptr<XDictionaryInfo> XSandBox::homeDict() {
     if (!mHomeDict) {
         NSString *nsStr = NSHomeDirectory();
         mHomeDict = XDictionaryInfo::dictInfoForPath(nsStr.UTF8String);
+        
+        NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        
     }
     return mHomeDict;
 }

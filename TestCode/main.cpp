@@ -23,7 +23,7 @@ class TestTextView : public XUI::UIView {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
        // render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
-        render.DrawString("黄静我爱你！！", rect);
+        render.DrawString("泉此方", rect);
     }
 };
 
@@ -49,7 +49,7 @@ public:
 		auto img = XResource::XImage::imageNamed("test.png");
 		subView2->setBkgImg(img);
 		auto request = std::make_shared<XHTTPRequest>();
-		request->url = "http://ww1.sinaimg.cn/mw690/4e3af31cjw1f3gtjp10lhj20ci071t8w.jpg";
+		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
             auto image = XResource::XImage::imageFromData(response->data());
             _testSubView->setBkgImg(image);
