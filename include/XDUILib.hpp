@@ -12,6 +12,7 @@
 #include "core/XApp.hpp"
 #include "core/IXWindow.hpp"
 #include "res/XImage/XImage.hpp"
+#include "res/XText/XText.hpp"
 #include "core/XResManager.hpp"
 #include "core/MutiThread/XDispatch.h"
 #include "http/XHTTPClient.hpp"

@@ -11,6 +11,8 @@
 #define NONE_NULL
 #include "../../core/stdafx.hpp"
 #include "../XData.hpp"
+#include "../XRect.hpp"
+
 namespace XResource {
     
     enum class XImagePixelFormat {
@@ -23,6 +25,13 @@ namespace XResource {
     class SIMPLEDIRECTUI_API IXImage {
     public:
         virtual ~IXImage() {}
+        const XResource::XDisplaySize& size() {
+            if(mDisplaySize.Width() < 0.000001) {
+                mDisplaySize.Width(width() / XResource::gHighResolutionPixelScale);
+                mDisplaySize.Height(height() / XResource::gHighResolutionPixelScale);
+            }
+            return mDisplaySize;
+        }
         virtual int width() = 0;
         virtual int height() = 0;
         virtual int count() = 0;
@@ -56,6 +65,7 @@ namespace XResource {
 		virtual XImagePixelFormat pixelFormat() = 0;
 	protected:
 	private:
+        XResource::XDisplaySize mDisplaySize;
 		std::shared_ptr<XData> mPixelsData;
     };
     

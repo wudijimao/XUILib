@@ -11,6 +11,7 @@ namespace XResource
 	public:
 		FT_Face mFace;
 		bool setSize(unsigned int size) {
+            size *= XResource::gHighResolutionPixelScale;
 			bool ret = true;
 			if (mFace->num_fixed_sizes > 0) {
 				FT_Error error = FT_Select_Size(mFace, 0);
@@ -33,6 +34,7 @@ namespace XResource
 				//            ret = false;
 				//        }
 			}
+            makeFontMetrics();
 			return ret;
 		}
 		inline bool loadGlyph(FT_UInt glyph_index) {
@@ -69,15 +71,25 @@ namespace XResource
 					}
 				}
 				const FT_Bitmap *bitMap = &(glyph->bitmap);
-                memcpy(&gly->mMetrics, &glyph->metrics, sizeof(FT_Glyph_Metrics));
-                memcpy(&gly->mFontMetrics, &mFace->size->metrics, sizeof(FT_Size_Metrics));
+                //memcpy(&gly->mMetrics, &glyph->metrics, sizeof(FT_Glyph_Metrics));
+                double temp = 64.0 * XResource::gHighResolutionPixelScale;
+                gly->mMetrics.reset(new XGlyphMetrics());
+                gly->mMetrics->height = glyph->metrics.height / temp;
+                gly->mMetrics->horiAdvance = glyph->metrics.horiAdvance / temp;
+                gly->mMetrics->horiBearingX = glyph->metrics.horiBearingX / temp;
+                gly->mMetrics->horiBearingY = glyph->metrics.horiBearingY / temp;
+                gly->mMetrics->vertAdvance = glyph->metrics.vertAdvance / temp;
+                gly->mMetrics->vertBearingX = glyph->metrics.vertBearingX / temp;
+                gly->mMetrics->vertBearingY = glyph->metrics.vertBearingY / temp;
+                gly->mMetrics->width = glyph->metrics.width / temp;
+                gly->mFontMetrics = mFontMetrics;
 				if (bitMap->pixel_mode == FT_PIXEL_MODE_GRAY) {
 					auto data = XData::data();
 					data->appendData(bitMap->buffer, bitMap->width * bitMap->rows);
 					image.reset(new XPixelImage(data, bitMap->width, bitMap->rows, XImagePixelFormat::Gray));
                     gly->mImage = image;
-                    gly->mImageLeft = glyph->bitmap_left;
-                    gly->mImageTop = glyph->bitmap_top;
+                    gly->mImageLeft = glyph->bitmap_left / XResource::gHighResolutionPixelScale;
+                    gly->mImageTop = glyph->bitmap_top / XResource::gHighResolutionPixelScale;
 					//image = XImage::imageNamed("a0619F6F8.png");
 					//CGDataProvider *provider = CGDataProviderCreateWithData(NULL, bitMap->buffer, bitMap->width * bitMap->rows, NULL);
 					//CGImage *cgImage = CGImageCreate(bitMap->width, bitMap->rows, 8, 8, bitMap->width, CGColorSpaceCreateDeviceGray(), kCGBitmapByteOrderDefault, provider, NULL, NO, kCGRenderingIntentDefault);
@@ -86,7 +98,19 @@ namespace XResource
 			}
 			return gly;
 		}
-
+    private:
+        void makeFontMetrics() {
+            if(mFontMetrics.get() == nullptr) {
+                mFontMetrics.reset(new XFontMetrics());
+            }
+            FT_Size size = mFace->size;
+            double temp = 64.0 * XResource::gHighResolutionPixelScale;
+            mFontMetrics->ascender = size->metrics.ascender / temp;
+            mFontMetrics->descender = size->metrics.descender / temp;
+            mFontMetrics->height = size->metrics.height / temp;
+            mFontMetrics->max_advance = size->metrics.max_advance / temp;
+        }
+        std::shared_ptr<XFontMetrics> mFontMetrics;
 	};
 
 	class XFreeType {
@@ -175,12 +199,11 @@ namespace XResource
 		}
 	private:
 	};
-
+    int testToken = 0;
 	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame(const XResource::XRect &xRect) {
-		static int token = 0;
 		static std::shared_ptr<XCoreTextFrame> frame;
-		if (token == 0) {
-			++token;
+		if (testToken == 0) {
+			++testToken;
 			frame = std::make_shared<XCoreTextFrame>();
 			auto line = new XCoreTextLine();
 			frame->mLines.push_back(line);
@@ -196,12 +219,17 @@ namespace XResource
                 if (face) {
                     textChar->mGlyph = face->getXGlyph(c);
                 }
+//                textChar->mRect.X(x);
+//                textChar->mRect.Y(y);
+//                x += 50;
+//                textChar->mRect.Width(30);
+//                textChar->mRect.Height(30);
+                
 				textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
-				textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics.ascender / 64 - textChar->mGlyph->mImageTop);
-				textChar->mRect.Width(textChar->mGlyph->mImage->width());
-				textChar->mRect.Height(textChar->mGlyph->mImage->height());
+				textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
+				textChar->mRect.setSize(textChar->mGlyph->mImage->size());
 				group->mChars.push_back(textChar);
-                x += textChar->mGlyph->mMetrics.horiAdvance / 64;
+                x += textChar->mGlyph->mMetrics->horiAdvance;
 			}
 		}
 		return frame;

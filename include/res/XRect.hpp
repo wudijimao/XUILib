@@ -3,6 +3,8 @@
 
 namespace XResource
 {
+    extern double gHighResolutionPixelScale;
+    
 	class SIMPLEDIRECTUI_API XSize
 	{
 	public:
@@ -29,8 +31,10 @@ namespace XResource
 			return mHeight;
 		}
 	private:
-		int mWidth, mHeight;
+		int mWidth = 0, mHeight = 0;
 	};
+    
+    
 
 	class SIMPLEDIRECTUI_API XPoint
 	{
@@ -61,34 +65,144 @@ namespace XResource
 			return mY;
 		}
 	private:
-		int mX, mY;
+		int mX = 0, mY = 0;
 	};
+    
+    class SIMPLEDIRECTUI_API XDisplaySize
+    {
+    public:
+        bool operator == (const XDisplaySize &size) const {
+            return !(*this != size);
+        }
+        bool operator != (const XDisplaySize &size) const {
+            return (mWidth != size.mWidth || mHeight != size.mHeight);
+        }
+        bool operator < (const XDisplaySize &size) const {
+            return (mWidth < size.mWidth && mHeight < size.mHeight);
+        }
+        bool operator <= (const XDisplaySize &size) const {
+            return (mWidth <= size.mWidth && mHeight <= size.mHeight);
+        }
+        bool operator > (const XDisplaySize &size) const {
+            return (mWidth > size.mWidth && mHeight > size.mHeight);
+        }
+        bool operator >= (const XDisplaySize &size) const {
+            return (mWidth >= size.mWidth && mHeight >= size.mHeight);
+        }
+        XDisplaySize(){}
+        XDisplaySize(double width, double height) {
+            mWidth = width;
+            mHeight = height;
+        }
+        void increaceWidth(double width) {
+            mWidth += width;
+        }
+        void increaceHeight(double height) {
+            mHeight += height;
+        }
+        void Width(double width) {
+            mWidth = width;
+        }
+        void Height(double height) {
+            mHeight = height;
+        }
+        int IntWidth() const {
+            return (int)mWidth;
+        }
+        int IntHeight() const {
+            return (int)mHeight;
+        }
+        double Width() const {
+            return mWidth;
+        }
+        double Height() const {
+            return mHeight;
+        }
+    private:
+        double mWidth = 0.0, mHeight = 0.0;
+    };
+    
+    
+    
+    class SIMPLEDIRECTUI_API XDisplayPoint
+    {
+    public:
+        bool operator == (const XDisplayPoint &point) const {
+            return !(*this != point);
+        }
+        bool operator != (const XDisplayPoint &point) const {
+            return (mX != point.mX || mY != point.mY);
+        }
+        bool operator < (const XDisplayPoint &point) const {
+            return (mX < point.mX && mY < point.mY);
+        }
+        bool operator <= (const XDisplayPoint &point) const {
+            return (mX <= point.mX && mY <= point.mY);
+        }
+        bool operator > (const XDisplayPoint &point) const {
+            return (mX > point.mX && mY > point.mY);
+        }
+        bool operator >= (const XDisplayPoint &point) const {
+            return (mX >= point.mX && mY >= point.mY);
+        }
+        XDisplayPoint() {}
+        XDisplayPoint(double x, double y) {
+            mX = x;
+            mY = y;
+        }
+        inline void moveX(double x) {
+            mX += x;
+        }
+        inline void moveY(double y) {
+            mY += y;
+        }
+        void X(double x) {
+            mX = x;
+        }
+        void Y(double y) {
+            mY = y;
+        }
+        const int intX() const {
+            return (int)mX;
+        }
+        const int intY() const {
+            return (int)mY;
+        }
+        const double X() const {
+            return mX;
+        }
+        const double Y() const {
+            return mY;
+        }
+    private:
+        double mX = 0.0, mY = 0.0;
+    };
 
 	class SIMPLEDIRECTUI_API XRect
 	{
 	public:
         XRect &moveX(double x) {
-            mX += x;
+            mPoint.moveX(x);
             return *this;
         }
         XRect &moveY(double y) {
-            mY += y;
+            mPoint.moveY(y);
             return *this;
         }
         XRect &increaceWidth(double width) {
-            mWidth += width;
+            mSize.increaceWidth(width);
             return *this;
         }
         XRect &increaceHeight(double height) {
-            mHeight += height;
+            mSize.increaceHeight(height);
             return *this;
         }
 
         
-        bool isPointIn(const XPoint &point) const {
-            if (point.X() >= mX && point.Y() >= mY
-                && point.X() <= (mX + mWidth)
-                && point.Y() <= (mY + mHeight)) {
+        bool isPointIn(const XDisplayPoint &point) const {
+            if (point >= mPoint
+                && point.X() <= (X() + Width())
+                && point.Y() <= (Y() + Height())) {
                 return true;
             }
             return false;
@@ -102,70 +216,63 @@ namespace XResource
 		}
 		bool operator != (const XRect &rect)
 		{
-			return ((mX != rect.mX) || (mY != rect.mY) || (mWidth != rect.mWidth) || (mHeight != rect.mHeight));
+			return mPoint != mPoint || mSize != rect.mSize;
 		}
 		//以父窗口绝对位置为基数计算当前相对位置的绝对位置
 		virtual XRect MakeAbsRect(const XRect& parentAbsRect) const;
 
-		void X(double x)
-		{
-			mX = x;
+		inline void X(double x) {
+			mPoint.X(x);
 		}
-		double X() const
-		{
-			return mX;
+		inline double X() const {
+			return mPoint.X();
 		}
-		int IntX() const
-		{
-			return (int)mX;
+		inline int IntX() const {
+			return mPoint.intX();
 		}
-		void Y(double y)
-		{
-			mY = y;
+		inline void Y(double y) {
+			mPoint.Y(y);
 		}
-		double Y() const
-		{
-			return mY;
+		inline double Y() const {
+			return mPoint.Y();
 		}
-		int IntY() const
-		{
-			return (int)mY;
+		inline int IntY() const {
+			return mPoint.intY();
 		}
-		void Width(double width)
-		{
-			if (width >= 0.0)
-			{
-				mWidth = width;
-			}
-			else
-			{
-				mWidth = 0.0;
-			}
+		inline void Width(double width) {
+            mSize.Width(width);
 		}
-		double Width() const
-		{
-			return mWidth;
+		inline double Width() const {
+			return mSize.Width();
 		}
-		int IntWidth() const
-		{
-			return (int)mWidth;
+		inline int IntWidth() const {
+            return mSize.IntWidth();
 		}
-		void Height(double height)
-		{
-			if (height >= 0)
-			{
-				mHeight = height;
-			}
+		inline void Height(double height) {
+            mSize.Height(height);
 		}
-		double Height() const
+		inline double Height() const
 		{
-			return mHeight;
+			return mSize.Height();
 		}
-		int IntHeight() const
+		inline int IntHeight() const
 		{
-			return (int)mHeight;
+			return mSize.IntHeight();
 		}
+        const XDisplaySize& size() const {
+            return mSize;
+        }
+        const XDisplayPoint& point() const {
+            return mPoint;
+        }
+        inline void setSize(const XDisplaySize &size) {
+            mSize = size;
+        }
+        inline void setPoint(const XDisplayPoint &point) {
+            mPoint = point;
+        }
 	protected:
-		double mX = 0.0, mY = 0.0, mWidth = 0.0, mHeight = 0.0;
+        XDisplaySize mSize;
+        XDisplayPoint mPoint;
 	};
 }

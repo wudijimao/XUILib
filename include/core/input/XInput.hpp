@@ -28,6 +28,6 @@ namespace XUI {
 
 class SIMPLEDIRECTUI_API XInputWithPostion : public XInput {
 public:
-	XResource::XPoint mPosition;
+	XResource::XDisplayPoint mPosition;
 	XUI::UIView *_belongView;
 };

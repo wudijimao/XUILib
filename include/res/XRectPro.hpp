@@ -10,10 +10,8 @@ namespace XResource
         XRectPro(double x, double y, double width, double height) : XResource::XRect(x,y,width,height) {}
 		XRectPro(const XRect& rect)
 		{
-			mX = rect.X();
-			mY = rect.Y();
-			mWidth = rect.Width();
-			mHeight = rect.Height();
+            mSize = rect.size();
+            mPoint = rect.point();
 		}
 		double X2() const
 		{
@@ -67,26 +65,26 @@ namespace XResource
 			switch (mHAlign)
 			{
 			case XResource::XRectPro::HAlign_Left:
-				temp.Width(mWidth);
-				temp.X(parentAbsRect.X() + mX);
+				temp.Width(Width());
+				temp.X(parentAbsRect.X() + X());
 				break;
 			case XResource::XRectPro::HAlign_Center:
 			{
-				temp.Width(mWidth);
+				temp.Width(Width());
 				//中心点
 				double center = parentAbsRect.X() + parentAbsRect.Width() / 2.0;
 				//中心点根据X X2 偏移
-				center += (mX - mX2);
-				temp.X(center - mWidth / 2.0);
+				center += (X() - mX2);
+				temp.X(center - Width() / 2.0);
 				break;
 			}	
 			case XResource::XRectPro::HAlign_Right:
-				temp.Width(mWidth);
-				temp.X(parentAbsRect.X() + parentAbsRect.Width() - mWidth);
+				temp.Width(Width());
+				temp.X(parentAbsRect.X() + parentAbsRect.Width() - Width());
 				break;
 			case XResource::XRectPro::HAlign_Stretch:
-				temp.Width(parentAbsRect.Width() - mX - mX2);
-				temp.X(parentAbsRect.X() + mX);
+				temp.Width(parentAbsRect.Width() - X() - mX2);
+				temp.X(parentAbsRect.X() + X());
 				break;
 			default:
 				break;
@@ -94,24 +92,24 @@ namespace XResource
 			switch (mVAlign)
 			{
 			case XResource::XRectPro::VAlign_Top:
-				temp.Height(mHeight);
-				temp.Y(parentAbsRect.Y() + mY);
+				temp.Height(Height());
+				temp.Y(parentAbsRect.Y() + Y());
 				break;
 			case XResource::XRectPro::VAlign_Center:
 			{
-				temp.Height(mHeight);
+				temp.Height(Height());
 				double center = parentAbsRect.Y() + parentAbsRect.Height() / 2.0;
-				center += (mY - mY2);
-				temp.Y(center - mHeight / 2.0);
+				center += (Y() - mY2);
+				temp.Y(center - Height() / 2.0);
 				break;
 			}
 			case XResource::XRectPro::VAlign_Bottom:
-				temp.Height(mHeight);
-				temp.Y(parentAbsRect.Y() + parentAbsRect.Height() - mHeight);
+				temp.Height(Height());
+				temp.Y(parentAbsRect.Y() + parentAbsRect.Height() - Height());
 				break;
 			case XResource::XRectPro::VAlign_Stretch:
-				temp.Height(parentAbsRect.Height() - mY - mY2);
-				temp.Y(parentAbsRect.Y() + mY);
+				temp.Height(parentAbsRect.Height() - Y() - mY2);
+				temp.Y(parentAbsRect.Y() + Y());
 				break;
 			default:
 				break;

@@ -1,6 +1,8 @@
 ﻿#include <XDUILib.hpp>
 #pragma execution_character_set("utf-8")
 
+
+
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
 using namespace XDUILib;
@@ -58,6 +60,7 @@ public:
 		
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
+        XResource::testToken = 0;
 		(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
 	}
 	virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) override {

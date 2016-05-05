@@ -34,6 +34,7 @@ XWindow_ios::XWindow_ios() {
 bool XWindow_ios::init(CAEAGLLayer* drawable) {
     auto canvas = std::make_shared<GLCanvas_ios>();
     canvas->init(drawable);
+    XResource::gHighResolutionPixelScale = drawable.contentsScale;
     _canvas = canvas;
     _render = std::make_shared<GLRender>();
     _render->Init(_canvas.get());

@@ -1,12 +1,8 @@
 #pragma once
 #include "../core/stdafx.hpp"
-#include "XRect.hpp"
-#include "XRectPro.hpp"
-#include "XImage/XImage.hpp"
-#include "XString.hpp"
-//#include "XText.h"
 namespace XResource
 {
+    static double mHighResolutionPixelScale;
 	//struct XPoint
 	//{
 	//	XPoint()
@@ -96,6 +92,10 @@ namespace XResource
 }
 
 
-
+#include "XRect.hpp"
+#include "XRectPro.hpp"
+#include "XImage/XImage.hpp"
+#include "XString.hpp"
+//#include "XText.h"
 
 

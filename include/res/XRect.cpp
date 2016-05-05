@@ -2,25 +2,27 @@
 
 namespace XResource {
     
-XRect::XRect()
-{
-}
-
-XResource::XRect::XRect(double x, double y, double width, double height) :mX(x), mY(y), mWidth(width), mHeight(height)
-{
-
-}
-
-XRect XResource::XRect::MakeAbsRect(const XRect& parentRect) const
-{
-	XRect temp = *this;
-	temp.X(parentRect.X() + mX);
-	temp.Y(parentRect.Y() + mY);
-	return temp;
-}
-
-XRect::~XRect()
-{
-}
-
+    double gHighResolutionPixelScale = 1.0;
+    
+    XRect::XRect()
+    {
+    }
+    
+    XResource::XRect::XRect(double x, double y, double width, double height) :mPoint(x,y), mSize(width, height)
+    {
+        
+    }
+    
+    XRect XResource::XRect::MakeAbsRect(const XRect& parentRect) const
+    {
+        XRect temp = *this;
+        temp.moveX(parentRect.X());
+        temp.moveY(parentRect.Y());
+        return temp;
+    }
+    
+    XRect::~XRect()
+    {
+    }
+    
 }
