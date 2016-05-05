@@ -79,7 +79,7 @@ namespace XResource {
 		const wchar_t *getUinicodeCStr() {
 			return mUnicodeCacheStr.c_str();
 		}
-		std::shared_ptr<XCoreTextFrame> createFrame();
+		std::shared_ptr<XCoreTextFrame> createFrame(const XResource::XRect &xRect);
 	private:
 		XString mStr;
 		std::wstring mUnicodeCacheStr;

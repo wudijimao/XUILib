@@ -40,8 +40,7 @@ public:
     void updateSize(CAEAGLLayer* drawable) {
         _size.Width(drawable.frame.size.width);
         _size.Height(drawable.frame.size.height);
-        setSize(_size);
-
+        setSize(_size, drawable.contentsScale);
     }
     bool Present() {
         this->GLCanvas::Present();
@@ -51,3 +50,5 @@ public:
 public:
     EAGLContext *_context; //ARC in ios
 };
+
+

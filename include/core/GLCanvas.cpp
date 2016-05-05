@@ -81,7 +81,7 @@ GLfloat transformMat[] = {
 	-1, -1, 0, 1, };
 
 bool GLCanvas::Present() {
-    glViewport(0, 0, _size.Width(), _size.Height());
+    glViewport(0, 0, _pixelSize.Width(), _pixelSize.Height());
 //    glClearColor(1, 1, 1, 1.0);
 //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for (auto data : _needRenderDatas) {
@@ -96,42 +96,42 @@ bool GLCanvas::Present() {
         }
     }
 	return true;
-
-	GLuint vectexArrayObject;
-
-	GLuint bufObjects[2];
-	glGenBuffers(2, bufObjects);
-
-	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(texturePos), texturePos, GL_STATIC_DRAW);
-
-
-	glGenVertexArrays(1, &vectexArrayObject);
-	glBindVertexArray(vectexArrayObject);
-	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
-	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-	glBindVertexArray(0);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-
-	glUniformMatrix4fv(0, 1, true, (GLfloat*)&transformMat);
-
-	//glEnableVertexAttribArray(0);
-	//glEnableVertexAttribArray(1);
-	glBindVertexArray(vectexArrayObject);
-
-	// Draw
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-	GLuint error = glGetError();
+//
+//	GLuint vectexArrayObject;
+//
+//	GLuint bufObjects[2];
+//	glGenBuffers(2, bufObjects);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
+//	glBufferData(GL_ARRAY_BUFFER, sizeof(square), square, GL_STATIC_DRAW);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
+//	glBufferData(GL_ARRAY_BUFFER, sizeof(texturePos), texturePos, GL_STATIC_DRAW);
+//
+//
+//	glGenVertexArrays(1, &vectexArrayObject);
+//	glBindVertexArray(vectexArrayObject);
+//	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
+//	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+//	glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
+//	glVertexAttribPointer(1, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
+//	glEnableVertexAttribArray(0);
+//	glEnableVertexAttribArray(1);
+//	glBindVertexArray(0);
+//
+//	glDisableVertexAttribArray(0);
+//	glDisableVertexAttribArray(1);
+//
+//	glUniformMatrix4fv(0, 1, true, (GLfloat*)&transformMat);
+//
+//	//glEnableVertexAttribArray(0);
+//	//glEnableVertexAttribArray(1);
+//	glBindVertexArray(vectexArrayObject);
+//
+//	// Draw
+//	glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+//
+//	GLuint error = glGetError();
 
     return true;
 }

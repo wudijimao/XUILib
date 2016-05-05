@@ -50,7 +50,9 @@ void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view)
 - (void)viewDidLoad {
     GLView *view = [[GLView alloc] initWithFrame:self.view.frame];
     self.view = view;
-    _window->init((CAEAGLLayer*)view.layer);
+    CAEAGLLayer *layer = (CAEAGLLayer*)view.layer;
+    layer.contentsScale = 2.0f;
+    _window->init(layer);
     _window->update();
     _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     [_dispalyLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];

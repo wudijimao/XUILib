@@ -176,7 +176,7 @@ namespace XResource
 	private:
 	};
 
-	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame() {
+	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame(const XResource::XRect &xRect) {
 		static int token = 0;
 		static std::shared_ptr<XCoreTextFrame> frame;
 		if (token == 0) {
@@ -186,21 +186,22 @@ namespace XResource
 			frame->mLines.push_back(line);
 			auto group = new XCoreTextGroup();
 			line->mGroups.push_back(group);
-			double x = 20;
+			double x = xRect.X();
+            double y = xRect.Y();
 			//auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
             auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
-			face->setSize(30);
+			face->setSize(40);
 			for (auto c : mUnicodeCacheStr) {
 				auto textChar = new XCoreTextChar();
                 if (face) {
                     textChar->mGlyph = face->getXGlyph(c);
                 }
 				textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
-				textChar->mRect.Y(10.0 + textChar->mGlyph->mFontMetrics.ascender / 64 - textChar->mGlyph->mImageTop);
+				textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics.ascender / 64 - textChar->mGlyph->mImageTop);
 				textChar->mRect.Width(textChar->mGlyph->mImage->width());
 				textChar->mRect.Height(textChar->mGlyph->mImage->height());
 				group->mChars.push_back(textChar);
-				x += (textChar->mGlyph->mMetrics.width / 64 + 3);
+                x += textChar->mGlyph->mMetrics.horiAdvance / 64;
 			}
 		}
 		return frame;

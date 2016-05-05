@@ -34,11 +34,16 @@ protected:
     std::vector<XDUILib::GLRenderData*> _needRenderDatas;
 protected:
     XResource::XSize _size;
+    XResource::XSize _pixelSize;
+    double mHighResolutionPixelScale;
     bool InitFrameBuffer();
     bool InitGLProgram();
     void enableGLSettings();
-    virtual void setSize(const XResource::XSize &size) {
+    virtual void setSize(const XResource::XSize &size, double highResolutionPixelScale) {
         _size = size;
+        mHighResolutionPixelScale = highResolutionPixelScale;
+        _pixelSize.Width(_size.Width() * highResolutionPixelScale);
+        _pixelSize.Height(_size.Height() * highResolutionPixelScale);
         _transformMat[0] = 2.0 / (float)size.Width();
         _transformMat[5] = -2.0 / (float)size.Height();
     }
