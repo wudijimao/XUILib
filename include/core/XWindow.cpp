@@ -21,14 +21,16 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
-    _canvas->clear();
-    XResource::XRect rect = _rect;
-    rect.X(0.0);
-    rect.Y(0.0);
     auto view = _rootController->view();
-    view->layout(rect);
-    view->draw(*(_render.get()));
-    _canvas->Present();
+    view->layout(mLocalRect);
+    if(mNeedReDraw) {
+        mNeedReDraw = false;
+        _canvas->clear();
+        _canvas->makeCurrent();
+        view->draw();
+        _canvas->Present();
+        _canvas->popCurrent();
+    }
 }
 
 void XWindow::input(std::shared_ptr<XTouch> touch) {
@@ -82,16 +84,18 @@ void XWindow::dispatchMouseEvents() {
 }
 
 
-void XWindow::setSize(const XResource::XSize &size) {
+void XWindow::setSize(const XResource::XDisplaySize &size) {
 	_rect.Width(size.Width());
 	_rect.Height(size.Height());
+    mLocalRect.setSize(_rect.size());
 }
-void XWindow::setPositon(const XResource::XPoint &pos) {
+void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
 	_rect.X(pos.X());
 	_rect.Y(pos.Y());
 }
 
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
+    rootViewController->mBelongWindow = this;
     _rootController = rootViewController;
 }
 

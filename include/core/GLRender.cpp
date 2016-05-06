@@ -6,29 +6,31 @@
 #include "GL/GLRenderData.hpp"
 #include "../res/XText/XText.hpp"
 
-bool GLRender::Init(IXCanvas *canvas) {
-    _canvas = (GLCanvas*)canvas;
-	return true;
-}
-
 void GLRender::Submit() {
-
+    IXCanvas::gCurrentCanvas->pushRenderData(&mCachedRenderData[0], mCachedRenderData.size());
+}
+void GLRender::clear() {
+    for (auto data : mCachedRenderData)
+    {
+        delete data;
+    }
+    mCachedRenderData.clear();
 }
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     static std::shared_ptr<XResource::XImage> emptyImg;
     data->initWithRect(xRect, color, emptyImg);
-    _canvas->pushRenderData(data);
+    mCachedRenderData.push_back(data);
 }
 void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
-    _canvas->pushRenderData(data);
+    mCachedRenderData.push_back(data);
 }
 void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(xRect, color, image);
-    _canvas->pushRenderData(data);
+    mCachedRenderData.push_back(data);
 }
 void GLRender::DrawString(const XResource::XString &str, const XResource::XRect &xRect) {
     XResource::XAttributeString attrStr(str);

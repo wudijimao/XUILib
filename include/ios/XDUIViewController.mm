@@ -55,10 +55,12 @@ void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view)
     _window->init(layer);
     _window->update();
     _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
+    //_dispalyLink.frameInterval = 60;
     [_dispalyLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 - (void)update {
+    //NSLog(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
     if (_window) {
         _window->update();
     }

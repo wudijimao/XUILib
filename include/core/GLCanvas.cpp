@@ -12,12 +12,15 @@
 //temp
 #include <iostream>
 
+IXCanvas * IXCanvas::gCurrentCanvas = nullptr;
+std::vector<IXCanvas*> IXCanvas::mCanvasStack;
+
 RenderType GLCanvas::GetType()
 {
     return RenderType::OPENGL;
 }
-void GLCanvas::pushRenderData(XDUILib::GLRenderData *data) {
-    _needRenderDatas.push_back(data);
+void GLCanvas::pushRenderData(XDUILib::GLRenderData **data, int size) {
+    _needRenderDatas.insert(_needRenderDatas.end(), data, data + size);
 }
 
 bool GLCanvas::InitGLProgram() {
@@ -53,10 +56,6 @@ void GLCanvas::enableGLSettings() {
 }
 
 void GLCanvas::clear() {
-	for (auto data : _needRenderDatas)
-	{
-		delete data;
-	}
     _needRenderDatas.clear();
 }
 

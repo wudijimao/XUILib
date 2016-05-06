@@ -23,7 +23,7 @@ public:
         _transformMat[15] = 1;
     }
     virtual RenderType GetType();
-    void pushRenderData(XDUILib::GLRenderData *data);
+    void pushRenderData(XDUILib::GLRenderData **data, int size);
 	XResource::XSize GetSize() {
 		return _size;
 	}

@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <list>
+#include <stack>
 #include <memory>
 #include <functional>
 

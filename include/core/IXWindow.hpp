@@ -19,8 +19,11 @@ public:
 	virtual ~IXWindow(){};
     virtual void showInFront() = 0;
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) = 0;
-	virtual void setSize(const XResource::XSize &size) = 0;
-	virtual void setPositon(const XResource::XPoint &pos) = 0;
+	virtual void setSize(const XResource::XDisplaySize &size) = 0;
+	virtual void setPositon(const XResource::XDisplayPoint &pos) = 0;
+    void setNeedReDraw() {
+        mNeedReDraw = true;
+    }
 
     //virtual std::shared_ptr<IXRender> render() = 0;
 	//TODO::不应该有基于具体平台的
@@ -35,6 +38,7 @@ public:
 	//virtual const XResource::XRect& Rect() const = 0;
 	//virtual void Rect(const XResource::XRect& rect) = 0;
 protected:
-    std::shared_ptr<IXRender> _render;
+    std::shared_ptr<IXCanvas> _canvas;
+    bool mNeedReDraw = true;
 };
 

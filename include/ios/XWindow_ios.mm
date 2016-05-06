@@ -21,10 +21,7 @@ XWindow_ios::~XWindow_ios() {
 XWindow_ios::XWindow_ios() {
     CGRect rect = [UIScreen mainScreen].bounds;
     this->_window = [[UIWindow alloc] initWithFrame:rect];
-    _rect.X(0.0);
-    _rect.Y(0.0);
-    _rect.Width(rect.size.width);
-    _rect.Height(rect.size.height);
+    setSize(XResource::XDisplaySize(rect.size.width, rect.size.height));
     
     auto controller = [[XDUIViewController alloc] init];
     [controller setBelongWindow:this];
@@ -36,8 +33,6 @@ bool XWindow_ios::init(CAEAGLLayer* drawable) {
     canvas->init(drawable);
     XResource::gHighResolutionPixelScale = drawable.contentsScale;
     _canvas = canvas;
-    _render = std::make_shared<GLRender>();
-    _render->Init(_canvas.get());
     return true;
 }
 

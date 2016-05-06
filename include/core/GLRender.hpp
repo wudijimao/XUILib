@@ -5,8 +5,8 @@
 class SIMPLEDIRECTUI_API GLRender : public IXRender
 {
 public:
-	virtual bool Init(IXCanvas *canvas);
-	virtual void Submit(); //submit paint data to canvas
+	virtual void Submit() override; //submit paint data to canvas
+    virtual void clear() override;
 	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) override;
     virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) override;
     virtual void DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) override;
@@ -19,8 +19,7 @@ public:
     virtual void DrawString(const XResource::XString &str, const XResource::XRect &xRect) override;
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect);
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
-
 private:
-    GLCanvas *_canvas; //weak
+    std::vector<XDUILib::GLRenderData*> mCachedRenderData;
 };
 

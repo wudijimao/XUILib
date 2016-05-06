@@ -7,7 +7,8 @@ class SIMPLEDIRECTUI_API IXRender
 {
 public:
 	virtual ~IXRender(){};
-	virtual bool Init(IXCanvas *canvas) = 0;
+	//virtual bool Init(IXCanvas *canvas) = 0;  use CurentCanvas
+    virtual void clear() = 0;
 	virtual void Submit() = 0;
 	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) = 0;
     virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) = 0;

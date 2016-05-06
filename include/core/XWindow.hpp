@@ -13,11 +13,9 @@
 class SIMPLEDIRECTUI_API_DEBUG XWindow : public IXWindow {
 public:
     ~XWindow();
-    std::shared_ptr<IXCanvas> _canvas;
-    std::shared_ptr<IXRender> _render;
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
-	virtual void setSize(const XResource::XSize &size) override;
-	virtual void setPositon(const XResource::XPoint &pos) override;
+	virtual void setSize(const XResource::XDisplaySize &size) override;
+	virtual void setPositon(const XResource::XDisplayPoint &pos) override;
 public:
 	//do not call it by libray user
 	void update();
@@ -30,8 +28,9 @@ protected:
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;
-    XResource::XRect _rect;
 private:
+    XResource::XRect _rect;
+    XResource::XRect mLocalRect;//x=0,y=0
 	std::vector<std::shared_ptr<XTouch>> _touchList;
 	std::vector<std::shared_ptr<XMouse>> _mouseEventList;
 };

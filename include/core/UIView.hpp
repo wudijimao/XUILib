@@ -2,6 +2,8 @@
 #include "IXWindow.hpp"
 #include "../res/XRectPro.hpp"
 
+class XWindow;
+
 namespace XUI
 {
     
@@ -26,7 +28,7 @@ namespace XUI
     class SIMPLEDIRECTUI_API UIView : public UIResponder
 	{
 	public:
-        friend class XWindow;
+        friend class ::XWindow;
         friend class UIViewController;
         UIView();
         virtual ~UIView();
@@ -79,12 +81,13 @@ namespace XUI
         const XResource::XRect &getFixRect() {
             return _rect;
         }
-    public://protected:
-        void layout(const XResource::XRect &absRect);
-        void draw(IXRender &render);
-        std::weak_ptr<UIView> _superView;
     private:
+        void layout(const XResource::XRect &absRect);
+        void draw();
+    private:
+        IXRender *mRenderer;
         bool _isInputEnable = true;
+        UIView *_superView;
         std::vector<std::shared_ptr<UIView>> _subViews;
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
@@ -92,6 +95,7 @@ namespace XUI
         std::shared_ptr<XResource::XImage> _backGroundImage;
         bool _needReDraw = true;
         bool _needLayout = true;
+        UIViewController *mBelongingViewController = nullptr;
 	public:
 		//鼠标事件
 		/*boost::signals2::signal<void(IBaseControl&)> MouseDown;
@@ -123,14 +127,21 @@ namespace XUI
     
     class SIMPLEDIRECTUI_API UIViewController : public UIResponder {
     public:
+        friend class ::XWindow;
         //override
         virtual void viewDidLoad();
         //do not override
 		const std::shared_ptr<UIView> view();
+        void setNeedRedraw() {
+            if (mBelongWindow != nullptr) {
+                mBelongWindow->setNeedReDraw();
+            }
+        }
     protected:
-        friend class XWindow;
         void onSizeChange(XResource::XSize &size);
+        IXWindow *mBelongWindow = nullptr;
     private:
+        
         void LoadView();
         bool _isLoaded = false;
         std::shared_ptr<UIView> _view;
