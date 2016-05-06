@@ -9,9 +9,18 @@ namespace XResource
 {
 	class XFreeTypeFace {
 	public:
+        ~XFreeTypeFace() {
+            for (auto pair : mGlyphCaches) {
+                delete pair.second;
+            }
+        }
 		FT_Face mFace;
 		bool setSize(unsigned int size) {
             size *= XResource::gHighResolutionPixelScale;
+            if(size == mSize) {
+                return true;
+            }
+            mSize = size;
 			bool ret = true;
 			if (mFace->num_fixed_sizes > 0) {
 				FT_Error error = FT_Select_Size(mFace, 0);
@@ -35,6 +44,7 @@ namespace XResource
 				//        }
 			}
             makeFontMetrics();
+            selectSizeGlyphMetricsMap();
 			return ret;
 		}
 		inline bool loadGlyph(FT_UInt glyph_index) {
@@ -59,6 +69,10 @@ namespace XResource
 			}
 		}
 		XGlyphPtr getXGlyph(wchar_t utf8CharctorCode) {
+            auto iter = mGlyphCacheAtCurrentSize->find(utf8CharctorCode);
+            if(iter != mGlyphCacheAtCurrentSize->end()) {
+                return iter->second;
+            }
             XGlyphPtr gly = std::make_shared<XGlyph>();
 			std::shared_ptr<IXImage> image;
 			FT_GlyphSlot glyph = this->getGlyph(utf8CharctorCode);
@@ -73,15 +87,14 @@ namespace XResource
 				const FT_Bitmap *bitMap = &(glyph->bitmap);
                 //memcpy(&gly->mMetrics, &glyph->metrics, sizeof(FT_Glyph_Metrics));
                 double temp = 64.0 * XResource::gHighResolutionPixelScale;
-                gly->mMetrics.reset(new XGlyphMetrics());
-                gly->mMetrics->height = glyph->metrics.height / temp;
-                gly->mMetrics->horiAdvance = glyph->metrics.horiAdvance / temp;
-                gly->mMetrics->horiBearingX = glyph->metrics.horiBearingX / temp;
-                gly->mMetrics->horiBearingY = glyph->metrics.horiBearingY / temp;
-                gly->mMetrics->vertAdvance = glyph->metrics.vertAdvance / temp;
-                gly->mMetrics->vertBearingX = glyph->metrics.vertBearingX / temp;
-                gly->mMetrics->vertBearingY = glyph->metrics.vertBearingY / temp;
-                gly->mMetrics->width = glyph->metrics.width / temp;
+                gly->mMetrics.height = glyph->metrics.height / temp;
+                gly->mMetrics.horiAdvance = glyph->metrics.horiAdvance / temp;
+                gly->mMetrics.horiBearingX = glyph->metrics.horiBearingX / temp;
+                gly->mMetrics.horiBearingY = glyph->metrics.horiBearingY / temp;
+                gly->mMetrics.vertAdvance = glyph->metrics.vertAdvance / temp;
+                gly->mMetrics.vertBearingX = glyph->metrics.vertBearingX / temp;
+                gly->mMetrics.vertBearingY = glyph->metrics.vertBearingY / temp;
+                gly->mMetrics.width = glyph->metrics.width / temp;
                 gly->mFontMetrics = mFontMetrics;
 				if (bitMap->pixel_mode == FT_PIXEL_MODE_GRAY) {
 					auto data = XData::data();
@@ -96,6 +109,7 @@ namespace XResource
 					//UIImage *image = [UIImage imageWithCGImage : cgImage];
 				}
 			}
+            (*mGlyphCacheAtCurrentSize)[utf8CharctorCode] = gly;
 			return gly;
 		}
     private:
@@ -110,7 +124,19 @@ namespace XResource
             mFontMetrics->height = size->metrics.height / temp;
             mFontMetrics->max_advance = size->metrics.max_advance / temp;
         }
+        void selectSizeGlyphMetricsMap() {
+            auto iter = mGlyphCaches.find(mSize);
+            if (iter != mGlyphCaches.end()) {
+                mGlyphCacheAtCurrentSize = iter->second;
+            } else {
+                mGlyphCacheAtCurrentSize = new std::map<wchar_t, XGlyphPtr>();
+                mGlyphCaches[mSize] = mGlyphCacheAtCurrentSize;
+            }
+        }
+        unsigned int mSize = 0;
+        std::map<wchar_t, XGlyphPtr>* mGlyphCacheAtCurrentSize = nullptr;
         std::shared_ptr<XFontMetrics> mFontMetrics;
+        std::map<unsigned int, std::map<wchar_t, XGlyphPtr>*> mGlyphCaches;
 	};
 
 	class XFreeType {
@@ -201,8 +227,7 @@ namespace XResource
 	};
     int testToken = 0;
 	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame(const XResource::XRect &xRect) {
-        std::shared_ptr<XCoreTextFrame> frame;
-        frame = std::make_shared<XCoreTextFrame>();
+        std::shared_ptr<XCoreTextFrame> frame = std::make_shared<XCoreTextFrame>();
         auto line = new XCoreTextLine();
         frame->mLines.push_back(line);
         auto group = new XCoreTextGroup();
@@ -227,7 +252,7 @@ namespace XResource
             textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
             textChar->mRect.setSize(textChar->mGlyph->mImage->size());
             group->mChars.push_back(textChar);
-            x += textChar->mGlyph->mMetrics->horiAdvance;
+            x += textChar->mGlyph->mMetrics.horiAdvance;
         }
         return frame;
 	}
