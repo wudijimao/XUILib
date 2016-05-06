@@ -60,7 +60,6 @@ public:
 		
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
-        XResource::testToken = 0;
 		(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
 	}
 	virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) override {

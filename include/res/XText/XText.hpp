@@ -3,10 +3,7 @@
 #include "../XString.hpp"
 #include "XFont.hpp"
 
-namespace XResource {
-    
-    extern int testToken;
-    
+namespace XResource {    
     struct XFontMetrics
     {
 //        unsigned short  x_ppem;      /* horizontal pixels per EM               */

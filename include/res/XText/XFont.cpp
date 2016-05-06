@@ -201,38 +201,35 @@ namespace XResource
 	};
     int testToken = 0;
 	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame(const XResource::XRect &xRect) {
-		static std::shared_ptr<XCoreTextFrame> frame;
-		if (testToken == 0) {
-			++testToken;
-			frame = std::make_shared<XCoreTextFrame>();
-			auto line = new XCoreTextLine();
-			frame->mLines.push_back(line);
-			auto group = new XCoreTextGroup();
-			line->mGroups.push_back(group);
-			double x = xRect.X();
-            double y = xRect.Y();
-			//auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
-            auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
-			face->setSize(40);
-			for (auto c : mUnicodeCacheStr) {
-				auto textChar = new XCoreTextChar();
-                if (face) {
-                    textChar->mGlyph = face->getXGlyph(c);
-                }
-//                textChar->mRect.X(x);
-//                textChar->mRect.Y(y);
-//                x += 50;
-//                textChar->mRect.Width(30);
-//                textChar->mRect.Height(30);
-                
-				textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
-				textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
-				textChar->mRect.setSize(textChar->mGlyph->mImage->size());
-				group->mChars.push_back(textChar);
-                x += textChar->mGlyph->mMetrics->horiAdvance;
-			}
-		}
-		return frame;
+        std::shared_ptr<XCoreTextFrame> frame;
+        frame = std::make_shared<XCoreTextFrame>();
+        auto line = new XCoreTextLine();
+        frame->mLines.push_back(line);
+        auto group = new XCoreTextGroup();
+        line->mGroups.push_back(group);
+        double x = xRect.X();
+        double y = xRect.Y();
+        //auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
+        auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
+        face->setSize(40);
+        for (auto c : mUnicodeCacheStr) {
+            auto textChar = new XCoreTextChar();
+            if (face) {
+                textChar->mGlyph = face->getXGlyph(c);
+            }
+            //                textChar->mRect.X(x);
+            //                textChar->mRect.Y(y);
+            //                x += 50;
+            //                textChar->mRect.Width(30);
+            //                textChar->mRect.Height(30);
+            
+            textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
+            textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
+            textChar->mRect.setSize(textChar->mGlyph->mImage->size());
+            group->mChars.push_back(textChar);
+            x += textChar->mGlyph->mMetrics->horiAdvance;
+        }
+        return frame;
 	}
 }
 
