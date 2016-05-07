@@ -24,8 +24,11 @@ class TestTextView : public XUI::UIView {
     virtual void drawRect(IXRender &render) {
         XResource::XRect rect = getFixRect();
         rect.moveX(10.0).moveY(10.0).increaceWidth(-20.0).increaceHeight(-20.0);
-       // render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
-        render.DrawString("泉此方", rect);
+        render.DrawBackGround(XResource::XUIColor::uiColor(255, 255, 0, 255)->_color , rect);
+        XResource::XAttributedString str = XResource::XAttributedString("泉此方测试测试 test哈哈哈啊啊啊");
+        str.addAttr(XResource::XFont::systemFont(10));
+        str.addAttr(XResource::XFont::systemFont(20), XResource::XRange(5, 4));
+        render.DrawString(str, rect);
     }
 };
 

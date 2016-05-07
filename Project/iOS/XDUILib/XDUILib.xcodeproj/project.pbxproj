@@ -96,6 +96,9 @@
 		3E9608381CA7EEF600FE8008 /* XResManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608361CA7EEF600FE8008 /* XResManager.cpp */; };
 		3E9608391CA7EEF600FE8008 /* XResManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9608361CA7EEF600FE8008 /* XResManager.cpp */; };
 		3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9608371CA7EEF600FE8008 /* XResManager.hpp */; };
+		3E99289A1CDD94D7008E90D3 /* XColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9928981CDD94D7008E90D3 /* XColor.cpp */; };
+		3E99289B1CDD94D7008E90D3 /* XColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9928981CDD94D7008E90D3 /* XColor.cpp */; };
+		3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9928991CDD94D7008E90D3 /* XColor.hpp */; };
 		3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* XResourceManager.mm */; };
 		3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CEE1CA248BE0037291F /* UIKit.framework */; };
@@ -258,6 +261,8 @@
 		3E9608321CA7E8E800FE8008 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
 		3E9608361CA7EEF600FE8008 /* XResManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XResManager.cpp; sourceTree = "<group>"; };
 		3E9608371CA7EEF600FE8008 /* XResManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XResManager.hpp; sourceTree = "<group>"; };
+		3E9928981CDD94D7008E90D3 /* XColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XColor.cpp; sourceTree = "<group>"; };
+		3E9928991CDD94D7008E90D3 /* XColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XColor.hpp; sourceTree = "<group>"; };
 		3EAA6CD51CA23A220037291F /* XResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XResourceManager.mm; sourceTree = "<group>"; };
 		3EAA6CE01CA243210037291F /* Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAA6CE41CA243210037291F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -547,6 +552,8 @@
 				3EB988561C9BE15C00B9B23E /* XRect.hpp */,
 				3EB988571C9BE15C00B9B23E /* XRectPro.hpp */,
 				3EB988581C9BE15C00B9B23E /* XResource.hpp */,
+				3E9928981CDD94D7008E90D3 /* XColor.cpp */,
+				3E9928991CDD94D7008E90D3 /* XColor.hpp */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -569,6 +576,7 @@
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3EDFDB901CCB54AC0079AF51 /* XHTTPHeader.hpp in Headers */,
+				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
 				3E7F4F251CC60A61001D0C58 /* XTaskQueue.hpp in Headers */,
@@ -714,6 +722,7 @@
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
 				3EBA63D91CD368F800E633B3 /* XImageDataDecoder.cpp in Sources */,
 				3EC92D9B1CAB9B9D00CF012C /* GLView.m in Sources */,
+				3E99289A1CDD94D7008E90D3 /* XColor.cpp in Sources */,
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
@@ -761,6 +770,7 @@
 				3EAA6D181CA24A8E0037291F /* XApp.hpp in Sources */,
 				3EAA6D191CA24A8E0037291F /* IXImage.hpp in Sources */,
 				3EAA6D1C1CA24A8E0037291F /* XImage.cpp in Sources */,
+				3E99289B1CDD94D7008E90D3 /* XColor.cpp in Sources */,
 				3EAA6D1D1CA24A8E0037291F /* XImage.hpp in Sources */,
 				3EAA6D1E1CA24A8E0037291F /* XImageDecoder.cpp in Sources */,
 				3EAA6D1F1CA24A8E0037291F /* XImageDecoder.hpp in Sources */,

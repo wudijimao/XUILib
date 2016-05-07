@@ -4,7 +4,7 @@
 #include <time.h>
 #include <iterator>
 #include "GL/GLRenderData.hpp"
-#include "../res/XText/XText.hpp"
+#include "../res/XResource.hpp"
 
 void GLRender::Submit() {
     IXCanvas::gCurrentCanvas->pushRenderData(&mCachedRenderData[0], mCachedRenderData.size());
@@ -32,8 +32,7 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_
     data->initWithRect(xRect, color, image);
     mCachedRenderData.push_back(data);
 }
-void GLRender::DrawString(const XResource::XString &str, const XResource::XRect &xRect) {
-    XResource::XAttributeString attrStr(str);
+void GLRender::DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) {
     auto frame = attrStr.createFrame(xRect);
     for (auto f : frame->mLines.front()->mGroups.front()->mChars) {
         this->DrawBackGround(XResource::XUIColor::redColor()->_color, f->mGlyph->mImage, f->mRect);

@@ -1,23 +1,60 @@
 #pragma once
 #include "../../core/stdafx.hpp"
 #include "../XString.hpp"
-#include "../XResource.hpp"
+#include "../XRect.hpp"
+#include "../XImage/XImage.hpp"
 
 namespace XResource
 {
-	class SIMPLEDIRECTUI_API XFont {
+    enum XAttrStrKeyEnum {
+        XAttrStrKey_Font = 0,
+        XAttrStrKey_FrontColor = 1,
+        XAttrStrKey_Custom = 2000,
+        //canAddToBelow or use XAttrStrKey_Customn + 1(2,3,4...)
+    };
+    
+    class XStringAttr {
+    public:
+        virtual ~XStringAttr(){};
+        virtual XAttrStrKeyEnum getKey() = 0;
+        //for debug
+        const char *getKeyName() {
+            XAttrStrKeyEnum key = getKey();
+            switch (key) {
+                case XAttrStrKey_Font:
+                    return "XAttrStrKey_Font";
+                case XAttrStrKey_FrontColor:
+                    return "XAttrStrKey_FrontColor";
+                default:
+                    break;
+            }
+            char temp[128];
+            sprintf(temp, "XAttrStrKey_Custom: %d", key);
+            return temp;
+        }
+    };
+    
+    class XFreeTypeFace;
+    class XFreeType;
+    class SIMPLEDIRECTUI_API XFont : public XStringAttr {
 	public:
+        friend XResource::XFreeTypeFace;
+        friend XResource::XFreeType;
 		//systomFonts
-		static std::shared_ptr<XFont> fontWithName(const char *fontName);
+		static std::shared_ptr<XFont> font(const char *fontName, float size);
+        static std::shared_ptr<XFont> systemFont(float size);
 		float fontSize();
 		void setFontSize(float fontSize);
+        virtual XAttrStrKeyEnum getKey() override {
+            return XAttrStrKey_Font;
+        }
 	private:
 		static const float sDefaultFontSize;
 		float mFontSize;
 		XString mFontName;
+        std::shared_ptr<XFreeTypeFace> mFace;
 	protected:
 		XFont() {};
-		bool initWithFilePath(const char *filePath);
 	};
     
     

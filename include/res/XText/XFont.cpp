@@ -4,6 +4,7 @@
 #include FT_FREETYPE_H
 #include "../XImage/XImage.hpp"
 #include "XText.hpp"
+#include <assert.h>
 
 namespace XResource
 {
@@ -15,8 +16,11 @@ namespace XResource
             }
         }
 		FT_Face mFace;
-		bool setSize(unsigned int size) {
-            size *= XResource::gHighResolutionPixelScale;
+        const char *name() {
+            return mFace->family_name;
+        }
+		bool setSize(float in_size) {
+            unsigned int size = in_size * XResource::gHighResolutionPixelScale;
             if(size == mSize) {
                 return true;
             }
@@ -68,14 +72,14 @@ namespace XResource
 				return nullptr; //TODO loadFromOtherFont
 			}
 		}
-		XGlyphPtr getXGlyph(wchar_t utf8CharctorCode) {
-            auto iter = mGlyphCacheAtCurrentSize->find(utf8CharctorCode);
+		XGlyphPtr getXGlyph(wchar_t utf16CharctorCode) {
+            auto iter = mGlyphCacheAtCurrentSize->find(utf16CharctorCode);
             if(iter != mGlyphCacheAtCurrentSize->end()) {
                 return iter->second;
             }
             XGlyphPtr gly = std::make_shared<XGlyph>();
 			std::shared_ptr<IXImage> image;
-			FT_GlyphSlot glyph = this->getGlyph(utf8CharctorCode);
+			FT_GlyphSlot glyph = this->getGlyph(utf16CharctorCode);
 			if (glyph != nullptr) {
 				if (glyph->format != FT_GLYPH_FORMAT_BITMAP) {
 					int error = FT_Render_Glyph(glyph,   // glyph slot
@@ -109,7 +113,7 @@ namespace XResource
 					//UIImage *image = [UIImage imageWithCGImage : cgImage];
 				}
 			}
-            (*mGlyphCacheAtCurrentSize)[utf8CharctorCode] = gly;
+            (*mGlyphCacheAtCurrentSize)[utf16CharctorCode] = gly;
 			return gly;
 		}
     private:
@@ -149,84 +153,114 @@ namespace XResource
 			}
 			return instance;
 		}
+        const std::shared_ptr<XFreeTypeFace>& getMostFitFaceForName(const char *name) {
+            auto iter = _faceMap.find(name);
+            if (iter != _faceMap.end()) {
+                return iter->second;
+            } else {
+                return getSystemFace();
+            }
+        }
+        const std::shared_ptr<XFreeTypeFace>& getSystemFace() {
+            return _faces.front();
+        }
 		std::shared_ptr<XFreeTypeFace> getFace(const char *path) {
 			auto iter = _facePathMap.find(path);
 			if (iter != _facePathMap.end()) {
 				return iter->second;
 			}
-
-			auto face = std::make_shared<XFreeTypeFace>();
-			FT_Error error = FT_New_Face(_library, path, 0, &face->mFace);
-			if (error == FT_Err_Unknown_File_Format)
-			{
-				return nullptr;
-			}
-			else if (error)
-			{
-				return nullptr;
-			}
-			_faces.push_back(face);
-			_faceMap[face->mFace->family_name] = face;
-			_facePathMap[path] = face;
-			return face;
+            return loadFace(path);
 		}
-
-		//		FT_GlyphSlot getGlyph(int32_t utf8CharctorCode, const char *fontName) {
-		//			FT_UInt glyph_index = 0;
-		//			FT_Face face = nullptr;
-		//			do {
-		//				auto iter = _faceMap.find(fontName);
-		//				if (iter != _faceMap.end()) {
-		//					face = iter->second;
-		//					glyph_index = FT_Get_Char_Index(face, utf8CharctorCode);
-		//					if (this->loadGlyph(face, glyph_index)) {
-		//						return face->glyph;
-		//					}
-		//				}
-		//				for (auto f : _faces) {
-		//					if (f != face) {
-		//						glyph_index = FT_Get_Char_Index(f, utf8CharctorCode);
-		//						if (glyph_index > 0) {
-		//							if (this->loadGlyph(f, glyph_index)) {
-		//								return f->glyph;
-		//							}
-		//						}
-		//					}
-		//				}
-		//			} while (0);
-		//			return nullptr;
-		//		}
-
-
-		FT_Library  _library = nullptr;   // handle to library
-		std::vector<std::shared_ptr<XFreeTypeFace>> _faces;
-		std::map<std::string, std::shared_ptr<XFreeTypeFace>> _faceMap;
-		std::map<std::string, std::shared_ptr<XFreeTypeFace>> _facePathMap;
-		std::vector<FT_Glyph> _glyphCache;
 		~XFreeType() {
-			for (auto glyhp : _glyphCache) {
-				FT_Done_Glyph(glyhp);
-			}
+//			for (auto glyhp : _glyphCache) {
+//				FT_Done_Glyph(glyhp);
+//			}
 		}
-		bool Init() {
-			FT_Error error = FT_Init_FreeType(&_library);
-			if (error)
-			{
-				return false;
-			}
-			FT_Int major, minor, patch;
-			FT_Library_Version(_library, &major, &minor, &patch);
-			return true;
-		}
-		void loadDefaultFaces() {
-			this->getFace("/Users/ximiao/Downloads/Signed_NotoColorEmoji/system/fonts/NotoColorEmoji.ttf");
-			//this->loadFace("/System/Library/Fonts/Apple Color Emoji.ttf");
-			this->getFace("/System/Library/Fonts/PingFang.ttc");
-		}
+        XGlyphPtr* getXGlyphs(const XFont *font, const wchar_t *utf16Char, int count) {
+            XGlyphPtr *glyphs = new XGlyphPtr[count];
+            wchar_t *charPtr = (wchar_t*)utf16Char;
+            auto facePtr = font->mFace.get();
+            facePtr->setSize(font->mFontSize);
+            for (int i = 0; i < count; ++i, ++charPtr) {
+                auto glyph = facePtr->getXGlyph(*charPtr);
+                if (glyph == nullptr) {
+                    for (auto face : _faces) {
+                        if (face.get() != facePtr) {
+                            glyph = face->getXGlyph(*charPtr);
+                            if (glyph != nullptr) {
+                                break;
+                            }
+                        }
+                    }
+                }
+                glyphs[i] = glyph;
+            }
+            return glyphs;
+        }
 	private:
+        FT_Library  _library = nullptr;   // handle to library
+        std::vector<std::shared_ptr<XFreeTypeFace>> _faces;
+        std::map<std::string, std::shared_ptr<XFreeTypeFace>> _faceMap;
+        std::map<std::string, std::shared_ptr<XFreeTypeFace>> _facePathMap;
+       // std::vector<FT_Glyph> _glyphCache;
+        bool Init() {
+            FT_Error error = FT_Init_FreeType(&_library);
+            if (error)
+            {
+                return false;
+            }
+            FT_Int major, minor, patch;
+            FT_Library_Version(_library, &major, &minor, &patch);
+            loadDefaultFaces();
+            return true;
+        }
+        void loadDefaultFaces() {
+            std::vector<std::string> fontPaths;
+            fontPaths.push_back("/System/Library/Fonts/PingFang.ttc");
+            fontPaths.push_back("/Users/ximiao/Downloads/Signed_NotoColorEmoji/system/fonts/NotoColorEmoji.ttf");
+            fontPaths.push_back("C:\\Windows\\Fonts\\msyh.ttf");
+            for (auto path : fontPaths) {
+                this->loadFace(path.c_str());
+            }
+            assert(_faces.size() != 0);
+        }
+        std::shared_ptr<XFreeTypeFace> loadFace(const char *path) {
+            auto face = std::make_shared<XFreeTypeFace>();
+            FT_Error error = FT_New_Face(_library, path, 0, &face->mFace);
+            if (error == FT_Err_Unknown_File_Format)
+            {
+                return nullptr;
+            }
+            else if (error)
+            {
+                return nullptr;
+            }
+            _faces.push_back(face);
+            _faceMap[face->mFace->family_name] = face;
+            _facePathMap[path] = face;
+            return face;
+        }
 	};
-    int testToken = 0;
-	std::shared_ptr<XCoreTextFrame> XAttributeString::createFrame(const XResource::XRect &xRect) {
+    
+    
+    std::shared_ptr<XFont> XFont::font(const char *fontName, float size) {
+        std::shared_ptr<XFont> font;
+        font.reset(new XFont());
+        font->mFontSize = size;
+        font->mFace = XFreeType::sharedInstance()->getMostFitFaceForName(fontName);
+        font->mFontName = font->mFace->name();
+        return font;
+    }
+    std::shared_ptr<XFont> XFont::systemFont(float size) {
+        std::shared_ptr<XFont> font;
+        font.reset(new XFont());
+        font->mFontSize = size;
+        font->mFace = XFreeType::sharedInstance()->getSystemFace();
+        font->mFontName = font->mFace->name();
+        return font;
+    }
+    
+	std::shared_ptr<XCoreTextFrame> XAttributedString::createFrame(const XResource::XRect &xRect) const {
         std::shared_ptr<XCoreTextFrame> frame = std::make_shared<XCoreTextFrame>();
         auto line = new XCoreTextLine();
         frame->mLines.push_back(line);
@@ -234,28 +268,109 @@ namespace XResource
         line->mGroups.push_back(group);
         double x = xRect.X();
         double y = xRect.Y();
-        //auto face = XFreeType::sharedInstance()->getFace("C:\\Windows\\Fonts\\msyh.ttf");
-        auto face = XFreeType::sharedInstance()->getFace("/System/Library/Fonts/PingFang.ttc");
-        face->setSize(40);
-        for (auto c : mUnicodeCacheStr) {
-            auto textChar = new XCoreTextChar();
-            if (face) {
-                textChar->mGlyph = face->getXGlyph(c);
+        double right = xRect.X() + xRect.Width();
+        unsigned long size = mUnicodeCacheStr.length();
+        
+        unsigned long location = 0;
+        XResource::XRange effactRange;
+        auto defaultFont = XFont::systemFont(20);
+        while (location < size) {
+            auto font = std::dynamic_pointer_cast<XFont>(getAttr(location, XResource::XAttrStrKey_Font, effactRange));
+            if (effactRange.length <= 0) {
+                break;
             }
-            //                textChar->mRect.X(x);
-            //                textChar->mRect.Y(y);
-            //                x += 50;
-            //                textChar->mRect.Width(30);
-            //                textChar->mRect.Height(30);
+            if (!font) {
+                font = defaultFont;
+            }
+            XGlyphPtr *glyphs = XFreeType::sharedInstance()->getXGlyphs(font.get(), mUnicodeCacheStr.c_str() + location, effactRange.length);
             
-            textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
-            textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
-            textChar->mRect.setSize(textChar->mGlyph->mImage->size());
-            group->mChars.push_back(textChar);
-            x += textChar->mGlyph->mMetrics.horiAdvance;
+            for (int i = 0; i < effactRange.length; ++i) {
+                auto textChar = new XCoreTextChar();
+                auto temp = glyphs[i];
+                textChar->mGlyph = glyphs[i];
+                textChar->mRect.setSize(textChar->mGlyph->mImage->size());
+                if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
+                    x = xRect.X();
+                    y += textChar->mGlyph->mMetrics.vertAdvance;
+                }
+                textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
+                textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
+                
+                group->mChars.push_back(textChar);
+                x += textChar->mGlyph->mMetrics.horiAdvance;
+            }
+            location += effactRange.length;
         }
+        
+        
+        
+        
+        
+        
         return frame;
 	}
+    void XAttributedString::addAttr(const XStrAttrPtr &attr) {
+        addAttr(attr, XRange(0, mUnicodeCacheStr.length()));
+    }
+    void XAttributedString::addAttr(const XStrAttrPtr &attr, const XRange &range) {
+        this->mTypedAttrs[attr->getKey()].push_back(XStrAttrContainer(attr, range));
+    }
+    void XAttributedString::addAttrs(const XStrAttrVec &attr, unsigned long location, unsigned long length) {
+        
+    }
+    XStrAttrVec XAttributedString::getAttrs(unsigned long in_loc, XRange &out_effactRange) const {
+        XStrAttrVec vec;
+        out_effactRange.length = 0;
+        return vec;
+    }
+    const XStrAttrPtr& XAttributedString::getAttr(unsigned long in_loc, XAttrStrKeyEnum type, XRange &out_effactRange) const {
+        auto mapIter = mTypedAttrs.find(type);
+        if (mapIter != mTypedAttrs.end()) {
+            auto rIter = mapIter->second.rbegin();
+            auto rBegin = rIter;
+            auto rEnd = mapIter->second.rend();
+            int i = 0;
+            while (rIter != rEnd) {
+                if (rIter->range.location <= in_loc && rIter->range.rightPosition() > in_loc) {
+                    out_effactRange.location = rIter->range.location;
+                    out_effactRange.length = rIter->range.length;
+                    auto tempIter = rIter;
+                    while (i > 0) {
+                        --tempIter;
+                        if (tempIter->range.location >= out_effactRange.location && tempIter->range.rightPosition() <= out_effactRange.rightPosition()) {
+                            if (in_loc < tempIter->range.location) {
+                                out_effactRange.length = tempIter->range.location - out_effactRange.location;
+                            } else {
+                                unsigned long loc = tempIter->range.rightPosition();
+                                out_effactRange.length -= (loc - out_effactRange.location);
+                                out_effactRange.location = loc;
+                            }
+                        }
+                        --i;
+                    }
+                    return rIter->attr;
+                }
+                ++i;
+                ++rIter;
+            }
+        }
+        
+        out_effactRange.location = in_loc;
+        out_effactRange.length = mUnicodeCacheStr.length();
+        return mEmptyAttr;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
