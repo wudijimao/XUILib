@@ -12,10 +12,13 @@
 
 class SIMPLEDIRECTUI_API_DEBUG XWindow : public IXWindow {
 public:
-    ~XWindow();
-    virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
+	~XWindow();
+	virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
 	virtual void setSize(const XResource::XDisplaySize &size) override;
 	virtual void setPositon(const XResource::XDisplayPoint &pos) override;
+	const XResource::XRect& rect() {
+		return _rect;
+	}
 public:
 	//do not call it by libray user
 	void update();

@@ -44,16 +44,16 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow) {
 		DWORD a = ::GetLastError();
 		return NULL;
 	}
-
 	mHwnd = CreateWindowEx(
 		WS_EX_APPWINDOW | WS_EX_LAYERED,
 		appNameClass.c_str(),
 		"",
 		WS_POPUP | WS_MINIMIZEBOX,
-		_rect.X(),
-		_rect.Y(),
-		_rect.Width(),
-		_rect.Height(),
+		rect().X(),
+		rect().Y(),
+		rect().Width(),
+		rect().Height(),
+
 		NULL,
 		NULL,
 		hInstance,
@@ -80,6 +80,7 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	switch (iMsg)
 	{
 	case WM_TIMER:
+
 		this->update();
 		/*addMs += TimerMS;
 		if (addMs >= CaretShowMs)
@@ -93,14 +94,12 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		auto canvas = std::make_shared<GLCanvas_ios>();
 		canvas->init(hwnd);
 		_canvas = canvas;
-		_render = std::make_shared<GLRender>();
-		_render->Init(_canvas.get());
 		SetTimer(hwnd, 0, 1, NULL);
 	}
 					return 0;
 	case WM_SIZE: {
 		XResource::XSize size(LOWORD(lParam), HIWORD(lParam));
-		_canvas->setSize(size);
+		_canvas->setSize(size, 1.0);
 	}
 				  return 0;
 	case WM_PAINT:

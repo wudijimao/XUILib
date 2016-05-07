@@ -52,6 +52,7 @@
     <ClInclude Include="..\..\..\include\http\XHTTPRequest.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPRequestHandler.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPResponse.hpp" />
+    <ClInclude Include="..\..\..\include\res\XColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XData.hpp" />
     <ClInclude Include="..\..\..\include\res\XError.hpp" />
     <ClInclude Include="..\..\..\include\res\XImage\IXImage.hpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="..\..\..\include\http\XHTTPRequest.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPRequestHandler.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPResponse.cpp" />
+    <ClCompile Include="..\..\..\include\res\XColor.cpp" />
     <ClCompile Include="..\..\..\include\res\XData.cpp" />
     <ClCompile Include="..\..\..\include\res\XError.cpp" />
     <ClCompile Include="..\..\..\include\res\XImage\XGifDecoder.cpp" />

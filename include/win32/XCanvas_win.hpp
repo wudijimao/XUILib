@@ -19,7 +19,7 @@ public:
 	bool init(HWND hWnd) {
 		RECT rct;
 		GetWindowRect(mHWND, &rct);
-		setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top));
+		setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top), 1.0);
 		mHWND = hWnd;
 		mHDC = ::GetDC(hWnd);
 		initMemDC();
@@ -33,31 +33,31 @@ public:
 		//glClearColor(1, 1, 1, 1);
 		//glClear(GL_COLOR_BUFFER_BIT);
 
-		glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
-		glColor3f(0, 1, 1);
-		glVertex3f(0.0f, 1.0f, 0.1f);                  // Top
-		glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
-		glVertex3f(-1.0f, -1.0f, 0.1f);                  // Bottom Left
-		glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
-		glVertex3f(1.0f, -1.0f, 0.1f);                  // Bottom Right
-		glEnd();
-		glFlush();
+		//glBegin(GL_TRIANGLES);                              // Drawing Using Triangles
+		//glColor3f(0, 1, 1);
+		//glVertex3f(0.0f, 1.0f, 0.1f);                  // Top
+		//glColor3f(0.0f, 1.0f, 0.0f);                      // Set The Color To Green
+		//glVertex3f(-1.0f, -1.0f, 0.1f);                  // Bottom Left
+		//glColor3f(0.0f, 0.0f, 1.0f);                      // Set The Color To Blue
+		//glVertex3f(1.0f, -1.0f, 0.1f);                  // Bottom Right
+		//glEnd();
+		//glFlush();
 		//TODO::drawtowin by gdi+
 		//XResource::XColor *piexls = new XResource::XColor[_size.Width() * _size.Height()];
 		//SwapBuffers(mHDC);
 		
-		//glReadBuffer(GL_FRONT);
+		//glReadBuffer(GL_BACK);
 		//glPixelStorei(GL_PACK_ALIGNMENT, 1);
 		glReadPixels(0, 0, _size.Width(), _size.Height(), GL_BGRA, GL_UNSIGNED_BYTE, bmp_cnt);
 
-		//unsigned char *c = bmp_cnt;
-		//for (int i = 0; i < 50000; ++i, c += 4)
-		//{
-		//	c[0] = 9;
-		//	c[1] = 0;
-		//	c[2] = 255;
-		//	c[3] = 254;
-		//}
+		/*unsigned char *c = bmp_cnt;
+		for (int i = 0; i < 50000; ++i, c += 4)
+		{
+			c[0] = 9;
+			c[1] = 0;
+			c[2] = 255;
+			c[3] = 254;
+		}*/
 
 		RECT rct;
 		GetWindowRect(mHWND, &rct);

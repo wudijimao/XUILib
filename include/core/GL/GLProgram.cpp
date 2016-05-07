@@ -129,13 +129,17 @@ bool GLProgram::setUniformValue(const char *uniformName, const XResource::XColor
 
 bool GLProgram::setUniformValue(const char *uniformName, bool b) {
     GLint temp = (GLint)b;
-    setUniformValue(uniformName, temp);
-    return true;
+	return setUniformValue(uniformName, temp);
 }
 bool GLProgram::setUniformValue(const char *uniformName, GLint i) {
     GLuint location = glGetUniformLocation(_program, uniformName);
-    glUniform1i(location, i);
-    return true;
+		glUniform1i(location, i);
+#ifdef _DEBUG
+		return location != UINT_MAX;
+#else
+		return true;
+#endif // DEBUG
+
 }
 GLuint GLProgram::getAttributeIndex(const char *name) {
 	return glGetAttribLocation(_program, name);

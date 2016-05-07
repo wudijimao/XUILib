@@ -11,10 +11,8 @@
 #include "../core/UIView.hpp"
 
 XWindow::XWindow() {
-    _rect.X(0.0);
-    _rect.Y(0.0);
-    _rect.Width(375.0);
-    _rect.Height(625.0);
+	setPositon(XResource::XDisplayPoint(0., 0.));
+	setSize(XResource::XDisplaySize(375.0, 625.0));
 }
 
 XWindow::~XWindow() {

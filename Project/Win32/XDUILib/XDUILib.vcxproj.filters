@@ -207,6 +207,9 @@
     <ClInclude Include="..\..\..\include\http\XHTTPResponse.hpp">
       <Filter>Header\http</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XColor.hpp">
+      <Filter>Header\res</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\http\XHTTPResponse.cpp">
       <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XColor.cpp">
+      <Filter>Header\res</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -175,7 +175,7 @@ namespace XDUILib {
 			   GLRenderSquareData::sProgram.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
 
 			   GLRenderSquareData::sProgram.setUniformValue("useTexture", true);
-               GLRenderSquareData::sProgram.setUniformValue("isAlphaTexture", mIsAlphaTexture);
+               GLRenderSquareData::sProgram.setUniformValue("uIsTextureAlpha", mIsAlphaTexture);
 		   }
 		   else {
 			   GLRenderSquareData::sProgram.setUniformValue("useTexture", false);
@@ -196,6 +196,7 @@ namespace XDUILib {
         }
         GLuint bufObjects[3];
         void buildVAO() {
+			GLRenderSquareData::sProgram.enable();
 			//must first create on gl 4 core
 			glGenVertexArrays(1, &_vectexArrayObject);
 			glBindVertexArray(_vectexArrayObject);

@@ -27,6 +27,10 @@ public:
     virtual bool Present() = 0;
     virtual void pushRenderData(XDUILib::GLRenderData **data, int size) = 0;
     void makeCurrent() {
+		if (gCurrentCanvas != nullptr)
+		{
+			mCanvasStack.push_back(gCurrentCanvas);
+		}
         gCurrentCanvas = this;
     }
     void popCurrent() {
