@@ -34,8 +34,12 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_
 }
 void GLRender::DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) {
     auto frame = attrStr.createFrame(xRect);
-    for (auto f : frame->mLines.front()->mGroups.front()->mChars) {
-        this->DrawBackGround(XResource::XUIColor::redColor()->_color, f->mGlyph->mImage, f->mRect);
+    for (auto l : frame->mLines) {
+        for (auto g : l->mGroups) {
+            for (auto c : g->mChars) {
+                this->DrawBackGround(XResource::XUIColor::redColor()->_color, c->mGlyph->mImage, c->mRect);
+            }
+        }
     }
 }
 

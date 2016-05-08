@@ -5,6 +5,7 @@
 #include "../XImage/XImage.hpp"
 #include "XText.hpp"
 #include <assert.h>
+#include <math.h>
 
 namespace XResource
 {
@@ -118,9 +119,7 @@ namespace XResource
 		}
     private:
         void makeFontMetrics() {
-            if(mFontMetrics.get() == nullptr) {
-                mFontMetrics.reset(new XFontMetrics());
-            }
+            mFontMetrics = std::make_shared<XFontMetrics>();
             FT_Size size = mFace->size;
             double temp = 64.0 * XResource::gHighResolutionPixelScale;
             mFontMetrics->ascender = size->metrics.ascender / temp;
@@ -274,6 +273,8 @@ namespace XResource
         unsigned long location = 0;
         XResource::XRange effactRange;
         auto defaultFont = XFont::systemFont(20);
+        double lineMaxAssender = 0.0;
+        double lineMaxVertAdvance = 0.0;
         while (location < size) {
             auto font = std::dynamic_pointer_cast<XFont>(getAttr(location, XResource::XAttrStrKey_Font, effactRange));
             if (effactRange.length <= 0) {
@@ -283,15 +284,26 @@ namespace XResource
                 font = defaultFont;
             }
             XGlyphPtr *glyphs = XFreeType::sharedInstance()->getXGlyphs(font.get(), mUnicodeCacheStr.c_str() + location, effactRange.length);
-            
+            lineMaxAssender = std::max(lineMaxAssender,  glyphs[0]->mFontMetrics->ascender);
             for (int i = 0; i < effactRange.length; ++i) {
                 auto textChar = new XCoreTextChar();
                 auto temp = glyphs[i];
                 textChar->mGlyph = glyphs[i];
                 textChar->mRect.setSize(textChar->mGlyph->mImage->size());
+                lineMaxVertAdvance = std::max(lineMaxVertAdvance, textChar->mGlyph->mMetrics.vertAdvance);
                 if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
+                    for (auto g : line->mGroups) {
+                        for (auto c : g->mChars) {
+                            c->mRect.moveY(lineMaxAssender - c->mGlyph->mFontMetrics->ascender);
+                        }
+                    }
+                    
                     x = xRect.X();
-                    y += textChar->mGlyph->mMetrics.vertAdvance;
+                    y += lineMaxVertAdvance;
+                    line = new XCoreTextLine();
+                    frame->mLines.push_back(line);
+                    group = new XCoreTextGroup();
+                    line->mGroups.push_back(group);
                 }
                 textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
                 textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
