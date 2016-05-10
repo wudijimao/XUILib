@@ -259,6 +259,29 @@ namespace XResource
         return font;
     }
     
+    void XAttributedString::fillTextColor(XCoreTextFrame &frame) const {
+        unsigned long location = 0;
+        XResource::XRange effactRange;
+        effactRange.location = 0;
+        unsigned long size = mUnicodeCacheStr.length();
+        int i = 0;
+        std::shared_ptr<XResource::XStringAttrColor> textColor;
+        for (auto line : frame.mLines) {
+            for (auto group : line->mGroups) {
+                for (auto c : group->mChars) {
+                    ++i;
+                    if (i > effactRange.rightPosition()) {
+                        textColor = std::dynamic_pointer_cast<XResource::XStringAttrColor>(getAttr(location, XResource::XAttrStrKey_Color, effactRange));
+                        if (!textColor) {
+                            textColor = XStringAttrColor::colorWithColor(XResource::XUIColor::black());
+                        }
+                    }
+                    c->mFrontColor = textColor->mColor;
+                }
+            }
+        }
+    }
+    
 	std::shared_ptr<XCoreTextFrame> XAttributedString::createFrame(const XResource::XRect &xRect) const {
         std::shared_ptr<XCoreTextFrame> frame = std::make_shared<XCoreTextFrame>();
         auto line = new XCoreTextLine();
@@ -275,6 +298,7 @@ namespace XResource
         auto defaultFont = XFont::systemFont(20);
         double lineMaxAssender = 0.0;
         double lineMaxVertAdvance = 0.0;
+        double lineHeight = 3;
         while (location < size) {
             auto font = std::dynamic_pointer_cast<XFont>(getAttr(location, XResource::XAttrStrKey_Font, effactRange));
             if (effactRange.length <= 0) {
@@ -294,31 +318,34 @@ namespace XResource
                 if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
                     for (auto g : line->mGroups) {
                         for (auto c : g->mChars) {
-                            c->mRect.moveY(lineMaxAssender - c->mGlyph->mFontMetrics->ascender);
+                            c->mRect.moveY(lineMaxAssender);
                         }
                     }
                     
                     x = xRect.X();
                     y += lineMaxVertAdvance;
+                    y += lineHeight;
+                    lineMaxVertAdvance = 0;
+                    lineMaxAssender = textChar->mGlyph->mFontMetrics->ascender;
                     line = new XCoreTextLine();
                     frame->mLines.push_back(line);
                     group = new XCoreTextGroup();
                     line->mGroups.push_back(group);
                 }
-                textChar->mRect.X(x + textChar->mGlyph->mImageLeft);
-                textChar->mRect.Y(y + textChar->mGlyph->mFontMetrics->ascender  - textChar->mGlyph->mImageTop);
+                textChar->mRect.X(x + textChar->mGlyph->mMetrics.horiBearingX);
+                textChar->mRect.Y(y - textChar->mGlyph->mMetrics.horiBearingY);
                 
                 group->mChars.push_back(textChar);
                 x += textChar->mGlyph->mMetrics.horiAdvance;
             }
             location += effactRange.length;
         }
-        
-        
-        
-        
-        
-        
+        for (auto g : line->mGroups) {
+            for (auto c : g->mChars) {
+                c->mRect.moveY(lineMaxAssender);
+            }
+        }
+        fillTextColor(*frame);
         return frame;
 	}
     void XAttributedString::addAttr(const XStrAttrPtr &attr) {
@@ -370,6 +397,16 @@ namespace XResource
         out_effactRange.location = in_loc;
         out_effactRange.length = mUnicodeCacheStr.length();
         return mEmptyAttr;
+    }
+    
+    void XAttributedString::clearAttrs() {
+        for (auto pair : mTypedAttrs) {
+            pair.second.clear();
+        }
+    }
+    
+    void XAttributedString::clearAttrs(XAttrStrKeyEnum type) {
+        mTypedAttrs[type].clear();
     }
 }
 

@@ -166,6 +166,9 @@
 		3EDFDB9D1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */; };
 		3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */; };
 		3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */; };
+		3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
+		3EF8A3261CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
+		3EF8A3271CE0CD5E0092F3F4 /* XTextView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -291,6 +294,8 @@
 		3EDFDB971CCB54DF0079AF51 /* XHTTPResponse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPResponse.hpp; sourceTree = "<group>"; };
 		3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XHTTPRequestHandler.cpp; sourceTree = "<group>"; };
 		3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPRequestHandler.hpp; sourceTree = "<group>"; };
+		3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTextView.cpp; sourceTree = "<group>"; };
+		3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTextView.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -451,6 +456,8 @@
 		3E3FF89C1CA29CAB0070F6A5 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */,
+				3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -568,6 +575,7 @@
 				3EBA63DB1CD368F800E633B3 /* XImageDataDecoder.hpp in Headers */,
 				3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */,
 				3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */,
+				3EF8A3271CE0CD5E0092F3F4 /* XTextView.hpp in Headers */,
 				3E4F72BB1CD2508B006661C0 /* XFont.hpp in Headers */,
 				3EDFDB9A1CCB54DF0079AF51 /* XHTTPResponse.hpp in Headers */,
 				3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */,
@@ -709,6 +717,7 @@
 				3E203C821CA15A8400757788 /* XPngDecoder.cpp in Sources */,
 				3E4F72B91CD2508B006661C0 /* XFont.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
+				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */,
 				3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
@@ -773,6 +782,7 @@
 				3E99289B1CDD94D7008E90D3 /* XColor.cpp in Sources */,
 				3EAA6D1D1CA24A8E0037291F /* XImage.hpp in Sources */,
 				3EAA6D1E1CA24A8E0037291F /* XImageDecoder.cpp in Sources */,
+				3EF8A3261CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EAA6D1F1CA24A8E0037291F /* XImageDecoder.hpp in Sources */,
 				3EDFDB991CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
 				3EDFDB8F1CCB54AC0079AF51 /* XHTTPHeader.cpp in Sources */,

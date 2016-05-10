@@ -27,8 +27,14 @@ namespace XResource {
     
     typedef std::vector<XStrAttrContainer> XStrAttrVec;
     
+    class XAttributedString;
+    typedef std::shared_ptr<XAttributedString> XAttributedStringPtr;
+    
 	class SIMPLEDIRECTUI_API XAttributedString {
     public:
+        static XAttributedStringPtr attrStr(const XString &str) {
+            return std::make_shared<XAttributedString>(str);
+        }
 		XAttributedString(const XString &str) {
 			mStr = str;
             mUnicodeCacheStr = mStr.getUnicodeString();
@@ -40,17 +46,23 @@ namespace XResource {
 			return mUnicodeCacheStr.c_str();
 		}
 		std::shared_ptr<XCoreTextFrame> createFrame(const XResource::XRect &xRect) const;
+        void clearAttrs();
+        void clearAttrs(XAttrStrKeyEnum type);
         void addAttr(const XStrAttrPtr &attr);
         void addAttr(const XStrAttrPtr &attr, const XRange &range);
         void addAttrs(const XStrAttrVec &attr, unsigned long location, unsigned long length);
         XStrAttrVec getAttrs(unsigned long in_loc, XRange &out_effactRange) const;
         const XStrAttrPtr& getAttr(unsigned long in_loc, XAttrStrKeyEnum type, XRange &out_effactRange) const;
 	private:
+        void fillTextColor(XCoreTextFrame &frame) const;
 		XString mStr;
 		std::wstring mUnicodeCacheStr;
         std::map<XAttrStrKeyEnum, XStrAttrVec> mTypedAttrs;
         XStrAttrPtr mEmptyAttr;
 	};
+    
+   
+    
 }
 
 

@@ -17,6 +17,8 @@
 #include "core/MutiThread/XDispatch.h"
 #include "http/XHTTPClient.hpp"
 
+#include "ui/XTextView.hpp"
+
 
 #ifdef TARGET_OS_IPHONE
     #include "ios/XDUILib_ios.hpp"

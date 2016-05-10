@@ -3,12 +3,13 @@
 #include "../XString.hpp"
 #include "../XRect.hpp"
 #include "../XImage/XImage.hpp"
+#include "../XColor.hpp"
 
 namespace XResource
 {
     enum XAttrStrKeyEnum {
         XAttrStrKey_Font = 0,
-        XAttrStrKey_FrontColor = 1,
+        XAttrStrKey_Color = 1,
         XAttrStrKey_Custom = 2000,
         //canAddToBelow or use XAttrStrKey_Customn + 1(2,3,4...)
     };
@@ -23,14 +24,39 @@ namespace XResource
             switch (key) {
                 case XAttrStrKey_Font:
                     return "XAttrStrKey_Font";
-                case XAttrStrKey_FrontColor:
-                    return "XAttrStrKey_FrontColor";
+                case XAttrStrKey_Color:
+                    return "XAttrStrKey_Color";
                 default:
                     break;
             }
-            char temp[128];
-            sprintf(temp, "XAttrStrKey_Custom: %d", key);
-            return temp;
+            return "XAttrStrKey_Custom";
+        }
+    };
+    
+    class SIMPLEDIRECTUI_API XStringAttrColor : public XStringAttr {
+    public:
+        static std::shared_ptr<XStringAttrColor> colorWithColor(const std::shared_ptr<XUIColor> color) {
+            auto c = std::make_shared<XStringAttrColor>();
+            c->mColor = color;
+            return c;
+        }
+        static std::shared_ptr<XStringAttrColor> colorWithColor(const std::shared_ptr<XUIColor> color, const std::shared_ptr<XUIColor> backColor) {
+            auto c = std::make_shared<XStringAttrColor>();
+            c->mColor = color;
+            c->mBackgroundColor = backColor;
+            return c;
+        }
+
+        static std::shared_ptr<XStringAttrColor> colorWithBackgroundColor(const std::shared_ptr<XUIColor> color) {
+            auto c = std::make_shared<XStringAttrColor>();
+            c->mBackgroundColor = color;
+            return c;
+        }
+
+        std::shared_ptr<XUIColor> mColor;
+        std::shared_ptr<XUIColor> mBackgroundColor;
+        virtual XAttrStrKeyEnum getKey() override {
+            return XAttrStrKey_Color;
         }
     };
     
@@ -102,6 +128,7 @@ namespace XResource
     public:
         XRect mRect;
         XGlyphPtr mGlyph;
+        std::shared_ptr<XResource::XUIColor> mFrontColor;
     };
     
     class SIMPLEDIRECTUI_API XCoreTextGroup {

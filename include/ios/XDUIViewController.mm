@@ -52,6 +52,14 @@ void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view)
     self.view = view;
     CAEAGLLayer *layer = (CAEAGLLayer*)view.layer;
     layer.contentsScale = 2.0f;
+//    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(120, 130, 88, 300)];
+//    textView.backgroundColor = [UIColor lightGrayColor];
+//    textView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"泉此方测试测试 test哈哈哈啊啊啊"];
+//    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:10] range:NSMakeRange(0, str.length)];
+//    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(5, 4)];
+//    textView.attributedText = str;
+//    [self.view addSubview:textView];
     _window->init(layer);
     _window->update();
     _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
