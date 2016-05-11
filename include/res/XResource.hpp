@@ -6,6 +6,6 @@
 #include "XRectPro.hpp"
 #include "XImage/XImage.hpp"
 #include "XString.hpp"
-#include "XText/XText.hpp"
+#include "XText/XAttributedString.hpp"
 
 
