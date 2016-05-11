@@ -17,7 +17,7 @@ namespace XUI
     public:
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
         }
-		virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &touch) {
+		virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) {
 		}
         virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &touch) {
             return false;
@@ -33,7 +33,7 @@ namespace XUI
         UIView();
         virtual ~UIView();
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
-        virtual void setBkgImg(const std::shared_ptr<XResource::XImage> &img);
+        virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
 		
         virtual void drawRect(IXRender &render);
 		
@@ -46,7 +46,11 @@ namespace XUI
         virtual void layoutSubViews();
         //can override(have defalut behavior)
         virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &input) {
-            return _rect.isPointIn(input->mPosition);
+            if (_isInputEnable) {
+                return _rect.isPointIn(input->mPosition);
+            } else {
+                return false;
+            }
         }
         //do not override these function below
         void setNeedReDraw();
@@ -92,7 +96,7 @@ namespace XUI
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
-        std::shared_ptr<XResource::XImage> _backGroundImage;
+        std::shared_ptr<XResource::IXImage> _backGroundImage;
         bool _needReDraw = true;
         bool _needLayout = true;
         UIViewController *mBelongingViewController = nullptr;

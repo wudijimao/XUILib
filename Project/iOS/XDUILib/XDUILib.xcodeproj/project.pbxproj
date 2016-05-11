@@ -169,6 +169,7 @@
 		3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
 		3EF8A3261CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
 		3EF8A3271CE0CD5E0092F3F4 /* XTextView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */; };
+		3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF9FE5B1CE21C27002E19DD /* XButton.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -296,6 +297,9 @@
 		3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPRequestHandler.hpp; sourceTree = "<group>"; };
 		3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTextView.cpp; sourceTree = "<group>"; };
 		3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTextView.hpp; sourceTree = "<group>"; };
+		3EF9FE5B1CE21C27002E19DD /* XButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XButton.cpp; sourceTree = "<group>"; };
+		3EF9FE5C1CE21C27002E19DD /* XButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XButton.hpp; sourceTree = "<group>"; };
+		3EF9FE5E1CE2CCFD002E19DD /* XViews.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XViews.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -456,6 +460,9 @@
 		3E3FF89C1CA29CAB0070F6A5 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				3EF9FE5E1CE2CCFD002E19DD /* XViews.hpp */,
+				3EF9FE5B1CE21C27002E19DD /* XButton.cpp */,
+				3EF9FE5C1CE21C27002E19DD /* XButton.hpp */,
 				3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */,
 				3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */,
 			);
@@ -718,6 +725,7 @@
 				3E4F72B91CD2508B006661C0 /* XFont.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
+				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */,
 				3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,

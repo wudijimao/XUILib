@@ -209,6 +209,7 @@ namespace XResource
         }
 		XRect();
 		XRect(double x, double y, double width, double height);
+        XRect(const XDisplaySize&size);
 		~XRect();
 		bool operator == (const XRect &rect)
 		{

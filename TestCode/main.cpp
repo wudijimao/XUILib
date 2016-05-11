@@ -42,10 +42,10 @@ public:
         textView->setBkgImg(img);
 		this->view()->addSubView(textView);
         
-		auto subView3 = std::make_shared<XUI::UIView>();
-		subView3->setBkgColor(XResource::XUIColor::blueColor());
-		subView3->setRect(XResource::XRectPro(5, 20, 15, 50));
-		_testSubView->addSubView(subView3);
+		auto btn = std::make_shared<XUI::XButton>();
+        btn->setBackgroundColor(XUI::ButtonStates::DOWN, XResource::XUIColor::blueColor());
+		btn->setRect(XResource::XRectPro(5, 20, 70, 25));
+		_testSubView->addSubView(btn);
 		
 		auto request = std::make_shared<XHTTPRequest>();
 		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
@@ -57,7 +57,7 @@ public:
 		
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
-		(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
+		//(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
 	}
 	virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) override {
 		auto event = (*mouseEvents.begin());

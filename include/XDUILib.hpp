@@ -16,8 +16,7 @@
 #include "core/XResManager.hpp"
 #include "core/MutiThread/XDispatch.h"
 #include "http/XHTTPClient.hpp"
-
-#include "ui/XTextView.hpp"
+#include "ui/XViews.hpp"
 
 
 #ifdef TARGET_OS_IPHONE

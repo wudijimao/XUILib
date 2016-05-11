@@ -23,7 +23,7 @@ namespace XUI
         setNeedReDraw();
         _backGroundColor = color;
     }
-    void UIView::setBkgImg(const std::shared_ptr<XResource::XImage> &img) {
+    void UIView::setBkgImg(const std::shared_ptr<XResource::IXImage> &img) {
         setNeedReDraw();
         _backGroundImage = img;
     }
