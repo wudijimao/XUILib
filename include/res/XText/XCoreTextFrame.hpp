@@ -76,6 +76,7 @@ namespace XResource {
             }
         }
         std::vector<XCoreTextGroup*> mGroups;
+        XResource::XRect mRect;
     };
     
     class SIMPLEDIRECTUI_API XCoreTextFrame {
@@ -86,6 +87,7 @@ namespace XResource {
             }
         }
         std::vector<XCoreTextLine*> mLines;
+        XResource::XSize mSize;
     };
 
 }

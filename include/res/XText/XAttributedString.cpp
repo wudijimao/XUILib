@@ -38,7 +38,7 @@ namespace XResource {
         }
     }
     
-    std::shared_ptr<XCoreTextFrame> XAttributedString::createFrame(const XResource::XRect &xRect) const {
+    std::shared_ptr<XCoreTextFrame> XAttributedString::createFrame(const XResource::XDisplaySize &mSize) const {
         if (mFrameCache) {
             return mFrameCache;
         }
@@ -47,9 +47,9 @@ namespace XResource {
         frame->mLines.push_back(line);
         auto group = new XCoreTextGroup();
         line->mGroups.push_back(group);
-        double x = xRect.X();
-        double y = xRect.Y();
-        double right = xRect.X() + xRect.Width();
+        double x = 0;
+        double y = 0;
+        double right = mSize.Width();
         unsigned long size = mUnicodeCacheStr.length();
         
         unsigned long location = 0;
@@ -58,6 +58,7 @@ namespace XResource {
         double lineMaxAssender = 0.0;
         double lineMaxVertAdvance = 0.0;
         double lineHeight = 3;
+        double frameMaxWith = 0;
         while (location < size) {
             auto font = std::dynamic_pointer_cast<XFont>(getAttr(location, XResource::XAttrStrKey_Font, effactRange));
             if (effactRange.length <= 0) {
@@ -80,13 +81,17 @@ namespace XResource {
                             c->mRect.moveY(lineMaxAssender);
                         }
                     }
-                    
-                    x = xRect.X();
+                    line->mRect.Width(x);
+                    line->mRect.Height(lineMaxVertAdvance);
+                    frameMaxWith = std::max(frameMaxWith, line->mRect.Width());
+                    x = 0;
                     y += lineMaxVertAdvance;
                     y += lineHeight;
                     lineMaxVertAdvance = 0;
                     lineMaxAssender = textChar->mGlyph->mFontMetrics->ascender;
                     line = new XCoreTextLine();
+                    line->mRect.X(x);
+                    line->mRect.Y(y);
                     frame->mLines.push_back(line);
                     group = new XCoreTextGroup();
                     line->mGroups.push_back(group);
@@ -104,6 +109,12 @@ namespace XResource {
                 c->mRect.moveY(lineMaxAssender);
             }
         }
+        y += lineMaxVertAdvance;
+        line->mRect.Width(x);
+        line->mRect.Height(lineMaxVertAdvance);
+        frameMaxWith = std::max(frameMaxWith, line->mRect.Width());
+        frame->mSize.Width(frameMaxWith);
+        frame->mSize.Height(y);
         fillTextColor(*frame);
         (std::shared_ptr<XCoreTextFrame>)mFrameCache = frame;
         return frame;

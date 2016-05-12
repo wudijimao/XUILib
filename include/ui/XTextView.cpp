@@ -58,10 +58,45 @@ namespace  XUI {
         }
     }
     
+    void UITextView::sizeToFit() {
+        //TODO:impl
+    }
+    XResource::XDisplaySize UITextView::sizeThatFit(const XResource::XDisplaySize &size) {
+        //TODO:impl
+        return XResource::XDisplaySize(0, 0);
+    }
+    
     void UITextView::drawRect(IXRender &render) {
         if (mText) {
             XResource::XRect rect = getFixRect();
+            auto frame = mText->createFrame(rect.size());
+            switch (mAlignmentH) {
+                case UITextAlignmentH::Center:
+                    rect.moveX((rect.Width() - frame->mSize.Width()) / 2.0);
+                    break;
+                default:
+                    break;
+            }
             render.DrawString(*mText.get(), rect);
         }
+    }
+    
+    void UITextView::setAlignmentH(UITextAlignmentH align) {
+        if (mAlignmentH != align) {
+            mAlignmentH = align;
+            setNeedLayout();
+        }
+    }
+    void UITextView::setAlignmentV(UITextAlignmentV align) {
+        if (mAlignmentV != align) {
+            mAlignmentV = align;
+            setNeedLayout();
+        }
+    }
+    UITextAlignmentH UITextView::alignmentH() {
+        return mAlignmentH;
+    }
+    UITextAlignmentV UITextView::alignmentV() {
+        return mAlignmentV;
     }
 }

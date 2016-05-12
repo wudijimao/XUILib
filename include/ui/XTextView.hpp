@@ -11,6 +11,20 @@
 
 namespace XUI
 {
+    enum class UITextAlignmentH {
+        Left,
+        Center,    // Visually centered
+        Right ,    // Visually right aligned
+        Justified,    // Fully-justified. The last line in a paragraph is natural-aligned.
+        Natural,
+    };
+    
+    enum class UITextAlignmentV {
+        Top,
+        Center,
+        Bottom,
+    };
+    
     class UITextView : public UIView {
     public:
         UITextView();
@@ -21,9 +35,17 @@ namespace XUI
         void setText(const XResource::XString &str);
         void setText(const XResource::XAttributedStringPtr &attrStr);
         const XResource::XAttributedStringPtr &text();
+        void setAlignmentH(UITextAlignmentH align);
+        void setAlignmentV(UITextAlignmentV align);
+        UITextAlignmentH alignmentH();
+        UITextAlignmentV alignmentV();
+        void sizeToFit();
+        XResource::XDisplaySize sizeThatFit(const XResource::XDisplaySize &size);
     protected:
         virtual void drawRect(IXRender &render) override;
     private:
+        UITextAlignmentH mAlignmentH = UITextAlignmentH::Left;
+        UITextAlignmentV mAlignmentV = UITextAlignmentV::Top;
         XResource::XAttributedStringPtr mText = nullptr;
         std::shared_ptr<XResource::XFont> mFont;
         std::shared_ptr<XResource::XStringAttrColor> mTextColor;

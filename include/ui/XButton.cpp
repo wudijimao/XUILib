@@ -5,6 +5,7 @@ namespace XUI {
         mTextView.reset(new UITextView());
         mTextView->setBkgColor(XResource::XUIColor::clearColor());
         mTextView->setIsInputEnable(false);
+        mTextView->setAlignmentH(UITextAlignmentH::Center);
         this->addSubView(mTextView);
         XButtonResHolder *res = &mResMap[(int)ButtonStates::NORMAL];
         res->mSetted = true;
