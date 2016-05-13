@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3E0E57601CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
+		3E0E57611CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
+		3E0E57621CE4ACC700792415 /* XUIImageView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */; };
 		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
 		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
@@ -203,6 +206,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XUIImageView.cpp; sourceTree = "<group>"; };
+		3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XUIImageView.hpp; sourceTree = "<group>"; };
 		3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIAppDelegate.h; sourceTree = "<group>"; };
 		3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIAppDelegate.mm; sourceTree = "<group>"; };
@@ -495,6 +500,8 @@
 				3EF9FE5C1CE21C27002E19DD /* XButton.hpp */,
 				3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */,
 				3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */,
+				3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */,
+				3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -651,6 +658,7 @@
 				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
 				3EDFDB951CCB54BC0079AF51 /* XHTTPRequest.hpp in Headers */,
 				3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */,
+				3E0E57621CE4ACC700792415 /* XUIImageView.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +789,7 @@
 				3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
 				3E5BC8F51CE2F83600E57750 /* XStringAttrColor.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
+				3E0E57601CE4ACC700792415 /* XUIImageView.cpp in Sources */,
 				3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */,
 				3E8D12061CBFA2F900EC385D /* XHTTPClient.cpp in Sources */,
 				3E7F4F231CC60A61001D0C58 /* XTaskQueue.cpp in Sources */,
@@ -867,6 +876,7 @@
 				3EAA6D281CA24A8E0037291F /* XString.cpp in Sources */,
 				3EAA6D291CA24A8E0037291F /* XString.hpp in Sources */,
 				3EAA6D2A1CA24A8E0037291F /* XRect.cpp in Sources */,
+				3E0E57611CE4ACC700792415 /* XUIImageView.cpp in Sources */,
 				3EAA6D2B1CA24A8E0037291F /* XRect.hpp in Sources */,
 				3EAA6D2C1CA24A8E0037291F /* XRectPro.hpp in Sources */,
 				3EAA6D2D1CA24A8E0037291F /* XResource.hpp in Sources */,

@@ -103,11 +103,11 @@ namespace XDUILib {
     };
     
     
-    
     enum class GLRenderDataType {
         UnKnown,
         Square,
     };
+    
     class GLRenderData {
     public:
         virtual ~GLRenderData(){};
@@ -119,6 +119,9 @@ namespace XDUILib {
     };
     class GLRenderSquareData : public GLRenderData {
     public:
+        GLfloat _clipsX1, _clipsX2, _clipsY1, _clipsY2;
+        bool mIsClips = false;
+        
 		static GLProgram sProgram;
         GLfloat _square[12];
         GLfloat _texturePos[8];
@@ -127,6 +130,16 @@ namespace XDUILib {
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
+        void setClips(bool clips) {
+            mIsClips = clips;
+        }
+        void setClipsBound(const XResource::XRect &rect) {
+            _clipsX1 = rect.X();
+            _clipsX2 = _clipsX1 + rect.Width();
+            _clipsY1 = rect.Y();
+            _clipsY2 = _clipsY1 + rect.Height();
+        }
+        
         void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
             _square[0] = rect.X();
             _square[1] = rect.Y();
@@ -169,6 +182,11 @@ namespace XDUILib {
         }
        virtual void render() override {
 		   GLRenderSquareData::sProgram.enable();
+           if (mIsClips) {
+               GLRenderSquareData::sProgram.setUniformValue("uClipsBounds", _clipsX1, _clipsX2, _clipsY1, _clipsY2);
+           }
+           GLRenderSquareData::sProgram.setUniformValue("uIsClipsToBounds", mIsClips);
+           
 		   if (_textureId > 0) {
 			   glActiveTexture(GL_ACTIVE_TEXTURE - 1);
 			   glBindTexture(GL_TEXTURE_2D, _textureId);
@@ -197,6 +215,7 @@ namespace XDUILib {
         GLuint bufObjects[3];
         void buildVAO() {
 			GLRenderSquareData::sProgram.enable();
+            
 			//must first create on gl 4 core
 			glGenVertexArrays(1, &_vectexArrayObject);
 			glBindVertexArray(_vectexArrayObject);

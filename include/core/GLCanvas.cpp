@@ -86,7 +86,8 @@ bool GLCanvas::Present() {
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::Square: {
-				glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
+                _program.setUniformMatrix4fv("myMat", 1, (GLfloat*)&_transformMat);
+				//glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);
 				data->render();
             }
                 break;

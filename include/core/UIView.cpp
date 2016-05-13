@@ -92,7 +92,11 @@ namespace XUI
         if (_needReDraw) {
             _needReDraw = false;
             mRenderer->clear();
-            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage,  _rect);
+            mRenderer->setClipsToBounds(mIsClipsToBounds);
+            if (mIsClipsToBounds) {
+                mRenderer->setClipsBounds(_rect);
+            }
+            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _rect);
             drawRect(*mRenderer);
         }
         mRenderer->Submit();
@@ -100,6 +104,17 @@ namespace XUI
             subView->draw();
         }
     }
+    
+    void UIView::setClipsToBounds(bool clips) {
+        if (mIsClipsToBounds != clips) {
+            mIsClipsToBounds = clips;
+            setNeedReDraw();
+        }
+    }
+    bool UIView::isClipsToBounds() {
+        return mIsClipsToBounds;
+    }
+    
     
     
     const std::shared_ptr<UIView> UIViewController::view() {
@@ -130,4 +145,5 @@ namespace XUI
         
         viewDidLoad();
     }
+    
 }

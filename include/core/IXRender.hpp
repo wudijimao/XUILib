@@ -23,4 +23,6 @@ public:
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect) = 0;
 //	virtual XResource::XRect MeasureString(const std::wstring &text) = 0;
     virtual void DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) = 0;
+    virtual void setClipsToBounds(bool clips) = 0;
+    virtual void setClipsBounds(const XResource::XRect &xRect) = 0;
 };

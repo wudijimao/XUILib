@@ -54,7 +54,13 @@ public:
             _testSubView->setBkgImg(image);
 		};
 		IXHTTPClient::getSharedInstanc()->sendRequest(request);
-		
+        
+        auto imgView = std::make_shared<XUI::XUIImageView>();
+        imgView->setRect(XResource::XRectPro(100, 300, 200, 200));
+        imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
+        this->view()->addSubView(imgView);
+        imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
+        imgView->setBkgColor(XResource::XUIColor::grayColor());
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		//(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());

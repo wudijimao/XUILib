@@ -122,8 +122,21 @@ bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
 }
 
 bool GLProgram::setUniformValue(const char *uniformName, const XResource::XColor &color) {
-    GLuint location = glGetAttribLocation(_program, uniformName);
+    GLuint location = glGetUniformLocation(_program, uniformName);
     glUniform4f(location, color.r, color.b, color.b, color.a);
+    return true;
+}
+
+bool GLProgram::setUniformValue(const char *uniformName, float f1, float f2, float f3, float f4) {
+    GLuint location = glGetUniformLocation(_program, uniformName);
+    glUniform4f(location, f1, f2, f3, f4);
+    return true;
+}
+
+bool GLProgram::setUniformMatrix4fv(const char *uniformName, int count, const float *v) {
+    GLuint location = glGetUniformLocation(_program, uniformName);
+    //glUniform4fv(location, count, v);
+    glUniformMatrix4fv(location, count, true, v);
     return true;
 }
 
@@ -143,6 +156,9 @@ bool GLProgram::setUniformValue(const char *uniformName, GLint i) {
 }
 GLuint GLProgram::getAttributeIndex(const char *name) {
 	return glGetAttribLocation(_program, name);
+}
+GLuint GLProgram::getUniformIndex(const char *name) {
+    return glGetUniformLocation(_program, name);
 }
 
 bool GLProgram::enable() {

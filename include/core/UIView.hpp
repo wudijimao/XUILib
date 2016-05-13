@@ -35,7 +35,6 @@ namespace XUI
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
         virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
 		
-        virtual void drawRect(IXRender &render);
 		
         virtual const XResource::XRectPro& getRect();
 //		virtual void setRect(double x, double y, double width, double height) = 0;
@@ -44,6 +43,7 @@ namespace XUI
         //must override
         //override(not have defalut behavior)
         virtual void layoutSubViews();
+        virtual void drawRect(IXRender &render);
         //can override(have defalut behavior)
         virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &input) {
             if (_isInputEnable) {
@@ -53,6 +53,8 @@ namespace XUI
             }
         }
         //do not override these function below
+        void setClipsToBounds(bool clips);
+        bool isClipsToBounds();
         void setNeedReDraw();
         void setNeedLayout();
         std::shared_ptr<UIView> getSuperView();
@@ -89,6 +91,7 @@ namespace XUI
         void layout(const XResource::XRect &absRect);
         void draw();
     private:
+        bool mIsClipsToBounds = false;
         IXRender *mRenderer;
         bool _isInputEnable = true;
         UIView *_superView;

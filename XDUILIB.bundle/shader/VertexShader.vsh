@@ -2,17 +2,29 @@
 
 precision mediump float;
 
-in vec3 inPos;
-in vec2 vTexCoord;
-in vec4 inColor;
+layout(location = 0) in vec3 inPos;
+layout(location = 1) in vec2 vTexCoord;
+layout(location = 2) in vec4 inColor;
 
 out vec4 Color;
 out vec2 texCoord;
+out vec4 pos;
 
 uniform mat4 myMat;
+uniform vec4 uClipsBounds;
+uniform bool uIsClipsToBounds;
+
+
+
 
 void main() {
-    gl_Position = vec4(inPos, 1.0) * myMat;
+    vec4 tempPos = vec4(inPos, 1.0);
+//    if (uIsClipsToBounds) {
+//        if (tempPos.x < uClipsBounds.x) {
+//            tempPos.x = uClipsBounds.x;
+//        }
+//    }
+    gl_Position = tempPos * myMat;
     texCoord = vTexCoord;
     Color = inColor;
 }

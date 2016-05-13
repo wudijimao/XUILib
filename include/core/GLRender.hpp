@@ -19,7 +19,13 @@ public:
     virtual void DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) override;
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect);
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
+    
+    virtual void setClipsToBounds(bool clips) override;
+    virtual void setClipsBounds(const XResource::XRect &xRect) override;
 private:
+    bool mIsClipsToBounds;
+    XResource::XRect mClipsRect;
+    
     std::vector<XDUILib::GLRenderData*> mCachedRenderData;
 };
 

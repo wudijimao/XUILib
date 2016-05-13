@@ -20,16 +20,29 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::X
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     static std::shared_ptr<XResource::XImage> emptyImg;
     data->initWithRect(xRect, color, emptyImg);
+    if (mIsClipsToBounds) {
+        data->setClips(true);
+        data->setClipsBound(mClipsRect);
+    }
     mCachedRenderData.push_back(data);
 }
+
 void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
+    if (mIsClipsToBounds) {
+        data->setClips(true);
+        data->setClipsBound(mClipsRect);
+    }
     mCachedRenderData.push_back(data);
 }
 void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(xRect, color, image);
+    if (mIsClipsToBounds) {
+        data->setClips(true);
+        data->setClipsBound(mClipsRect);
+    }
     mCachedRenderData.push_back(data);
 }
 void GLRender::DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) {
@@ -41,6 +54,15 @@ void GLRender::DrawString(const XResource::XAttributedString &attrStr, const XRe
             }
         }
     }
+}
+
+
+void GLRender::setClipsToBounds(bool clips) {
+    mIsClipsToBounds = clips;
+}
+
+void GLRender::setClipsBounds(const XResource::XRect &xRect) {
+    mClipsRect = xRect;
 }
 
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {
