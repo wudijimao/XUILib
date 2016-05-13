@@ -4,6 +4,7 @@ precision mediump float;
 
 in vec4 Color;
 in vec2 texCoord;
+in vec4 pos;
 
 out vec4 fragmentColor;
 
@@ -11,13 +12,16 @@ uniform bool uIsTextureAlpha;
 uniform bool useTexture;
 uniform sampler2D s_texture;
 
+uniform vec4 uClipsBounds;
+uniform bool uIsClipsToBounds;
+
 
 void main() {
-//    if (uIsClipsToBounds) {
-//        if (pos.x < uClipsBounds.x) {
-//            discard;
-//        }
-//    }
+    if (uIsClipsToBounds) {
+        if (pos.x < uClipsBounds.x || pos.x > uClipsBounds.y || pos.y < uClipsBounds.z || pos.y > uClipsBounds.w) {
+            discard;
+        }
+    }
     
 	if(useTexture) {
 		fragmentColor = texture(s_texture, texCoord);
