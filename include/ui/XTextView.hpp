@@ -39,10 +39,11 @@ namespace XUI
         void setAlignmentV(UITextAlignmentV align);
         UITextAlignmentH alignmentH();
         UITextAlignmentV alignmentV();
-        void sizeToFit();
+        //void sizeToFit();
         XResource::XDisplaySize sizeThatFit(const XResource::XDisplaySize &size);
     protected:
         virtual void drawRect(IXRender &render) override;
+        void judgeRect(XResource::XRect &in_out_rect, const XResource::XDisplaySize &size);
     private:
         UITextAlignmentH mAlignmentH = UITextAlignmentH::Left;
         UITextAlignmentV mAlignmentV = UITextAlignmentV::Top;

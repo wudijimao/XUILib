@@ -58,25 +58,48 @@ namespace  XUI {
         }
     }
     
-    void UITextView::sizeToFit() {
-        //TODO:impl
+//    void UITextView::sizeToFit() {
+//        auto rect = getRect();
+//        auto frame = mText->createFrame(rect.size());
+//        rect.setSize(frame->mSize);
+//        setRect(rect);
+//    }
+    
+    void UITextView::judgeRect(XResource::XRect &in_out_rect, const XResource::XDisplaySize &size) {
+        switch (mAlignmentH) {
+            case UITextAlignmentH::Center:
+                in_out_rect.moveX((in_out_rect.Width() - size.Width()) / 2.0);
+                break;
+            case UITextAlignmentH::Right:
+                in_out_rect.moveX(in_out_rect.Width() - size.Width());
+                break;
+            default:
+                break;
+        }
+        switch (mAlignmentV) {
+            case UITextAlignmentV::Center:
+                in_out_rect.moveY((in_out_rect.Height() - size.Height()) / 2.0);
+                break;
+            case UITextAlignmentV::Bottom:
+                in_out_rect.moveY(in_out_rect.Height() - size.Height());
+                break;
+            default:
+                break;
+        }
+        in_out_rect.setSize(size);//for test
     }
+    
     XResource::XDisplaySize UITextView::sizeThatFit(const XResource::XDisplaySize &size) {
-        //TODO:impl
-        return XResource::XDisplaySize(0, 0);
+        auto frame = mText->createFrame(size);
+        return frame->mSize;
     }
     
     void UITextView::drawRect(IXRender &render) {
         if (mText) {
             XResource::XRect rect = getFixRect();
             auto frame = mText->createFrame(rect.size());
-            switch (mAlignmentH) {
-                case UITextAlignmentH::Center:
-                    rect.moveX((rect.Width() - frame->mSize.Width()) / 2.0);
-                    break;
-                default:
-                    break;
-            }
+            judgeRect(rect, frame->mSize);
+            
             render.DrawString(*mText.get(), rect);
         }
     }
@@ -84,13 +107,13 @@ namespace  XUI {
     void UITextView::setAlignmentH(UITextAlignmentH align) {
         if (mAlignmentH != align) {
             mAlignmentH = align;
-            setNeedLayout();
+            setNeedReDraw();
         }
     }
     void UITextView::setAlignmentV(UITextAlignmentV align) {
         if (mAlignmentV != align) {
             mAlignmentV = align;
-            setNeedLayout();
+            setNeedReDraw();
         }
     }
     UITextAlignmentH UITextView::alignmentH() {

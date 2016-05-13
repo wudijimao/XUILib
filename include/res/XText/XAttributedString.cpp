@@ -39,6 +39,7 @@ namespace XResource {
     }
     
     std::shared_ptr<XCoreTextFrame> XAttributedString::createFrame(const XResource::XDisplaySize &mSize) const {
+        //clear size when Size is too small
         if (mFrameCache) {
             return mFrameCache;
         }
@@ -68,13 +69,13 @@ namespace XResource {
                 font = defaultFont;
             }
             XGlyphPtr *glyphs = XFreeType::sharedInstance()->getXGlyphs(font.get(), mUnicodeCacheStr.c_str() + location, effactRange.length);
-            lineMaxAssender = std::max(lineMaxAssender,  glyphs[0]->mFontMetrics->ascender);
             for (int i = 0; i < effactRange.length; ++i) {
                 auto textChar = new XCoreTextChar();
                 auto temp = glyphs[i];
                 textChar->mGlyph = glyphs[i];
                 textChar->mRect.setSize(textChar->mGlyph->mImage->size());
-                lineMaxVertAdvance = std::max(lineMaxVertAdvance, textChar->mGlyph->mMetrics.vertAdvance);
+                lineMaxVertAdvance = std::max(lineMaxVertAdvance, textChar->mRect.Height());
+                lineMaxAssender = std::max(lineMaxAssender, textChar->mGlyph->mMetrics.horiBearingY);
                 if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
                     for (auto g : line->mGroups) {
                         for (auto c : g->mChars) {
@@ -88,7 +89,7 @@ namespace XResource {
                     y += lineMaxVertAdvance;
                     y += lineHeight;
                     lineMaxVertAdvance = 0;
-                    lineMaxAssender = textChar->mGlyph->mFontMetrics->ascender;
+                    lineMaxAssender = textChar->mGlyph->mMetrics.horiBearingY;
                     line = new XCoreTextLine();
                     line->mRect.X(x);
                     line->mRect.Y(y);

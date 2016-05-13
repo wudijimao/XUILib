@@ -1,6 +1,7 @@
 #pragma once
 #include "../core/UIView.hpp"
 #include "XTextView.hpp"
+#include "XUIImageView.hpp"
 
 namespace XUI
 {
@@ -62,6 +63,7 @@ namespace XUI
         ButtonStates _getResExistState(ButtonStates state);
         XButtonResHolder * _getRes(ButtonStates state);
         std::shared_ptr<UITextView> mTextView;
+        std::shared_ptr<XUIImageView> mIconView;
 		ButtonStates mState = ButtonStates::DISABLE;
         ButtonStates mUsedResState = ButtonStates::DISABLE;
         XButtonResHolder mResMap[(int)ButtonStates::DISABLE +1];

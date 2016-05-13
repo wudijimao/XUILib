@@ -33,7 +33,7 @@ public:
         auto textView = std::make_shared<XUI::UITextView>();
         textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
         textView->setTextColor(XResource::XUIColor::blueColor());
-        textView->setFont(XResource::XFont::systemFont(6));
+        textView->setFont(XResource::XFont::systemFont(16));
         auto color = XResource::XUIColor::pinkColor()->copy();
         color->_color.a = 200;
 		textView->setBkgColor(color);

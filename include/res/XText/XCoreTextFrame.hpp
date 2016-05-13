@@ -87,7 +87,7 @@ namespace XResource {
             }
         }
         std::vector<XCoreTextLine*> mLines;
-        XResource::XSize mSize;
+        XResource::XDisplaySize mSize;
     };
 
 }

@@ -6,6 +6,7 @@ namespace XUI {
         mTextView->setBkgColor(XResource::XUIColor::clearColor());
         mTextView->setIsInputEnable(false);
         mTextView->setAlignmentH(UITextAlignmentH::Center);
+        mTextView->setAlignmentV(UITextAlignmentV::Center);
         this->addSubView(mTextView);
         XButtonResHolder *res = &mResMap[(int)ButtonStates::NORMAL];
         res->mSetted = true;
@@ -141,7 +142,11 @@ namespace XUI {
     }
     
     void XButton::layoutSubViews() {
-        mTextView->setRect(XResource::XRectPro(getRect().size()));
+        if(mIconView) {
+            
+        } else {
+            mTextView->setRect(XResource::XRectPro(getRect().size()));
+        }
     }
     
     void XButtonResHolder::copyFrom(const XButtonResHolder &res) {
