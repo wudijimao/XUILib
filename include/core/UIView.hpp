@@ -92,7 +92,7 @@ namespace XUI
         void draw();
     private:
         bool mIsClipsToBounds = false;
-        IXRender *mRenderer;
+        IXRender *mRenderer = nullptr;
         bool _isInputEnable = true;
         UIView *_superView;
         std::vector<std::shared_ptr<UIView>> _subViews;
@@ -130,6 +130,10 @@ namespace XUI
 //		virtual XResource::XPoint GetMousePos() = 0;
 	};
     
+    enum class PresentAnimation {
+        None,
+        Custom,
+    };
     
     
     class SIMPLEDIRECTUI_API UIViewController : public UIResponder {
@@ -144,6 +148,9 @@ namespace XUI
                 mBelongWindow->setNeedReDraw();
             }
         }
+        //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
+        void presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani = PresentAnimation::None);
+        
     protected:
         void onSizeChange(XResource::XSize &size);
         IXWindow *mBelongWindow = nullptr;

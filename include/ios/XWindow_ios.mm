@@ -33,6 +33,7 @@ bool XWindow_ios::init(CAEAGLLayer* drawable) {
     canvas->init(drawable);
     XResource::gHighResolutionPixelScale = drawable.contentsScale;
     _canvas = canvas;
+    initFinished();
     return true;
 }
 

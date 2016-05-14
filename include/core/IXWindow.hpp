@@ -19,6 +19,8 @@ public:
 	virtual ~IXWindow(){};
     virtual void showInFront() = 0;
     virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) = 0;
+    virtual const XResource::XDisplaySize &size() = 0;
+    virtual const XResource::XDisplayPoint &position() = 0;
 	virtual void setSize(const XResource::XDisplaySize &size) = 0;
 	virtual void setPositon(const XResource::XDisplayPoint &pos) = 0;
     void setNeedReDraw() {

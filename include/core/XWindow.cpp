@@ -81,6 +81,21 @@ void XWindow::dispatchMouseEvents() {
 	_mouseEventList.clear();
 }
 
+void XWindow::initFinished() {
+    mIsFulllyInited = true;
+    if (_rootController != nullptr) {
+        _rootController->view();
+    }
+}
+
+const XResource::XDisplaySize& XWindow::size() {
+    return _rect.size();
+}
+
+const XResource::XDisplayPoint& XWindow::position() {
+    return _rect.point();
+}
+
 
 void XWindow::setSize(const XResource::XDisplaySize &size) {
 	_rect.Width(size.Width());
@@ -95,6 +110,9 @@ void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
     rootViewController->mBelongWindow = this;
     _rootController = rootViewController;
+    if (mIsFulllyInited) {
+        _rootController->view();
+    }
 }
 
 

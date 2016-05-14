@@ -14,6 +14,8 @@ class SIMPLEDIRECTUI_API_DEBUG XWindow : public IXWindow {
 public:
 	~XWindow();
 	virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
+    virtual const XResource::XDisplaySize &size() override;
+    virtual const XResource::XDisplayPoint &position() override;
 	virtual void setSize(const XResource::XDisplaySize &size) override;
 	virtual void setPositon(const XResource::XDisplayPoint &pos) override;
 	const XResource::XRect& rect() {
@@ -28,6 +30,8 @@ public:
 	void dispatchTouchs();
 	void dispatchMouseEvents();
 protected:
+    bool mIsFulllyInited = false;
+    void initFinished();
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;

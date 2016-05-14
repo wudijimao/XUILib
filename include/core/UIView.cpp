@@ -139,11 +139,16 @@ namespace XUI
         _view = std::make_shared<XUI::UIView>();
         _view->mBelongingViewController = this;
         XResource::XRectPro rect;
+        rect.setSize(mBelongWindow->size());
         rect.HAlign(XResource::XRectPro::HAlign_Stretch);
         rect.VAlign(XResource::XRectPro::VAlign_Stretch);
         _view->setRect(rect);
         
         viewDidLoad();
+    }
+    
+    void UIViewController::presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani) {
+        this->mBelongWindow->setRootViewController(controller);
     }
     
 }

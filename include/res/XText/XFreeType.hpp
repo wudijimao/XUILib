@@ -14,6 +14,7 @@
 #include "../XImage/XImage.hpp"
 #include <assert.h>
 #include "XFont.hpp"
+#include "../../core/XResManager.hpp"
 
 namespace XResource {
     class XFreeTypeFace {
@@ -225,6 +226,8 @@ namespace XResource {
             fontPaths.push_back("/System/Library/Fonts/PingFang.ttc");
             fontPaths.push_back("/Users/ximiao/Downloads/Signed_NotoColorEmoji/system/fonts/NotoColorEmoji.ttf");
             fontPaths.push_back("C:\\Windows\\Fonts\\msyh.ttf");
+            auto path = XBundle::libBundle()->pathForResource("font/FZMWFont", "ttf");
+            fontPaths.push_back(path.UTF8CStr());
             for (auto path : fontPaths) {
                 this->loadFace(path.c_str());
             }

@@ -1,6 +1,6 @@
 ﻿#include <XDUILib.hpp>
 #pragma execution_character_set("utf-8")
-
+#include "LoginViewController.hpp"
 
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
@@ -22,6 +22,9 @@ void DetectMemoryLeaks()
 
 class ViewController : public XUI::UIViewController {
 public:
+    ~ViewController() {
+        
+    }
 	std::shared_ptr<XUI::UIView> _testSubView;
 	virtual void viewDidLoad() override {
 		XUI::UIViewController::viewDidLoad();
@@ -61,6 +64,9 @@ public:
         this->view()->addSubView(imgView);
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::grayColor());
+        
+        auto vc = std::make_shared<LoginViewController>();
+        this->presentViewControler(vc);
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		//(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
@@ -80,10 +86,11 @@ public:
 
 class XTestApp : public XApp {
 public:
+    std::shared_ptr<ViewController> mVc;
 	virtual bool init() {
 		setMainWindow(IXWindow::createWindow());
-		auto vc = std::make_shared<ViewController>();
-		mainWindow()->setRootViewController(vc);
+		mVc = std::make_shared<ViewController>();
+		mainWindow()->setRootViewController(mVc);
 		return true;
 	}
 };
