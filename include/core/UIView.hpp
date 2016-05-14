@@ -1,6 +1,7 @@
 #pragma once
 #include "IXWindow.hpp"
 #include "../res/XRectPro.hpp"
+#include "Animation\Animation.h"
 
 class XWindow;
 
@@ -35,7 +36,6 @@ namespace XUI
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
         virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
 		
-		
         virtual const XResource::XRectPro& getRect();
 //		virtual void setRect(double x, double y, double width, double height) = 0;
 //		virtual void setRect(const XResource::XRect& rect) = 0;
@@ -57,6 +57,7 @@ namespace XUI
         bool isClipsToBounds();
         void setNeedReDraw();
         void setNeedLayout();
+		void addAnimation();
         std::shared_ptr<UIView> getSuperView();
         void addSubView(const std::shared_ptr<UIView> &view);
         const std::vector<std::shared_ptr<UIView>> subViews();
@@ -150,12 +151,16 @@ namespace XUI
         }
         //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
         void presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani = PresentAnimation::None);
-        
+		Animation& addAnimation(const std::shared_ptr<Animation> &ani);
+		bool removeAnimation(const Animation *ani);
     protected:
-        void onSizeChange(XResource::XSize &size);
+		std::vector<std::shared_ptr<Animation>> mAnimations;
+		void update();
+		void draw();
+		void onWindowSizeChange(const XResource::XDisplaySize &size);
         IXWindow *mBelongWindow = nullptr;
+		XResource::XRect mFixRect;
     private:
-        
         void LoadView();
         bool _isLoaded = false;
         std::shared_ptr<UIView> _view;

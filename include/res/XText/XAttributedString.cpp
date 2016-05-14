@@ -30,7 +30,7 @@ namespace XResource {
                     if (i > effactRange.rightPosition()) {
                         textColor = std::dynamic_pointer_cast<XResource::XStringAttrColor>(getAttr(location, XResource::XAttrStrKey_Color, effactRange));
                         if (!textColor) {
-                            textColor = XStringAttrColor::colorWithColor(XResource::XUIColor::black());
+                            textColor = XStringAttrColor::colorWithColor(XResource::XUIColor::blackColor());
                         }
                     }
                     c->mFrontColor = textColor->mColor;

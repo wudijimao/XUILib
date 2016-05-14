@@ -53,7 +53,6 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow) {
 		rect().Y(),
 		rect().Width(),
 		rect().Height(),
-
 		NULL,
 		NULL,
 		hInstance,
@@ -66,12 +65,6 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow) {
 	initFinished();
 	ShowWindow(mHwnd, iCmdShow);
 	UpdateWindow(mHwnd);
-
-	/*//创建光标 分层窗口不能用 只能自绘,但是是否影响输入法的位置呢？？
-	if (!CreateCaret(mHwnd, NULL, 500, 500))
-	{
-		assert(L"创建光标失败");
-	}*/
 	return true;
 }
 
@@ -83,19 +76,12 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	case WM_TIMER:
 
 		this->update();
-		/*addMs += TimerMS;
-		if (addMs >= CaretShowMs)
-		{
-			addMs = 0;
-			GlobalStatus::GetInstance().IsCaretShow(!GlobalStatus::GetInstance().IsCaretShow());
-		}
-		OnDraw();*/
 		return 0;
 	case WM_CREATE: {
 		auto canvas = std::make_shared<GLCanvas_ios>();
 		canvas->init(hwnd);
 		_canvas = canvas;
-		SetTimer(hwnd, 0, 1, NULL);
+		SetTimer(hwnd, 0, 16, NULL);
 	}
 					return 0;
 	case WM_SIZE: {

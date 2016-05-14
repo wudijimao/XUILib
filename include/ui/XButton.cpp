@@ -11,7 +11,7 @@ namespace XUI {
         XButtonResHolder *res = &mResMap[(int)ButtonStates::NORMAL];
         res->mSetted = true;
         res->mFont = XResource::XFont::systemFont(14.0);
-        res->mTextColor = XResource::XUIColor::black();
+        res->mTextColor = XResource::XUIColor::blackColor();
         res->mText.reset(new XResource::XString("button"));
         res->mBackGroundColor = XResource::XUIColor::grayColor();
         _setState(ButtonStates::NORMAL);

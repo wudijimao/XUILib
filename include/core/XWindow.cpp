@@ -19,13 +19,12 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
-    auto view = _rootController->view();
-    view->layout(mLocalRect);
+	_rootController->update();
     if(mNeedReDraw) {
         mNeedReDraw = false;
         _canvas->clear();
         _canvas->makeCurrent();
-        view->draw();
+		_rootController->draw();
         _canvas->Present();
         _canvas->popCurrent();
     }
@@ -101,6 +100,10 @@ void XWindow::setSize(const XResource::XDisplaySize &size) {
 	_rect.Width(size.Width());
 	_rect.Height(size.Height());
     mLocalRect.setSize(_rect.size());
+	if (_rootController)
+	{
+		_rootController->onWindowSizeChange(size);
+	}
 }
 void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
 	_rect.X(pos.X());
@@ -111,6 +114,7 @@ void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootV
     rootViewController->mBelongWindow = this;
     _rootController = rootViewController;
     if (mIsFulllyInited) {
+		_rootController->onWindowSizeChange(mLocalRect.size());
         _rootController->view();
     }
 }

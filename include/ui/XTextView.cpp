@@ -12,7 +12,7 @@ namespace  XUI {
     
     UITextView::UITextView() {
         mFont = XResource::XFont::systemFont(16.0);
-        mTextColor = XResource::XStringAttrColor::colorWithColor(XResource::XUIColor::black());
+        mTextColor = XResource::XStringAttrColor::colorWithColor(XResource::XUIColor::blackColor());
     }
     
     void UITextView::setFont(const std::shared_ptr<XResource::XFont> &font) {

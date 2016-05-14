@@ -25,7 +25,7 @@ class LoginViewController : public XUI::UIViewController {
         title->setAlignmentV(XUI::UITextAlignmentV::Center);
         view()->addSubView(title);
         
-        auto nameText = std::make_shared<XUI::UITextView>();
+        auto nameText = std::make_shared<XUI::UIEditView>();
         nameText->setBkgColor(XResource::XUIColor::clearColor());
         nameText->setBkgImg(XResource::XImage::imageNamed("login_edit.png"));
         rect.Width(220);
@@ -33,5 +33,11 @@ class LoginViewController : public XUI::UIViewController {
         rect.HAlign(XResource::XRectPro::HAlignType::HAlign_Center);
         nameText->setRect(rect);
         view()->addSubView(nameText);
+
+		addAnimation(XUI::ValueAnimation<int>::createAni(0, 300, [nameText](int a) {
+			auto rect = nameText->getRect();
+			rect.X(a);
+			nameText->setRect(rect);
+		})).play();
     }
 };

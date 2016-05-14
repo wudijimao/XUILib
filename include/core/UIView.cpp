@@ -54,8 +54,8 @@ namespace XUI
         }
     }
     void UIView::setNeedLayout() {
-        _needLayout = true;
-        _needReDraw = true;
+		_needLayout = true;
+		setNeedReDraw();
     }
     std::shared_ptr<UIView> UIView::getSuperView() {
         return std::shared_ptr<UIView>();
@@ -75,19 +75,24 @@ namespace XUI
     const std::vector<std::shared_ptr<UIView>> UIView::subViews() {
         return _subViews;
     }
-    void UIView::layout(const XResource::XRect &absRect) {
-        if (_needLayout) {
-            _needLayout = false;
-            XResource::XRect tempRect = _rect;
-            _rect = this->_layoutRect.MakeAbsRect(absRect);
-            if (tempRect != _rect) {
-                layoutSubViews();
-                for (auto subView : _subViews) {
-                    subView->layout(_rect);
-                }
-            }
-        }
-    }
+	void UIView::layout(const XResource::XRect &absRect) {
+		XResource::XRect tempRect = _rect;
+		_rect = this->_layoutRect.MakeAbsRect(absRect);
+		bool posChanged = (tempRect.point() != _rect.point());
+		bool sizeChanged = (tempRect.size() != _rect.size());
+		if (posChanged || sizeChanged) {
+			if (_needLayout && sizeChanged) {
+				_needLayout = false;
+				layoutSubViews();
+				for (auto subView : _subViews) {
+					subView->setNeedLayout();
+				}
+			}
+		}
+		for (auto subView : _subViews) {
+			subView->layout(_rect);
+		}
+	}
     void UIView::draw() {
         if (_needReDraw) {
             _needReDraw = false;
@@ -127,11 +132,12 @@ namespace XUI
     void UIViewController::viewDidLoad() {
         
     }
-    void UIViewController::onSizeChange(XResource::XSize &size) {
-        XResource::XRectPro rect = _view->getRect();
-        rect.Width(size.Width());
-        rect.Height(size.Height());
-        _view->setRect(rect);
+    void UIViewController::onWindowSizeChange(const XResource::XDisplaySize &size) {
+		mFixRect.setSize(size);
+        //XResource::XRectPro rect = _view->getRect();
+        //rect.Width(size.Width());
+        //rect.Height(size.Height());
+        //_view->setRect(rect);
     }
     
     void UIViewController::LoadView() {
@@ -150,5 +156,24 @@ namespace XUI
     void UIViewController::presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani) {
         this->mBelongWindow->setRootViewController(controller);
     }
+
+	void UIViewController::update() {
+		for (auto ani : mAnimations)
+		{
+			ani->process(18);
+		}
+		view()->layout(mFixRect);
+	}
+	void UIViewController::draw() {
+		view()->draw();
+	}
+
+	Animation& UIViewController::addAnimation(const std::shared_ptr<Animation> &ani) {
+		mAnimations.push_back(ani);
+		return *ani;
+	}
+	bool UIViewController::removeAnimation(const Animation *ani) {
+		return false;
+	}
     
 }

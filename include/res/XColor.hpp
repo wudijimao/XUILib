@@ -54,7 +54,7 @@ namespace XResource {
             static auto color = std::make_shared<XUIColor>(255,192,203,255);
             return color;
         }
-        static std::shared_ptr<XUIColor>black() {
+        static std::shared_ptr<XUIColor>blackColor() {
             static auto color = std::make_shared<XUIColor>(0,0,0,255);
             return color;
         }

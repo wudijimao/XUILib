@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\core\Animation\Animation.h" />
     <ClInclude Include="..\..\..\include\core\DllExport.hpp" />
     <ClInclude Include="..\..\..\include\core\GLCanvas.hpp" />
     <ClInclude Include="..\..\..\include\core\GLHelper.hpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp" />
     <ClInclude Include="..\..\..\include\ui\XButton.hpp" />
+    <ClInclude Include="..\..\..\include\ui\XEditView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XTextView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XUIImageView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XViews.hpp" />
@@ -86,6 +88,7 @@
     <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\include\core\Animation\Animation.cpp" />
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp" />
     <ClCompile Include="..\..\..\include\core\GLRender.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
@@ -124,6 +127,7 @@
     <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp" />
     <ClCompile Include="..\..\..\include\ui\XButton.cpp" />
+    <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XTextView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XUIImageView.cpp" />
     <ClCompile Include="..\..\..\include\win32\dllmain.cpp" />
