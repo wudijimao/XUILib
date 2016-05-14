@@ -16,7 +16,7 @@ namespace XUI
 		DISABLE,
 	};
     
-    struct XButtonResHolder {
+    struct SIMPLEDIRECTUI_API XButtonResHolder {
         bool mSetted = false;
         std::shared_ptr<XResource::IXImage> mBackGroundImage;
         std::shared_ptr<XResource::IXImage> mImage;

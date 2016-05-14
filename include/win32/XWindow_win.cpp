@@ -63,6 +63,7 @@ bool XWindow_win::init(PSTR szCmdLine, int iCmdShow) {
 		DWORD a = ::GetLastError();
 		return NULL;
 	}
+	initFinished();
 	ShowWindow(mHwnd, iCmdShow);
 	UpdateWindow(mHwnd);
 

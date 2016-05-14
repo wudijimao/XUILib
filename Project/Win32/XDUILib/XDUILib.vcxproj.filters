@@ -40,6 +40,9 @@
     <Filter Include="Header\http">
       <UniqueIdentifier>{c43d5c08-2c32-43b5-9b88-5300019da44a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\ui">
+      <UniqueIdentifier>{971c9907-ac81-43bb-87ab-c040956e56aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\core\DllExport.hpp">
@@ -210,6 +213,33 @@
     <ClInclude Include="..\..\..\include\res\XColor.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XAttributedString.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XCoreTextFrame.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XFreeType.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XStringAttr.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp">
+      <Filter>Header\res\XText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ui\XButton.hpp">
+      <Filter>Header\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ui\XTextView.hpp">
+      <Filter>Header\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ui\XUIImageView.hpp">
+      <Filter>Header\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\ui\XViews.hpp">
+      <Filter>Header\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -334,6 +364,30 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\res\XColor.cpp">
       <Filter>Header\res</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XAttributedString.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XCoreTextFrame.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XFreeType.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp">
+      <Filter>Header\res\XText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\ui\XButton.cpp">
+      <Filter>Header\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\ui\XTextView.cpp">
+      <Filter>Header\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\ui\XUIImageView.cpp">
+      <Filter>Header\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

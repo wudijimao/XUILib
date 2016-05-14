@@ -8,6 +8,7 @@
 
 #include "XAttributedString.hpp"
 #include "XFreeType.hpp"
+#include <algorithm>
 
 namespace XResource {
     
@@ -74,8 +75,8 @@ namespace XResource {
                 auto temp = glyphs[i];
                 textChar->mGlyph = glyphs[i];
                 textChar->mRect.setSize(textChar->mGlyph->mImage->size());
-                lineMaxVertAdvance = std::max(lineMaxVertAdvance, textChar->mRect.Height());
-                lineMaxAssender = std::max(lineMaxAssender, textChar->mGlyph->mMetrics.horiBearingY);
+                lineMaxVertAdvance = (std::max)(lineMaxVertAdvance, textChar->mRect.Height());
+                lineMaxAssender = (std::max)(lineMaxAssender, textChar->mGlyph->mMetrics.horiBearingY);
                 if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
                     for (auto g : line->mGroups) {
                         for (auto c : g->mChars) {
@@ -84,7 +85,7 @@ namespace XResource {
                     }
                     line->mRect.Width(x);
                     line->mRect.Height(lineMaxVertAdvance);
-                    frameMaxWith = std::max(frameMaxWith, line->mRect.Width());
+                    frameMaxWith = (std::max)(frameMaxWith, line->mRect.Width());
                     x = 0;
                     y += lineMaxVertAdvance;
                     y += lineHeight;
@@ -113,7 +114,7 @@ namespace XResource {
         y += lineMaxVertAdvance;
         line->mRect.Width(x);
         line->mRect.Height(lineMaxVertAdvance);
-        frameMaxWith = std::max(frameMaxWith, line->mRect.Width());
+        frameMaxWith = (std::max)(frameMaxWith, line->mRect.Width());
         frame->mSize.Width(frameMaxWith);
         frame->mSize.Height(y);
         fillTextColor(*frame);
