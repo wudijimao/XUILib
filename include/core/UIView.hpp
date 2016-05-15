@@ -149,18 +149,22 @@ namespace XUI
                 mBelongWindow->setNeedReDraw();
             }
         }
+		void setNeedLayout() {
+			mIsNeedLayout = true;
+		}
         //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
         void presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani = PresentAnimation::None);
 		Animation& addAnimation(const std::shared_ptr<Animation> &ani);
 		bool removeAnimation(const Animation *ani);
     protected:
 		std::vector<std::shared_ptr<Animation>> mAnimations;
-		void update();
+		void update(unsigned long passedMS);
 		void draw();
 		void onWindowSizeChange(const XResource::XDisplaySize &size);
         IXWindow *mBelongWindow = nullptr;
 		XResource::XRect mFixRect;
     private:
+		bool mIsNeedLayout = true;
         void LoadView();
         bool _isLoaded = false;
         std::shared_ptr<UIView> _view;

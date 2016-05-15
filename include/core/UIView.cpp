@@ -55,7 +55,9 @@ namespace XUI
     }
     void UIView::setNeedLayout() {
 		_needLayout = true;
-		setNeedReDraw();
+		if (mBelongingViewController != nullptr) {
+			mBelongingViewController->setNeedLayout();
+		}
     }
     std::shared_ptr<UIView> UIView::getSuperView() {
         return std::shared_ptr<UIView>();
@@ -81,6 +83,7 @@ namespace XUI
 		bool posChanged = (tempRect.point() != _rect.point());
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (posChanged || sizeChanged) {
+			setNeedReDraw();
 			if (_needLayout && sizeChanged) {
 				_needLayout = false;
 				layoutSubViews();
@@ -157,12 +160,15 @@ namespace XUI
         this->mBelongWindow->setRootViewController(controller);
     }
 
-	void UIViewController::update() {
+	void UIViewController::update(unsigned long passedMS) {
 		for (auto ani : mAnimations)
 		{
-			ani->process(18);
+			ani->process(passedMS);
 		}
-		view()->layout(mFixRect);
+		if (mIsNeedLayout)
+		{
+			view()->layout(mFixRect);
+		}
 	}
 	void UIViewController::draw() {
 		view()->draw();

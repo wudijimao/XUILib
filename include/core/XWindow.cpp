@@ -19,7 +19,7 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
-	_rootController->update();
+	_rootController->update(10);
     if(mNeedReDraw) {
         mNeedReDraw = false;
         _canvas->clear();
