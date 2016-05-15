@@ -52,7 +52,7 @@ namespace XUI
 		unsigned long mRepeatedTimes = 0;
 
 		bool mIsAutoRemove = false;
-		long mRepeatTimes = 10;
+		long mRepeatTimes = 0;
 		unsigned long mDurationMS = 400;
 		AnimatingStates mState = AnimatingStates::Stopped;
 		std::shared_ptr<AnimationInterpolator> mInterpolator;

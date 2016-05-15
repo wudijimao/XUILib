@@ -97,6 +97,10 @@ namespace XUI
 		}
 	}
     void UIView::draw() {
+		if (!mIsVisable)
+		{
+			return;
+		}
         if (_needReDraw) {
             _needReDraw = false;
             mRenderer->clear();
@@ -122,6 +126,27 @@ namespace XUI
     bool UIView::isClipsToBounds() {
         return mIsClipsToBounds;
     }
+
+	void UIView::setVisible(bool visible) {
+		if (visible != mIsVisable)
+		{
+			mIsVisable = visible;
+			if (mBelongingViewController != nullptr) {
+				mBelongingViewController->setNeedRedraw();
+			}
+		}
+	}
+	bool UIView::isVisible() {
+		return mIsVisable;
+	}
+	bool UIView::hitTest(const std::shared_ptr<XInputWithPostion> &input) {
+		if (_isInputEnable) {
+			return _rect.isPointIn(input->mPosition);
+		}
+		else {
+			return false;
+		}
+	}
     
     
     
@@ -163,6 +188,7 @@ namespace XUI
 	void UIViewController::update(unsigned long passedMS) {
 		for (auto ani : mAnimations)
 		{
+			if(ani->state() == AnimatingStates::Playing)
 			ani->process(passedMS);
 		}
 		if (mIsNeedLayout)

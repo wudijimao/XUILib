@@ -14,10 +14,10 @@ namespace XDUILib
 		{
 			return -1;
 		}
+		gXMainRunloop = std::make_shared<XMainRunloop>();
 		auto winWindow = std::dynamic_pointer_cast<XWindow_win>(_mainWindow);
 		winWindow->init(szCmdLine, iCmdShow);
 		mHwnd = winWindow->getHwnd();
-		gXMainRunloop = std::make_shared<XMainRunloop>();
 		this->internalInit();
 		MSG msg;
 		while (GetMessage(&msg, NULL, 0, 0))

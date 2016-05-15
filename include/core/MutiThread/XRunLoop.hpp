@@ -55,7 +55,6 @@ protected:
 };
 
 
-void startMainRunLoop();
 std::shared_ptr<IXRunLoop> getMainRunLoop();
 std::shared_ptr<IXRunLoop> getCurrentRunLoop();
 

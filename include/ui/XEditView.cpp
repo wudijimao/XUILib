@@ -7,20 +7,25 @@
 //
 
 #include "XEditView.hpp"
+#include "../core/MutiThread/XTimer.hpp"
 
 namespace  XUI {
 
 	UIEditView::UIEditView() {
 		mCursor.reset(new UIView());
-		mCursor->setRect(XResource::XRectPro(10,0,2,20));
+		auto rect = XResource::XRectPro(10, 6, 0.5, 0);
+		rect.Y2(6);
+		rect.VAlign(XResource::XRectPro::VAlign_Stretch);
+		mCursor->setRect(rect);
+
 		mCursor->setBkgColor(XResource::XUIColor::blackColor());
 		addSubView(mCursor);
+		XDispatch::XTimer::timer(500)->setTickFun([this](const std::shared_ptr<XDispatch::XTimer>& t) {
+			mCursor->setVisible(!mCursor->isVisible());
+		}).start();
 	}
 
 	void UIEditView::layoutSubViews() {
-		auto rect = mCursor->getRect();
-		rect.Height(this->getFixRect().Height());
-		mCursor->setRect(rect);
 	}
 
 	void UIEditView::onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {

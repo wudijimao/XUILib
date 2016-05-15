@@ -39,6 +39,7 @@
     <ClInclude Include="..\..\..\include\core\MutiThread\XRunLoop.hpp" />
     <ClInclude Include="..\..\..\include\core\MutiThread\XTask.hpp" />
     <ClInclude Include="..\..\..\include\core\MutiThread\XTaskQueue.hpp" />
+    <ClInclude Include="..\..\..\include\core\MutiThread\XTimer.hpp" />
     <ClInclude Include="..\..\..\include\core\SimpleDirectUI.hpp" />
     <ClInclude Include="..\..\..\include\core\stdafx.hpp" />
     <ClInclude Include="..\..\..\include\core\UIView.hpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="..\..\..\include\core\MutiThread\XRunLoop.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XTask.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XTaskQueue.cpp" />
+    <ClCompile Include="..\..\..\include\core\MutiThread\XTimer.cpp" />
     <ClCompile Include="..\..\..\include\core\stdafx.cpp" />
     <ClCompile Include="..\..\..\include\core\UIView.cpp" />
     <ClCompile Include="..\..\..\include\core\XApp.cpp" />

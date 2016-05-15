@@ -9,6 +9,11 @@
 #include "XRunLoop.hpp"
 
 
+std::shared_ptr<IXRunLoop> getCurrentRunLoop() {
+	//TODO::make it right
+	std::thread::id threadId = std::this_thread::get_id();
+	return getMainRunLoop();
+}
 
 void XRunLoop::run() {
     while (_do()){}

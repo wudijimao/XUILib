@@ -249,6 +249,9 @@
     <ClInclude Include="..\..\..\include\core\Animation\Animation.h">
       <Filter>Header\core\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\core\MutiThread\XTimer.hpp">
+      <Filter>Header\core\MutiThread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -403,6 +406,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\Animation\Animation.cpp">
       <Filter>Header\core\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\MutiThread\XTimer.cpp">
+      <Filter>Header\core\MutiThread</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

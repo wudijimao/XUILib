@@ -9,6 +9,7 @@
 #include "XWindow.hpp"
 #include "GLRender.hpp"
 #include "../core/UIView.hpp"
+#include <chrono>
 
 XWindow::XWindow() {
 	setPositon(XResource::XDisplayPoint(0., 0.));
@@ -19,7 +20,16 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
-	_rootController->update(10);
+	auto now = std::chrono::system_clock::now();
+	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+	/*std::stringstream st;
+	st << "time:" << now_ms.time_since_epoch().count() - tempLast << std::endl;
+	std::string str;
+	st >> str;*/
+	//OutputDebugStringA(str.c_str());
+	//tempLast = now_ms.time_since_epoch().count();
+	_rootController->update(now_ms.time_since_epoch().count() - mLastTimeMs);
+	mLastTimeMs = now_ms.time_since_epoch().count();
     if(mNeedReDraw) {
         mNeedReDraw = false;
         _canvas->clear();
@@ -82,6 +92,9 @@ void XWindow::dispatchMouseEvents() {
 
 void XWindow::initFinished() {
     mIsFulllyInited = true;
+	auto now = std::chrono::system_clock::now();
+	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+	mLastTimeMs = now_ms.time_since_epoch().count();
     if (_rootController != nullptr) {
         _rootController->view();
     }

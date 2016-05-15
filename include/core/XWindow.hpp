@@ -36,6 +36,7 @@ protected:
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;
 private:
+	long long mLastTimeMs;
     XResource::XRect _rect;
     XResource::XRect mLocalRect;//x=0,y=0
 	std::vector<std::shared_ptr<XTouch>> _touchList;

@@ -152,6 +152,8 @@ namespace XDispatch {
 					taskQueue->push(task->fun);
 					if (taskQueue->runInPool) {
 						taskQueue->runInPool->onQueueChanged();
+					} else {
+						getMainRunLoop()->weakUp(source.get());
 					}
 					mQueue.erase(taskIter);
 				}
