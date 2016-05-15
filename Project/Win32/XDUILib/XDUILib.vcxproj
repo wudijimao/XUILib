@@ -30,6 +30,7 @@
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInput.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInputs.hpp" />
+    <ClInclude Include="..\..\..\include\core\input\XKeyBoard.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XMouse.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XTouch.hpp" />
     <ClInclude Include="..\..\..\include\core\IXCanvas.hpp" />
@@ -95,6 +96,7 @@
     <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
+    <ClCompile Include="..\..\..\include\core\input\XKeyBoard.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XMouse.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XTouch.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XDispatch.cpp" />

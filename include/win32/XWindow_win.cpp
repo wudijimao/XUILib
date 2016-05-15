@@ -117,6 +117,8 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		//TODO::Key
 		return 0;
 	}
+	case WM_KEYUP:
+		break;
 	//窗体移动事件
 	case WM_MOVE:
 		//mRect.X((int)(short)LOWORD(lParam));
