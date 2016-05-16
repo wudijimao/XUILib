@@ -10,6 +10,8 @@
 #import "XApp.hpp"
 #import "XRunLoop.hpp"
 
+void startMainRunLoop();
+
 @interface XDUIAppDelegate ()
 
 @end

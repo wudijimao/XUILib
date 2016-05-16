@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0325CE1CAD3A4100C4063D /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E0325CD1CAD3A4100C4063D /* test.jpg */; };
 		3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416941C9AC4F600A84DF1 /* Images.xcassets */; };
 		3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */; };
 		3E16D6AB1CA9FAB200F84510 /* libXDUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E16D6AA1CA9FAB200F84510 /* libXDUILib.a */; };
@@ -19,13 +18,14 @@
 		3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D041CA24A1D0037291F /* UIKit.framework */; };
 		3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D061CA24A2D0037291F /* QuartzCore.framework */; };
 		3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D081CA24A350037291F /* OpenGLES.framework */; };
-		3EB50FF51CE6AF44003FF455 /* LoginViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB50FF31CE6AF44003FF455 /* LoginViewController.cpp */; };
-		3EB50FF81CE6B91C003FF455 /* login_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB50FF61CE6B91C003FF455 /* login_bkg.png */; };
-		3EB50FF91CE6B91C003FF455 /* login_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB50FF71CE6B91C003FF455 /* login_edit.png */; };
+		3EB510081CE8B9BB003FF455 /* LoginViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB510061CE8B9BB003FF455 /* LoginViewController.cpp */; };
+		3EB5100D1CE8B9CA003FF455 /* login_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB510091CE8B9CA003FF455 /* login_bkg.png */; };
+		3EB5100E1CE8B9CA003FF455 /* login_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5100A1CE8B9CA003FF455 /* login_edit.png */; };
+		3EB5100F1CE8B9CA003FF455 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5100B1CE8B9CA003FF455 /* test.jpg */; };
+		3EB510101CE8B9CA003FF455 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5100C1CE8B9CA003FF455 /* test.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E0325CD1CAD3A4100C4063D /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		3E1416941C9AC4F600A84DF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E16D6AA1CA9FAB200F84510 /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../Build/Products/Release-iphonesimulator/libXDUILib.a"; sourceTree = "<group>"; };
@@ -39,10 +39,12 @@
 		3EAA6D041CA24A1D0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EAA6D061CA24A2D0037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EAA6D081CA24A350037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		3EB50FF31CE6AF44003FF455 /* LoginViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoginViewController.cpp; sourceTree = "<group>"; };
-		3EB50FF41CE6AF44003FF455 /* LoginViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoginViewController.hpp; sourceTree = "<group>"; };
-		3EB50FF61CE6B91C003FF455 /* login_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bkg.png; sourceTree = "<group>"; };
-		3EB50FF71CE6B91C003FF455 /* login_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_edit.png; sourceTree = "<group>"; };
+		3EB510061CE8B9BB003FF455 /* LoginViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoginViewController.cpp; path = ../../../../TestCode/LoginViewController.cpp; sourceTree = "<group>"; };
+		3EB510071CE8B9BB003FF455 /* LoginViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LoginViewController.hpp; path = ../../../../TestCode/LoginViewController.hpp; sourceTree = "<group>"; };
+		3EB510091CE8B9CA003FF455 /* login_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_bkg.png; path = ../../../../TestRes/login_bkg.png; sourceTree = "<group>"; };
+		3EB5100A1CE8B9CA003FF455 /* login_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_edit.png; path = ../../../../TestRes/login_edit.png; sourceTree = "<group>"; };
+		3EB5100B1CE8B9CA003FF455 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = test.jpg; path = ../../../../TestRes/test.jpg; sourceTree = "<group>"; };
+		3EB5100C1CE8B9CA003FF455 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../../../../TestRes/test.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,15 +93,16 @@
 		3E9A4BD11C9A9B1900CB59AD /* TestUI */ = {
 			isa = PBXGroup;
 			children = (
-				3EB50FF61CE6B91C003FF455 /* login_bkg.png */,
-				3EB50FF71CE6B91C003FF455 /* login_edit.png */,
+				3EB510091CE8B9CA003FF455 /* login_bkg.png */,
+				3EB5100A1CE8B9CA003FF455 /* login_edit.png */,
+				3EB5100B1CE8B9CA003FF455 /* test.jpg */,
+				3EB5100C1CE8B9CA003FF455 /* test.png */,
+				3EB510061CE8B9BB003FF455 /* LoginViewController.cpp */,
+				3EB510071CE8B9BB003FF455 /* LoginViewController.hpp */,
 				3E8D11FF1CBF922200EC385D /* main.cpp */,
-				3E0325CD1CAD3A4100C4063D /* test.jpg */,
 				3E9A4BE31C9A9B1900CB59AD /* Info.plist */,
 				3E1416941C9AC4F600A84DF1 /* Images.xcassets */,
 				3E9A4BD21C9A9B1900CB59AD /* Supporting Files */,
-				3EB50FF31CE6AF44003FF455 /* LoginViewController.cpp */,
-				3EB50FF41CE6AF44003FF455 /* LoginViewController.hpp */,
 			);
 			path = TestUI;
 			sourceTree = "<group>";
@@ -169,12 +172,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E0325CE1CAD3A4100C4063D /* test.jpg in Resources */,
-				3EB50FF81CE6B91C003FF455 /* login_bkg.png in Resources */,
+				3EB5100D1CE8B9CA003FF455 /* login_bkg.png in Resources */,
+				3EB5100F1CE8B9CA003FF455 /* test.jpg in Resources */,
+				3EB510101CE8B9CA003FF455 /* test.png in Resources */,
 				3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */,
-				3EB50FF91CE6B91C003FF455 /* login_edit.png in Resources */,
 				3EAA6CDA1CA23E050037291F /* XDUILIB.bundle in Resources */,
 				3E1416951C9AC4F600A84DF1 /* Images.xcassets in Resources */,
+				3EB5100E1CE8B9CA003FF455 /* login_edit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EB50FF51CE6AF44003FF455 /* LoginViewController.cpp in Sources */,
+				3EB510081CE8B9BB003FF455 /* LoginViewController.cpp in Sources */,
 				3E8D12001CBF922200EC385D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

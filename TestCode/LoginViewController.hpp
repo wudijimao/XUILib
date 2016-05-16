@@ -37,10 +37,15 @@ class LoginViewController : public XUI::UIViewController {
         nameText->setRect(rect);
         view()->addSubView(nameText);
 
-		addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
+		/*addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
 			auto rect = nameText->getRect();
 			rect.X(a);
 			nameText->setRect(rect);
-		}));// .play();
+		}));// .play();*/
+        
+        auto testView = std::make_shared<XUI::UIView>();
+        testView->setBkgColor(XResource::XUIColor::greenColor());
+        testView->setRect(XResource::XRectPro(200,200,50,50));
+        view()->addSubView(testView);
     }
 };

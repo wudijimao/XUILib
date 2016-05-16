@@ -1,7 +1,7 @@
 #pragma once
 #include "IXWindow.hpp"
 #include "../res/XRectPro.hpp"
-#include "Animation\Animation.h"
+#include "Animation/Animation.h"
 
 class XWindow;
 
