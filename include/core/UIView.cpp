@@ -28,6 +28,11 @@ namespace XUI
         _backGroundImage = img;
     }
     
+    void UIView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
+        setNeedReDraw();
+        _maskImage = img;
+    }
+    
     void UIView::drawRect(IXRender &render) {
     }
     
@@ -123,6 +128,7 @@ namespace XUI
             setNeedReDraw();
         }
     }
+    
     bool UIView::isClipsToBounds() {
         return mIsClipsToBounds;
     }
@@ -136,9 +142,11 @@ namespace XUI
 			}
 		}
 	}
+    
 	bool UIView::isVisible() {
 		return mIsVisable;
 	}
+    
 	bool UIView::hitTest(const std::shared_ptr<XInputWithPostion> &input) {
 		if (_isInputEnable) {
 			return _rect.isPointIn(input->mPosition);

@@ -20,8 +20,6 @@ namespace XResource {
         static std::shared_ptr<XImage> imageFromData(std::shared_ptr<XData> &data);
         static std::shared_ptr<XImage> imageFromFile(const char *filePath);
         XImageDecoder *mDecoder = nullptr;
-        XImage () {
-        }
         ~XImage();
         bool initWithData(const std::shared_ptr<XData> &data);
         virtual int width() override;
@@ -34,7 +32,11 @@ namespace XResource {
 			}
 			return XImagePixelFormat::UnKnown;
 		}
+    protected:
+        XImage () {
+        }
     private:
+        std::weak_ptr<XImage> mSelf;
 		friend IXImage;
         static std::vector<XImageDecoder*> *decoders;
     };

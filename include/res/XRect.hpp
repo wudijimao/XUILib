@@ -276,4 +276,58 @@ namespace XResource
         XDisplaySize mSize;
         XDisplayPoint mPoint;
 	};
+    
+    
+    class SIMPLEDIRECTUI_API XEdge
+    {
+    public:
+        XEdge() : mTop(0), mBottom(0), mLeft(0), mRight(0) {};
+        XEdge(double left, double top, double right, double bottom) : mTop(top), mBottom(bottom), mLeft(left), mRight(right) {}
+        void top(double top) {
+            mTop = top;
+        }
+        void bottom(double bottom) {
+            mBottom = bottom;
+        }
+        void left(double left) {
+            mLeft = left;
+        }
+        void right(double right) {
+            mRight = right;
+        }
+        
+        void increaceTop(double top) {
+            mTop += top;
+        }
+        void increaceBottom(double bottom) {
+            mBottom += bottom;
+        }
+        void increaceLeft(double left) {
+            mLeft += left;
+        }
+        void increaceRight(double right) {
+            mRight += right;
+        }
+        
+        double top() {
+            return mTop;
+        }
+        double bottom() {
+            return mBottom;
+        }
+        double left() {
+            return mLeft;
+        }
+        double right() {
+            return mRight;
+        }
+    private:
+        double mTop;
+        double mBottom;
+        double mLeft;
+        double mRight;
+    };
 }
+
+
+

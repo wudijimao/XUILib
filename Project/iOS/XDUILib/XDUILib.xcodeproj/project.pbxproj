@@ -120,6 +120,9 @@
 		3E99289A1CDD94D7008E90D3 /* XColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9928981CDD94D7008E90D3 /* XColor.cpp */; };
 		3E99289B1CDD94D7008E90D3 /* XColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9928981CDD94D7008E90D3 /* XColor.cpp */; };
 		3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9928991CDD94D7008E90D3 /* XColor.hpp */; };
+		3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */; };
+		3E9A6A511CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */; };
+		3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9A6A4F1CE9DF2F00A5AA98 /* XStretchableImage.hpp */; };
 		3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* XResourceManager.mm */; };
 		3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CEE1CA248BE0037291F /* UIKit.framework */; };
@@ -311,6 +314,8 @@
 		3E9608371CA7EEF600FE8008 /* XResManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XResManager.hpp; sourceTree = "<group>"; };
 		3E9928981CDD94D7008E90D3 /* XColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XColor.cpp; sourceTree = "<group>"; };
 		3E9928991CDD94D7008E90D3 /* XColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XColor.hpp; sourceTree = "<group>"; };
+		3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XStretchableImage.cpp; sourceTree = "<group>"; };
+		3E9A6A4F1CE9DF2F00A5AA98 /* XStretchableImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XStretchableImage.hpp; sourceTree = "<group>"; };
 		3EAA6CD51CA23A220037291F /* XResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XResourceManager.mm; sourceTree = "<group>"; };
 		3EAA6CE01CA243210037291F /* Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAA6CE41CA243210037291F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -492,6 +497,8 @@
 				3E203C7D1CA15A8400757788 /* XPngDecoder.hpp */,
 				3EBA63D71CD368F800E633B3 /* XImageDataDecoder.cpp */,
 				3EBA63D81CD368F800E633B3 /* XImageDataDecoder.hpp */,
+				3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */,
+				3E9A6A4F1CE9DF2F00A5AA98 /* XStretchableImage.hpp */,
 			);
 			path = XImage;
 			sourceTree = "<group>";
@@ -675,6 +682,7 @@
 				3EDFDB901CCB54AC0079AF51 /* XHTTPHeader.hpp in Headers */,
 				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
+				3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */,
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
 				3E5BC8F21CE2F7A200E57750 /* XStringAttr.hpp in Headers */,
@@ -814,6 +822,7 @@
 				3E4F72B91CD2508B006661C0 /* XFont.cpp in Sources */,
 				3E5BC8F01CE2F7A200E57750 /* XStringAttr.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
+				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
@@ -904,6 +913,7 @@
 				3EAA6D221CA24A8E0037291F /* XPngDecoder.cpp in Sources */,
 				3E8D12071CBFA2F900EC385D /* XHTTPClient.cpp in Sources */,
 				3EAA6D231CA24A8E0037291F /* XPngDecoder.hpp in Sources */,
+				3E9A6A511CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3E8D120D1CBFA3B900EC385D /* XMouse.cpp in Sources */,
 				3E8BF0961CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3EB50FFF1CE8B8E7003FF455 /* Animation.cpp in Sources */,

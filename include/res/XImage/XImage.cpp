@@ -177,8 +177,9 @@ namespace XResource {
     }
     //static
     std::shared_ptr<XImage> XImage::imageFromData(std::shared_ptr<XData> &data) {
-        auto img = std::make_shared<XImage>();
+        std::shared_ptr<XImage> img(new XImage());
         if(img->initWithData(data)) {
+            img->mSelf = img;
             return img;
         } else {
             return nullptr;

@@ -35,6 +35,7 @@ namespace XUI
         virtual ~UIView();
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
         virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
+        virtual void setMaskImg(const std::shared_ptr<XResource::IXImage> &img);
 
         virtual const XResource::XRectPro& getRect();
 //		virtual void setRect(double x, double y, double width, double height) = 0;
@@ -98,6 +99,7 @@ namespace XUI
         XResource::XRect _rect;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
         std::shared_ptr<XResource::IXImage> _backGroundImage;
+        std::shared_ptr<XResource::IXImage> _maskImage;
         bool _needReDraw = true;
         bool _needLayout = true;
         UIViewController *mBelongingViewController = nullptr;
