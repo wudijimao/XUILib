@@ -172,6 +172,11 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
     curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
     curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
     curl_easy_setopt(handle, CURLOPT_XFERINFOFUNCTION, XHTTPClient::sOnProgress);
+
+	curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1);
+	curl_easy_setopt(handle, CURLOPT_CONNECTTIMEOUT, 3);
+	curl_easy_setopt(handle, CURLOPT_TIMEOUT, 3);
+
     XHTTPRequest *req = pRequest.get();
     curl_easy_setopt(handle, CURLOPT_XFERINFODATA, (void *)handler.get());
     curl_multi_add_handle(this->_curl, handle);
