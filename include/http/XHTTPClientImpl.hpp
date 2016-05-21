@@ -39,6 +39,7 @@ protected:
 	std::mutex mutex;
 	std::map<CURL*, std::shared_ptr<XHTTPRequestHandlerImpl>> _handlerMap;
 	std::map<XHTTPRequest*, CURL*> _requestMap;
+	std::map<XHTTPRequest*, curl_slist*> _requestHeaderMap;
 private:
 	void runLoop();
 	//only called by runLoop()

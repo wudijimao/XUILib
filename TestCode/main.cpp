@@ -56,7 +56,7 @@ public:
             auto image = XResource::XImage::imageFromData(response->data());
             _testSubView->setBkgImg(image);
 		};
-		IXHTTPClient::getSharedInstanc()->sendRequest(request);
+		//IXHTTPClient::getSharedInstanc()->sendRequest(request);
         
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setRect(XResource::XRectPro(100, 300, 200, 200));

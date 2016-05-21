@@ -95,9 +95,9 @@ void XHTTPClient::runLoop() {
     std::unique_lock<std::mutex> lk(mutex);
     while (1)
     {
-        this->cv.wait(lk);
         do{
             if (curl_multi_select(this->_curl) == -1) {
+				this->cv.wait(lk);
                 break;
             } else  {
                 curl_multi_perform(this->_curl, &running_handles);
@@ -131,6 +131,8 @@ void XHTTPClient::requestFinised(CURL *handle) {
     curl_multi_remove_handle(this->_curl, handle);
     curl_easy_cleanup(handle);
     requestHandler->_handle = nullptr;
+	curl_slist_free_all(_requestHeaderMap[requestHandler->request()]); /* free the list again */
+	_requestHeaderMap.erase(_requestHeaderMap.find(requestHandler->request()));
     //dowloadfinished
     auto fun = std::bind(requestHandler->request()->finishCallBack, requestHandler->_response);
     XDispatch::XDispatchManager::getSharedInstance()->dispatchAsnyc(XDispatch::XTaskQueue::getMainQueue(), fun);
@@ -153,6 +155,19 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
     handler->_response->_buf = std::make_shared<XResource::XData>();
     curl_easy_setopt(handle, CURLOPT_FAILONERROR, 1L);
     curl_easy_setopt(handle, CURLOPT_URL, pRequest->url.c_str());
+	struct curl_slist *list = NULL;
+	for (auto header : pRequest->_header._headers)
+	{
+		std::string str(header.first);
+		str.append(": ");
+		str.append(header.second);
+		list = curl_slist_append(list, str.c_str());
+	}
+	list = curl_slist_append(list, "Accept:");
+	_requestHeaderMap[pRequest.get()] = list;
+	curl_easy_setopt(handle, CURLOPT_PROXY, "127.0.0.1:8888");//设置代理服务器
+	
+	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, list);
     curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, onWriteData);
     curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
     curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
@@ -160,7 +175,7 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
     XHTTPRequest *req = pRequest.get();
     curl_easy_setopt(handle, CURLOPT_XFERINFODATA, (void *)handler.get());
     curl_multi_add_handle(this->_curl, handle);
-    cv.notify_one();
+	cv.notify_one();
     return handler;
 }
 

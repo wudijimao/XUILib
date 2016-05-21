@@ -47,5 +47,13 @@ class LoginViewController : public XUI::UIViewController {
         testView->setBkgColor(XResource::XUIColor::greenColor());
         testView->setRect(XResource::XRectPro(200,200,50,50));
         view()->addSubView(testView);
+		
+		auto request = std::make_shared<XHTTPRequest>();
+		request->url = "http://www.baidu.com";
+		request->_header.setUserAgent("aaaa");
+		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
+			int a = 0;
+		};
+		IXHTTPClient::getSharedInstanc()->sendRequest(request);
     }
 };

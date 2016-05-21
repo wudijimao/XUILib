@@ -97,7 +97,7 @@
       <AdditionalLibraryDirectories>$(ProjectDir)/../Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "..\..\..\XDUILIB.bundle" ".\XDUILIB.bundle\"  /E /D</Command>
+      <Command>xcopy "..\..\..\XDUILIB.bundle" ".\XDUILIB.bundle\"  /E /D /Y /C</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
