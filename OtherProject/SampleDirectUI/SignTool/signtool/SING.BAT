@@ -1,1 +1,0 @@
-signcode -spc mycredentials.spc -v myprivatekey.pvk -n "ÐÂÀËUC"  -i http://uc.sina.com.cn/  -t http://timestamp.verisign.com/scripts/timstamp.dll E:\Programme\ImClient\install\3.0\sinaim\signtool\signtool\SinaUC_release_8.0.0.14764.exe
