@@ -11,4 +11,5 @@
 namespace XDUILib {
 	GLProgram GLRenderSquareData::sProgram;
 
+    GLProgram GLRenderNineGridData::sProgram;
 }

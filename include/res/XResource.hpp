@@ -7,5 +7,5 @@
 #include "XImage/XImage.hpp"
 #include "XString.hpp"
 #include "XText/XAttributedString.hpp"
-
+#include "XImage/XStretchableImage.hpp"
 

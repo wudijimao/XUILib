@@ -10,6 +10,7 @@
 #include "../XData.hpp"
 #include "XJPGDecoder.hpp"
 #include "../../core/XResManager.hpp"
+#include "XStretchableImage.hpp"
 #include <png.h>
 
 
@@ -193,7 +194,19 @@ namespace XResource {
 		auto path = XBundle::mainBundle()->pathForResource(name);
         return imageFromFile(path.UTF8CStr());
 	}
-    
+    std::shared_ptr<XStretchableImage> XImage::createStretchableImage(const XEdge& stretchEdge) {
+        auto stretchImage = std::make_shared<XStretchableImage>(this->mSelf.lock(), stretchEdge);
+        return stretchImage;
+    }
+    std::shared_ptr<XStretchableImage> XImage::createStretchableImage(double left, double top) {
+        auto stretchImage = std::make_shared<XStretchableImage>(this->mSelf.lock(), left, top);
+        return stretchImage;
+    }
 }
+
+
+
+
+
 
 

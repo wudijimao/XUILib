@@ -5,6 +5,9 @@
 //  Created by ximiao on 16/3/23.
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
+
+//TODO::not Use Rect pos as  3D pos,  but as a transformational matrix.  can improve move prefromance?
+
 #pragma once
 
 #include "../stdafx.hpp"
@@ -106,6 +109,17 @@ namespace XDUILib {
     enum class GLRenderDataType {
         UnKnown,
         Square,
+        NineGrid,
+    };
+    
+    struct GLPos3D {
+        GLfloat x;
+        GLfloat y;
+        GLfloat z;
+    };
+    struct GLTexturePos2D {
+        GLfloat u;
+        GLfloat v;
     };
     
     class GLRenderData {
@@ -140,7 +154,7 @@ namespace XDUILib {
             _clipsY2 = _clipsY1 + rect.Height();
         }
         
-        void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
+        void setSquare(const XResource::XRect &rect) {
             _square[0] = rect.X();
             _square[1] = rect.Y();
             _square[2] = 0.5;
@@ -156,6 +170,10 @@ namespace XDUILib {
             _square[3] = rect.X();
             _square[4] = rect.Y() + rect.Height();
             _square[5] = 0.5;
+        }
+        
+        void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
+            setSquare(rect);
             
             _texturePos[0] = 0;
             _texturePos[1] = 0;
@@ -243,14 +261,164 @@ namespace XDUILib {
 			glEnableVertexAttribArray(inPos);
 			glEnableVertexAttribArray(vTexCoord);
 			glEnableVertexAttribArray(inColor);
-           
-            
-            
             
             glBindVertexArray(0);
             /*glDisableVertexAttribArray(0);
             glDisableVertexAttribArray(1);
             glDisableVertexAttribArray(2);*/
+        }
+    };
+    
+    class GLRenderNineGridData : public GLRenderData {
+    public:
+        virtual GLRenderDataType Type() override {
+            return GLRenderDataType::NineGrid;
+        }
+        static GLProgram sProgram;
+        GLPos3D _square[16];
+        GLTexturePos2D _texturePos[16];
+        GLubyte indices[54]; //total nine square. And two triangle per square.
+        GLuint  _textureId = 0;
+        void initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image) {
+            for (auto square : _square) {
+                square.z = 0.5f;
+            }
+            double imageWidth = image->image()->size().Width();
+            double imageHeight = image->image()->size().Height();
+            GLfloat y = rect.Y();
+            GLfloat v = 0;
+            int i = 0;
+            while (i < 4) {
+                _texturePos[i].v = v;
+                _square[i++].y = y;
+            }
+            y = rect.Y() + image->stretchEdge().top();
+            v = image->stretchEdge().top() / imageHeight;
+            while (i < 8) {
+                _texturePos[i].v = v;
+                _square[i++].y = y;
+            }
+            y = rect.Y() + rect.Height() - image->stretchEdge().bottom();
+            v = (imageHeight - image->stretchEdge().bottom()) / imageHeight;
+            while (i < 12) {
+                _texturePos[i].v = v;
+                _square[i++].y = y;
+            }
+            y = rect.Y() + rect.Height();
+            v = 1.0f;
+            while (i < 16) {
+                _texturePos[i].v = v;
+                _square[i++].y = y;
+            }
+            
+            
+            GLfloat x = rect.X();
+            GLfloat u = 0;
+            i = 0;
+            while (i < 16) {
+                _texturePos[i].u = u;
+                _square[i].x = x;
+                i += 4;
+            }
+            x = rect.X() + image->stretchEdge().left();
+            u = image->stretchEdge().left() / imageWidth;
+            i = 1;
+            while (i < 16) {
+                _texturePos[i].u = u;
+                _square[i].x = x;
+                i += 4;
+            }
+            x = rect.X() + rect.Width() - image->stretchEdge().right();
+            u = (imageWidth - image->stretchEdge().right()) / imageWidth;
+            i = 2;
+            while (i < 16) {
+                _texturePos[i].u = u;
+                _square[i].x = x;
+                i += 4;
+            }
+            x = rect.X() + rect.Width() ;
+            u = 1;
+            i = 3;
+            while (i < 16) {
+                _texturePos[i].u = u;
+                _square[i].x = x;
+                i += 4;
+            }
+            
+            GLubyte index = 0;
+            int lineIndex = 0;
+            for(int i = 0; i < 54; i += 6, ++index, ++lineIndex) {
+                indices[i] = index;
+                indices[i+1] = index+4;
+                indices[i+2] = index+1;
+                indices[i+3] = index+1;
+                indices[i+4] = index+4;
+                indices[i+5] = index+5;
+                if(lineIndex >= 2) {
+                    lineIndex = -1;
+                    ++index;
+                }
+            }
+            
+            if (image.get() != nullptr) {
+                _textureId = GLTextureManager::sharedInstance().getTextureID(image->image());
+            }
+            buildVAO();
+        }
+        virtual void render() override {
+            sProgram.enable();
+            sProgram.setUniformValue("uIsClipsToBounds", false);
+            
+            if (_textureId > 0) {
+                glActiveTexture(GL_ACTIVE_TEXTURE - 1);
+                glBindTexture(GL_TEXTURE_2D, _textureId);
+                GLRenderSquareData::sProgram.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
+                
+                GLRenderSquareData::sProgram.setUniformValue("useTexture", true);
+                GLRenderSquareData::sProgram.setUniformValue("uIsTextureAlpha", false);
+            }
+            else {
+                return;
+                //GLRenderSquareData::sProgram.setUniformValue("useTexture", false);
+            }
+            glBindVertexArray(_vectexArrayObject);
+            glDrawElements(GL_TRIANGLES, 54, GL_UNSIGNED_BYTE, 0);
+        }
+        
+        
+        
+        GLuint bufObjects[3];
+        void buildVAO() {
+            GLRenderSquareData::sProgram.enable();
+            
+            //must first create on gl 4 core
+            glGenVertexArrays(1, &_vectexArrayObject);
+            glBindVertexArray(_vectexArrayObject);
+            
+            GLuint inPos = sProgram.getAttributeIndex("inPos");
+            GLuint vTexCoord = sProgram.getAttributeIndex("vTexCoord");
+            
+            glGenBuffers(3, bufObjects);
+            
+            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[0]);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(_square), _square, GL_STATIC_DRAW);
+            glVertexAttribPointer((GLuint)inPos, 3, GL_FLOAT, GL_FALSE, 0, nullptr);
+            
+            
+            glBindBuffer(GL_ARRAY_BUFFER, bufObjects[1]);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(_texturePos), _texturePos, GL_STATIC_DRAW);
+            glVertexAttribPointer((GLuint)vTexCoord, 2, GL_FLOAT, GL_TRUE, 0, nullptr);
+            
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufObjects[2]);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) , indices, GL_STATIC_DRAW);
+            
+            glEnableVertexAttribArray(inPos);
+            glEnableVertexAttribArray(vTexCoord);
+            
+            glBindVertexArray(0);
+            /*glDisableVertexAttribArray(0);
+             glDisableVertexAttribArray(1);
+             glDisableVertexAttribArray(2);*/
         }
     };
 }

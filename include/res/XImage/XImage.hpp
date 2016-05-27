@@ -14,6 +14,8 @@
 #include "XImageDecoder.hpp"
 
 namespace XResource {
+    class XStretchableImage;
+    
     class SIMPLEDIRECTUI_API XImage : public IXImage {
     public:
 		static std::shared_ptr<XImage> imageNamed(const char *name);
@@ -32,6 +34,8 @@ namespace XResource {
 			}
 			return XImagePixelFormat::UnKnown;
 		}
+        std::shared_ptr<XStretchableImage> createStretchableImage(const XEdge& stretchEdge);
+        std::shared_ptr<XStretchableImage> createStretchableImage(double left, double top);
     protected:
         XImage () {
         }

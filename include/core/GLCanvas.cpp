@@ -30,6 +30,7 @@ bool GLCanvas::InitGLProgram() {
     bool ret = _program.initWithFilePath(vsh.UTF8CStr() , fsh.UTF8CStr());
 	if (ret) {
 		XDUILib::GLRenderSquareData::sProgram = _program;
+        XDUILib::GLRenderNineGridData::sProgram = _program;
 	}
 	return ret;
 }
@@ -85,6 +86,7 @@ bool GLCanvas::Present() {
 //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
+            case XDUILib::GLRenderDataType::NineGrid:
             case XDUILib::GLRenderDataType::Square: {
                 _program.setUniformMatrix4fv("myMat", 1, (GLfloat*)&_transformMat);
 				//glUniformMatrix4fv(0, 1, true, (GLfloat*)&_transformMat);

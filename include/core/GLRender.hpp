@@ -10,6 +10,7 @@ public:
 	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) override;
     virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) override;
     virtual void DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) override;
+    virtual void DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) override;
 //	virtual void DrawLine(int x1, int y1, int x2, int y2);
 //	//需要绘制的矩形区域
 //	virtual void DrawImage(XResource::XImage &img, const XResource::XRect &rect);
@@ -22,6 +23,7 @@ public:
     
     virtual void setClipsToBounds(bool clips) override;
     virtual void setClipsBounds(const XResource::XRect &xRect) override;
+    //virtual void setClipsMask(const std::shared_ptr<XResource::IXImage> &image) override;
 private:
     bool mIsClipsToBounds;
     XResource::XRect mClipsRect;

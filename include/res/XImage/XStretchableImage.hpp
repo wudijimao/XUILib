@@ -13,9 +13,15 @@ namespace XResource {
     class XStretchableImage {
     public:
         friend XImage;
-    private:
+        std::shared_ptr<XImage> &image() {
+            return mImage;
+        }
+        XEdge& stretchEdge() {
+            return mStretchEdge;
+        }
         XStretchableImage(const std::shared_ptr<XImage> &img, const XEdge& stretchEdge);
         XStretchableImage(const std::shared_ptr<XImage> &img, double left, double top);
+    private:
         std::shared_ptr<XImage> mImage;
         XEdge mStretchEdge;
     };

@@ -36,6 +36,13 @@ void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const
     }
     mCachedRenderData.push_back(data);
 }
+
+void GLRender::DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) {
+    XDUILib::GLRenderNineGridData *data = new XDUILib::GLRenderNineGridData();
+    data->initWithRect(rect, image);
+    mCachedRenderData.push_back(data);
+}
+
 void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(xRect, color, image);
@@ -64,6 +71,10 @@ void GLRender::setClipsToBounds(bool clips) {
 
 void GLRender::setClipsBounds(const XResource::XRect &xRect) {
     mClipsRect = xRect;
+}
+
+void setClipsMask(const std::shared_ptr<XResource::IXImage> &image) {
+    
 }
 
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {

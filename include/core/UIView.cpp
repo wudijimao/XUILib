@@ -28,6 +28,11 @@ namespace XUI
         _backGroundImage = img;
     }
     
+    void UIView::setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img) {
+        _backGroundStretchableImage = img;
+        setNeedReDraw();
+    }
+    
     void UIView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
         setNeedReDraw();
         _maskImage = img;
@@ -114,6 +119,9 @@ namespace XUI
                 mRenderer->setClipsBounds(_rect);
             }
             mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _rect);
+            if(_backGroundStretchableImage) {
+                mRenderer->DrawImage(_backGroundStretchableImage, _rect);
+            }
             drawRect(*mRenderer);
         }
         mRenderer->Submit();
