@@ -8,7 +8,7 @@
 
 #include "XWindow.hpp"
 #include "GLRender.hpp"
-#include "../core/UIView.hpp"
+#include "../core/UIViewController.hpp"
 #include <chrono>
 
 XWindow::XWindow() {

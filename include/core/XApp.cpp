@@ -7,7 +7,7 @@
 //
 
 #include "XApp.hpp"
-#include "UIView.hpp"
+#include "UIViewController.hpp"
 #include "MutiThread/XDispatch.h"
 
 namespace XDUILib

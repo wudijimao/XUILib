@@ -22,11 +22,13 @@ public:
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
     
     virtual void setClipsToBounds(bool clips) override;
-    virtual void setClipsBounds(const XResource::XRect &xRect) override;
-    //virtual void setClipsMask(const std::shared_ptr<XResource::IXImage> &image) override;
+    //setBounds
+    virtual void setBounds(const XResource::XRect &xRect) override;
+    virtual void setMask(const std::shared_ptr<XResource::IXImage> &image) override;
 private:
     bool mIsClipsToBounds;
     XResource::XRect mClipsRect;
+    std::shared_ptr<XResource::IXImage> mClipsImage;
     
     std::vector<XDUILib::GLRenderData*> mCachedRenderData;
 };

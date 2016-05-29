@@ -30,7 +30,7 @@ namespace XUI
 	{
 	public:
         friend class ::XWindow;
-        friend class UIViewController;
+        friend class XUI::UIViewController;
         UIView();
         virtual ~UIView();
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
@@ -132,44 +132,6 @@ namespace XUI
 //		virtual XResource::XPoint GetMousePos() = 0;
 	};
     
-    enum class PresentAnimation {
-        None,
-        Custom,
-    };
-    
-    
-    class SIMPLEDIRECTUI_API UIViewController : public UIResponder {
-    public:
-        friend class ::XWindow;
-        //override
-        virtual void viewDidLoad();
-        //do not override
-		const std::shared_ptr<UIView> view();
-        void setNeedRedraw() {
-            if (mBelongWindow != nullptr) {
-                mBelongWindow->setNeedReDraw();
-            }
-        }
-		void setNeedLayout() {
-			mIsNeedLayout = true;
-		}
-        //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
-        void presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani = PresentAnimation::None);
-		Animation& addAnimation(const std::shared_ptr<Animation> &ani);
-		bool removeAnimation(const Animation *ani);
-    protected:
-		std::vector<std::shared_ptr<Animation>> mAnimations;
-		void update(unsigned long passedMS);
-		void draw();
-		void onWindowSizeChange(const XResource::XDisplaySize &size);
-        IXWindow *mBelongWindow = nullptr;
-		XResource::XRect mFixRect;
-    private:
-		bool mIsNeedLayout = true;
-        void LoadView();
-        bool _isLoaded = false;
-        std::shared_ptr<UIView> _view;
-    };
 }
 
 

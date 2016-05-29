@@ -8,7 +8,7 @@
 
 #include "UIView.hpp"
 #include "GLRender.hpp"
-
+#include "UIViewController.hpp"
 
 namespace XUI
 {
@@ -34,8 +34,8 @@ namespace XUI
     }
     
     void UIView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
-        setNeedReDraw();
         _maskImage = img;
+        setNeedReDraw();
     }
     
     void UIView::drawRect(IXRender &render) {
@@ -115,8 +115,9 @@ namespace XUI
             _needReDraw = false;
             mRenderer->clear();
             mRenderer->setClipsToBounds(mIsClipsToBounds);
+            mRenderer->setMask(_maskImage);
             if (mIsClipsToBounds) {
-                mRenderer->setClipsBounds(_rect);
+                mRenderer->setBounds(_rect);
             }
             mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _rect);
             if(_backGroundStretchableImage) {
@@ -162,66 +163,6 @@ namespace XUI
 		else {
 			return false;
 		}
-	}
-    
-    
-    
-    const std::shared_ptr<UIView> UIViewController::view() {
-        if (!_isLoaded) {
-            LoadView();
-        }
-        return _view;
-    }
-    //override
-    void UIViewController::viewDidLoad() {
-        
-    }
-    void UIViewController::onWindowSizeChange(const XResource::XDisplaySize &size) {
-		mFixRect.setSize(size);
-        //XResource::XRectPro rect = _view->getRect();
-        //rect.Width(size.Width());
-        //rect.Height(size.Height());
-        //_view->setRect(rect);
-    }
-    
-    void UIViewController::LoadView() {
-        _isLoaded = true;
-        _view = std::make_shared<XUI::UIView>();
-        _view->mBelongingViewController = this;
-        XResource::XRectPro rect;
-        rect.setSize(mBelongWindow->size());
-        rect.HAlign(XResource::XRectPro::HAlign_Stretch);
-        rect.VAlign(XResource::XRectPro::VAlign_Stretch);
-        _view->setRect(rect);
-        
-        viewDidLoad();
-    }
-    
-    void UIViewController::presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani) {
-        this->mBelongWindow->setRootViewController(controller);
-    }
-
-	void UIViewController::update(unsigned long passedMS) {
-		for (auto ani : mAnimations)
-		{
-			if(ani->state() == AnimatingStates::Playing)
-			ani->process(passedMS);
-		}
-		if (mIsNeedLayout)
-		{
-			view()->layout(mFixRect);
-		}
-	}
-	void UIViewController::draw() {
-		view()->draw();
-	}
-
-	Animation& UIViewController::addAnimation(const std::shared_ptr<Animation> &ani) {
-		mAnimations.push_back(ani);
-		return *ani;
-	}
-	bool UIViewController::removeAnimation(const Animation *ani) {
-		return false;
 	}
     
 }

@@ -20,6 +20,7 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::X
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     static std::shared_ptr<XResource::XImage> emptyImg;
     data->initWithRect(xRect, color, emptyImg);
+    data->setMaskImage(mClipsImage);
     if (mIsClipsToBounds) {
         data->setClips(true);
         data->setClipsBound(mClipsRect);
@@ -30,6 +31,7 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::X
 void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
+    data->setMaskImage(mClipsImage);
     if (mIsClipsToBounds) {
         data->setClips(true);
         data->setClipsBound(mClipsRect);
@@ -46,6 +48,7 @@ void GLRender::DrawImage(const std::shared_ptr<XResource::XStretchableImage> &im
 void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     data->initWithRect(xRect, color, image);
+    data->setMaskImage(mClipsImage);
     if (mIsClipsToBounds) {
         data->setClips(true);
         data->setClipsBound(mClipsRect);
@@ -69,12 +72,12 @@ void GLRender::setClipsToBounds(bool clips) {
     mIsClipsToBounds = clips;
 }
 
-void GLRender::setClipsBounds(const XResource::XRect &xRect) {
+void GLRender::setBounds(const XResource::XRect &xRect) {
     mClipsRect = xRect;
 }
 
-void setClipsMask(const std::shared_ptr<XResource::IXImage> &image) {
-    
+void GLRender::setMask(const std::shared_ptr<XResource::IXImage> &image) {
+    mClipsImage = image;
 }
 
 //void GLRender::DrawLine(int x1, int y1, int x2, int y2) {

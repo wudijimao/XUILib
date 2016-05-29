@@ -63,6 +63,9 @@
 		3E4F72BA1CD2508B006661C0 /* XFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F72B61CD2508B006661C0 /* XFont.cpp */; };
 		3E4F72BB1CD2508B006661C0 /* XFont.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E4F72B71CD2508B006661C0 /* XFont.hpp */; };
 		3E4F72BC1CD2508B006661C0 /* XAttributedString.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E4F72B81CD2508B006661C0 /* XAttributedString.hpp */; };
+		3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E546C421CFA70ED0080C584 /* UIViewController.cpp */; };
+		3E546C451CFA70ED0080C584 /* UIViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E546C421CFA70ED0080C584 /* UIViewController.cpp */; };
+		3E546C461CFA70ED0080C584 /* UIViewController.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E546C431CFA70ED0080C584 /* UIViewController.hpp */; };
 		3E5BC8EB1CE2F72D00E57750 /* XRange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BC8E91CE2F72D00E57750 /* XRange.cpp */; };
 		3E5BC8EC1CE2F72D00E57750 /* XRange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BC8E91CE2F72D00E57750 /* XRange.cpp */; };
 		3E5BC8ED1CE2F72D00E57750 /* XRange.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E5BC8EA1CE2F72D00E57750 /* XRange.hpp */; };
@@ -274,6 +277,8 @@
 		3E4F72B61CD2508B006661C0 /* XFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XFont.cpp; sourceTree = "<group>"; };
 		3E4F72B71CD2508B006661C0 /* XFont.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XFont.hpp; sourceTree = "<group>"; };
 		3E4F72B81CD2508B006661C0 /* XAttributedString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XAttributedString.hpp; sourceTree = "<group>"; };
+		3E546C421CFA70ED0080C584 /* UIViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIViewController.cpp; sourceTree = "<group>"; };
+		3E546C431CFA70ED0080C584 /* UIViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIViewController.hpp; sourceTree = "<group>"; };
 		3E5BC8E91CE2F72D00E57750 /* XRange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XRange.cpp; sourceTree = "<group>"; };
 		3E5BC8EA1CE2F72D00E57750 /* XRange.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XRange.hpp; sourceTree = "<group>"; };
 		3E5BC8EE1CE2F7A200E57750 /* XStringAttr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XStringAttr.cpp; sourceTree = "<group>"; };
@@ -463,6 +468,8 @@
 				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
 				3EB988521C9BE00500B9B23E /* UIView.hpp */,
 				3E9608281CA7C53200FE8008 /* UIView.cpp */,
+				3E546C431CFA70ED0080C584 /* UIViewController.hpp */,
+				3E546C421CFA70ED0080C584 /* UIViewController.cpp */,
 				3E1416A61C9B93F600A84DF1 /* IXWindow.hpp */,
 				3E1416A71C9B93F600A84DF1 /* IXCanvas.hpp */,
 				3E1416A81C9B93F600A84DF1 /* IXRender.hpp */,
@@ -683,6 +690,7 @@
 				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */,
+				3E546C461CFA70ED0080C584 /* UIViewController.hpp in Headers */,
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
 				3E5BC8F21CE2F7A200E57750 /* XStringAttr.hpp in Headers */,
@@ -822,6 +830,7 @@
 				3E4F72B91CD2508B006661C0 /* XFont.cpp in Sources */,
 				3E5BC8F01CE2F7A200E57750 /* XStringAttr.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
+				3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
@@ -933,6 +942,7 @@
 				3EAA6D2F1CA24A8E0037291F /* XResourceManager.mm in Sources */,
 				3EAA6D301CA24A8E0037291F /* GLCanvas_ios.hpp in Sources */,
 				3EAA6D311CA24A8E0037291F /* GLCanvas_ios.mm in Sources */,
+				3E546C451CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */,
 				3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */,
 				3E8BF09B1CAC0ACC00A61A69 /* XInput.cpp in Sources */,

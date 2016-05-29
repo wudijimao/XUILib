@@ -104,22 +104,17 @@ public:
 		return mStr.c_str();
 	}
 	bool setStr(const char *c) {
-		if (c != nullptr)
-		{
+		if (c != nullptr) {
 			int state = -1;
 			char *iter = (char*)c;
 			int size = 0;
 			std::string headerKey;
 			std::string headerVal;
-			while (iter != "\0")
-			{
-				switch (state)
-				{
+			while (iter != "\0") {
+				switch (state) {
 				case 0://search for key
-					if (iter == "\:")
-					{
-						if (size > 0)
-						{
+					if (iter == "\:") {
+						if (size > 0) {
 							headerKey.assign(iter - size, size);
 							size = 0;
 							state = 1;
@@ -133,28 +128,36 @@ public:
 					}
 					break;
 				case 1://search for val
-					if (iter == "\r" || iter == "\n")
-					{
+					if (iter == "\r" || iter == "\n") {
 						state = 0;
 						headerVal.assign(iter - size, size);
+                        _headers[headerKey] = headerVal;
 						size = 0;
 						char *next = iter + 1;
-						if (next == "\r" || next == "\n")
-						{
+						if (next == "\r" || next == "\n") {
 							iter = next;
 						}
 					}
 					else {
 						++size;
 					}
+                    break;
 				default:
 					break;
 				}
 				++iter;
 			}
+            if(state == 1 && size > 0) {
+                headerVal.assign(iter - size - 1, size);
+                _headers[headerKey] = headerVal;
+                return true;
+            }
+            if(state == 0 && size == 0) {
+                return true;
+            }
 		}
-		
-	}
+        return false;
+    }
 private:
 	std::string mStr;
 };

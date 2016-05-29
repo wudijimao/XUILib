@@ -141,6 +141,8 @@ namespace XDUILib {
         GLfloat _texturePos[8];
         GLfloat _color[16];
         GLuint  _textureId = 0;
+        GLuint  _maskTextureId = 0;
+        
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
@@ -152,6 +154,13 @@ namespace XDUILib {
             _clipsX2 = _clipsX1 + rect.Width();
             _clipsY1 = rect.Y();
             _clipsY2 = _clipsY1 + rect.Height();
+        }
+        void setMaskImage(const std::shared_ptr<XResource::IXImage> image) {
+            if (image.get() != nullptr) {
+                _maskTextureId = GLTextureManager::sharedInstance().getTextureID(image);
+            } else {
+                _maskTextureId = 0;
+            }
         }
         
         void setSquare(const XResource::XRect &rect) {
@@ -205,11 +214,19 @@ namespace XDUILib {
            }
            GLRenderSquareData::sProgram.setUniformValue("uIsClipsToBounds", mIsClips);
            
+           if(_maskTextureId > 0) {
+               glActiveTexture(GL_ACTIVE_TEXTURE - 2);
+               glBindTexture(GL_TEXTURE_2D, _maskTextureId);
+               GLRenderSquareData::sProgram.setUniformValue("s_mask_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 2);
+               GLRenderSquareData::sProgram.setUniformValue("uHasMaskImage", true);
+           } else {
+               GLRenderSquareData::sProgram.setUniformValue("uHasMaskImage", false);
+           }
+           
 		   if (_textureId > 0) {
 			   glActiveTexture(GL_ACTIVE_TEXTURE - 1);
 			   glBindTexture(GL_TEXTURE_2D, _textureId);
 			   GLRenderSquareData::sProgram.setUniformValue("s_texture", GL_ACTIVE_TEXTURE - GL_TEXTURE0 - 1);
-
 			   GLRenderSquareData::sProgram.setUniformValue("useTexture", true);
                GLRenderSquareData::sProgram.setUniformValue("uIsTextureAlpha", mIsAlphaTexture);
 		   }

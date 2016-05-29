@@ -25,6 +25,6 @@ public:
 //	virtual XResource::XRect MeasureString(const std::wstring &text) = 0;
     virtual void DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) = 0;
     virtual void setClipsToBounds(bool clips) = 0;
-    virtual void setClipsBounds(const XResource::XRect &xRect) = 0;
-    //virtual void setClipsMask(const std::shared_ptr<XResource::IXImage> &image);
+    virtual void setBounds(const XResource::XRect &xRect) = 0;
+    virtual void setMask(const std::shared_ptr<XResource::IXImage> &image) = 0;
 };

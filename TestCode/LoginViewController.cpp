@@ -41,8 +41,16 @@ void LoginViewController::viewDidLoad() {
     
     auto testView = std::make_shared<XUI::UIView>();
     testView->setBkgColor(XResource::XUIColor::greenColor());
-    testView->setRect(XResource::XRectPro(200,200,50,50));
+    testView->setRect(XResource::XRectPro(100,400,100,100));
+    testView->setMaskImg(XResource::XImage::imageNamed("test_mask.png"));
+    testView->setBkgImg(XResource::XImage::imageNamed("test.png"));
+    testView->isClipsToBounds();
     view()->addSubView(testView);
+    
+    auto testView2 = std::make_shared<XUI::UIView>();
+    testView2->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
+    testView2->setRect(XResource::XRectPro(50,50,100,100));
+    testView->addSubView(testView2);
     
     auto request = std::make_shared<XHTTPRequest>();
     request->url = "http://www.baidu.com";
@@ -52,3 +60,6 @@ void LoginViewController::viewDidLoad() {
     };
     IXHTTPClient::getSharedInstanc()->sendRequest(request);
 }
+
+
+
