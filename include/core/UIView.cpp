@@ -76,6 +76,9 @@ namespace XUI
         //view->mRenderer->Init(render->)
         _subViews.push_back(view);
         view->_superView = this;
+        if (mIsClipsToBoundsInternal) {
+            view->setClipsToBoundsInternal();
+        }
         if(mBelongingViewController != nullptr) {
             view->mBelongingViewController = mBelongingViewController;
             for (auto v : view->_subViews) {
@@ -95,13 +98,16 @@ namespace XUI
 		if (posChanged || sizeChanged) {
 			setNeedReDraw();
 			if (_needLayout && sizeChanged) {
-				_needLayout = false;
 				layoutSubViews();
 				for (auto subView : _subViews) {
 					subView->setNeedLayout();
 				}
 			}
 		}
+        if (_needLayout && mIsClipsToBoundsInternal) {
+            makeClipsBounds();
+        }
+        _needLayout = false;
 		for (auto subView : _subViews) {
 			subView->layout(_rect);
 		}
@@ -114,10 +120,10 @@ namespace XUI
         if (_needReDraw) {
             _needReDraw = false;
             mRenderer->clear();
-            mRenderer->setClipsToBounds(mIsClipsToBounds);
+            mRenderer->setClipsToBounds(mIsClipsToBoundsInternal);
             mRenderer->setMask(_maskImage);
-            if (mIsClipsToBounds) {
-                mRenderer->setBounds(_rect);
+            if (mIsClipsToBoundsInternal) {
+                mRenderer->setBounds(mClipsBounds);
             }
             mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _rect);
             if(_backGroundStretchableImage) {
@@ -133,7 +139,20 @@ namespace XUI
     
     void UIView::setClipsToBounds(bool clips) {
         if (mIsClipsToBounds != clips) {
-            mIsClipsToBounds = clips;
+            mIsClipsToBoundsInternal = mIsClipsToBounds = clips;
+            if (clips) {
+                mClipsBounds = _rect;
+                for (auto subView : _subViews) {
+                    subView->setClipsToBoundsInternal();
+                }
+            } else {
+                mIsClipsToBoundsInternal = _superView->mIsClipsToBoundsInternal;
+                if (!mIsClipsToBoundsInternal) {
+                    for (auto subView : _subViews) {
+                        clearClipsToBoundsInternal();
+                    }
+                }
+            }
             setNeedReDraw();
         }
     }
@@ -141,6 +160,40 @@ namespace XUI
     bool UIView::isClipsToBounds() {
         return mIsClipsToBounds;
     }
+    
+    void UIView::makeClipsBounds() {
+        if (_superView->mIsClipsToBoundsInternal) {
+            if (mIsClipsToBounds) {
+                mClipsBounds.X(std::max(_rect.X(), _superView->mClipsBounds.X()));
+                mClipsBounds.Y(std::max(_rect.Y(), _superView->mClipsBounds.Y()));
+                mClipsBounds.Width(std::min(_rect.rX(), _superView->mClipsBounds.rX()) - mClipsBounds.X());
+                mClipsBounds.Height(std::min(_rect.bY(), _superView->mClipsBounds.bY()) - mClipsBounds.Y());
+            } else {
+                mClipsBounds = _superView->mClipsBounds;
+            }
+        } else if(mIsClipsToBounds) {
+            mClipsBounds = _rect;
+        }
+    }
+    void UIView::setClipsToBoundsInternal() {
+        mIsClipsToBoundsInternal = true;
+        if (!_needLayout) {
+            makeClipsBounds();
+        }
+        for (auto subView : _subViews) {
+            subView->setClipsToBoundsInternal();
+        }
+    }
+    void UIView::clearClipsToBoundsInternal() {
+        mIsClipsToBoundsInternal = mIsClipsToBounds;
+        if (!mIsClipsToBoundsInternal) {
+            for (auto subView : _subViews) {
+                subView->clearClipsToBoundsInternal();
+            }
+        }
+    }
+    
+    
 
 	void UIView::setVisible(bool visible) {
 		if (visible != mIsVisable)

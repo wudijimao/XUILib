@@ -44,7 +44,7 @@ void LoginViewController::viewDidLoad() {
     testView->setRect(XResource::XRectPro(100,400,100,100));
     testView->setMaskImg(XResource::XImage::imageNamed("test_mask.png"));
     testView->setBkgImg(XResource::XImage::imageNamed("test.png"));
-    testView->isClipsToBounds();
+    testView->setClipsToBounds(true);
     view()->addSubView(testView);
     
     auto testView2 = std::make_shared<XUI::UIView>();

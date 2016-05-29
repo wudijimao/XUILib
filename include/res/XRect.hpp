@@ -221,6 +221,13 @@ namespace XResource
 		}
 		//以父窗口绝对位置为基数计算当前相对位置的绝对位置
 		virtual XRect MakeAbsRect(const XRect& parentAbsRect) const;
+        
+        inline double rX() const {
+            return mPoint.X() + mSize.Width();
+        }
+        inline double bY() const {
+            return mPoint.Y() + mSize.Height();
+        }
 
 		inline void X(double x) {
 			mPoint.X(x);

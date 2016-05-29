@@ -91,7 +91,15 @@ namespace XUI
         void layout(const XResource::XRect &absRect);
         void draw();
     private:
+        //internal
+        void makeClipsBounds();
+        void setClipsToBoundsInternal();
+        void clearClipsToBoundsInternal();
+        bool mIsClipsToBoundsInternal = false;  //if has clips to bound super or self is clips
+        XResource::XRect mClipsBounds;
+        //property var
         bool mIsClipsToBounds = false;
+        
         IXRender *mRenderer = nullptr;
         bool _isInputEnable = true;
         UIView *_superView;
