@@ -24,6 +24,12 @@
 		3E0E57601CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
 		3E0E57611CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
 		3E0E57621CE4ACC700792415 /* XUIImageView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */; };
+		3E10B2A61CFC0C7200522132 /* XScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* XScrollView.cpp */; };
+		3E10B2A71CFC0C7200522132 /* XScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* XScrollView.cpp */; };
+		3E10B2A81CFC0C7200522132 /* XScrollView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2A51CFC0C7200522132 /* XScrollView.hpp */; };
+		3E10B2AB1CFC135300522132 /* XLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A91CFC135300522132 /* XLayout.cpp */; };
+		3E10B2AC1CFC135300522132 /* XLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A91CFC135300522132 /* XLayout.cpp */; };
+		3E10B2AD1CFC135300522132 /* XLayout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2AA1CFC135300522132 /* XLayout.hpp */; };
 		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
 		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
@@ -223,6 +229,10 @@
 /* Begin PBXFileReference section */
 		3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XUIImageView.cpp; sourceTree = "<group>"; };
 		3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XUIImageView.hpp; sourceTree = "<group>"; };
+		3E10B2A41CFC0C7200522132 /* XScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XScrollView.cpp; sourceTree = "<group>"; };
+		3E10B2A51CFC0C7200522132 /* XScrollView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XScrollView.hpp; sourceTree = "<group>"; };
+		3E10B2A91CFC135300522132 /* XLayout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XLayout.cpp; sourceTree = "<group>"; };
+		3E10B2AA1CFC135300522132 /* XLayout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XLayout.hpp; sourceTree = "<group>"; };
 		3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIAppDelegate.h; sourceTree = "<group>"; };
 		3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIAppDelegate.mm; sourceTree = "<group>"; };
@@ -466,6 +476,8 @@
 				3E3FF8981CA28D480070F6A5 /* GLCanvas.cpp */,
 				3E3FF8991CA28D480070F6A5 /* GLCanvas.hpp */,
 				3EB9885D1C9BE3C100B9B23E /* DllExport.hpp */,
+				3E10B2AA1CFC135300522132 /* XLayout.hpp */,
+				3E10B2A91CFC135300522132 /* XLayout.cpp */,
 				3EB988521C9BE00500B9B23E /* UIView.hpp */,
 				3E9608281CA7C53200FE8008 /* UIView.cpp */,
 				3E546C431CFA70ED0080C584 /* UIViewController.hpp */,
@@ -534,6 +546,8 @@
 				3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */,
 				3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */,
 				3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */,
+				3E10B2A41CFC0C7200522132 /* XScrollView.cpp */,
+				3E10B2A51CFC0C7200522132 /* XScrollView.hpp */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -680,6 +694,7 @@
 				3EF8A3271CE0CD5E0092F3F4 /* XTextView.hpp in Headers */,
 				3E4F72BB1CD2508B006661C0 /* XFont.hpp in Headers */,
 				3E5BC8FC1CE2F9F800E57750 /* XText.hpp in Headers */,
+				3E10B2AD1CFC135300522132 /* XLayout.hpp in Headers */,
 				3EDFDB9A1CCB54DF0079AF51 /* XHTTPResponse.hpp in Headers */,
 				3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */,
 				3E8D12081CBFA2F900EC385D /* XHTTPClient.hpp in Headers */,
@@ -690,6 +705,7 @@
 				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */,
+				3E10B2A81CFC0C7200522132 /* XScrollView.hpp in Headers */,
 				3E546C461CFA70ED0080C584 /* UIViewController.hpp in Headers */,
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
@@ -830,6 +846,7 @@
 				3E4F72B91CD2508B006661C0 /* XFont.cpp in Sources */,
 				3E5BC8F01CE2F7A200E57750 /* XStringAttr.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
+				3E10B2AB1CFC135300522132 /* XLayout.cpp in Sources */,
 				3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
@@ -856,6 +873,7 @@
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
+				3E10B2A61CFC0C7200522132 /* XScrollView.cpp in Sources */,
 				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
 				3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
@@ -892,6 +910,7 @@
 				3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */,
 				3EAA6D0E1CA24A8E0037291F /* IXWindow.hpp in Sources */,
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
+				3E10B2AC1CFC135300522132 /* XLayout.cpp in Sources */,
 				3EB510041CE8B8F4003FF455 /* XKeyBoard.cpp in Sources */,
 				3EB510141CE8BB62003FF455 /* XEditView.cpp in Sources */,
 				3E7F4F1E1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
@@ -953,6 +972,7 @@
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
 				3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */,
 				3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
+				3E10B2A71CFC0C7200522132 /* XScrollView.cpp in Sources */,
 				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
 				3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */,

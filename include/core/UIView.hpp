@@ -26,8 +26,13 @@ namespace XUI
     };
     
     class UIViewController;
-    class SIMPLEDIRECTUI_API UIView : public UIResponder
-	{
+    
+    class SIMPLEDIRECTUI_API UILayout : public UIResponder {
+        
+    }
+    
+    
+    class SIMPLEDIRECTUI_API UIView : public UIResponder {
 	public:
         friend class ::XWindow;
         friend class XUI::UIViewController;
@@ -58,6 +63,9 @@ namespace XUI
 		void addAnimation();
         std::shared_ptr<UIView> getSuperView();
         void addSubView(const std::shared_ptr<UIView> &view);
+        bool removeSubView(const UIView *view);
+        bool removeFromSuperView();
+        
         const std::vector<std::shared_ptr<UIView>> subViews();
         //virtual const MouseStatusStruct& MouseStatus() = 0;
         void setIsInputEnable(bool enable) {
