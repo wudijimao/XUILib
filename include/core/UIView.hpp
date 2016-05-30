@@ -1,10 +1,12 @@
 #pragma once
-#include "UILayout.hpp"
+#include "UIResponder.hpp"
+#include "../res/XRectPro.hpp"
 #include "Animation/Animation.h"
 
 
 namespace XUI
 {
+
     class SIMPLEDIRECTUI_API UIView : public UIResponder {
 	public:
         friend class ::XWindow;
