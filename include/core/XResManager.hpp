@@ -85,7 +85,7 @@ private:
 
 class SIMPLEDIRECTUI_API XSandBox {
 public:
-	static inline XSandBox &sharedSandBox();
+	static XSandBox &sharedSandBox();
     //app Install Dict
     std::shared_ptr<XDictionaryInfo> appDict();
     std::shared_ptr<XDictionaryInfo> homeDict();

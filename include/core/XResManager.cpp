@@ -223,7 +223,7 @@ const XResource::XString& XFileInfo::dictPath() {
 }
 
 
-inline XSandBox &XSandBox::sharedSandBox() {
+XSandBox &XSandBox::sharedSandBox() {
 	static XSandBox sandBox;
 	return sandBox;
 }

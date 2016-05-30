@@ -14,10 +14,14 @@ public:
     }
     bool init(CAEAGLLayer* drawable) {
         updateSize(drawable);
+        
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
         _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
+        if (_context == nil) {
+            _context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        }
         [EAGLContext setCurrentContext:_context];
         
         glGenRenderbuffers(1, &_renderBuffer);

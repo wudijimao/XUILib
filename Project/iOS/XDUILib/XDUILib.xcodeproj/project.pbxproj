@@ -1061,6 +1061,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1085,6 +1086,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
