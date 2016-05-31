@@ -23,13 +23,15 @@ namespace XUI
 //		virtual void setRect(const XResource::XRect& rect) = 0;
         virtual void setRect(const XResource::XRectPro& rect);
         //must override
-        //override(not have defalut behavior)
+        //can override(not have defalut behavior)
         virtual void layoutSubViews();
         virtual void drawRect(IXRender &render);
         //can override(have defalut behavior)
 		virtual void setVisible(bool visible);
 		virtual bool isVisible();
-		virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &input);
+		virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &input) override;
+        //you had better not override these function below, unless you know what are you doing about
+        virtual UIResponder* nextResponder() override;
         //do not override these function below
         void setClipsToBounds(bool clips);
         bool isClipsToBounds();
@@ -65,6 +67,7 @@ namespace XUI
             }
             return nullptr;
         }
+        
     protected:
         const XResource::XRect &getFixRect() {
             return _rect;

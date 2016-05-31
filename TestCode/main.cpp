@@ -33,6 +33,12 @@ public:
 		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 180));
 		this->view()->addSubView(_testSubView);
         
+        
+        auto scrollView = std::make_shared<XUI::ScrollView>();
+        scrollView->setBkgColor(XResource::XUIColor::pinkColor());
+        scrollView->setRect(XResource::XRectPro(20, 20, 100, 200));
+        this->view()->addSubView(scrollView);
+        
         auto textView = std::make_shared<XUI::UITextView>();
         textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
         textView->setTextColor(XResource::XUIColor::blueColor());
@@ -40,10 +46,10 @@ public:
         auto color = XResource::XUIColor::pinkColor()->copy();
         color->_color.a = 200;
 		textView->setBkgColor(color);
-		textView->setRect(XResource::XRectPro(20, 120, 100, 320));
+		textView->setRect(XResource::XRectPro(0, 0, 100, 320));
         auto img = XResource::XImage::imageNamed("test.png");
         textView->setBkgImg(img);
-		this->view()->addSubView(textView);
+        scrollView->setContentView(textView);
         
 		auto btn = std::make_shared<XUI::XButton>();
         btn->setBackgroundColor(XUI::ButtonStates::DOWN, XResource::XUIColor::blueColor());
@@ -65,8 +71,8 @@ public:
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::grayColor());
         
-        auto vc = std::make_shared<LoginViewController>();
-        this->presentViewControler(vc);
+        //auto vc = std::make_shared<LoginViewController>();
+        //this->presentViewControler(vc);
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		//(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());

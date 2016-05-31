@@ -236,4 +236,12 @@ namespace XUI
 		}
 	}
     
+    UIResponder* UIView::nextResponder() {
+        if (_superView != nullptr) {
+            return _superView;
+        } else {
+            return mBelongingViewController;
+        }
+    }
+    
 }

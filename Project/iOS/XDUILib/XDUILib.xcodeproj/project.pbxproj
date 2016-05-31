@@ -24,12 +24,15 @@
 		3E0E57601CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
 		3E0E57611CE4ACC700792415 /* XUIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */; };
 		3E0E57621CE4ACC700792415 /* XUIImageView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */; };
-		3E10B2A61CFC0C7200522132 /* XScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* XScrollView.cpp */; };
-		3E10B2A71CFC0C7200522132 /* XScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* XScrollView.cpp */; };
-		3E10B2A81CFC0C7200522132 /* XScrollView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2A51CFC0C7200522132 /* XScrollView.hpp */; };
+		3E10B2A61CFC0C7200522132 /* ScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* ScrollView.cpp */; };
+		3E10B2A71CFC0C7200522132 /* ScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2A41CFC0C7200522132 /* ScrollView.cpp */; };
+		3E10B2A81CFC0C7200522132 /* ScrollView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2A51CFC0C7200522132 /* ScrollView.hpp */; };
 		3E10B2B51CFC13D000522132 /* UIResponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B31CFC13D000522132 /* UIResponder.cpp */; };
 		3E10B2B61CFC13D000522132 /* UIResponder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B31CFC13D000522132 /* UIResponder.cpp */; };
 		3E10B2B71CFC13D000522132 /* UIResponder.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2B41CFC13D000522132 /* UIResponder.hpp */; };
+		3E10B2BA1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */; };
+		3E10B2BB1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */; };
+		3E10B2BC1CFC17F000522132 /* XTouchRecognizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2B91CFC17F000522132 /* XTouchRecognizer.hpp */; };
 		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
 		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
@@ -229,10 +232,12 @@
 /* Begin PBXFileReference section */
 		3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XUIImageView.cpp; sourceTree = "<group>"; };
 		3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XUIImageView.hpp; sourceTree = "<group>"; };
-		3E10B2A41CFC0C7200522132 /* XScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XScrollView.cpp; sourceTree = "<group>"; };
-		3E10B2A51CFC0C7200522132 /* XScrollView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XScrollView.hpp; sourceTree = "<group>"; };
+		3E10B2A41CFC0C7200522132 /* ScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollView.cpp; sourceTree = "<group>"; };
+		3E10B2A51CFC0C7200522132 /* ScrollView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ScrollView.hpp; sourceTree = "<group>"; };
 		3E10B2B31CFC13D000522132 /* UIResponder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIResponder.cpp; sourceTree = "<group>"; };
 		3E10B2B41CFC13D000522132 /* UIResponder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIResponder.hpp; sourceTree = "<group>"; };
+		3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTouchRecognizer.cpp; sourceTree = "<group>"; };
+		3E10B2B91CFC17F000522132 /* XTouchRecognizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTouchRecognizer.hpp; sourceTree = "<group>"; };
 		3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIAppDelegate.h; sourceTree = "<group>"; };
 		3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIAppDelegate.mm; sourceTree = "<group>"; };
@@ -546,8 +551,8 @@
 				3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */,
 				3E0E575E1CE4ACC700792415 /* XUIImageView.cpp */,
 				3E0E575F1CE4ACC700792415 /* XUIImageView.hpp */,
-				3E10B2A41CFC0C7200522132 /* XScrollView.cpp */,
-				3E10B2A51CFC0C7200522132 /* XScrollView.hpp */,
+				3E10B2A41CFC0C7200522132 /* ScrollView.cpp */,
+				3E10B2A51CFC0C7200522132 /* ScrollView.hpp */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -616,6 +621,8 @@
 				3E8BF0981CAC0ACC00A61A69 /* XInput.cpp */,
 				3E8BF0991CAC0ACC00A61A69 /* XInput.hpp */,
 				3E8BF09D1CAC12E600A61A69 /* XInputs.hpp */,
+				3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */,
+				3E10B2B91CFC17F000522132 /* XTouchRecognizer.hpp */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -696,6 +703,7 @@
 				3E5BC8FC1CE2F9F800E57750 /* XText.hpp in Headers */,
 				3EDFDB9A1CCB54DF0079AF51 /* XHTTPResponse.hpp in Headers */,
 				3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */,
+				3E10B2BC1CFC17F000522132 /* XTouchRecognizer.hpp in Headers */,
 				3E8D12081CBFA2F900EC385D /* XHTTPClient.hpp in Headers */,
 				3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
@@ -704,7 +712,7 @@
 				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */,
-				3E10B2A81CFC0C7200522132 /* XScrollView.hpp in Headers */,
+				3E10B2A81CFC0C7200522132 /* ScrollView.hpp in Headers */,
 				3E546C461CFA70ED0080C584 /* UIViewController.hpp in Headers */,
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
@@ -854,6 +862,7 @@
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3E5BC8F91CE2F8DC00E57750 /* XAttributedString.cpp in Sources */,
 				3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */,
+				3E10B2BA1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */,
 				3E7F4F1D1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
 				3E5BC8F51CE2F83600E57750 /* XStringAttrColor.cpp in Sources */,
 				3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */,
@@ -873,7 +882,7 @@
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
-				3E10B2A61CFC0C7200522132 /* XScrollView.cpp in Sources */,
+				3E10B2A61CFC0C7200522132 /* ScrollView.cpp in Sources */,
 				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
 				3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
@@ -926,6 +935,7 @@
 				3EAA6D171CA24A8E0037291F /* XApp.cpp in Sources */,
 				3EAA6D181CA24A8E0037291F /* XApp.hpp in Sources */,
 				3EAA6D191CA24A8E0037291F /* IXImage.hpp in Sources */,
+				3E10B2BB1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */,
 				3EAA6D1C1CA24A8E0037291F /* XImage.cpp in Sources */,
 				3E5BC9001CE2FAC600E57750 /* XFreeType.cpp in Sources */,
 				3E5BC8FA1CE2F8DC00E57750 /* XAttributedString.cpp in Sources */,
@@ -972,7 +982,7 @@
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
 				3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */,
 				3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
-				3E10B2A71CFC0C7200522132 /* XScrollView.cpp in Sources */,
+				3E10B2A71CFC0C7200522132 /* ScrollView.cpp in Sources */,
 				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
 				3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */,

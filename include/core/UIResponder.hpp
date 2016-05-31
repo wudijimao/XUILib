@@ -23,7 +23,15 @@ namespace XUI
     };
     class SIMPLEDIRECTUI_API UIResponder {
     public:
+        //Lower Layer Interface
+        virtual UIResponder* nextResponder() {
+            return nullptr;
+        }
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
+            auto next = nextResponder();
+            if (next != nullptr) {
+                next->onTouch(touch);
+            }
         }
         virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) {
         }
