@@ -40,7 +40,7 @@ namespace XUI
 		void addAnimation();
         std::shared_ptr<UIView> getSuperView();
         void addSubView(const std::shared_ptr<UIView> &view);
-        bool removeSubView(const UIView *view);
+        bool removeSubView(UIView *view);
         bool removeFromSuperView();
         
         const std::vector<std::shared_ptr<UIView>> subViews();
@@ -88,7 +88,7 @@ namespace XUI
         
         IXRender *mRenderer = nullptr;
         bool _isInputEnable = true;
-        UIView *_superView;
+        UIView *_superView = nullptr;
         std::vector<std::shared_ptr<UIView>> _subViews;
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;

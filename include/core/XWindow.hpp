@@ -24,8 +24,8 @@ public:
 public:
 	//do not call it by libray user
 	void update();
-    void input(std::shared_ptr<XTouch> touch);
-	void input(std::shared_ptr<XMouse> mouseEvents);
+    void input(const std::shared_ptr<XTouch> &touch);
+	void input(const std::shared_ptr<XMouse> &mouseEvents);
 	void dispatchInput();
 	void dispatchTouchs();
 	void dispatchMouseEvents();
@@ -36,9 +36,14 @@ protected:
     std::shared_ptr<XUI::UIViewController> _rootController;
     friend class XUI::UIView;
 private:
+    bool findFitTouch(const std::shared_ptr<XTouch> &touch, std::vector<std::shared_ptr<XTouch>>::iterator &out_iter);
+    
 	long long mLastTimeMs;
     XResource::XRect _rect;
     XResource::XRect mLocalRect;//x=0,y=0
 	std::vector<std::shared_ptr<XTouch>> _touchList;
+    std::map<XUI::UIView *, std::vector<std::shared_ptr<XTouch>>> _touchsMap;
+    
+    std::vector<std::shared_ptr<XTouch>> _lastTouchList;
 	std::vector<std::shared_ptr<XMouse>> _mouseEventList;
 };

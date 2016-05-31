@@ -1,5 +1,6 @@
 #pragma once
 #include "../core/stdafx.hpp"
+#include <cmath>
 
 namespace XResource
 {
@@ -127,6 +128,13 @@ namespace XResource
     class SIMPLEDIRECTUI_API XDisplayPoint
     {
     public:
+        double quickDistance(const XDisplayPoint &point) const {
+            return std::abs(std::pow(mX - point.mX, 2) + std::pow(mY - point.mY, 2));
+        }
+        double distance(const XDisplayPoint &point) const{
+            return std::sqrt(quickDistance(point));
+        }
+        
         bool operator == (const XDisplayPoint &point) const {
             return !(*this != point);
         }

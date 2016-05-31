@@ -87,12 +87,13 @@ namespace XUI
             mBelongingViewController->setNeedRedraw();
         }
     }
-    bool UIView::removeSubView(const UIView *view) {
+    bool UIView::removeSubView(UIView *view) {
         auto iter = _subViews.begin();
         auto end = _subViews.end();
         while (iter != end) {
             if ((*iter).get() == view) {
                 _subViews.erase(iter);
+                view->_superView = nullptr;
                 setNeedReDraw();
                 return true;
             }
