@@ -125,11 +125,25 @@ namespace XDUILib {
     class GLRenderData {
     public:
         virtual ~GLRenderData(){};
+        GLRenderData() {
+            _transformMat[10] = 1;
+            _transformMat[12] = -1;
+            _transformMat[13] = 1;
+            _transformMat[15] = 1;
+        }
         GLuint _vectexArrayObject;
         virtual GLRenderDataType Type() {
             return GLRenderDataType::UnKnown;
         }
         virtual void render() = 0;
+        virtual void move(const XResource::XDisplayPoint &point) final {
+            
+        }
+    protected:
+        virtual void setPosition(const XResource::XDisplayPoint &point) final {
+            
+        }
+        GLfloat _transformMat[16];
     };
     class GLRenderSquareData : public GLRenderData {
     public:
@@ -146,15 +160,18 @@ namespace XDUILib {
         virtual GLRenderDataType Type() {
             return GLRenderDataType::Square;
         }
+        
         void setClips(bool clips) {
             mIsClips = clips;
         }
+        
         void setClipsBound(const XResource::XRect &rect) {
             _clipsX1 = rect.X();
             _clipsX2 = _clipsX1 + rect.Width();
             _clipsY1 = rect.Y();
             _clipsY2 = _clipsY1 + rect.Height();
         }
+        
         void setMaskImage(const std::shared_ptr<XResource::IXImage> image) {
             if (image.get() != nullptr) {
                 _maskTextureId = GLTextureManager::sharedInstance().getTextureID(image);
@@ -164,6 +181,7 @@ namespace XDUILib {
         }
         
         void setSquare(const XResource::XRect &rect) {
+            setPosition(rect.point());
             _square[0] = rect.X();
             _square[1] = rect.Y();
             _square[2] = 0.5;

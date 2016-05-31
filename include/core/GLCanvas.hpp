@@ -14,13 +14,40 @@
 #include "GL/GLProgram.hpp"
 
 
+struct SIMPLEDIRECTUI_API GLTransform3D {
+public:
+    GLTransform3D() {
+        _transformMat[0] = 1;
+        _transformMat[5] = 1;
+        _transformMat[10] = 1;
+        _transformMat[15] = 1;
+    }
+    GLfloat _transformMat[16];
+    void setScale(GLfloat x, GLfloat y) {
+        _transformMat[0] = x;
+        _transformMat[5] = y;
+    }
+    void setScale(GLfloat x, GLfloat y, GLfloat z) {
+        _transformMat[0] = x;
+        _transformMat[5] = y;
+        _transformMat[10] = z;
+    }
+    void setPosition(GLfloat x, GLfloat y) {
+        _transformMat[12] = x;
+        _transformMat[13] = y;
+    }
+    void setPosition(GLfloat x, GLfloat y, GLfloat z) {
+        _transformMat[12] = x;
+        _transformMat[13] = y;
+        _transformMat[14] = z;
+    }
+};
+
+
 class SIMPLEDIRECTUI_API GLCanvas : public IXCanvas {
 public:
     GLCanvas() {
-        _transformMat[10] = 1;
-        _transformMat[12] = -1;
-        _transformMat[13] = 1;
-        _transformMat[15] = 1;
+        _transform.setPosition(-1, 1);
     }
     virtual RenderType GetType();
     void pushRenderData(XDUILib::GLRenderData **data, int size);
@@ -44,14 +71,14 @@ protected:
         mHighResolutionPixelScale = highResolutionPixelScale;
         _pixelSize.Width(_size.Width() * highResolutionPixelScale);
         _pixelSize.Height(_size.Height() * highResolutionPixelScale);
-        _transformMat[0] = 2.0 / (float)size.Width();
-        _transformMat[5] = -2.0 / (float)size.Height();
+        _transform.setScale(2.0 / (float)size.Width(), -2.0 / (float)size.Height());
+        
     }
 public:
     virtual bool Present();
     virtual void clear();
 private:
-    GLfloat _transformMat[16];
+    GLTransform3D _transform;
     //temp
     GLProgram _program;
 };

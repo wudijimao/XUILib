@@ -9,6 +9,7 @@
 void GLRender::Submit() {
     IXCanvas::gCurrentCanvas->pushRenderData(&mCachedRenderData[0], mCachedRenderData.size());
 }
+
 void GLRender::clear() {
     for (auto data : mCachedRenderData)
     {
@@ -16,6 +17,14 @@ void GLRender::clear() {
     }
     mCachedRenderData.clear();
 }
+
+void GLRender::move(XResource::XDisplayPoint &point) {
+    for (auto data : mCachedRenderData)
+    {
+        data;
+    }
+}
+
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
     static std::shared_ptr<XResource::XImage> emptyImg;
