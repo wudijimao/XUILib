@@ -180,8 +180,8 @@ void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
     rootViewController->mBelongWindow = this;
     _rootController = rootViewController;
+    _rootController->onWindowSizeChange(mLocalRect.size());
     if (mIsFulllyInited) {
-		_rootController->onWindowSizeChange(mLocalRect.size());
         _rootController->view();
     }
 }

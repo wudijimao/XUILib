@@ -30,13 +30,13 @@ public:
 		XUI::UIViewController::viewDidLoad();
 		_testSubView = std::make_shared<XUI::UIView>();
 		_testSubView->setBkgColor(XResource::XUIColor::redColor());
-		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 180));
+		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
 		this->view()->addSubView(_testSubView);
         
         
         auto scrollView = std::make_shared<XUI::ScrollView>();
         scrollView->setBkgColor(XResource::XUIColor::pinkColor());
-        scrollView->setRect(XResource::XRectPro(20, 20, 100, 200));
+        scrollView->setRect(XResource::XRectPro(20, 100, 100, 200));
         this->view()->addSubView(scrollView);
         
         auto textView = std::make_shared<XUI::UITextView>();
