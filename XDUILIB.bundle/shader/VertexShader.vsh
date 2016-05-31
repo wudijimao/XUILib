@@ -10,8 +10,8 @@ out vec4 Color;
 out vec2 texCoord;
 out vec4 pos;
 
-uniform mat4 myMat;
-
+uniform mat4 canvasMat;
+uniform mat4 viewMat;
 
 
 void main() {
@@ -29,8 +29,8 @@ void main() {
 //            tempPos.y = uClipsBounds.w;
 //        }
 //    }
-    pos = tempPos;
-    gl_Position = tempPos * myMat;
+    pos = tempPos * viewMat;
+    gl_Position = pos * canvasMat;
     texCoord = vTexCoord;
     Color = inColor;
 }

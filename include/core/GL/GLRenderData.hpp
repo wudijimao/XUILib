@@ -14,6 +14,7 @@
 #include "../../res/XResource.hpp"
 #include "GLHeaders.h"
 #include "GLProgram.hpp"
+#include "GLTransform3D.hpp"
 #include <sstream>
 
 namespace XDUILib {
@@ -126,10 +127,6 @@ namespace XDUILib {
     public:
         virtual ~GLRenderData(){};
         GLRenderData() {
-            _transformMat[10] = 1;
-            _transformMat[12] = -1;
-            _transformMat[13] = 1;
-            _transformMat[15] = 1;
         }
         GLuint _vectexArrayObject;
         virtual GLRenderDataType Type() {
@@ -141,9 +138,9 @@ namespace XDUILib {
         }
     protected:
         virtual void setPosition(const XResource::XDisplayPoint &point) final {
-            
+            _transform.setPosition(point.X(), point.Y());
         }
-        GLfloat _transformMat[16];
+        GLTransform3D _transform;
     };
     class GLRenderSquareData : public GLRenderData {
     public:
@@ -182,20 +179,20 @@ namespace XDUILib {
         
         void setSquare(const XResource::XRect &rect) {
             setPosition(rect.point());
-            _square[0] = rect.X();
-            _square[1] = rect.Y();
+            _square[0] = 0;
+            _square[1] = 0;
             _square[2] = 0.5;
             
-            _square[6] = rect.X() + rect.Width();
-            _square[7] = rect.Y();
+            _square[6] = rect.Width();
+            _square[7] = 0;
             _square[8] = 0.5;
             
-            _square[9] = rect.X() + rect.Width();
-            _square[10] = rect.Y() + rect.Height();
+            _square[9] = rect.Width();
+            _square[10] = rect.Height();
             _square[11] = 0.5;
             
-            _square[3] = rect.X();
-            _square[4] = rect.Y() + rect.Height();
+            _square[3] = 0;
+            _square[4] = rect.Height();
             _square[5] = 0.5;
         }
         
@@ -227,6 +224,7 @@ namespace XDUILib {
         }
        virtual void render() override {
 		   GLRenderSquareData::sProgram.enable();
+           sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);
            if (mIsClips) {
                GLRenderSquareData::sProgram.setUniformValue("uClipsBounds", _clipsX1, _clipsX2, _clipsY1, _clipsY2);
            }

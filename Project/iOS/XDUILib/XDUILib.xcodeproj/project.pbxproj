@@ -33,6 +33,9 @@
 		3E10B2BA1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */; };
 		3E10B2BB1CFC17F000522132 /* XTouchRecognizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */; };
 		3E10B2BC1CFC17F000522132 /* XTouchRecognizer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2B91CFC17F000522132 /* XTouchRecognizer.hpp */; };
+		3E10B2BF1CFD7C2A00522132 /* GLTransform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */; };
+		3E10B2C01CFD7C2A00522132 /* GLTransform3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */; };
+		3E10B2C11CFD7C2A00522132 /* GLTransform3D.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */; };
 		3E1416891C9ABEFA00A84DF1 /* XDUIAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */; };
 		3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166C1C9ABEFA00A84DF1 /* XDUILib_ios.mm */; };
 		3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
@@ -238,6 +241,8 @@
 		3E10B2B41CFC13D000522132 /* UIResponder.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIResponder.hpp; sourceTree = "<group>"; };
 		3E10B2B81CFC17F000522132 /* XTouchRecognizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTouchRecognizer.cpp; sourceTree = "<group>"; };
 		3E10B2B91CFC17F000522132 /* XTouchRecognizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTouchRecognizer.hpp; sourceTree = "<group>"; };
+		3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTransform3D.cpp; sourceTree = "<group>"; };
+		3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLTransform3D.hpp; sourceTree = "<group>"; };
 		3E14159E1C9AA7C500A84DF1 /* libXDUILib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXDUILib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1416691C9ABEFA00A84DF1 /* XDUIAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDUIAppDelegate.h; sourceTree = "<group>"; };
 		3E14166A1C9ABEFA00A84DF1 /* XDUIAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XDUIAppDelegate.mm; sourceTree = "<group>"; };
@@ -535,6 +540,8 @@
 				3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */,
 				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
 				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
+				3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */,
+				3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */,
 			);
 			path = GL;
 			sourceTree = "<group>";
@@ -705,6 +712,7 @@
 				3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */,
 				3E10B2BC1CFC17F000522132 /* XTouchRecognizer.hpp in Headers */,
 				3E8D12081CBFA2F900EC385D /* XHTTPClient.hpp in Headers */,
+				3E10B2C11CFD7C2A00522132 /* GLTransform3D.hpp in Headers */,
 				3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */,
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
@@ -856,6 +864,7 @@
 				3E5BC8F01CE2F7A200E57750 /* XStringAttr.cpp in Sources */,
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
 				3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */,
+				3E10B2BF1CFD7C2A00522132 /* GLTransform3D.cpp in Sources */,
 				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
@@ -919,6 +928,7 @@
 				3EAA6D0D1CA24A8E0037291F /* UIView.hpp in Sources */,
 				3EAA6D0E1CA24A8E0037291F /* IXWindow.hpp in Sources */,
 				3EAA6D0F1CA24A8E0037291F /* IXCanvas.hpp in Sources */,
+				3E10B2C01CFD7C2A00522132 /* GLTransform3D.cpp in Sources */,
 				3EB510041CE8B8F4003FF455 /* XKeyBoard.cpp in Sources */,
 				3EB510141CE8BB62003FF455 /* XEditView.cpp in Sources */,
 				3E7F4F1E1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
