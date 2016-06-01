@@ -37,7 +37,7 @@ public:
         auto scrollView = std::make_shared<XUI::ScrollView>();
         scrollView->setBkgColor(XResource::XUIColor::pinkColor());
         scrollView->setRect(XResource::XRectPro(20, 100, 100, 200));
-        this->view()->addSubView(scrollView);
+        //this->view()->addSubView(scrollView);
         
         auto textView = std::make_shared<XUI::UITextView>();
         textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
@@ -67,7 +67,7 @@ public:
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setRect(XResource::XRectPro(100, 300, 200, 200));
         imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
-        this->view()->addSubView(imgView);
+        //this->view()->addSubView(imgView);
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::grayColor());
         
