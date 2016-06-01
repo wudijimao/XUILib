@@ -28,19 +28,23 @@ public:
 	std::shared_ptr<XUI::UIView> _testSubView;
 	virtual void viewDidLoad() override {
 		XUI::UIViewController::viewDidLoad();
+        
+        auto jpgImg = XResource::XImage::imageNamed("test.jpg");
+        
 		_testSubView = std::make_shared<XUI::UIView>();
 		_testSubView->setBkgColor(XResource::XUIColor::redColor());
 		_testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
+        _testSubView->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
 		this->view()->addSubView(_testSubView);
         
         
         auto scrollView = std::make_shared<XUI::ScrollView>();
         scrollView->setBkgColor(XResource::XUIColor::pinkColor());
         scrollView->setRect(XResource::XRectPro(20, 100, 100, 200));
-        //this->view()->addSubView(scrollView);
+        this->view()->addSubView(scrollView);
         
         auto textView = std::make_shared<XUI::UITextView>();
-        textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
+        //textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
         textView->setTextColor(XResource::XUIColor::blueColor());
         textView->setFont(XResource::XFont::systemFont(16));
         auto color = XResource::XUIColor::pinkColor()->copy();
@@ -49,25 +53,26 @@ public:
 		textView->setRect(XResource::XRectPro(0, 0, 100, 320));
         auto img = XResource::XImage::imageNamed("test.png");
         textView->setBkgImg(img);
-        scrollView->setContentView(textView);
+        //scrollView->setContentView(textView);
         
 		auto btn = std::make_shared<XUI::XButton>();
         btn->setBackgroundColor(XUI::ButtonStates::DOWN, XResource::XUIColor::blueColor());
 		btn->setRect(XResource::XRectPro(5, 20, 70, 25));
-		_testSubView->addSubView(btn);
+		//_testSubView->addSubView(btn);
 		
 		auto request = std::make_shared<XHTTPRequest>();
 		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
             auto image = XResource::XImage::imageFromData(response->data());
-            _testSubView->setBkgImg(image);
+            //_testSubView->setBkgImg(image);
+            //this->view()->addSubView(_testSubView);
 		};
 		//IXHTTPClient::getSharedInstanc()->sendRequest(request);
         
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setRect(XResource::XRectPro(100, 300, 200, 200));
-        imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
-        //this->view()->addSubView(imgView);
+        imgView->setImage(jpgImg);
+        this->view()->addSubView(imgView);
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::grayColor());
         

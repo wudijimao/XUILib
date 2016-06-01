@@ -106,6 +106,7 @@ void XHTTPClient::runLoop() {
                     int msgq = 0;
                     m = curl_multi_info_read(this->_curl, &msgq);
                     if(m && (m->msg == CURLMSG_DONE)) {
+                        
                         this->requestFinised(m->easy_handle);
                     }
                 } while(m);
@@ -125,6 +126,13 @@ int XHTTPClient::sOnProgress(void *userdata, curl_off_t dltotal, curl_off_t dlno
 }
 
 void XHTTPClient::requestFinised(CURL *handle) {
+//    long responseCode;
+//    CURLcode ret = curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &responseCode);
+//    if (ret == CURLE_OK) {
+//        
+//    }
+    //TODO: need get is success!!
+    
     auto requestHandler = this->_handlerMap[handle];
     this->_handlerMap.erase(this->_handlerMap.find(handle));
     this->_requestMap.erase(this->_requestMap.find(requestHandler->request()));
@@ -140,48 +148,51 @@ void XHTTPClient::requestFinised(CURL *handle) {
 
 
 std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XHTTPRequest> pRequest) {
-    auto iter = this->_requestMap.find(pRequest.get());
-    if (iter != this->_requestMap.end()) {
-        return nullptr;
+    if (pRequest) {
+        auto iter = this->_requestMap.find(pRequest.get());
+        if (iter != this->_requestMap.end()) {
+            return nullptr;
+        }
+        std::shared_ptr<XHTTPRequestHandlerImpl> handler(new XHTTPRequestHandlerImpl());
+        handler->_response.reset(new XHTTPResponse());
+        handler->_response->_request = pRequest;
+        handler->_weakHttpClient = this;
+        CURL *handle = curl_easy_init();
+        handler->_handle = handle;
+        this->_requestMap[pRequest.get()] = handle;
+        this->_handlerMap[handle] = handler;
+        handler->_response->_buf = std::make_shared<XResource::XData>();
+        curl_easy_setopt(handle, CURLOPT_FAILONERROR, 1L);
+        curl_easy_setopt(handle, CURLOPT_URL, pRequest->url.c_str());
+        struct curl_slist *list = NULL;
+        for (auto header : pRequest->_header._headers)
+        {
+            std::string str(header.first);
+            str.append(": ");
+            str.append(header.second);
+            list = curl_slist_append(list, str.c_str());
+        }
+        list = curl_slist_append(list, "Accept:");
+        _requestHeaderMap[pRequest.get()] = list;
+        //curl_easy_setopt(handle, CURLOPT_PROXY, "127.0.0.1:8888");//设置代理服务器
+        
+        curl_easy_setopt(handle, CURLOPT_HTTPHEADER, list);
+        curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, onWriteData);
+        curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
+        curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
+        curl_easy_setopt(handle, CURLOPT_XFERINFOFUNCTION, XHTTPClient::sOnProgress);
+        
+        curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1);
+        curl_easy_setopt(handle, CURLOPT_CONNECTTIMEOUT, 3);
+        curl_easy_setopt(handle, CURLOPT_TIMEOUT, 3);
+        
+        XHTTPRequest *req = pRequest.get();
+        curl_easy_setopt(handle, CURLOPT_XFERINFODATA, (void *)handler.get());
+        curl_multi_add_handle(this->_curl, handle);
+        cv.notify_one();
+        return handler;
     }
-    std::shared_ptr<XHTTPRequestHandlerImpl> handler(new XHTTPRequestHandlerImpl());
-    handler->_response.reset(new XHTTPResponse());
-    handler->_response->_request = pRequest;
-    handler->_weakHttpClient = this;
-    CURL *handle = curl_easy_init();
-    handler->_handle = handle;
-    this->_requestMap[pRequest.get()] = handle;
-    this->_handlerMap[handle] = handler;
-    handler->_response->_buf = std::make_shared<XResource::XData>();
-    curl_easy_setopt(handle, CURLOPT_FAILONERROR, 1L);
-    curl_easy_setopt(handle, CURLOPT_URL, pRequest->url.c_str());
-	struct curl_slist *list = NULL;
-	for (auto header : pRequest->_header._headers)
-	{
-		std::string str(header.first);
-		str.append(": ");
-		str.append(header.second);
-		list = curl_slist_append(list, str.c_str());
-	}
-	list = curl_slist_append(list, "Accept:");
-	_requestHeaderMap[pRequest.get()] = list;
-	curl_easy_setopt(handle, CURLOPT_PROXY, "127.0.0.1:8888");//设置代理服务器
-	
-	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, list);
-    curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, onWriteData);
-    curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
-    curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
-    curl_easy_setopt(handle, CURLOPT_XFERINFOFUNCTION, XHTTPClient::sOnProgress);
-
-	curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1);
-	curl_easy_setopt(handle, CURLOPT_CONNECTTIMEOUT, 3);
-	curl_easy_setopt(handle, CURLOPT_TIMEOUT, 3);
-
-    XHTTPRequest *req = pRequest.get();
-    curl_easy_setopt(handle, CURLOPT_XFERINFODATA, (void *)handler.get());
-    curl_multi_add_handle(this->_curl, handle);
-	cv.notify_one();
-    return handler;
+    return nullptr;
 }
 
 

@@ -17,6 +17,9 @@ namespace XUI
         virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
         virtual void setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img);
         virtual void setMaskImg(const std::shared_ptr<XResource::IXImage> &img);
+        
+        const std::shared_ptr<XResource::IXImage>& bkgImage();
+        const std::shared_ptr<XResource::XStretchableImage>& bkgStretchableImage();
 
         virtual const XResource::XRectPro& getRect();
 //		virtual void setRect(double x, double y, double width, double height) = 0;

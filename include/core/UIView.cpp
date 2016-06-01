@@ -24,14 +24,23 @@ namespace XUI
         _backGroundColor = color;
     }
     void UIView::setBkgImg(const std::shared_ptr<XResource::IXImage> &img) {
-        setNeedReDraw();
         _backGroundImage = img;
+        setNeedReDraw();
+    }
+    
+    const std::shared_ptr<XResource::IXImage>& UIView::bkgImage() {
+        return _backGroundImage;
+    }
+    
+    const std::shared_ptr<XResource::XStretchableImage>& UIView::bkgStretchableImage() {
+        return _backGroundStretchableImage;
     }
     
     void UIView::setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img) {
         _backGroundStretchableImage = img;
         setNeedReDraw();
     }
+    
     
     void UIView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
         _maskImage = img;
