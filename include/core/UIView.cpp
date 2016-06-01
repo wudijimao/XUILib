@@ -114,7 +114,7 @@ namespace XUI
 		_rect = this->_layoutRect.MakeAbsRect(absRect);
 		bool posChanged = (tempRect.point() != _rect.point());
 		bool sizeChanged = (tempRect.size() != _rect.size());
-		if (posChanged || sizeChanged) {
+		if (sizeChanged) {
 			setNeedReDraw();
 			if (_needLayout && sizeChanged) {
 				layoutSubViews();
@@ -122,7 +122,12 @@ namespace XUI
 					subView->setNeedLayout();
 				}
 			}
-		}
+        } else if(posChanged) {
+            mRenderer->move(_rect.point() - tempRect.point());
+            if(mBelongingViewController != nullptr) {
+                mBelongingViewController->setNeedRedraw();
+            }
+        }
         if (_needLayout && mIsClipsToBoundsInternal) {
             makeClipsBounds();
         }

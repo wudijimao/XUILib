@@ -35,10 +35,10 @@ namespace XUI
 		}
 		virtual ~Animation();
 		virtual bool setProcessFun(const std::function<void(double)> &fun);
-		Animation &setAutoRemove(bool autoRemove = true);
-		void setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator);
-		void setDurationMS(unsigned long ms);
-		void setRepeatTimes(long times);
+		Animation& setAutoRemove(bool autoRemove = true);
+		Animation& setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator);
+		Animation& setDurationMS(unsigned long ms);
+		Animation& setRepeatTimes(long times);
 		virtual bool play();
 		virtual void pause();
 		virtual void stop();

@@ -30,6 +30,11 @@ public:
         _transformMat[12] = x;
         _transformMat[13] = y;
     }
+    void move(GLfloat x, GLfloat y) {
+        _transformMat[12] += x;
+        _transformMat[13] += y;
+    }
+    
     void setPosition(GLfloat x, GLfloat y, GLfloat z) {
         _transformMat[12] = x;
         _transformMat[13] = y;

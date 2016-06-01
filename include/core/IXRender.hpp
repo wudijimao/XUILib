@@ -7,7 +7,8 @@ class SIMPLEDIRECTUI_API IXRender
 {
 public:
 	virtual ~IXRender(){};
-    virtual void move(XResource::XDisplayPoint &point) = 0;
+    virtual void setPosition(const XResource::XDisplayPoint &point) = 0;
+    virtual void move(const XResource::XDisplayPoint &point) = 0;
 	//virtual bool Init(IXCanvas *canvas) = 0;  use CurentCanvas
     virtual void clear() = 0;
 	virtual void Submit() = 0;

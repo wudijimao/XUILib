@@ -133,13 +133,13 @@ namespace XDUILib {
             return GLRenderDataType::UnKnown;
         }
         virtual void render() = 0;
-        virtual void move(const XResource::XDisplayPoint &point) final {
-            
-        }
-    protected:
         virtual void setPosition(const XResource::XDisplayPoint &point) final {
             _transform.setPosition(point.X(), point.Y());
         }
+        virtual void move(const XResource::XDisplayPoint &point) final {
+            _transform.move(point.X(), point.Y());
+        }
+    protected:
         GLTransform3D _transform;
     };
     class GLRenderSquareData : public GLRenderData {
@@ -149,6 +149,7 @@ namespace XDUILib {
         
 		static GLProgram sProgram;
         GLfloat _square[12];
+        //GLubyte _indices[6];
         GLfloat _texturePos[8];
         GLfloat _color[16];
         GLuint  _textureId = 0;
@@ -194,6 +195,14 @@ namespace XDUILib {
             _square[3] = 0;
             _square[4] = rect.Height();
             _square[5] = 0.5;
+            
+            //test
+//            _indices[0] = 0;
+//            _indices[1] = 1;
+//            _indices[2] = 2;
+//            _indices[3] = 1;
+//            _indices[4] = 2;
+//            _indices[5] = 3;
         }
         
         void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
@@ -252,7 +261,7 @@ namespace XDUILib {
 		   //glEnableVertexAttribArray(0);
 		   //glEnableVertexAttribArray(1);
 		   glBindVertexArray(_vectexArrayObject);
-
+           //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, 0);
 		   // Draw
 		   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         }
@@ -263,7 +272,7 @@ namespace XDUILib {
             glDeleteBuffers(3, bufObjects);
             glDeleteVertexArrays(1, &_vectexArrayObject);
         }
-        GLuint bufObjects[3];
+        GLuint bufObjects[3];//[4];
         void buildVAO() {
 			GLRenderSquareData::sProgram.enable();
             
@@ -290,6 +299,9 @@ namespace XDUILib {
             glBindBuffer(GL_ARRAY_BUFFER, bufObjects[2]);
             glBufferData(GL_ARRAY_BUFFER, sizeof(_color), _color, GL_STATIC_DRAW);
 			glVertexAttribPointer((GLuint)inColor, 4, GL_FLOAT, GL_FALSE, 0, nullptr);
+            
+//            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufObjects[3]);
+//            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices) , _indices, GL_STATIC_DRAW);
 
 			glEnableVertexAttribArray(inPos);
 			glEnableVertexAttribArray(vTexCoord);
@@ -313,31 +325,32 @@ namespace XDUILib {
         GLubyte indices[54]; //total nine square. And two triangle per square.
         GLuint  _textureId = 0;
         void initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image) {
+            setPosition(rect.point());
             for (auto square : _square) {
                 square.z = 0.5f;
             }
             double imageWidth = image->image()->size().Width();
             double imageHeight = image->image()->size().Height();
-            GLfloat y = rect.Y();
+            GLfloat y = 0;
             GLfloat v = 0;
             int i = 0;
             while (i < 4) {
                 _texturePos[i].v = v;
                 _square[i++].y = y;
             }
-            y = rect.Y() + image->stretchEdge().top();
+            y = image->stretchEdge().top();
             v = image->stretchEdge().top() / imageHeight;
             while (i < 8) {
                 _texturePos[i].v = v;
                 _square[i++].y = y;
             }
-            y = rect.Y() + rect.Height() - image->stretchEdge().bottom();
+            y = rect.Height() - image->stretchEdge().bottom();
             v = (imageHeight - image->stretchEdge().bottom()) / imageHeight;
             while (i < 12) {
                 _texturePos[i].v = v;
                 _square[i++].y = y;
             }
-            y = rect.Y() + rect.Height();
+            y = rect.Height();
             v = 1.0f;
             while (i < 16) {
                 _texturePos[i].v = v;
@@ -345,7 +358,7 @@ namespace XDUILib {
             }
             
             
-            GLfloat x = rect.X();
+            GLfloat x = 0;
             GLfloat u = 0;
             i = 0;
             while (i < 16) {
@@ -353,7 +366,7 @@ namespace XDUILib {
                 _square[i].x = x;
                 i += 4;
             }
-            x = rect.X() + image->stretchEdge().left();
+            x = image->stretchEdge().left();
             u = image->stretchEdge().left() / imageWidth;
             i = 1;
             while (i < 16) {
@@ -361,7 +374,7 @@ namespace XDUILib {
                 _square[i].x = x;
                 i += 4;
             }
-            x = rect.X() + rect.Width() - image->stretchEdge().right();
+            x = rect.Width() - image->stretchEdge().right();
             u = (imageWidth - image->stretchEdge().right()) / imageWidth;
             i = 2;
             while (i < 16) {
@@ -369,7 +382,7 @@ namespace XDUILib {
                 _square[i].x = x;
                 i += 4;
             }
-            x = rect.X() + rect.Width() ;
+            x = rect.Width() ;
             u = 1;
             i = 3;
             while (i < 16) {
@@ -400,6 +413,7 @@ namespace XDUILib {
         }
         virtual void render() override {
             sProgram.enable();
+            sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);
             sProgram.setUniformValue("uIsClipsToBounds", false);
             
             if (_textureId > 0) {

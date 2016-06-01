@@ -13,17 +13,20 @@ namespace XUI
 		mProcessFun = fun;
 		return true;
 	}
-	void Animation::setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator) {
+	Animation& Animation::setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator) {
 		mInterpolator = interpolator;
+        return *this;
 	}
-	void Animation::setDurationMS(unsigned long ms) {
+	Animation& Animation::setDurationMS(unsigned long ms) {
 		if (ms > 0)
 		{
 			mDurationMS = ms;
 		}
+        return *this;
 	}
-	void Animation::setRepeatTimes(long times) {
+	Animation& Animation::setRepeatTimes(long times) {
 		mRepeatTimes = times;
+        return *this;
 	}
 	bool Animation::play() {
 		if (mState != AnimatingStates::Playing && mProcessFun)

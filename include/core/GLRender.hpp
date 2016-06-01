@@ -5,7 +5,8 @@
 class SIMPLEDIRECTUI_API GLRender : public IXRender
 {
 public:
-    virtual void move(XResource::XDisplayPoint &point) override;
+    virtual void setPosition(const XResource::XDisplayPoint &point) override;
+    virtual void move(const XResource::XDisplayPoint &point) override;
 	virtual void Submit() override; //submit paint data to canvas
     virtual void clear() override;
 	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) override;

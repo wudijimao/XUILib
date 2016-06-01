@@ -33,11 +33,11 @@ void LoginViewController::viewDidLoad() {
     nameText->setRect(rect);
     view()->addSubView(nameText);
     
-    /*addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
+    addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
      auto rect = nameText->getRect();
      rect.X(a);
      nameText->setRect(rect);
-     }));// .play();*/
+    })).setRepeatTimes(10000).play();
     
     auto testView = std::make_shared<XUI::UIView>();
     testView->setBkgColor(XResource::XUIColor::greenColor());
@@ -45,7 +45,7 @@ void LoginViewController::viewDidLoad() {
     testView->setMaskImg(XResource::XImage::imageNamed("test_mask.png"));
     testView->setBkgImg(XResource::XImage::imageNamed("test.png"));
     testView->setClipsToBounds(true);
-    view()->addSubView(testView);
+    //view()->addSubView(testView);
     
     auto testView2 = std::make_shared<XUI::UIView>();
     testView2->setBkgImg(XResource::XImage::imageNamed("test.jpg"));

@@ -135,6 +135,10 @@ namespace XResource
             return std::sqrt(quickDistance(point));
         }
         
+        XDisplayPoint operator - (const XDisplayPoint &point) const {
+            return XDisplayPoint(mX - point.mX, mY - point.mY);
+        }
+        
         bool operator == (const XDisplayPoint &point) const {
             return !(*this != point);
         }

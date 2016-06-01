@@ -18,12 +18,19 @@ void GLRender::clear() {
     mCachedRenderData.clear();
 }
 
-void GLRender::move(XResource::XDisplayPoint &point) {
+void GLRender::setPosition(const XResource::XDisplayPoint &point) {
     for (auto data : mCachedRenderData)
     {
-        data;
+        data->setPosition(point);
     }
 }
+void GLRender::move(const XResource::XDisplayPoint &point) {
+    for (auto data : mCachedRenderData)
+    {
+        data->move(point);
+    }
+}
+
 
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
