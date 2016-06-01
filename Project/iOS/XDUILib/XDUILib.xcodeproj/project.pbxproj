@@ -214,6 +214,9 @@
 		3EDFDB9D1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */; };
 		3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */; };
 		3EDFDB9F1CCB55310079AF51 /* XHTTPRequestHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */; };
+		3EEDCD061CFEE4F4004219DE /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */; };
+		3EEDCD071CFEE4F4004219DE /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */; };
+		3EEDCD081CFEE4F4004219DE /* GLTexture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */; };
 		3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
 		3EF8A3261CE0CD5E0092F3F4 /* XTextView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */; };
 		3EF8A3271CE0CD5E0092F3F4 /* XTextView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */; };
@@ -375,6 +378,8 @@
 		3EDFDB971CCB54DF0079AF51 /* XHTTPResponse.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPResponse.hpp; sourceTree = "<group>"; };
 		3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XHTTPRequestHandler.cpp; sourceTree = "<group>"; };
 		3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPRequestHandler.hpp; sourceTree = "<group>"; };
+		3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLTexture.cpp; sourceTree = "<group>"; };
+		3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLTexture.hpp; sourceTree = "<group>"; };
 		3EF8A3231CE0CD5E0092F3F4 /* XTextView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XTextView.cpp; sourceTree = "<group>"; };
 		3EF8A3241CE0CD5E0092F3F4 /* XTextView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XTextView.hpp; sourceTree = "<group>"; };
 		3EF9FE5B1CE21C27002E19DD /* XButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XButton.cpp; sourceTree = "<group>"; };
@@ -542,6 +547,8 @@
 				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
 				3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */,
 				3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */,
+				3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */,
+				3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */,
 			);
 			path = GL;
 			sourceTree = "<group>";
@@ -734,6 +741,7 @@
 				3E7F4F1C1CC60A61001D0C58 /* XDispatch.h in Headers */,
 				3E7F4F1F1CC60A61001D0C58 /* XRunLoop.hpp in Headers */,
 				3E5BC8F71CE2F83600E57750 /* XStringAttrColor.hpp in Headers */,
+				3EEDCD081CFEE4F4004219DE /* GLTexture.hpp in Headers */,
 				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
 				3EDFDB951CCB54BC0079AF51 /* XHTTPRequest.hpp in Headers */,
 				3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */,
@@ -884,6 +892,7 @@
 				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
 				3EB510031CE8B8F4003FF455 /* XKeyBoard.cpp in Sources */,
+				3EEDCD061CFEE4F4004219DE /* GLTexture.cpp in Sources */,
 				3EBA63D91CD368F800E633B3 /* XImageDataDecoder.cpp in Sources */,
 				3EC92D9B1CAB9B9D00CF012C /* GLView.m in Sources */,
 				3E99289A1CDD94D7008E90D3 /* XColor.cpp in Sources */,
@@ -932,6 +941,7 @@
 				3EB510041CE8B8F4003FF455 /* XKeyBoard.cpp in Sources */,
 				3EB510141CE8BB62003FF455 /* XEditView.cpp in Sources */,
 				3E7F4F1E1CC60A61001D0C58 /* XRunLoop.cpp in Sources */,
+				3EEDCD071CFEE4F4004219DE /* GLTexture.cpp in Sources */,
 				3EAA6D101CA24A8E0037291F /* IXRender.hpp in Sources */,
 				3E7F4F211CC60A61001D0C58 /* XTask.cpp in Sources */,
 				3EAA6D111CA24A8E0037291F /* XRenderFactory.hpp in Sources */,
