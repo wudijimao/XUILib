@@ -30,13 +30,13 @@ namespace XDUILib {
     class GLTextureManager {
         std::map<XResource::IXImage *, GLuint> textureMap;
     public:
-        //临时  应该一个Canvas对应一个manager？
         static GLTextureManager &sharedInstance();
         
         //TODO::需要支持淘汰机制 和 多图（gif）
         GLuint getTextureID(const std::shared_ptr<XResource::IXImage> &image);
         
     private:
+        GLTextureManager();
         GLuint loadTexture(XResource::IXImage *image);
     };
     

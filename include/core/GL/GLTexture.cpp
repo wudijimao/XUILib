@@ -23,10 +23,15 @@ namespace XDUILib {
         _glTextureIndex = glTextureIndex;
     }
     
-    //临时  应该一个Canvas对应一个manager？
+
     GLTextureManager& GLTextureManager::sharedInstance() {
         static GLTextureManager manager;
         return manager;
+    }
+    
+    GLTextureManager::GLTextureManager() {
+        glEnable(GL_TEXTURE_2D);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
     }
     
     //TODO::需要支持淘汰机制 和 多图（gif）
@@ -66,12 +71,14 @@ namespace XDUILib {
             default:
                 return 0;
         }
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data->getBuf());
+        //glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data->getBuf());
+        glGenerateMipmap(GL_TEXTURE_2D);
         return textureId;
     }
     
