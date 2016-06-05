@@ -27,6 +27,11 @@ public:
         mNeedReDraw = true;
     }
 
+#ifdef _WINDOWS
+	virtual HWND getHandler() = 0;
+#endif // _WINDOWS
+
+
     //virtual std::shared_ptr<IXRender> render() = 0;
 	//TODO::不应该有基于具体平台的
 	//virtual HWND Hwnd() = 0;

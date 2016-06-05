@@ -26,11 +26,21 @@ public:
     virtual void run() = 0;
     //void runUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time);
     virtual bool weakUp(XRunLoopSource *source) {
-        if (mIsSleeping) {
-            mRunList.push_back(source);
-        } else {
-            mWaitRunList.push_back(source);
-        }
+		if (isExsit(source))
+		{
+			if (mIsSleeping) {
+				if (!isInRunList(source))
+				{
+					mRunList.push_back(source);
+				}
+			}
+			else {
+				if (!isInWaitRunList(source))
+				{
+					mWaitRunList.push_back(source);
+				}
+			}
+		}
         return true;
     };
     bool _do() {
@@ -38,6 +48,7 @@ public:
         for (auto source : mRunList) {
             source->_do();
         }
+		mRunList.clear();
         mIsSleeping = true;
         wait();
         return true;
@@ -48,6 +59,33 @@ public:
         mSourcesMap[source.get()] = source;
     }
 protected:
+	inline bool isExsit(XRunLoopSource *source) {
+		if (mSourcesMap.find(source) != mSourcesMap.end())
+		{
+			return true;
+		}
+		return false;
+	}
+	inline bool isInRunList(XRunLoopSource *source) {
+		for (auto s : mRunList)
+		{
+			if (s == source)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	inline bool isInWaitRunList(XRunLoopSource *source) {
+		for (auto s : mWaitRunList)
+		{
+			if (s == source)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
     bool mIsSleeping = true;
     std::vector<XRunLoopSource*> mRunList;
     std::vector<XRunLoopSource*> mWaitRunList;

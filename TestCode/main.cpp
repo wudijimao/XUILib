@@ -99,6 +99,7 @@ class XTestApp : public XApp {
 public:
     std::shared_ptr<ViewController> mVc;
 	virtual bool init() {
+		__super::init();
 		setMainWindow(IXWindow::createWindow());
 		mVc = std::make_shared<ViewController>();
 		mainWindow()->setRootViewController(mVc);

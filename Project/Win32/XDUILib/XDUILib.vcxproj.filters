@@ -255,6 +255,9 @@
     <ClInclude Include="..\..\..\include\core\input\XKeyBoard.hpp">
       <Filter>Header\core\input</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\win32\XMainRunLoop_win32.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">

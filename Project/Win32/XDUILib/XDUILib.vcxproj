@@ -87,6 +87,7 @@
     <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp" />
     <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp" />
     <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp" />
+    <ClInclude Include="..\..\..\include\win32\XMainRunLoop_win32.hpp" />
     <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp" />
   </ItemGroup>
   <ItemGroup>

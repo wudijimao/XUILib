@@ -12,7 +12,14 @@
 
 namespace XDUILib
 {
+	XApp *XApp::_thisApp = nullptr;
+
+	XApp& XApp::thisApp() {
+		return *_thisApp;
+	}
+
 	bool XApp::init() {
+		_thisApp = this;
 		setMainWindow(IXWindow::createWindow());
 		auto rootController = std::make_shared<XUI::UIViewController>();
 		mainWindow()->setRootViewController(rootController);

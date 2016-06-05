@@ -18,7 +18,7 @@ public:
 	virtual void showInFront() override;
 public://protected
 	bool  init(PSTR szCmdLine, int iCmdShow); //set friend to XApp not Work?
-	HWND getHwnd() {
+    virtual	HWND getHandler() override {
 		return mHwnd;
 	}
 protected:
@@ -27,5 +27,5 @@ protected:
 	LRESULT RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT processMouseEvent(UINT iMsg, WPARAM wParam, LPARAM lParam);
 private:
-	HWND mHwnd;
+	HWND mHwnd = nullptr;
 };
