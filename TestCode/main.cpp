@@ -3,6 +3,8 @@
 #include "LoginViewController.hpp"
 
 
+#include <dispatch/dispatch.h>
+
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
 using namespace XDUILib;
@@ -22,6 +24,7 @@ void DetectMemoryLeaks()
 
 class ViewController : public XUI::UIViewController {
 public:
+    long long mNum = 0;
     ~ViewController() {
         
     }
@@ -78,6 +81,50 @@ public:
         
         //auto vc = std::make_shared<LoginViewController>();
         //this->presentViewControler(vc);
+//        clock_t t1 = clock();
+//        for (int i = 0; i < 4; ++i) {
+//            XDispatch::dispatchAsnyc(XDispatch::getGlobleQueue(XDispatch::XTaskPriority::XTaskPriority_Default), [this, i, t1](){
+//                for (int j = 0; j < 100000; ++j) {
+//                    XDispatch::dispatchAfter(XDispatch::getMainQueue(), [this, i, j, t1](){
+//                        ++mNum;
+//                        XLog::sharedInstance().log(XLogLevel::Debug, "%d:%d___%d\r\n", i, j, mNum);
+//                        if (mNum == 400000) {
+//                            clock_t t2 = clock();
+//                            std::cout << "count:" << mNum << "   time:" << (t2 - t1) / (CLOCKS_PER_SEC / 1000.0) << "ms" << std::endl;
+//                        }
+//                    }, 100);
+//                }
+//            });
+//        }
+        
+//        for (int i = 0; i < 400000; ++i) {
+//            ++mNum;
+//            XLog::sharedInstance().log(XLogLevel::Debug, "%d:%d___%d\r\n", i, i, mNum);
+//            if (mNum == 400000) {
+//                clock_t t2 = clock();
+//                std::cout << "count:" << mNum << "   time:" << (t2 - t1) / (CLOCKS_PER_SEC / 1000.0) << "ms" << std::endl;
+//            }
+//        }
+
+//        __block ViewController *bThis = this;
+//        for (int i = 0; i < 4; ++i) {
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                for (int j = 0; j < 100000; ++j) {
+//                    //XLog::sharedInstance().log(XLogLevel::Debug, "%d:%d\r\n", i, j);
+//                    void(bl)(void) = ^{
+//                        ++bThis->mNum;
+//                        //XLog::sharedInstance().log(XLogLevel::Debug, "%d:%d___%d\r\n", i, j, bThis->mNum);
+//                        if (bThis->mNum == 400000) {
+//                            clock_t t2 = clock();
+//                            std::cout << "count:" << mNum << "   time:" << (t2 - t1) / (CLOCKS_PER_SEC / 1000.0) << "ms" << std::endl;
+//                        }
+//                    }
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(100 * NSEC_PER_MSEC)), dispatch_get_main_queue(), );
+//                }
+//            });
+//        }
+        
+        
 	}
 	virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override {
 		//(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());
@@ -105,6 +152,10 @@ public:
 		mainWindow()->setRootViewController(mVc);
 		return true;
 	}
+private:
+#ifndef _WINDOWS
+    typedef XApp __super;
+#endif
 };
 
 

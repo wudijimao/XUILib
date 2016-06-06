@@ -19,7 +19,6 @@ namespace XDUILib
 	}
 
 	bool XApp::init() {
-		_thisApp = this;
 		setMainWindow(IXWindow::createWindow());
 		auto rootController = std::make_shared<XUI::UIViewController>();
 		mainWindow()->setRootViewController(rootController);

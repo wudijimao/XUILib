@@ -7,6 +7,7 @@
 //
 #pragma once
 #include "../stdafx.hpp"
+#include "XThreadPool.hpp"
 #include <queue>
 #include <mutex>
 

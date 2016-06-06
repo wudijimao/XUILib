@@ -16,13 +16,9 @@
 
 namespace XDUILib
 {
-    XApp *gThisAppTemp;//临时解决方案，先暂存在这里
-    XApp& XApp::thisApp(){
-        return *gThisAppTemp;
-    }
     int XApp::run(int argc, char * argv[]) {
-        gThisAppTemp = this;
         @autoreleasepool {
+            _thisApp = this;
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([XDUIAppDelegate class]));
         }
     }

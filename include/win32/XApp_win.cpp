@@ -5,6 +5,7 @@
 namespace XDUILib
 {
 	int XApp::run(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow) {
+        _thisApp = this;
 		init();
 		if (_mainWindow == nullptr)
 		{

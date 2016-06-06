@@ -2,139 +2,8 @@
 #include "XRunLoop.hpp"
 
 namespace XDispatch {
-    class XRunLoopDispatchSource : public XRunLoopSource {
-    public:
-        virtual void _do() override {
-            MyFun *fun = NULL;
-            while (mTaskQueue->pop(fun)) {
-                (*fun)();
-                delete fun;
-            }
-        }
-    public:
-        std::shared_ptr<XTaskQueue> mTaskQueue;
-    };
-    std::shared_ptr<XRunLoopDispatchSource> source;
-
-	std::shared_ptr<XTaskQueue> XTaskQueue::getMainQueue() {
-		//TODO::maybe mutithread cause problem
-		static std::shared_ptr<XTaskQueue> mainQueue(new XTaskQueue());
-		return mainQueue;
-	}
-	std::shared_ptr<XTaskQueue> XTaskQueue::getGlobleQueue(XTaskPriority priority) {
-		static std::shared_ptr<XTaskQueue> backgroundQueue(new XTaskQueue());
-		static std::shared_ptr<XTaskQueue> lowQueue(new XTaskQueue());
-		static std::shared_ptr<XTaskQueue> defaultQueue(new XTaskQueue());
-		static std::shared_ptr<XTaskQueue> highQueue(new XTaskQueue());
-		switch (priority) {
-		case XTaskPriority_Background:
-			return backgroundQueue;
-		case XTaskPriority_Low:
-			return lowQueue;
-		case XTaskPriority_High:
-			return highQueue;
-		case XTaskPriority_Default:
-		default:
-			return defaultQueue;
-		}
-	}
-	bool XTaskQueue::pop(MyFun *&fun) {
-		std::unique_lock<std::mutex> lk(mutex);
-		if (queue.size() > 0) {
-			fun = queue.front();
-			queue.pop();
-			return true;
-		}
-		return false;
-	}
-	void XTaskQueue::push(MyFun *fun) {
-		mutex.lock();
-		queue.push(fun);
-		mutex.unlock();
-	}
-    XTaskQueue::~XTaskQueue() {
-        
-    }
-
-
-	void XThreadPool::runLoop() {
-		++threadNum;
-		do {
-			std::unique_lock<std::mutex> lk(mutex);
-			auto iter = taskQueue.begin();
-			auto end = taskQueue.end();
-			MyFun *fun = NULL;
-			bool hasFun = false;
-			while (iter != end) {
-				if ((*iter)->pop(fun)) {
-					hasFun = true;
-					break;
-				}
-				++iter;
-			}
-			if (hasFun) {
-				lk.unlock();
-				(*fun)();
-				delete fun;
-			}
-			else {
-				cv.wait(lk);
-			}
-		} while (1);
-		--threadNum;
-	}
-	void XThreadPool::onQueueChanged() {
-		mutex.lock();
-		cv.notify_one();
-		mutex.unlock();
-	}
-	void XThreadPool::initGlobelPool() {
-//		static XThreadPool mainThread;
-//		mainThread.taskQueue.push_back(XTaskQueue::getMainQueue());
-//		XTaskQueue::getMainQueue()->runInPool = &mainThread;
-//		mainThread.startNewThread();
-        
-		static XThreadPool backgroundThreadsPool;
-		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_High));
-		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_Default));
-		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_Low));
-		backgroundThreadsPool.taskQueue.push_back(XTaskQueue::getGlobleQueue(XTaskPriority_Background));
-		XTaskQueue::getGlobleQueue(XTaskPriority_Background)->runInPool = &backgroundThreadsPool;
-		XTaskQueue::getGlobleQueue(XTaskPriority_Low)->runInPool = &backgroundThreadsPool;
-		XTaskQueue::getGlobleQueue(XTaskPriority_Default)->runInPool = &backgroundThreadsPool;
-		XTaskQueue::getGlobleQueue(XTaskPriority_High)->runInPool = &backgroundThreadsPool;
-		for (int i = 0; i < 4; ++i) {
-			backgroundThreadsPool.startNewThread();
-		}
-        
-        source = std::make_shared<XRunLoopDispatchSource>();
-        source->mTaskQueue = XTaskQueue::getMainQueue();
-        getMainRunLoop()->addSource(source);
-	}
-	void XThreadPool::startNewThread() {
-		std::thread thread(std::bind(&XThreadPool::runLoop, this));
-		thread.detach();
-	}
-	XThreadPool::XThreadPool() {
-		taskNum = 0;
-	}
-	XThreadPool::~XThreadPool() {
-	}
-
-
-
-	XTask::XTask(MyFun *in_fun,
-		std::shared_ptr<XTaskQueue> &in_queue,
-		std::chrono::time_point<std::chrono::system_clock> &&in_time) : fun(in_fun), queue(in_queue), time(in_time) {
-
-	}
-	bool XTask::operator <(const XTask& rh) {
-		return time < rh.time;
-	}
-    XTask::~XTask() {
-        
-    }
-
+    
+    std::shared_ptr<XRunLoopDispatchSource> XDispatchManager::mMainThreadSource = nullptr;
 
 	void XDispatchManager::runLoop() {
 		do {
@@ -153,7 +22,7 @@ namespace XDispatch {
 					if (taskQueue->runInPool) {
 						taskQueue->runInPool->onQueueChanged();
 					} else {
-						getMainRunLoop()->weakUp(source.get());
+						getMainRunLoop()->weakUp(mMainThreadSource.get());
 					}
 					mQueue.erase(taskIter);
 				}
@@ -180,7 +49,7 @@ namespace XDispatch {
         if (taskQueue->runInPool) {
             taskQueue->runInPool->onQueueChanged();
         } else {
-            getMainRunLoop()->weakUp(source.get());
+            getMainRunLoop()->weakUp(mMainThreadSource.get());
         }
     }
 	void XDispatchManager::dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS) {

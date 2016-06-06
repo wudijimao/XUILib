@@ -15,48 +15,44 @@
 #include <chrono>
 #include <thread>
 #include <mutex>
+#include <atomic>
 
 class XRunLoopSource {
 public:
+    bool mIsSleeping = true;
     virtual void _do() = 0;
 };
 
 class IXRunLoop {
 public:
+    IXRunLoop() {
+        mIsSleeping = true;
+    }
     virtual void run() = 0;
     //void runUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time);
     virtual bool weakUp(XRunLoopSource *source) {
 		if (isExsit(source))
 		{
-			if (mIsSleeping) {
-				if (!isInRunList(source))
-				{
-					mRunList.push_back(source);
-				}
-			}
-			else {
-				if (!isInWaitRunList(source))
-				{
-					mWaitRunList.push_back(source);
-				}
-			}
+            source->mIsSleeping = false;
 		}
         return true;
     };
     bool _do() {
-        mIsSleeping = false;
-        for (auto source : mRunList) {
-            source->_do();
+        for (auto source : mSourcesList) {
+            if (!source->mIsSleeping) {
+                source->_do();
+            }
         }
-		mRunList.clear();
-        mIsSleeping = true;
         wait();
         return true;
     }
     virtual void wait() = 0;
     virtual bool waitUntil(std::chrono::time_point<std::chrono::system_clock> &&in_time) = 0;
     void addSource(const std::shared_ptr<XRunLoopSource> &source) {
-        mSourcesMap[source.get()] = source;
+        if(!isExsit(source.get())) {
+            mSourcesMap[source.get()] = source;
+            mSourcesList.push_back(source.get());
+        }
     }
 protected:
 	inline bool isExsit(XRunLoopSource *source) {
@@ -66,29 +62,8 @@ protected:
 		}
 		return false;
 	}
-	inline bool isInRunList(XRunLoopSource *source) {
-		for (auto s : mRunList)
-		{
-			if (s == source)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	inline bool isInWaitRunList(XRunLoopSource *source) {
-		for (auto s : mWaitRunList)
-		{
-			if (s == source)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-    bool mIsSleeping = true;
-    std::vector<XRunLoopSource*> mRunList;
-    std::vector<XRunLoopSource*> mWaitRunList;
+    std::atomic_bool mIsSleeping;
+    std::vector<XRunLoopSource*> mSourcesList;
     std::map<XRunLoopSource*, std::shared_ptr<XRunLoopSource>> mSourcesMap;
 };
 

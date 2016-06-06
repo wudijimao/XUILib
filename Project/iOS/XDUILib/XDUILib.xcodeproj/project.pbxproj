@@ -98,6 +98,12 @@
 		3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */; };
 		3E613F751CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
 		3E613F761CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
+		3E7B79761D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */; };
+		3E7B79771D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */; };
+		3E7B79781D052C5C00B8E6DE /* ThreardSafeQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7B79751D052C5C00B8E6DE /* ThreardSafeQueue.hpp */; };
+		3E7B797B1D052ED900B8E6DE /* XThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79791D052ED900B8E6DE /* XThreadPool.cpp */; };
+		3E7B797C1D052ED900B8E6DE /* XThreadPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79791D052ED900B8E6DE /* XThreadPool.cpp */; };
+		3E7B797D1D052ED900B8E6DE /* XThreadPool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7B797A1D052ED900B8E6DE /* XThreadPool.hpp */; };
 		3E7F4F101CC60A49001D0C58 /* XHTTPClientImpl.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7F4F0F1CC60A49001D0C58 /* XHTTPClientImpl.hpp */; };
 		3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */; };
 		3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */; };
@@ -138,6 +144,9 @@
 		3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */; };
 		3E9A6A511CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */; };
 		3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9A6A4F1CE9DF2F00A5AA98 /* XStretchableImage.hpp */; };
+		3E9D28251D055EC5000BBC87 /* XLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D28231D055EC5000BBC87 /* XLog.cpp */; };
+		3E9D28261D055EC5000BBC87 /* XLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D28231D055EC5000BBC87 /* XLog.cpp */; };
+		3E9D28271D055EC5000BBC87 /* XLog.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E9D28241D055EC5000BBC87 /* XLog.hpp */; };
 		3EAA6CD61CA23A220037291F /* XResourceManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA6CD51CA23A220037291F /* XResourceManager.mm */; };
 		3EAA6CED1CA248570037291F /* XDUILib.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; settings = {ATTRIBUTES = (Public, ); }; };
 		3EAA6CEF1CA248BE0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6CEE1CA248BE0037291F /* UIKit.framework */; };
@@ -315,6 +324,10 @@
 		3E5BC9021CE2FB7C00E57750 /* XCoreTextFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XCoreTextFrame.cpp; sourceTree = "<group>"; };
 		3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XCoreTextFrame.hpp; sourceTree = "<group>"; };
 		3E613F741CD84F9E00DD6B71 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../ThirdParty/prebuilt/ios/libfreetype.a; sourceTree = "<group>"; };
+		3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreardSafeQueue.cpp; sourceTree = "<group>"; };
+		3E7B79751D052C5C00B8E6DE /* ThreardSafeQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ThreardSafeQueue.hpp; sourceTree = "<group>"; };
+		3E7B79791D052ED900B8E6DE /* XThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XThreadPool.cpp; sourceTree = "<group>"; };
+		3E7B797A1D052ED900B8E6DE /* XThreadPool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XThreadPool.hpp; sourceTree = "<group>"; };
 		3E7F4F0F1CC60A49001D0C58 /* XHTTPClientImpl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHTTPClientImpl.hpp; sourceTree = "<group>"; };
 		3E7F4F121CC60A61001D0C58 /* XDispatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XDispatch.cpp; sourceTree = "<group>"; };
 		3E7F4F131CC60A61001D0C58 /* XDispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XDispatch.h; sourceTree = "<group>"; };
@@ -344,6 +357,8 @@
 		3E9928991CDD94D7008E90D3 /* XColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XColor.hpp; sourceTree = "<group>"; };
 		3E9A6A4E1CE9DF2F00A5AA98 /* XStretchableImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XStretchableImage.cpp; sourceTree = "<group>"; };
 		3E9A6A4F1CE9DF2F00A5AA98 /* XStretchableImage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XStretchableImage.hpp; sourceTree = "<group>"; };
+		3E9D28231D055EC5000BBC87 /* XLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XLog.cpp; sourceTree = "<group>"; };
+		3E9D28241D055EC5000BBC87 /* XLog.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XLog.hpp; sourceTree = "<group>"; };
 		3EAA6CD51CA23A220037291F /* XResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XResourceManager.mm; sourceTree = "<group>"; };
 		3EAA6CE01CA243210037291F /* Framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAA6CE41CA243210037291F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -481,6 +496,7 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				3E9D28221D055EC5000BBC87 /* output */,
 				3EB50FFB1CE8B8E7003FF455 /* Animation */,
 				3E7F4F111CC60A61001D0C58 /* MutiThread */,
 				3E8BF0921CAC07E600A61A69 /* input */,
@@ -619,6 +635,10 @@
 				3E7F4F171CC60A61001D0C58 /* XTask.hpp */,
 				3E7F4F181CC60A61001D0C58 /* XTaskQueue.cpp */,
 				3E7F4F191CC60A61001D0C58 /* XTaskQueue.hpp */,
+				3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */,
+				3E7B79751D052C5C00B8E6DE /* ThreardSafeQueue.hpp */,
+				3E7B79791D052ED900B8E6DE /* XThreadPool.cpp */,
+				3E7B797A1D052ED900B8E6DE /* XThreadPool.hpp */,
 			);
 			path = MutiThread;
 			sourceTree = "<group>";
@@ -657,6 +677,15 @@
 				3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */,
 			);
 			path = http;
+			sourceTree = "<group>";
+		};
+		3E9D28221D055EC5000BBC87 /* output */ = {
+			isa = PBXGroup;
+			children = (
+				3E9D28231D055EC5000BBC87 /* XLog.cpp */,
+				3E9D28241D055EC5000BBC87 /* XLog.hpp */,
+			);
+			path = output;
 			sourceTree = "<group>";
 		};
 		3EAA6CE11CA243210037291F /* Framework */ = {
@@ -724,12 +753,14 @@
 				3E3FF8971CA26FE20070F6A5 /* GLRenderData.hpp in Headers */,
 				3E96083A1CA7EEF600FE8008 /* XResManager.hpp in Headers */,
 				3EDFDB901CCB54AC0079AF51 /* XHTTPHeader.hpp in Headers */,
+				3E7B79781D052C5C00B8E6DE /* ThreardSafeQueue.hpp in Headers */,
 				3E99289C1CDD94D7008E90D3 /* XColor.hpp in Headers */,
 				3E9608331CA7E8E800FE8008 /* GLProgram.hpp in Headers */,
 				3E9A6A521CE9DF2F00A5AA98 /* XStretchableImage.hpp in Headers */,
 				3E10B2A81CFC0C7200522132 /* ScrollView.hpp in Headers */,
 				3E546C461CFA70ED0080C584 /* UIViewController.hpp in Headers */,
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
+				3E7B797D1D052ED900B8E6DE /* XThreadPool.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
 				3E5BC8F21CE2F7A200E57750 /* XStringAttr.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
@@ -744,6 +775,7 @@
 				3EEDCD081CFEE4F4004219DE /* GLTexture.hpp in Headers */,
 				3E8BF0971CAC0A9500A61A69 /* XTouch.hpp in Headers */,
 				3EDFDB951CCB54BC0079AF51 /* XHTTPRequest.hpp in Headers */,
+				3E9D28271D055EC5000BBC87 /* XLog.hpp in Headers */,
 				3E8D120B1CBFA3B900EC385D /* XMouse.hpp in Headers */,
 				3E10B2B71CFC13D000522132 /* UIResponder.hpp in Headers */,
 				3E0E57621CE4ACC700792415 /* XUIImageView.hpp in Headers */,
@@ -862,6 +894,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E9D28251D055EC5000BBC87 /* XLog.cpp in Sources */,
 				3E10B2B51CFC13D000522132 /* UIResponder.cpp in Sources */,
 				3E203C7F1CA15A8400757788 /* XImage.cpp in Sources */,
 				3EB9885A1C9BE15C00B9B23E /* XRect.cpp in Sources */,
@@ -874,6 +907,7 @@
 				3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3E10B2BF1CFD7C2A00522132 /* GLTransform3D.cpp in Sources */,
 				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
+				3E7B797B1D052ED900B8E6DE /* XThreadPool.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
@@ -899,6 +933,7 @@
 				3E14168B1C9ABEFA00A84DF1 /* XDUIViewController.mm in Sources */,
 				3EB9885C1C9BE21B00B9B23E /* stdafx.cpp in Sources */,
 				3E7F4F271CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
+				3E7B79761D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */,
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
 				3E10B2A61CFC0C7200522132 /* ScrollView.cpp in Sources */,
 				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
@@ -990,7 +1025,9 @@
 				3EDFDB941CCB54BC0079AF51 /* XHTTPRequest.cpp in Sources */,
 				3EAA6D2F1CA24A8E0037291F /* XResourceManager.mm in Sources */,
 				3EAA6D301CA24A8E0037291F /* GLCanvas_ios.hpp in Sources */,
+				3E7B79771D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */,
 				3EAA6D311CA24A8E0037291F /* GLCanvas_ios.mm in Sources */,
+				3E9D28261D055EC5000BBC87 /* XLog.cpp in Sources */,
 				3E546C451CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3EAA6D331CA24A8E0037291F /* XWindow_ios.mm in Sources */,
 				3EAA6D341CA24A8E0037291F /* XDUIAppDelegate.h in Sources */,
@@ -1002,6 +1039,7 @@
 				3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */,
 				3E16D69D1CA994A600F84510 /* XGifDecoder.cpp in Sources */,
 				3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
+				3E7B797C1D052ED900B8E6DE /* XThreadPool.cpp in Sources */,
 				3E10B2A71CFC0C7200522132 /* ScrollView.cpp in Sources */,
 				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,

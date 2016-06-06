@@ -9,28 +9,22 @@
 #include <atomic>
 #include "XTask.hpp"
 #include "XRunLoop.hpp"
+#include "XTaskQueue.hpp"
 
 namespace XDispatch {
-
-	class XThreadPool {
-	private:
-		std::atomic_int_fast8_t threadNum;
-		int_fast8_t maxNum;
-		std::atomic_int taskNum;
-		std::mutex mutex;
-		std::condition_variable cv;
-		void runLoop();
-	public:
-		std::vector<std::shared_ptr<XTaskQueue>> taskQueue;
-		void onQueueChanged();
-		//≥ı ºªØ¡Ω∏ˆ»´æ÷Pool
-		static void initGlobelPool();
-		void startNewThread();
-		XThreadPool();
-		virtual ~XThreadPool();
-	};
-
-	
+    
+    class XRunLoopDispatchSource : public XRunLoopSource {
+    public:
+        virtual void _do() override {
+            MyFun *fun = NULL;
+            while (mTaskQueue->pop(fun)) {
+                (*fun)();
+                delete fun;
+            }
+        }
+    public:
+        std::shared_ptr<XTaskQueue> mTaskQueue;
+    };
 
 	class XDispatchManager {
 	private:
@@ -41,6 +35,7 @@ namespace XDispatch {
 		void runLoop();
 		MyFun* copyFunction(const MyFun &fun);
 	public:
+        static std::shared_ptr<XRunLoopDispatchSource> mMainThreadSource;
 		static XDispatchManager* getSharedInstance();
 		XDispatchManager();
         ~XDispatchManager();
@@ -58,7 +53,7 @@ namespace XDispatch {
         return XTaskQueue::getMainQueue();
     }
     inline std::shared_ptr<XTaskQueue> getGlobleQueue(XTaskPriority priority) {
-        return XTaskQueue::getMainQueue();
+        return XTaskQueue::getGlobleQueue(priority);
     }
 }
 

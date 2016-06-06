@@ -7,3 +7,20 @@
 //
 
 #include "XTask.hpp"
+
+
+namespace XDispatch {
+    
+    XTask::XTask(MyFun *in_fun,
+                 std::shared_ptr<XTaskQueue> &in_queue,
+                 std::chrono::time_point<std::chrono::system_clock> &&in_time) : fun(in_fun), queue(in_queue), time(in_time) {
+        
+    }
+    bool XTask::operator <(const XTask& rh) {
+        return time < rh.time;
+    }
+    XTask::~XTask() {
+        
+    }
+    
+}
