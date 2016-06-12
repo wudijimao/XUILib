@@ -8,7 +8,6 @@
 
 #include "XAttributedString.hpp"
 #include "XFreeType.hpp"
-#include <algorithm>
 
 namespace XResource {
     

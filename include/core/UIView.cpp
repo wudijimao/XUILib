@@ -197,10 +197,10 @@ namespace XUI
     void UIView::makeClipsBounds() {
         if (_superView->mIsClipsToBoundsInternal) {
             if (mIsClipsToBounds) {
-                mClipsBounds.X(std::max(_rect.X(), _superView->mClipsBounds.X()));
-                mClipsBounds.Y(std::max(_rect.Y(), _superView->mClipsBounds.Y()));
-                mClipsBounds.Width(std::min(_rect.rX(), _superView->mClipsBounds.rX()) - mClipsBounds.X());
-                mClipsBounds.Height(std::min(_rect.bY(), _superView->mClipsBounds.bY()) - mClipsBounds.Y());
+                mClipsBounds.X((std::max)(_rect.X(), _superView->mClipsBounds.X()));
+                mClipsBounds.Y(std::max<double>(_rect.Y(), _superView->mClipsBounds.Y()));
+                mClipsBounds.Width(std::min<double>(_rect.rX(), _superView->mClipsBounds.rX()) - mClipsBounds.X());
+                mClipsBounds.Height(std::min<double>(_rect.bY(), _superView->mClipsBounds.bY()) - mClipsBounds.Y());
             } else {
                 mClipsBounds = _superView->mClipsBounds;
             }

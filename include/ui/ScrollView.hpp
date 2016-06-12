@@ -11,7 +11,7 @@
 
 namespace XUI
 {
-    class ScrollView : public UIView {
+    class SIMPLEDIRECTUI_API ScrollView : public UIView {
     public:
         ScrollView();
         void setContentView(const std::shared_ptr<UIView> &contentView) {

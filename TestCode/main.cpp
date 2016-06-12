@@ -3,8 +3,6 @@
 #include "LoginViewController.hpp"
 
 
-#include <dispatch/dispatch.h>
-
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
 using namespace XDUILib;

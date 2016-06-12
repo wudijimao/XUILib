@@ -22,7 +22,7 @@ namespace XDispatch {
     
     class XThreadPool;
     
-    class XTaskQueue {
+    class SIMPLEDIRECTUI_API XTaskQueue {
         std::mutex mutex;
         std::queue<MyFun*> queue;
     public:

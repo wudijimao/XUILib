@@ -63,7 +63,7 @@ void XWindow::input(const std::shared_ptr<XTouch> &touch) {
                     auto iter = _touchsMap.find(touch->_belongView);
                     iter->second.push_back(touch);
                 } else {
-                    std::string("吭爹啊");
+                    //std::string("吭爹啊");
                 }
                 
             }

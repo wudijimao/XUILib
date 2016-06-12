@@ -113,7 +113,7 @@ public:
 			while (iter != "\0") {
 				switch (state) {
 				case 0://search for key
-					if (iter == "\:") {
+					if (iter == ":") {
 						if (size > 0) {
 							headerKey.assign(iter - size, size);
 							size = 0;

@@ -7,7 +7,7 @@
 #include <stack>
 #include <memory>
 #include <functional>
-
+#include <algorithm>
 
 #if (TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR)
 #ifndef TARGET_OS_IPHONE

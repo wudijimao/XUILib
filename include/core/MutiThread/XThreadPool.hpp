@@ -9,12 +9,13 @@
 #pragma once
 #include "../stdafx.hpp"
 #include <mutex>
+#include <atomic>
 
 
 namespace XDispatch {
     class XTaskQueue;
     
-    class XThreadPool {
+    class SIMPLEDIRECTUI_API XThreadPool {
     private:
         std::atomic_int_fast8_t threadNum;
         int_fast8_t maxNum;

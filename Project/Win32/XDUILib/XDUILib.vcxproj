@@ -27,6 +27,8 @@
     <ClInclude Include="..\..\..\include\core\GL\glheaders.h" />
     <ClInclude Include="..\..\..\include\core\GL\GLProgram.hpp" />
     <ClInclude Include="..\..\..\include\core\GL\GLRenderData.hpp" />
+    <ClInclude Include="..\..\..\include\core\GL\GLTexture.hpp" />
+    <ClInclude Include="..\..\..\include\core\GL\GLTransform3D.hpp" />
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInput.hpp" />
     <ClInclude Include="..\..\..\include\core\input\XInputs.hpp" />
@@ -40,10 +42,13 @@
     <ClInclude Include="..\..\..\include\core\MutiThread\XRunLoop.hpp" />
     <ClInclude Include="..\..\..\include\core\MutiThread\XTask.hpp" />
     <ClInclude Include="..\..\..\include\core\MutiThread\XTaskQueue.hpp" />
+    <ClInclude Include="..\..\..\include\core\MutiThread\xthreadpool.hpp" />
     <ClInclude Include="..\..\..\include\core\MutiThread\XTimer.hpp" />
     <ClInclude Include="..\..\..\include\core\SimpleDirectUI.hpp" />
     <ClInclude Include="..\..\..\include\core\stdafx.hpp" />
+    <ClInclude Include="..\..\..\include\core\UIResponder.hpp" />
     <ClInclude Include="..\..\..\include\core\UIView.hpp" />
+    <ClInclude Include="..\..\..\include\core\UIViewController.hpp" />
     <ClInclude Include="..\..\..\include\core\XApp.hpp" />
     <ClInclude Include="..\..\..\include\core\XNode.hpp" />
     <ClInclude Include="..\..\..\include\core\XResManager.hpp" />
@@ -64,6 +69,7 @@
     <ClInclude Include="..\..\..\include\res\XImage\XImageDecoder.hpp" />
     <ClInclude Include="..\..\..\include\res\XImage\XJPGDecoder.hpp" />
     <ClInclude Include="..\..\..\include\res\XImage\XPngDecoder.hpp" />
+    <ClInclude Include="..\..\..\include\res\XImage\XStretchableImage.hpp" />
     <ClInclude Include="..\..\..\include\res\XRect.hpp" />
     <ClInclude Include="..\..\..\include\res\XRectPro.hpp" />
     <ClInclude Include="..\..\..\include\res\XResource.hpp" />
@@ -75,6 +81,7 @@
     <ClInclude Include="..\..\..\include\res\XText\XStringAttr.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp" />
+    <ClInclude Include="..\..\..\include\ui\ScrollView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XButton.hpp" />
     <ClInclude Include="..\..\..\include\ui\XEditView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XTextView.hpp" />
@@ -96,6 +103,8 @@
     <ClCompile Include="..\..\..\include\core\GLRender.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp" />
+    <ClCompile Include="..\..\..\include\core\GL\GLTexture.cpp" />
+    <ClCompile Include="..\..\..\include\core\GL\GLTransform3D.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XKeyBoard.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XMouse.cpp" />
@@ -104,9 +113,12 @@
     <ClCompile Include="..\..\..\include\core\MutiThread\XRunLoop.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XTask.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XTaskQueue.cpp" />
+    <ClCompile Include="..\..\..\include\core\MutiThread\XThreadPool.cpp" />
     <ClCompile Include="..\..\..\include\core\MutiThread\XTimer.cpp" />
     <ClCompile Include="..\..\..\include\core\stdafx.cpp" />
+    <ClCompile Include="..\..\..\include\core\UIResponder.cpp" />
     <ClCompile Include="..\..\..\include\core\UIView.cpp" />
+    <ClCompile Include="..\..\..\include\core\UIViewController.cpp" />
     <ClCompile Include="..\..\..\include\core\XApp.cpp" />
     <ClCompile Include="..\..\..\include\core\XResManager.cpp" />
     <ClCompile Include="..\..\..\include\core\XWindow.cpp" />
@@ -123,6 +135,7 @@
     <ClCompile Include="..\..\..\include\res\XImage\XImageDecoder.cpp" />
     <ClCompile Include="..\..\..\include\res\XImage\XJPGDecoder.cpp" />
     <ClCompile Include="..\..\..\include\res\XImage\XPngDecoder.cpp" />
+    <ClCompile Include="..\..\..\include\res\XImage\XStretchableImage.cpp" />
     <ClCompile Include="..\..\..\include\res\XRect.cpp" />
     <ClCompile Include="..\..\..\include\res\XString.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XAttributedString.cpp" />
@@ -131,6 +144,7 @@
     <ClCompile Include="..\..\..\include\res\XText\XFreeType.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp" />
+    <ClCompile Include="..\..\..\include\ui\ScrollView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XButton.cpp" />
     <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XTextView.cpp" />

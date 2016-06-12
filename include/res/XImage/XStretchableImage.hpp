@@ -10,7 +10,7 @@
 #include "XImage.hpp"
 
 namespace XResource {
-    class XStretchableImage {
+    class SIMPLEDIRECTUI_API XStretchableImage {
     public:
         friend XImage;
         std::shared_ptr<XImage> &image() {
