@@ -27,22 +27,24 @@ public:
     XHTTPRequestHeader _header;
     
     std::function<void(std::shared_ptr<XHTTPResponse>)> finishCallBack;
-private:
+protected:
     friend XHTTPClient;
     virtual void onRequestFinished(std::shared_ptr<XHTTPResponse> response);
 };
 
 template<typename DataType>
-class XHTTPrequestT : public XHTTPRequest {
+class XHTTPRequestT : public XHTTPRequest {
 public:
     typedef XHTTPResponseT<DataType> ResponseType;
     std::function<void(std::shared_ptr<ResponseType>)> onFinish;
 private:
     virtual void onRequestFinished(std::shared_ptr<XHTTPResponse> response) override {
         XHTTPRequest::onRequestFinished(response);
-        auto resp = std::dynamic_pointer_cast<ResponseType>(response);
+        //warning: If Response has virtual function, change it to daynic_pointer_case
+        auto resp = std::static_pointer_cast<ResponseType>(response);
         if(resp) {
-            auto fun = std::bind(onFinish, resp->getData());
+            resp->data();
+            auto fun = std::bind(onFinish, resp);
             XDispatch::XDispatchManager::getSharedInstance()->dispatchAsnyc(XDispatch::XTaskQueue::getMainQueue(), fun);
         }
         

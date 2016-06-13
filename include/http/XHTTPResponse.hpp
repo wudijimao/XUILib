@@ -45,6 +45,11 @@ protected:
     std::shared_ptr<XResource::XData> _headerBuf;
 };
 
+class XResponseData {
+public:
+    virtual void parse(const rapidjson::Document& json) = 0;
+};
+
 template<typename DataType>
 class XHTTPResponseT : public XHTTPResponse {
 public:
@@ -52,7 +57,10 @@ public:
     DataTypePtr data() {
         if (!mData) {
             mData = std::make_shared<DataType>();
-            mData->parse(jsonData());
+            auto json = jsonData();
+            if (json) {
+                mData->parse(*json);
+            }
         }
         return mData;
     }

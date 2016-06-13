@@ -20,11 +20,18 @@ void DetectMemoryLeaks()
 #endif
 }
 
+class TestData : public XResponseData {
+public:
+    std::string name;
+    virtual void parse(const rapidjson::Document &json) override {
+        name = json["name"].GetString();
+    }
+};
+
 class ViewController : public XUI::UIViewController {
 public:
     long long mNum = 0;
     ~ViewController() {
-        
     }
 	std::shared_ptr<XUI::UIView> _testSubView;
 	virtual void viewDidLoad() override {
@@ -61,14 +68,17 @@ public:
 		btn->setRect(XResource::XRectPro(5, 20, 70, 25));
 		//_testSubView->addSubView(btn);
 		
-		auto request = std::make_shared<XHTTPRequest>();
+		auto request = std::make_shared<XHTTPRequestT<TestData>>();
 		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
             auto image = XResource::XImage::imageFromData(response->contentData());
             //_testSubView->setBkgImg(image);
             //this->view()->addSubView(_testSubView);
 		};
-		//IXHTTPClient::getSharedInstanc()->sendRequest(request);
+		IXHTTPClient::getSharedInstanc()->sendRequest(request);
+        request->onFinish = [](std::shared_ptr<XHTTPResponseT<TestData>> response) {
+            
+        };
         
         
         rapidjson::Document doc;
