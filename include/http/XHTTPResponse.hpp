@@ -9,7 +9,6 @@
 
 #include "../core/stdafx.hpp"
 #include "XHTTPHeader.hpp"
-#include "XHTTPRequest.hpp"
 #include "../res/XData.hpp"
 #include "rapidjson/rapidjson.h"
 #include "rapidjson/document.h"
@@ -23,6 +22,7 @@ enum class XHTTPResponsStatus {
 class XHTTPRequestHandler;
 class IXHTTPClient;
 class XHTTPClient;
+class XHTTPRequest;
 
 class XHTTPResponse {
     friend XHTTPRequestHandler;
@@ -30,8 +30,8 @@ class XHTTPResponse {
     friend IXHTTPClient;
 public:
     XHTTPResponsStatus _status;
-    //const XHTTPHeader* header();
-    std::shared_ptr<XResource::XData>& data(){
+    const std::shared_ptr<XHTTPResponseHeader> header();
+    std::shared_ptr<XResource::XData>& contentData(){
         return _buf;
     }
     std::shared_ptr<XResource::XData>& headerData() {
@@ -44,3 +44,24 @@ protected:
     std::shared_ptr<XResource::XData> _buf;
     std::shared_ptr<XResource::XData> _headerBuf;
 };
+
+template<typename DataType>
+class XHTTPResponseT : public XHTTPResponse {
+public:
+    typedef std::shared_ptr<DataType> DataTypePtr;
+    DataTypePtr data() {
+        if (!mData) {
+            mData = std::make_shared<DataType>();
+            mData->parse(jsonData());
+        }
+        return mData;
+    }
+private:
+    DataTypePtr mData;
+};
+
+
+
+
+
+

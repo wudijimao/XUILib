@@ -171,3 +171,10 @@ public:
         return getHeader(cUserAgentKey.c_str());
     }
 };
+
+class SIMPLEDIRECTUI_API XHTTPResponseHeader : public XHTTPHeader {
+public:
+};
+
+
+

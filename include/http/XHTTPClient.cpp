@@ -10,7 +10,6 @@
 #include <stdio.h>
 
 #include <thread>
-#include "../core/MutiThread/XDispatch.h"
 
 
 
@@ -142,8 +141,7 @@ void XHTTPClient::requestFinised(CURL *handle) {
 	curl_slist_free_all(_requestHeaderMap[requestHandler->request()]); /* free the list again */
 	_requestHeaderMap.erase(_requestHeaderMap.find(requestHandler->request()));
     //dowloadfinished
-    auto fun = std::bind(requestHandler->request()->finishCallBack, requestHandler->_response);
-    XDispatch::XDispatchManager::getSharedInstance()->dispatchAsnyc(XDispatch::XTaskQueue::getMainQueue(), fun);
+    requestHandler->request()->onRequestFinished(requestHandler->_response);
 }
 
 

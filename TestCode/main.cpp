@@ -64,7 +64,7 @@ public:
 		auto request = std::make_shared<XHTTPRequest>();
 		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
 		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
-            auto image = XResource::XImage::imageFromData(response->data());
+            auto image = XResource::XImage::imageFromData(response->contentData());
             //_testSubView->setBkgImg(image);
             //this->view()->addSubView(_testSubView);
 		};

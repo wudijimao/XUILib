@@ -7,3 +7,9 @@
 //
 
 #include "XHTTPRequest.hpp"
+
+
+void XHTTPRequest::onRequestFinished(std::shared_ptr<XHTTPResponse> response) {
+    auto fun = std::bind(finishCallBack, response);
+    XDispatch::XDispatchManager::getSharedInstance()->dispatchAsnyc(XDispatch::XTaskQueue::getMainQueue(), fun);
+}

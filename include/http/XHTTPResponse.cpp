@@ -12,7 +12,7 @@
 std::shared_ptr<rapidjson::Document>& XHTTPResponse::jsonData() {
     if (!_jsonData) {
         _jsonData = std::make_shared<rapidjson::Document>();
-        if (_jsonData->Parse(data()->c_str()).HasParseError()) {
+        if (_jsonData->Parse(contentData()->c_str()).HasParseError()) {
             _jsonData.reset();
         }
     }
