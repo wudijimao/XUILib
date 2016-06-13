@@ -75,6 +75,7 @@ public:
         std::string str = "aaa";
         if(!doc.Parse("{\"a\":\"1\", \"b\":\"2\", \"c\":\"3\"}").HasParseError()) {
             str = doc["a"].GetString();
+            textView->setText(str.c_str());
             int a = 0;
         }
         
