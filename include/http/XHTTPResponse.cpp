@@ -7,3 +7,14 @@
 //
 
 #include "XHTTPResponse.hpp"
+
+
+std::shared_ptr<rapidjson::Document>& XHTTPResponse::jsonData() {
+    if (!_jsonData) {
+        _jsonData = std::make_shared<rapidjson::Document>();
+        if (_jsonData->Parse(data()->c_str()).HasParseError()) {
+            _jsonData.reset();
+        }
+    }
+    return _jsonData;
+}

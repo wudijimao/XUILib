@@ -45,7 +45,7 @@ public:
         this->view()->addSubView(scrollView);
         
         auto textView = std::make_shared<XUI::UITextView>();
-        //textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
+        textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
         textView->setTextColor(XResource::XUIColor::blueColor());
         textView->setFont(XResource::XFont::systemFont(16));
         auto color = XResource::XUIColor::pinkColor()->copy();
@@ -54,7 +54,7 @@ public:
 		textView->setRect(XResource::XRectPro(0, 0, 100, 320));
         auto img = XResource::XImage::imageNamed("test.png");
         textView->setBkgImg(img);
-        //scrollView->setContentView(textView);
+        scrollView->setContentView(textView);
         
 		auto btn = std::make_shared<XUI::XButton>();
         btn->setBackgroundColor(XUI::ButtonStates::DOWN, XResource::XUIColor::blueColor());
@@ -69,6 +69,14 @@ public:
             //this->view()->addSubView(_testSubView);
 		};
 		//IXHTTPClient::getSharedInstanc()->sendRequest(request);
+        
+        
+        rapidjson::Document doc;
+        std::string str = "aaa";
+        if(!doc.Parse("{\"a\":\"1\", \"b\":\"2\", \"c\":\"3\"}").HasParseError()) {
+            str = doc["a"].GetString();
+            int a = 0;
+        }
         
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setRect(XResource::XRectPro(100, 300, 200, 200));

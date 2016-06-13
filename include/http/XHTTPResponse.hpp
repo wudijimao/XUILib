@@ -11,6 +11,8 @@
 #include "XHTTPHeader.hpp"
 #include "XHTTPRequest.hpp"
 #include "../res/XData.hpp"
+#include "rapidjson/rapidjson.h"
+#include "rapidjson/document.h"
 
 enum class XHTTPResponsStatus {
     Connecting,
@@ -35,7 +37,9 @@ public:
     std::shared_ptr<XResource::XData>& headerData() {
         return _headerBuf;
     }
+    std::shared_ptr<rapidjson::Document>& jsonData();
 protected:
+    std::shared_ptr<rapidjson::Document> _jsonData;
     std::shared_ptr<XHTTPRequest> _request;
     std::shared_ptr<XResource::XData> _buf;
     std::shared_ptr<XResource::XData> _headerBuf;

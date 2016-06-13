@@ -49,6 +49,11 @@ namespace XResource {
 	const void * XData::getBuf() {
 		return mBuf;
 	}
+    const char * XData::c_str() {
+        resize(size() + 1);
+        setDataAt(size() - 1, '\0');
+        return mBuf;
+    }
     void * XData::detachBuf(){
         char *buf = mBuf;
         mBuf = nullptr;

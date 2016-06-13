@@ -26,6 +26,7 @@ namespace XResource
         virtual const void *getBufFrom(unsigned long location);
         virtual const void *getBuf(unsigned long size);
 		virtual const void *getBuf();
+        const char * c_str();
         virtual void *detachBuf();
         virtual const void *attachBuf(void *buf, unsigned long size) {
             mBuf = (char*)buf;

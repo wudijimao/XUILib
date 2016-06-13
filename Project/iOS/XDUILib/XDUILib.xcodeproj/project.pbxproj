@@ -1148,6 +1148,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1173,6 +1174,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/gif",
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
+					"$(PROJECT_DIR)/../../../ThirdParty/",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
