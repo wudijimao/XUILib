@@ -77,6 +77,12 @@ size_t onWriteData(char *ptr, size_t size, size_t nmemb, void *userdata) {
     buf->appendData(ptr, realsize);
     return realsize; //?
 }
+size_t onWriteHeaderData(char *ptr, size_t size, size_t nmemb, void *userdata) {
+    size_t realsize = size * nmemb;
+    XResource::XData *buf = static_cast<XResource::XData*>(userdata);
+    buf->appendData(ptr, realsize);
+    return realsize;
+}
 
 IXHTTPClient* IXHTTPClient::getSharedInstanc() {
     static XHTTPClient client; //thread safe in c++11
@@ -105,8 +111,7 @@ void XHTTPClient::runLoop() {
                     int msgq = 0;
                     m = curl_multi_info_read(this->_curl, &msgq);
                     if(m && (m->msg == CURLMSG_DONE)) {
-                        
-                        this->requestFinised(m->easy_handle);
+                        this->requestFinised(m);
                     }
                 } while(m);
             }
@@ -114,24 +119,19 @@ void XHTTPClient::runLoop() {
     }
 }
 
-void XHTTPClient::onProgress(XHTTPRequestHandler *httpRequest, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)
+int XHTTPClient::onProgress(XHTTPRequestHandler *requestHandler, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)
 {
+    requestHandler->_response->_status = XHTTPResponsStatus::Transfering;
+    return 0;
 }
 
 int XHTTPClient::sOnProgress(void *userdata, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow) {
     XHTTPRequestHandler *requestHandler = static_cast<XHTTPRequestHandler*>(userdata);
-    requestHandler->_weakHttpClient->onProgress(requestHandler, dltotal, dlnow, ultotal, ulnow);
-    return 0;
+    return requestHandler->_weakHttpClient->onProgress(requestHandler, dltotal, dlnow, ultotal, ulnow);
 }
 
-void XHTTPClient::requestFinised(CURL *handle) {
-//    long responseCode;
-//    CURLcode ret = curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &responseCode);
-//    if (ret == CURLE_OK) {
-//        
-//    }
-    //TODO: need get is success!!
-    
+void XHTTPClient::requestFinised(CURLMsg *m) {
+    CURL *handle = m->easy_handle;
     auto requestHandler = this->_handlerMap[handle];
     this->_handlerMap.erase(this->_handlerMap.find(handle));
     this->_requestMap.erase(this->_requestMap.find(requestHandler->request()));
@@ -140,6 +140,38 @@ void XHTTPClient::requestFinised(CURL *handle) {
     requestHandler->_handle = nullptr;
 	curl_slist_free_all(_requestHeaderMap[requestHandler->request()]); /* free the list again */
 	_requestHeaderMap.erase(_requestHeaderMap.find(requestHandler->request()));
+    
+    long responseCode;
+    CURLcode ret = curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, &responseCode);
+    if (ret == CURLE_OK) {
+        requestHandler->_response->_responseCode = responseCode;
+    }
+    switch (m->data.result) {
+        case CURLE_OK:
+            requestHandler->_response->_status = XHTTPResponsStatus::Succeeded;
+            break;
+        case CURLE_OPERATION_TIMEDOUT:
+            requestHandler->_response->_status = XHTTPResponsStatus::TimeOut;
+            break;
+        case CURLE_COULDNT_RESOLVE_PROXY:
+            requestHandler->_response->_status = XHTTPResponsStatus::COULDNT_RESOLVE_PROXY;
+            break;
+        case CURLE_COULDNT_RESOLVE_HOST:
+            requestHandler->_response->_status = XHTTPResponsStatus::COULDNT_RESOLVE_HOST;
+            break;
+        case CURLE_COULDNT_CONNECT:
+            requestHandler->_response->_status = XHTTPResponsStatus::COULDNT_CONNECT;
+            break;
+        case CURLE_REMOTE_ACCESS_DENIED:
+            requestHandler->_response->_status = XHTTPResponsStatus::REMOTE_ACCESS_DENIED;
+            break;
+        case CURLE_HTTP_RETURNED_ERROR:
+            requestHandler->_response->_status = XHTTPResponsStatus::HTTP_RETURNED_ERROR;
+            break;
+        default:
+            requestHandler->_response->_status = XHTTPResponsStatus::Failed;
+            break;
+    }
     //dowloadfinished
     requestHandler->request()->onRequestFinished(requestHandler->_response);
 }
@@ -152,7 +184,7 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
             return nullptr;
         }
         std::shared_ptr<XHTTPRequestHandlerImpl> handler(new XHTTPRequestHandlerImpl());
-        handler->_response.reset(new XHTTPResponse());
+        handler->_response = pRequest->createResponse();
         handler->_response->_request = pRequest;
         handler->_weakHttpClient = this;
         CURL *handle = curl_easy_init();
@@ -160,6 +192,13 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
         this->_requestMap[pRequest.get()] = handle;
         this->_handlerMap[handle] = handler;
         handler->_response->_buf = std::make_shared<XResource::XData>();
+        handler->_response->_headerBuf = std::make_shared<XResource::XData>();
+        
+        if(pRequest->method == XHTTPRequestMethod_Post) {
+            curl_easy_setopt(handle, CURLOPT_POST, 1);
+            curl_easy_setopt(handle, CURLOPT_POSTFIELDS, pRequest->_params.getStr());
+        }
+        
         curl_easy_setopt(handle, CURLOPT_FAILONERROR, 1L);
         curl_easy_setopt(handle, CURLOPT_URL, pRequest->url.c_str());
         struct curl_slist *list = NULL;
@@ -172,12 +211,18 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
         }
         list = curl_slist_append(list, "Accept:");
         _requestHeaderMap[pRequest.get()] = list;
-        //curl_easy_setopt(handle, CURLOPT_PROXY, "127.0.0.1:8888");//设置代理服务器
+        curl_easy_setopt(handle, CURLOPT_PROXY, "127.0.0.1:8888");//设置代理服务器
         
         curl_easy_setopt(handle, CURLOPT_HTTPHEADER, list);
+        
+        //recive
         curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, onWriteData);
         curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)(handler->_response->_buf.get()));
-        curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0);
+        
+        curl_easy_setopt(handle, CURLOPT_HEADERFUNCTION, onWriteHeaderData);
+        curl_easy_setopt(handle, CURLOPT_HEADERDATA, (void *)(handler->_response->_headerBuf.get()));
+        
+        curl_easy_setopt(handle, CURLOPT_NOPROGRESS, 0L);
         curl_easy_setopt(handle, CURLOPT_XFERINFOFUNCTION, XHTTPClient::sOnProgress);
         
         curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1);
@@ -186,6 +231,7 @@ std::shared_ptr<XHTTPRequestHandler> XHTTPClient::sendRequest(std::shared_ptr<XH
         
         XHTTPRequest *req = pRequest.get();
         curl_easy_setopt(handle, CURLOPT_XFERINFODATA, (void *)handler.get());
+        handler->_response->_status = XHTTPResponsStatus::Connecting;
         curl_multi_add_handle(this->_curl, handle);
         cv.notify_one();
         return handler;

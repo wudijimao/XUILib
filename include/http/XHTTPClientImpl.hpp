@@ -33,7 +33,7 @@ public:
 	virtual std::shared_ptr<XHTTPRequestHandler> sendRequest(std::shared_ptr<XHTTPRequest> pRequest);
 protected:
 	static int sOnProgress(void *userdata, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
-	void onProgress(XHTTPRequestHandler *httpRequest, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
+	int onProgress(XHTTPRequestHandler *httpRequest, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow);
 	CURLM *_curl;
 	std::condition_variable cv;
 	std::mutex mutex;
@@ -43,7 +43,7 @@ protected:
 private:
 	void runLoop();
 	//only called by runLoop()
-	void requestFinised(CURL *handle);
+	void requestFinised(CURLMsg *m);
 };
 
 

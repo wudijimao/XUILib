@@ -1036,7 +1036,7 @@ public:
         if (member != MemberEnd())
             return member->value;
         else {
-            RAPIDJSON_ASSERT(false);    // see above note
+            //RAPIDJSON_ASSERT(false);    // see above note
 
             // This will generate -Wexit-time-destructors in clang
             // static GenericValue NullValue;
@@ -1666,6 +1666,14 @@ public:
     //@{
 
     const Ch* GetString() const { RAPIDJSON_ASSERT(IsString()); return (data_.f.flags & kInlineStrFlag) ? data_.ss.str : GetStringPointer(); }
+    
+    const Ch* GetStringSafe(const Ch* defaultStr = "") const {
+        if (IsString()) {
+            return GetString();
+        } else {
+            return defaultStr;
+        }
+    }
 
     //! Get the length of string.
     /*! Since rapidjson permits "\\u0000" in the json string, strlen(v.GetString()) may not equal to v.GetStringLength().

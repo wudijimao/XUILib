@@ -14,9 +14,17 @@
 #include "rapidjson/document.h"
 
 enum class XHTTPResponsStatus {
+    Initializing,
     Connecting,
-    Success,
+    Transfering,
+    Succeeded,
     TimeOut,
+    COULDNT_RESOLVE_PROXY,
+    COULDNT_RESOLVE_HOST,
+    COULDNT_CONNECT,
+    REMOTE_ACCESS_DENIED,
+    HTTP_RETURNED_ERROR,
+    Failed,
 };
 
 class XHTTPRequestHandler;
@@ -29,8 +37,10 @@ class XHTTPResponse {
     friend XHTTPClient;
     friend IXHTTPClient;
 public:
-    XHTTPResponsStatus _status;
-    const std::shared_ptr<XHTTPResponseHeader> header();
+    virtual ~XHTTPResponse(){};
+    XHTTPResponsStatus _status =  XHTTPResponsStatus::Initializing;
+    int _responseCode = 0;
+    std::shared_ptr<XHTTPResponseHeader> header();
     std::shared_ptr<XResource::XData>& contentData(){
         return _buf;
     }
@@ -53,6 +63,7 @@ public:
 template<typename DataType>
 class XHTTPResponseT : public XHTTPResponse {
 public:
+    virtual ~XHTTPResponseT<DataType>(){};
     typedef std::shared_ptr<DataType> DataTypePtr;
     DataTypePtr data() {
         if (!mData) {

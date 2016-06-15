@@ -51,7 +51,7 @@ namespace XResource {
 	}
     const char * XData::c_str() {
         resize(size() + 1);
-        setDataAt(size() - 1, '\0');
+        setDataAt(size(), '\0');
         return mBuf;
     }
     void * XData::detachBuf(){

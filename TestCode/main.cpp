@@ -24,7 +24,23 @@ class TestData : public XResponseData {
 public:
     std::string name;
     virtual void parse(const rapidjson::Document &json) override {
-        name = json["name"].GetString();
+        name = json["data"]["cityname"].GetStringSafe();
+    }
+};
+
+class TestRequest : public XHTTPRequestT<TestData> {
+public:
+    TestRequest(){
+        url = "http://movie.weibo.com/movieapp/rank/weibohot";
+        //url = "http://www.baidu.com/";
+        this->method = XHTTPRequestMethod::XHTTPRequestMethod_Post;
+        this->_params.addParam("uid", "5633119670");
+        this->_params.addParam("token", "2.00B5msBDcX6kGD82b79248caxjF5WD");
+        this->_params.addParam("你好", "测试中文");
+        //this->_params.setParams("uid=5633119670&lfid=&lon=&count=2147483647&os_v=4.3&wm=44994_0001&luicode=&from=8610705010&os_n=Android&cityid=&ip=10.0.3.15&d_id=D0BE2BB07273F93&v=1.0.7&num=1&page=1&token=2.00B5msBDcX6kGD82b79248caxjF5WD&a_n=MovieSDK&d_n=Google+Nexus+4+-+4.3+-+API+18+-+768x1280&lat=&");
+        std::string str = this->_params.getStr();
+        
+        int a = 0;
     }
 };
 
@@ -68,17 +84,15 @@ public:
 		btn->setRect(XResource::XRectPro(5, 20, 70, 25));
 		//_testSubView->addSubView(btn);
 		
-		auto request = std::make_shared<XHTTPRequestT<TestData>>();
-		request->url = "http://ww3.sinaimg.cn/mw690/82d67d7bjw1f3iji5sydzj21kw0zkgt6.jpg";
-		request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
+		auto request = std::make_shared<TestRequest>();
+        request->onFinish = [&](TestRequest::ResponseTypePtr response) {
+            auto header = response->header();
+            std::string str = header->getStr();
             auto image = XResource::XImage::imageFromData(response->contentData());
             //_testSubView->setBkgImg(image);
             //this->view()->addSubView(_testSubView);
 		};
 		IXHTTPClient::getSharedInstanc()->sendRequest(request);
-        request->onFinish = [](std::shared_ptr<XHTTPResponseT<TestData>> response) {
-            
-        };
         
         
         rapidjson::Document doc;

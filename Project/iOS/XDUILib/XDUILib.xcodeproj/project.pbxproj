@@ -56,6 +56,9 @@
 		3E21D1091CAABDA700590427 /* XWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E21D1071CAABDA200590427 /* XWindow.cpp */; };
 		3E21D10B1CAABEF400590427 /* XWindow_ios.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E21D10A1CAABEF400590427 /* XWindow_ios.hpp */; };
 		3E21D10D1CAAC7E800590427 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E21D10C1CAAC7E800590427 /* GLKit.framework */; };
+		3E3CF51E1D11007F00E13EB3 /* XUrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CF51C1D11007F00E13EB3 /* XUrl.cpp */; };
+		3E3CF51F1D11007F00E13EB3 /* XUrl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CF51C1D11007F00E13EB3 /* XUrl.cpp */; };
+		3E3CF5201D11007F00E13EB3 /* XUrl.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E3CF51D1D11007F00E13EB3 /* XUrl.hpp */; };
 		3E3FF88F1CA26CFD0070F6A5 /* GLRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */; };
 		3E3FF8951CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
 		3E3FF8961CA26FE20070F6A5 /* GLRenderData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */; };
@@ -98,6 +101,9 @@
 		3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */; };
 		3E613F751CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
 		3E613F761CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
+		3E7587FC1D1015D8006B88D9 /* XHttpRequestParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */; };
+		3E7587FD1D1015D8006B88D9 /* XHttpRequestParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */; };
+		3E7587FE1D1015D8006B88D9 /* XHttpRequestParams.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7587FB1D1015D8006B88D9 /* XHttpRequestParams.hpp */; };
 		3E7B79761D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */; };
 		3E7B79771D052C5C00B8E6DE /* ThreardSafeQueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */; };
 		3E7B79781D052C5C00B8E6DE /* ThreardSafeQueue.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E7B79751D052C5C00B8E6DE /* ThreardSafeQueue.hpp */; };
@@ -293,6 +299,8 @@
 		3E21D1071CAABDA200590427 /* XWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XWindow.cpp; sourceTree = "<group>"; };
 		3E21D10A1CAABEF400590427 /* XWindow_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow_ios.hpp; sourceTree = "<group>"; };
 		3E21D10C1CAAC7E800590427 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3E3CF51C1D11007F00E13EB3 /* XUrl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XUrl.cpp; sourceTree = "<group>"; };
+		3E3CF51D1D11007F00E13EB3 /* XUrl.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XUrl.hpp; sourceTree = "<group>"; };
 		3E3FF88D1CA26CFD0070F6A5 /* GLRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRender.cpp; sourceTree = "<group>"; };
 		3E3FF88E1CA26CFD0070F6A5 /* GLRender.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLRender.hpp; sourceTree = "<group>"; };
 		3E3FF8901CA26D090070F6A5 /* GLHelper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLHelper.hpp; sourceTree = "<group>"; };
@@ -324,6 +332,8 @@
 		3E5BC9021CE2FB7C00E57750 /* XCoreTextFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XCoreTextFrame.cpp; sourceTree = "<group>"; };
 		3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XCoreTextFrame.hpp; sourceTree = "<group>"; };
 		3E613F741CD84F9E00DD6B71 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../ThirdParty/prebuilt/ios/libfreetype.a; sourceTree = "<group>"; };
+		3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XHttpRequestParams.cpp; sourceTree = "<group>"; };
+		3E7587FB1D1015D8006B88D9 /* XHttpRequestParams.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHttpRequestParams.hpp; sourceTree = "<group>"; };
 		3E7B79741D052C5C00B8E6DE /* ThreardSafeQueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreardSafeQueue.cpp; sourceTree = "<group>"; };
 		3E7B79751D052C5C00B8E6DE /* ThreardSafeQueue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ThreardSafeQueue.hpp; sourceTree = "<group>"; };
 		3E7B79791D052ED900B8E6DE /* XThreadPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XThreadPool.cpp; sourceTree = "<group>"; };
@@ -675,6 +685,10 @@
 				3EDFDB971CCB54DF0079AF51 /* XHTTPResponse.hpp */,
 				3EDFDB9B1CCB55310079AF51 /* XHTTPRequestHandler.cpp */,
 				3EDFDB9C1CCB55310079AF51 /* XHTTPRequestHandler.hpp */,
+				3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */,
+				3E7587FB1D1015D8006B88D9 /* XHttpRequestParams.hpp */,
+				3E3CF51C1D11007F00E13EB3 /* XUrl.cpp */,
+				3E3CF51D1D11007F00E13EB3 /* XUrl.hpp */,
 			);
 			path = http;
 			sourceTree = "<group>";
@@ -762,11 +776,13 @@
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E7B797D1D052ED900B8E6DE /* XThreadPool.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
+				3E7587FE1D1015D8006B88D9 /* XHttpRequestParams.hpp in Headers */,
 				3E5BC8F21CE2F7A200E57750 /* XStringAttr.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
 				3E7F4F251CC60A61001D0C58 /* XTaskQueue.hpp in Headers */,
 				3E4F72BC1CD2508B006661C0 /* XAttributedString.hpp in Headers */,
 				3E7F4F221CC60A61001D0C58 /* XTask.hpp in Headers */,
+				3E3CF5201D11007F00E13EB3 /* XUrl.hpp in Headers */,
 				3E7F4F101CC60A49001D0C58 /* XHTTPClientImpl.hpp in Headers */,
 				3EB510051CE8B8F4003FF455 /* XKeyBoard.hpp in Headers */,
 				3E7F4F1C1CC60A61001D0C58 /* XDispatch.h in Headers */,
@@ -906,6 +922,7 @@
 				3EDFDB981CCB54DF0079AF51 /* XHTTPResponse.cpp in Sources */,
 				3E546C441CFA70ED0080C584 /* UIViewController.cpp in Sources */,
 				3E10B2BF1CFD7C2A00522132 /* GLTransform3D.cpp in Sources */,
+				3E7587FC1D1015D8006B88D9 /* XHttpRequestParams.cpp in Sources */,
 				3E9A6A501CE9DF2F00A5AA98 /* XStretchableImage.cpp in Sources */,
 				3E7B797B1D052ED900B8E6DE /* XThreadPool.cpp in Sources */,
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
@@ -937,6 +954,7 @@
 				3E16D69B1CA9948A00F84510 /* XGifDecoder.cpp in Sources */,
 				3E10B2A61CFC0C7200522132 /* ScrollView.cpp in Sources */,
 				3E8D120C1CBFA3B900EC385D /* XMouse.cpp in Sources */,
+				3E3CF51E1D11007F00E13EB3 /* XUrl.cpp in Sources */,
 				3E7F4F1A1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3E9608291CA7C53200FE8008 /* UIView.cpp in Sources */,
 				3E8BF09A1CAC0ACC00A61A69 /* XInput.cpp in Sources */,
@@ -996,6 +1014,7 @@
 				3E5BC8FA1CE2F8DC00E57750 /* XAttributedString.cpp in Sources */,
 				3E99289B1CDD94D7008E90D3 /* XColor.cpp in Sources */,
 				3EAA6D1D1CA24A8E0037291F /* XImage.hpp in Sources */,
+				3E7587FD1D1015D8006B88D9 /* XHttpRequestParams.cpp in Sources */,
 				3EAA6D1E1CA24A8E0037291F /* XImageDecoder.cpp in Sources */,
 				3EF8A3261CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				3EAA6D1F1CA24A8E0037291F /* XImageDecoder.hpp in Sources */,
@@ -1041,6 +1060,7 @@
 				3E7F4F281CC60A73001D0C58 /* XMainRunLoop_IOS.mm in Sources */,
 				3E7B797C1D052ED900B8E6DE /* XThreadPool.cpp in Sources */,
 				3E10B2A71CFC0C7200522132 /* ScrollView.cpp in Sources */,
+				3E3CF51F1D11007F00E13EB3 /* XUrl.cpp in Sources */,
 				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
 				3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */,
