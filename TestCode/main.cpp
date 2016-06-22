@@ -1,7 +1,7 @@
 ﻿#include <XDUILib.hpp>
 #pragma execution_character_set("utf-8")
 #include "LoginViewController.hpp"
-
+#include "ChatClient.hpp"
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
@@ -109,6 +109,11 @@ public:
         this->view()->addSubView(imgView);
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::grayColor());
+        
+        
+        ChatClient client;
+        client.run();
+        
         
         //auto vc = std::make_shared<LoginViewController>();
         //this->presentViewControler(vc);

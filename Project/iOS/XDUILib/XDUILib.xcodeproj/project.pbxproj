@@ -200,6 +200,13 @@
 		3EAA6D381CA24A8E0037291F /* XDUIViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166D1C9ABEFA00A84DF1 /* XDUIViewController.h */; };
 		3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3E14166E1C9ABEFA00A84DF1 /* XDUIViewController.mm */; };
 		3EAA6D3C1CA24A8E0037291F /* XDUILib.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E1416881C9ABEFA00A84DF1 /* XDUILib.hpp */; };
+		3EAC43A61D1150AF00CED2EA /* XSocketClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC43A41D1150AF00CED2EA /* XSocketClient.cpp */; };
+		3EAC43A71D1150AF00CED2EA /* XSocketClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC43A41D1150AF00CED2EA /* XSocketClient.cpp */; };
+		3EAC43A81D1150AF00CED2EA /* XSocketClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EAC43A51D1150AF00CED2EA /* XSocketClient.hpp */; };
+		3EAC43AB1D11522300CED2EA /* XSocketServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC43A91D11522300CED2EA /* XSocketServer.cpp */; };
+		3EAC43AC1D11522300CED2EA /* XSocketServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC43A91D11522300CED2EA /* XSocketServer.cpp */; };
+		3EAC43AD1D11522300CED2EA /* XSocketServer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EAC43AA1D11522300CED2EA /* XSocketServer.hpp */; };
+		3EAC43BA1D11652500CED2EA /* XSocket.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3EAC43B91D11652500CED2EA /* XSocket.hpp */; };
 		3EB50FFE1CE8B8E7003FF455 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB50FFC1CE8B8E7003FF455 /* Animation.cpp */; };
 		3EB50FFF1CE8B8E7003FF455 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB50FFC1CE8B8E7003FF455 /* Animation.cpp */; };
 		3EB510001CE8B8E7003FF455 /* Animation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EB50FFD1CE8B8E7003FF455 /* Animation.h */; };
@@ -375,6 +382,11 @@
 		3EAA6CEE1CA248BE0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EAA6CF01CA248C90037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EAA6CF21CA248CF0037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3EAC43A41D1150AF00CED2EA /* XSocketClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XSocketClient.cpp; sourceTree = "<group>"; };
+		3EAC43A51D1150AF00CED2EA /* XSocketClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XSocketClient.hpp; sourceTree = "<group>"; };
+		3EAC43A91D11522300CED2EA /* XSocketServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XSocketServer.cpp; sourceTree = "<group>"; };
+		3EAC43AA1D11522300CED2EA /* XSocketServer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XSocketServer.hpp; sourceTree = "<group>"; };
+		3EAC43B91D11652500CED2EA /* XSocket.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XSocket.hpp; sourceTree = "<group>"; };
 		3EB50FFC1CE8B8E7003FF455 /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
 		3EB50FFD1CE8B8E7003FF455 /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 		3EB510011CE8B8F4003FF455 /* XKeyBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XKeyBoard.cpp; sourceTree = "<group>"; };
@@ -472,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				3E8D12031CBFA2F900EC385D /* http */,
+				3EAC40601D114ED100CED2EA /* socket */,
 				3E14169C1C9B93F600A84DF1 /* core */,
 				3E3FF89C1CA29CAB0070F6A5 /* ui */,
 				3EB988531C9BE15C00B9B23E /* res */,
@@ -710,6 +723,18 @@
 			path = Framework;
 			sourceTree = "<group>";
 		};
+		3EAC40601D114ED100CED2EA /* socket */ = {
+			isa = PBXGroup;
+			children = (
+				3EAC43A41D1150AF00CED2EA /* XSocketClient.cpp */,
+				3EAC43A51D1150AF00CED2EA /* XSocketClient.hpp */,
+				3EAC43A91D11522300CED2EA /* XSocketServer.cpp */,
+				3EAC43AA1D11522300CED2EA /* XSocketServer.hpp */,
+				3EAC43B91D11652500CED2EA /* XSocket.hpp */,
+			);
+			path = socket;
+			sourceTree = "<group>";
+		};
 		3EB50FFB1CE8B8E7003FF455 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,15 +801,18 @@
 				3EB510151CE8BB62003FF455 /* XEditView.hpp in Headers */,
 				3E7B797D1D052ED900B8E6DE /* XThreadPool.hpp in Headers */,
 				3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */,
+				3EAC43BA1D11652500CED2EA /* XSocket.hpp in Headers */,
 				3E7587FE1D1015D8006B88D9 /* XHttpRequestParams.hpp in Headers */,
 				3E5BC8F21CE2F7A200E57750 /* XStringAttr.hpp in Headers */,
 				3E16D69C1CA994A200F84510 /* XGifDecoder.hpp in Headers */,
 				3E7F4F251CC60A61001D0C58 /* XTaskQueue.hpp in Headers */,
+				3EAC43AD1D11522300CED2EA /* XSocketServer.hpp in Headers */,
 				3E4F72BC1CD2508B006661C0 /* XAttributedString.hpp in Headers */,
 				3E7F4F221CC60A61001D0C58 /* XTask.hpp in Headers */,
 				3E3CF5201D11007F00E13EB3 /* XUrl.hpp in Headers */,
 				3E7F4F101CC60A49001D0C58 /* XHTTPClientImpl.hpp in Headers */,
 				3EB510051CE8B8F4003FF455 /* XKeyBoard.hpp in Headers */,
+				3EAC43A81D1150AF00CED2EA /* XSocketClient.hpp in Headers */,
 				3E7F4F1C1CC60A61001D0C58 /* XDispatch.h in Headers */,
 				3E7F4F1F1CC60A61001D0C58 /* XRunLoop.hpp in Headers */,
 				3E5BC8F71CE2F83600E57750 /* XStringAttrColor.hpp in Headers */,
@@ -972,8 +1000,10 @@
 				3E21D1081CAABDA200590427 /* XWindow.cpp in Sources */,
 				3E203C811CA15A8400757788 /* XJPGDecoder.cpp in Sources */,
 				3E9608341CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
+				3EAC43AB1D11522300CED2EA /* XSocketServer.cpp in Sources */,
 				3E5BC9041CE2FB7C00E57750 /* XCoreTextFrame.cpp in Sources */,
 				3E3FF89A1CA28D480070F6A5 /* GLCanvas.cpp in Sources */,
+				3EAC43A61D1150AF00CED2EA /* XSocketClient.cpp in Sources */,
 				3EB50FFE1CE8B8E7003FF455 /* Animation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1040,6 +1070,7 @@
 				3EAA6D2B1CA24A8E0037291F /* XRect.hpp in Sources */,
 				3EAA6D2C1CA24A8E0037291F /* XRectPro.hpp in Sources */,
 				3EAA6D2D1CA24A8E0037291F /* XResource.hpp in Sources */,
+				3EAC43A71D1150AF00CED2EA /* XSocketClient.cpp in Sources */,
 				3E5BC8EC1CE2F72D00E57750 /* XRange.cpp in Sources */,
 				3EDFDB941CCB54BC0079AF51 /* XHTTPRequest.cpp in Sources */,
 				3EAA6D2F1CA24A8E0037291F /* XResourceManager.mm in Sources */,
@@ -1063,6 +1094,7 @@
 				3E3CF51F1D11007F00E13EB3 /* XUrl.cpp in Sources */,
 				3E7F4F1B1CC60A61001D0C58 /* XDispatch.cpp in Sources */,
 				3EAA6D391CA24A8E0037291F /* XDUIViewController.mm in Sources */,
+				3EAC43AC1D11522300CED2EA /* XSocketServer.cpp in Sources */,
 				3EDFDB9E1CCB55310079AF51 /* XHTTPRequestHandler.cpp in Sources */,
 				3E21D1091CAABDA700590427 /* XWindow.cpp in Sources */,
 				3E9608351CA7E8E800FE8008 /* GLProgram.cpp in Sources */,
@@ -1169,6 +1201,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/",
+					"$(PROJECT_DIR)/../../../ThirdParty/asio",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1195,6 +1228,7 @@
 					"$(PROJECT_DIR)/../../../ThirdParty/curl/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/freetype2/ios",
 					"$(PROJECT_DIR)/../../../ThirdParty/",
+					"$(PROJECT_DIR)/../../../ThirdParty/asio",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (

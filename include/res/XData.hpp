@@ -10,9 +10,12 @@
 
 namespace XResource
 {
+    
+    class XData;
+    typedef std::shared_ptr<XData> XDataPtr;
     class SIMPLEDIRECTUI_API XData {
     public:
-		static std::shared_ptr<XData> data() {
+		static XDataPtr data() {
 			return std::make_shared<XData>();
 		}
 
@@ -21,7 +24,7 @@ namespace XResource
         virtual ~XData(){
             mAllocator.deallocate(mBuf, mBufSize);
         }
-        virtual unsigned long size();
+        virtual unsigned long size() const;
         virtual const void *getBuf(unsigned long location, unsigned long size);
         virtual const void *getBufFrom(unsigned long location);
         virtual const void *getBuf(unsigned long size);
@@ -94,7 +97,7 @@ namespace XResource
     class XFileData : public XData {
     public:
         bool open(const char *fileName);
-        virtual unsigned long size() override;
+        virtual unsigned long size() const override;
         virtual const void *getBuf(unsigned long location, unsigned long size) override;
         virtual const void *getBufFrom(unsigned long location) override;
         virtual const void *getBuf(unsigned long size) override;
@@ -105,6 +108,5 @@ namespace XResource
         virtual void clear() override;
         std::string mFileName;
     };
-    
 }
 

@@ -20,6 +20,7 @@
 		3EAA6D051CA24A1D0037291F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D041CA24A1D0037291F /* UIKit.framework */; };
 		3EAA6D071CA24A2D0037291F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D061CA24A2D0037291F /* QuartzCore.framework */; };
 		3EAA6D091CA24A350037291F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAA6D081CA24A350037291F /* OpenGLES.framework */; };
+		3EAC43B81D1164E000CED2EA /* ChatClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC43B61D1164E000CED2EA /* ChatClient.cpp */; };
 		3EB510081CE8B9BB003FF455 /* LoginViewController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EB510061CE8B9BB003FF455 /* LoginViewController.cpp */; };
 		3EB5100D1CE8B9CA003FF455 /* login_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB510091CE8B9CA003FF455 /* login_bkg.png */; };
 		3EB5100E1CE8B9CA003FF455 /* login_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB5100A1CE8B9CA003FF455 /* login_edit.png */; };
@@ -44,6 +45,8 @@
 		3EAA6D041CA24A1D0037291F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EAA6D061CA24A2D0037291F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EAA6D081CA24A350037291F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3EAC43B61D1164E000CED2EA /* ChatClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChatClient.cpp; sourceTree = "<group>"; };
+		3EAC43B71D1164E000CED2EA /* ChatClient.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChatClient.hpp; sourceTree = "<group>"; };
 		3EB510061CE8B9BB003FF455 /* LoginViewController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoginViewController.cpp; path = ../../../../TestCode/LoginViewController.cpp; sourceTree = "<group>"; };
 		3EB510071CE8B9BB003FF455 /* LoginViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LoginViewController.hpp; path = ../../../../TestCode/LoginViewController.hpp; sourceTree = "<group>"; };
 		3EB510091CE8B9CA003FF455 /* login_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_bkg.png; path = ../../../../TestRes/login_bkg.png; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 				3E9A4BE31C9A9B1900CB59AD /* Info.plist */,
 				3E1416941C9AC4F600A84DF1 /* Images.xcassets */,
 				3E9A4BD21C9A9B1900CB59AD /* Supporting Files */,
+				3EAC43B61D1164E000CED2EA /* ChatClient.cpp */,
+				3EAC43B71D1164E000CED2EA /* ChatClient.hpp */,
 			);
 			path = TestUI;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 			files = (
 				3EB510081CE8B9BB003FF455 /* LoginViewController.cpp in Sources */,
 				3E8D12001CBF922200EC385D /* main.cpp in Sources */,
+				3EAC43B81D1164E000CED2EA /* ChatClient.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +256,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ThirdParty/";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ThirdParty/ $(PROJECT_DIR)/../../../ThirdParty/asio";
 			};
 			name = Debug;
 		};
@@ -290,7 +296,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				STRIP_PNG_TEXT = NO;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ThirdParty/";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../../../ThirdParty/ $(PROJECT_DIR)/../../../ThirdParty/asio";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

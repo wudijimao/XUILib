@@ -18,6 +18,7 @@
 #include "http/XHTTPClient.hpp"
 #include "ui/XViews.hpp"
 #include "core/output/XLog.hpp"
+#include "socket/XSocket.hpp"
 
 #ifdef TARGET_OS_IPHONE
     #include "ios/XDUILib_ios.hpp"

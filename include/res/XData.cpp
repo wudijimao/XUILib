@@ -27,7 +27,7 @@ namespace XResource {
     }
     
 
-    unsigned long XData::size() {
+    unsigned long XData::size() const {
         return mSize;
     }
     const void * XData::getBuf(unsigned long location, unsigned long size) {
@@ -86,7 +86,7 @@ namespace XResource {
         }
         return ret;
     }
-    unsigned long XFileData::size() {
+    unsigned long XFileData::size() const {
         return mFileSize;
     }
     const void* XFileData::getBuf(unsigned long location, unsigned long size) {
