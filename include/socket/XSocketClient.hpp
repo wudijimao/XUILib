@@ -12,6 +12,7 @@
 #include "asio/asio.hpp"
 #include <iostream>
 #include "../res/XData.hpp"
+#include "XPackageReciver.hpp"
 
 
 class SIMPLEDIRECTUI_API XSocketClient {
@@ -26,12 +27,16 @@ public:
 public:
     std::vector<std::shared_ptr<std::vector<char>>> mBufs;
     //events
-    std::function<void(void *data, long size)> onRecvData;
+    void setOnRecvData(std::function<void(const void *data, unsigned int size)> fun) {
+        mReciver.onRecive = fun;
+    }
     std::function<void()> onLookup;
     std::function<void()> onError;
     std::function<void()> onClose;
     
 private:
+    XPackageReciver mReciver;
+    void onRecvInternal();
     virtual void onConnection();
     void recv_async();
     void send_async(const void *data, long size);

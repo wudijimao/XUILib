@@ -37,6 +37,18 @@ namespace XResource {
         }
         return nullptr;
     }
+    bool XData::delBuf(unsigned long location, unsigned long len) {
+        unsigned long end = location + len;
+        if (end > size()) {
+            return false;
+        }
+        unsigned long needCopySize = size() - end;
+        if (needCopySize > 0) {
+            memcpy(mBuf + location, mBuf + end, needCopySize);
+        }
+        setSizeIntenal(size() - len);
+        return true;
+    }
     const void * XData::getBufFrom(unsigned long location){
         return mBuf + location;
     }
@@ -60,8 +72,10 @@ namespace XResource {
         return buf;
     }
     void XData::clear() {
-        delete [] mBuf;
-        mBuf = nullptr;
+        //delete [] mBuf;
+        //mBuf = nullptr;
+        //mBufSize = 0;
+        mBufTail = mBuf;
         mSize = 0;
     }
     

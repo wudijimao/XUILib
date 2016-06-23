@@ -93,14 +93,11 @@ void XSocketClient::recv_async() {
         //当Server关闭连接的时候,read_some返回boost::asio::error::eof
         if(error == asio::error::eof) {
             break;
-        }
-        else if(error) {
+        } else if(error) {
             //error
             break;
-        }
-        else {
-            std::cout.write(buf, len);
-            this->onRecvData(buf, len);
+        } else {
+            mReciver.put(buf, len);
         }
     }
 }

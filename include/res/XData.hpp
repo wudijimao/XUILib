@@ -24,6 +24,8 @@ namespace XResource
         virtual ~XData(){
             mAllocator.deallocate(mBuf, mBufSize);
         }
+        //buf:0,1,2,3,4,5  size() = 5  buf.delBuf(1,2);  =>  buf:0,3,4,5(4,5(intnalBuf)) size() = 3
+        virtual bool delBuf(unsigned long location, unsigned long size);
         virtual unsigned long size() const;
         virtual const void *getBuf(unsigned long location, unsigned long size);
         virtual const void *getBufFrom(unsigned long location);
@@ -84,6 +86,7 @@ namespace XResource
         }
         inline void setSizeIntenal(unsigned long size) {
             mSize = size;
+            mBufTail = mBuf + mSize;
         }
     private:
         unsigned long mSeekLocation = 0;
