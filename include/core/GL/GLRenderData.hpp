@@ -72,20 +72,6 @@ namespace XDUILib {
         GLuint bufObjects[3];//[4];
         void buildVAO();
     };
-    
-    class GLRenderNineGridData : public GLRenderData {
-    public:
-        virtual GLRenderDataType Type() override;
-        static GLProgram sProgram;
-        GLPos3D _square[16];
-        GLTexturePos2D _texturePos[16];
-        GLubyte indices[54]; //total nine square. And two triangle per square.
-        GLuint  _textureId = 0;
-        void initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image);
-        virtual void render() override;
-        GLuint bufObjects[3];
-        void buildVAO();
-    };
 }
 
 

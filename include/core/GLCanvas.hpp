@@ -10,6 +10,7 @@
 #include "stdafx.hpp"
 #include "IXCanvas.hpp"
 #include "GL/GLRenderData.hpp"
+#include "GL/GLRenderNineGridData.hpp"
 #include "GL/GLHeaders.h"
 #include "GL/GLProgram.hpp"
 #include "GL/GLTransform3D.hpp"

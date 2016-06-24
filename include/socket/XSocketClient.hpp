@@ -31,13 +31,18 @@ public:
         mReciver.onRecive = fun;
     }
     std::function<void()> onLookup;
-    std::function<void()> onError;
+    std::function<void(const std::error_code&)> onError;
     std::function<void()> onClose;
-    
+    std::function<void()> onConnect;
 private:
+    inline bool onErrorInternal(const std::error_code& err) {
+        if (this->onError) {
+            this->onError(err);
+        }
+        return err.value();
+    }
     XPackageReciver mReciver;
     void onRecvInternal();
-    virtual void onConnection();
     void recv_async();
     void send_async(const void *data, long size);
 };

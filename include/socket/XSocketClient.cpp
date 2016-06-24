@@ -53,9 +53,12 @@ void XSocketClient::connect(const char *ip, int port) {
     socket = new asio::ip::tcp::socket(io_service);
     asio::error_code error;
     socket->connect(endpoint, error);
-    std::string  errmes = error.message();
-    
-    recv_async();
+    if (!onErrorInternal(error)) {
+        if (this->onConnect) {
+            this->onConnect();
+        }
+        recv_async();
+    }
 }
 
 void XSocketClient::connectHost(const char *host, int port) {
@@ -80,8 +83,6 @@ void XSocketClient::send(const XResource::XDataPtr &data) {
     });
 }
 
-void XSocketClient::onConnection() {
-}
 
 void XSocketClient::recv_async() {
     char buf[128];

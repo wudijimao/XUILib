@@ -4,6 +4,7 @@
 #include <time.h>
 #include <iterator>
 #include "GL/GLRenderData.hpp"
+#include "GL/GLRenderNineGridData.hpp"
 #include "../res/XResource.hpp"
 
 void GLRender::Submit() {

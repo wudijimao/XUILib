@@ -100,6 +100,9 @@
 		3E5BC9051CE2FB7C00E57750 /* XCoreTextFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BC9021CE2FB7C00E57750 /* XCoreTextFrame.cpp */; };
 		3E5BC9061CE2FB7C00E57750 /* XCoreTextFrame.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */; };
 		3E5CEB651D1BCEF300F38EF6 /* XPackageReciver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEB631D1BCEF300F38EF6 /* XPackageReciver.cpp */; };
+		3E5CEB6B1D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */; };
+		3E5CEB6C1D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */; };
+		3E5CEB6D1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3E5CEB6A1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp */; };
 		3E613F751CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
 		3E613F761CD84F9E00DD6B71 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E613F741CD84F9E00DD6B71 /* libfreetype.a */; };
 		3E7587FC1D1015D8006B88D9 /* XHttpRequestParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */; };
@@ -341,6 +344,8 @@
 		3E5BC9031CE2FB7C00E57750 /* XCoreTextFrame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XCoreTextFrame.hpp; sourceTree = "<group>"; };
 		3E5CEB631D1BCEF300F38EF6 /* XPackageReciver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XPackageReciver.cpp; sourceTree = "<group>"; };
 		3E5CEB641D1BCEF300F38EF6 /* XPackageReciver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XPackageReciver.hpp; sourceTree = "<group>"; };
+		3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLRenderNineGridData.cpp; sourceTree = "<group>"; };
+		3E5CEB6A1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLRenderNineGridData.hpp; sourceTree = "<group>"; };
 		3E613F741CD84F9E00DD6B71 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../../../ThirdParty/prebuilt/ios/libfreetype.a; sourceTree = "<group>"; };
 		3E7587FA1D1015D8006B88D9 /* XHttpRequestParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XHttpRequestParams.cpp; sourceTree = "<group>"; };
 		3E7587FB1D1015D8006B88D9 /* XHttpRequestParams.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XHttpRequestParams.hpp; sourceTree = "<group>"; };
@@ -591,6 +596,8 @@
 				3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */,
 				3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */,
 				3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */,
+				3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */,
+				3E5CEB6A1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp */,
 			);
 			path = GL;
 			sourceTree = "<group>";
@@ -780,6 +787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EBA63DB1CD368F800E633B3 /* XImageDataDecoder.hpp in Headers */,
+				3E5CEB6D1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp in Headers */,
 				3EB510001CE8B8E7003FF455 /* Animation.h in Headers */,
 				3E5BC9011CE2FAC600E57750 /* XFreeType.hpp in Headers */,
 				3E8BF09C1CAC0ACC00A61A69 /* XInput.hpp in Headers */,
@@ -975,6 +983,7 @@
 				3EDFDB8E1CCB54AC0079AF51 /* XHTTPHeader.cpp in Sources */,
 				3E14168A1C9ABEFA00A84DF1 /* XDUILib_ios.mm in Sources */,
 				3E203C701CA15A7100757788 /* XError.cpp in Sources */,
+				3E5CEB6B1D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp in Sources */,
 				3EB510031CE8B8F4003FF455 /* XKeyBoard.cpp in Sources */,
 				3EEDCD061CFEE4F4004219DE /* GLTexture.cpp in Sources */,
 				3EBA63D91CD368F800E633B3 /* XImageDataDecoder.cpp in Sources */,
@@ -1070,6 +1079,7 @@
 				3EAA6D261CA24A8E0037291F /* XError.cpp in Sources */,
 				3EAA6D271CA24A8E0037291F /* XError.hpp in Sources */,
 				3EAA6D281CA24A8E0037291F /* XString.cpp in Sources */,
+				3E5CEB6C1D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp in Sources */,
 				3EAA6D291CA24A8E0037291F /* XString.hpp in Sources */,
 				3EAA6D2A1CA24A8E0037291F /* XRect.cpp in Sources */,
 				3E0E57611CE4ACC700792415 /* XUIImageView.cpp in Sources */,

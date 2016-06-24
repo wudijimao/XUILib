@@ -12,11 +12,13 @@
 
 
 void LoginViewController::viewDidLoad() {
+    XUI::UIViewController::viewDidLoad();
+    
     view()->setBkgImg(XResource::XImage::imageNamed("login_bkg.png"));
     auto title = std::make_shared<XUI::UITextView>();
     auto rect = XResource::XRectPro(0, 100, view()->getRect().size().Width(), 50);
     title->setRect(rect);
-    title->setText("WeTalk");
+    title->setText("WeChat"); //WeTalk
     title->setFont(XResource::XFont::font("FZMiaoWuS-GB", 60));
     title->setBkgColor(XResource::XUIColor::clearColor());
     title->setTextColor(XResource::XUIColor::whiteColor());
@@ -33,32 +35,18 @@ void LoginViewController::viewDidLoad() {
     nameText->setRect(rect);
     view()->addSubView(nameText);
     
-    addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
+    
+    auto btn = std::make_shared<XUI::XButton>();
+    rect.moveY(120);
+    btn->setRect(XResource::XRect(200,300,100,100));
+    btn->setTitle("abc");
+    view()->addSubView(btn);
+    
+    /*addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
      auto rect = nameText->getRect();
      rect.X(a);
      nameText->setRect(rect);
-    })).setRepeatTimes(10000).play();
-    
-    auto testView = std::make_shared<XUI::UIView>();
-    testView->setBkgColor(XResource::XUIColor::greenColor());
-    testView->setRect(XResource::XRectPro(100,400,100,100));
-    testView->setMaskImg(XResource::XImage::imageNamed("test_mask.png"));
-    testView->setBkgImg(XResource::XImage::imageNamed("test.png"));
-    testView->setClipsToBounds(true);
-    //view()->addSubView(testView);
-    
-    auto testView2 = std::make_shared<XUI::UIView>();
-    testView2->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
-    testView2->setRect(XResource::XRectPro(50,50,100,100));
-    testView->addSubView(testView2);
-    
-    auto request = std::make_shared<XHTTPRequest>();
-    request->url = "http://www.baidu.com";
-    request->_header.setUserAgent("aaaa");
-    request->finishCallBack = [&](std::shared_ptr<XHTTPResponse> response) {
-        int a = 0;
-    };
-    IXHTTPClient::getSharedInstanc()->sendRequest(request);
+    })).setRepeatTimes(10000).play();*/
 }
 
 

@@ -12,7 +12,7 @@ namespace XUI {
         res->mSetted = true;
         res->mFont = XResource::XFont::systemFont(14.0);
         res->mTextColor = XResource::XUIColor::blackColor();
-        res->mText.reset(new XResource::XString("button"));
+        res->mText = "button";
         res->mBackGroundColor = XResource::XUIColor::grayColor();
         _setState(ButtonStates::NORMAL);
     };
@@ -112,7 +112,7 @@ namespace XUI {
                 if (res->mAttrText) {
                     mTextView->setText(res->mAttrText);
                 } else {
-                    mTextView->setText(*(res->mText));
+                    mTextView->setText(res->mText);
                     mTextView->setFont(res->mFont);
                     mTextView->setTextColor(res->mTextColor);
                 }
@@ -159,7 +159,7 @@ namespace XUI {
         mAttrText = res.mAttrText;
     }
     
-    XButtonResHolder * XButton::_getRes(ButtonStates state) {
+    XButtonResHolder * XButton::_getRes(ButtonStates state = ButtonStates::NORMAL) {
         XButtonResHolder *res = &mResMap[(int)state];
         ButtonStates useResSettedStates = _getResExistState(state);
         res->copyFrom(mResMap[(int)useResSettedStates]);
@@ -167,7 +167,7 @@ namespace XUI {
         return res;
     }
     
-    void XButton::setBackgroundImage(ButtonStates state, const std::shared_ptr<XResource::IXImage> &backgroundImage) {
+    void XButton::setBackgroundImage(const std::shared_ptr<XResource::IXImage> &backgroundImage, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mBackGroundImage != backgroundImage) {
             res->mBackGroundImage = backgroundImage;
@@ -177,7 +177,7 @@ namespace XUI {
         }
     }
     
-    void XButton::setIcon(ButtonStates state, const std::shared_ptr<XResource::IXImage> &image) {
+    void XButton::setIcon(const std::shared_ptr<XResource::IXImage> &image, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mImage != image) {
             res->mImage = image;
@@ -186,7 +186,7 @@ namespace XUI {
             }
         }
     }
-    void XButton::setBackgroundColor(ButtonStates state, const std::shared_ptr<XResource::XUIColor> &backgroundColor) {
+    void XButton::setBackgroundColor(const std::shared_ptr<XResource::XUIColor> &backgroundColor, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mBackGroundColor != backgroundColor) {
             res->mBackGroundColor = backgroundColor;
@@ -195,7 +195,7 @@ namespace XUI {
             }
         }
     }
-    void XButton::setTitleColor(ButtonStates state, const std::shared_ptr<XResource::XUIColor> &textColor) {
+    void XButton::setTitleColor(const std::shared_ptr<XResource::XUIColor> &textColor, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mTextColor != textColor) {
             res->mTextColor = textColor;
@@ -204,7 +204,7 @@ namespace XUI {
             }
         }
     }
-    void XButton::setTitleFont(ButtonStates state, const std::shared_ptr<XResource::XFont> &font) {
+    void XButton::setTitleFont(const std::shared_ptr<XResource::XFont> &font, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mFont != font) {
             res->mFont = font;
@@ -213,16 +213,14 @@ namespace XUI {
             }
         }
     }
-    void XButton::setTitle(ButtonStates state, const std::shared_ptr<XResource::XString> &text) {
+    void XButton::setTitle(const XResource::XString &text, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
-        if (res->mText != text) {
-            res->mText = text;
-            if (state == mUsedResState) {
-                setNeedLayout();
-            }
+        res->mText = text;
+        if (state == mUsedResState) {
+            setNeedLayout();
         }
     }
-    void XButton::setTitle(ButtonStates state, const std::shared_ptr<XResource::XAttributedString> &attrText) {
+    void XButton::setTitle(const std::shared_ptr<XResource::XAttributedString> &attrText, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         if (res->mAttrText != attrText) {
             res->mAttrText = attrText;

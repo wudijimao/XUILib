@@ -23,7 +23,7 @@ namespace XUI
         std::shared_ptr<XResource::XUIColor> mBackGroundColor;
         std::shared_ptr<XResource::XUIColor> mTextColor;
         std::shared_ptr<XResource::XFont> mFont;
-        std::shared_ptr<XResource::XString> mText;
+        XResource::XString mText;
         std::shared_ptr<XResource::XAttributedString> mAttrText;
         void copyFrom(const XButtonResHolder &res);
     };
@@ -40,13 +40,13 @@ namespace XUI
         void setEnable(bool enable);
         bool isEnable();
         
-        void setBackgroundImage(ButtonStates state, const std::shared_ptr<XResource::IXImage> &backgroundImage);
-        void setIcon(ButtonStates state, const std::shared_ptr<XResource::IXImage> &image);
-        void setBackgroundColor(ButtonStates state, const std::shared_ptr<XResource::XUIColor> &backgroundColor);
-        void setTitleColor(ButtonStates state, const std::shared_ptr<XResource::XUIColor> &textColor);
-        void setTitleFont(ButtonStates state, const std::shared_ptr<XResource::XFont> &font);
-        void setTitle(ButtonStates state, const std::shared_ptr<XResource::XString> &text);
-        void setTitle(ButtonStates state, const std::shared_ptr<XResource::XAttributedString> &attrText);
+        virtual void setBackgroundImage(const std::shared_ptr<XResource::IXImage> &backgroundImage, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setIcon(const std::shared_ptr<XResource::IXImage> &image, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setBackgroundColor(const std::shared_ptr<XResource::XUIColor> &backgroundColor, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setTitleColor(const std::shared_ptr<XResource::XUIColor> &textColor, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setTitleFont(const std::shared_ptr<XResource::XFont> &font, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setTitle(const XResource::XString &text, ButtonStates state = ButtonStates::NORMAL);
+        virtual void setTitle(const std::shared_ptr<XResource::XAttributedString> &attrText, ButtonStates state = ButtonStates::NORMAL);
         
         virtual void layoutSubViews() override;
 	private:
