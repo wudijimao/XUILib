@@ -17,6 +17,8 @@ namespace XUI
 		virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override;
 		virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) override;
 		virtual void layoutSubViews() override;
+        virtual void insertText(const char *text) override;
+        virtual void deleteBackward() override;
 	private:
 		std::shared_ptr<UIView> mCursor;
     };

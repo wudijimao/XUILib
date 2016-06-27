@@ -11,7 +11,7 @@
 #import <OpenGLES/ES3/glext.h>
 #import "GLCanvas_ios.hpp"
 #import "XWindow_ios.hpp"
-#include "GLView.h"
+#include "GLView.hpp"
 
 @interface XDUIViewController ()
 
@@ -70,6 +70,7 @@ void remoteTouches(NSSet<UITouch *> *touches, XWindow_ios *window, UIView *view)
     _dispalyLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(update)];
     //_dispalyLink.frameInterval = 60;
     [_dispalyLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    [view becomeFirstResponder];
 }
 
 - (void)update {

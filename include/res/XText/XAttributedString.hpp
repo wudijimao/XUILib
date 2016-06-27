@@ -20,6 +20,14 @@ namespace XResource {
 			mStr = str;
             mUnicodeCacheStr = mStr.getUnicodeString();
 		}
+        void appendString(const XString &str) {
+            mStr.append(str);
+            mUnicodeCacheStr = mStr.getUnicodeString();
+        }
+        void removeStr(unsigned long pos, unsigned long len) {
+            mStr.remove(pos, len);
+            mUnicodeCacheStr = mStr.getUnicodeString();
+        }
 		unsigned long length() {
 			return mUnicodeCacheStr.length();
 		}

@@ -23,6 +23,7 @@ namespace XUI
     };
     class SIMPLEDIRECTUI_API UIResponder {
     public:
+        static UIResponder *sFirstResponder;
         //Lower Layer Interface
         virtual UIResponder* nextResponder() {
             return nullptr;
@@ -38,6 +39,9 @@ namespace XUI
         virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &touch) {
             return false;
         }
+        virtual void becomFirstResponder(bool isFirst = true);
+        virtual void insertText(const char *text);
+        virtual void deleteBackward();
     };
 
 }

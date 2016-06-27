@@ -79,7 +79,14 @@ namespace XResource
 			ret.append(in);
 			return ret;
 		}
-
+        XString& remove(unsigned long pos, unsigned long len) {
+            //auto start = _utf8Buf->begin() + pos - 1;
+            //_utf8Buf->erase(start, start + len);
+            if (length() > 0 && length() - len >= pos) {
+                *_utf8Buf = _utf8Buf->erase(pos, len);
+            }
+            return *this;
+        }
 		XString& append(const XString &str) {
             return append(str.getUTF8String());
 		}

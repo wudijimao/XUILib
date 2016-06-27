@@ -44,10 +44,10 @@ namespace XUI
     protected:
         virtual void drawRect(IXRender &render) override;
         void judgeRect(XResource::XRect &in_out_rect, const XResource::XDisplaySize &size);
+        XResource::XAttributedStringPtr mText = nullptr;
     private:
         UITextAlignmentH mAlignmentH = UITextAlignmentH::Left;
         UITextAlignmentV mAlignmentV = UITextAlignmentV::Top;
-        XResource::XAttributedStringPtr mText = nullptr;
         std::shared_ptr<XResource::XFont> mFont;
         std::shared_ptr<XResource::XStringAttrColor> mTextColor;
         bool mIsSetBySetText = false;

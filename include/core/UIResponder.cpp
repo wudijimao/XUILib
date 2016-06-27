@@ -7,3 +7,25 @@
 //
 
 #include "UIResponder.hpp"
+
+namespace XUI {
+    UIResponder* UIResponder::sFirstResponder = nullptr;
+    
+    void UIResponder::becomFirstResponder(bool isFirst) {
+        if (isFirst) {
+            UIResponder::sFirstResponder = this;
+        } else {
+            UIResponder::sFirstResponder = nullptr;
+        }
+        
+    }
+    
+    void UIResponder::insertText(const char *text) {
+        
+    }
+    void UIResponder::deleteBackward() {
+        
+    }
+    
+}
+

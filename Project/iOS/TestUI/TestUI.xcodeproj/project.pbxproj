@@ -11,6 +11,7 @@
 		3E1416971C9AC54F00A84DF1 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1416961C9AC54F00A84DF1 /* Launch Screen.storyboard */; };
 		3E18FA1D1CFBE31D00FB3249 /* libXDUILib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E18FA1C1CFBE31D00FB3249 /* libXDUILib.a */; };
 		3E21D10F1CAAC7F600590427 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E21D10E1CAAC7F600590427 /* GLKit.framework */; };
+		3E2D8E061D2128E000312E21 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2D8E051D2128E000312E21 /* CoreGraphics.framework */; };
 		3E3FF9171CA2E5050070F6A5 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */; };
 		3E3FF91B1CA2E5120070F6A5 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FF91A1CA2E5120070F6A5 /* libz.tbd */; };
 		3E546C3F1CF9CD9A0080C584 /* corner_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E546C3E1CF9CD9A0080C584 /* corner_mask.png */; };
@@ -35,6 +36,7 @@
 		3E16D6AA1CA9FAB200F84510 /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../Build/Products/Release-iphonesimulator/libXDUILib.a"; sourceTree = "<group>"; };
 		3E18FA1C1CFBE31D00FB3249 /* libXDUILib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXDUILib.a; path = "../Build/Products/Release-iphoneos/libXDUILib.a"; sourceTree = "<group>"; };
 		3E21D10E1CAAC7F600590427 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		3E2D8E051D2128E000312E21 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3E3FF9161CA2E5050070F6A5 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		3E3FF91A1CA2E5120070F6A5 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3E546C3E1CF9CD9A0080C584 /* corner_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = corner_mask.png; path = ../../../../TestRes/corner_mask.png; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2D8E061D2128E000312E21 /* CoreGraphics.framework in Frameworks */,
 				3E18FA1D1CFBE31D00FB3249 /* libXDUILib.a in Frameworks */,
 				3E21D10F1CAAC7F600590427 /* GLKit.framework in Frameworks */,
 				3E3FF91B1CA2E5120070F6A5 /* libz.tbd in Frameworks */,
@@ -79,6 +82,7 @@
 		3E9A4BC61C9A9B1900CB59AD = {
 			isa = PBXGroup;
 			children = (
+				3E2D8E051D2128E000312E21 /* CoreGraphics.framework */,
 				3E18FA1C1CFBE31D00FB3249 /* libXDUILib.a */,
 				3E21D10E1CAAC7F600590427 /* GLKit.framework */,
 				3E3FF91A1CA2E5120070F6A5 /* libz.tbd */,

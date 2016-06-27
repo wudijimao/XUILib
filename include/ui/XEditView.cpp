@@ -23,6 +23,7 @@ namespace  XUI {
 		XDispatch::XTimer::timer(500)->setTickFun([this](const std::shared_ptr<XDispatch::XTimer>& t) {
 			mCursor->setVisible(!mCursor->isVisible());
 		}).start();
+        becomFirstResponder();
 	}
 
 	void UIEditView::layoutSubViews() {
@@ -36,4 +37,18 @@ namespace  XUI {
 
 	}
 
+    void UIEditView::insertText(const char *text) {
+        if (!mText) {
+            mText = XResource::XAttributedString::attrStr("");
+        }
+        mText->appendString(text);
+        this->setNeedReDraw();
+    }
+    
+    void UIEditView::deleteBackward() {
+        if (mText) {
+            mText->removeStr(mText->length() - 1, 1);
+            this->setNeedReDraw();
+        }
+    }
 }
