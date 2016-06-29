@@ -81,6 +81,10 @@
     <ClInclude Include="..\..\..\include\res\XText\XStringAttr.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XPackageReciver.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XSocket.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XSocketClient.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XSocketServer.hpp" />
     <ClInclude Include="..\..\..\include\ui\ScrollView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XButton.hpp" />
     <ClInclude Include="..\..\..\include\ui\XEditView.hpp" />
@@ -144,6 +148,9 @@
     <ClCompile Include="..\..\..\include\res\XText\XFreeType.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XPackageReciver.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XSocketClient.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp" />
     <ClCompile Include="..\..\..\include\ui\ScrollView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XButton.cpp" />
     <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />
@@ -230,7 +237,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

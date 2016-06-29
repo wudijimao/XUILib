@@ -31,7 +31,8 @@
 
 #ifdef TARGET_OS_MSWINDOWS
 // Windows Header Files:
-#include <windows.h>
+#include <WinSock2.h>//#define WIN32_LEAN_AND_MEAN 
+#include <Windows.h>
 #include <gdiplus.h>
 #endif
 

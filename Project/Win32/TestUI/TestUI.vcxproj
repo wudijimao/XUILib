@@ -88,7 +88,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\ThirdParty\</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -153,11 +154,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\TestCode\ChatClient.cpp" />
     <ClCompile Include="..\..\..\TestCode\LoginViewController.cpp" />
     <ClCompile Include="..\..\..\TestCode\main.cpp" />
+    <ClCompile Include="..\..\..\TestCode\TestViewController.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\TestCode\ChatClient.hpp" />
     <ClInclude Include="..\..\..\TestCode\LoginViewController.hpp" />
+    <ClInclude Include="..\..\..\TestCode\TestViewController.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

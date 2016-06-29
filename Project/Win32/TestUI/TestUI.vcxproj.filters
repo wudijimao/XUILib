@@ -21,9 +21,21 @@
     <ClCompile Include="..\..\..\TestCode\LoginViewController.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\TestCode\ChatClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\TestCode\TestViewController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\TestCode\LoginViewController.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\TestCode\ChatClient.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\TestCode\TestViewController.hpp">
       <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>

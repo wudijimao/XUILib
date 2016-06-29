@@ -46,6 +46,9 @@
     <Filter Include="Header\core\Animation">
       <UniqueIdentifier>{2bf0e5dc-6164-4792-a3d2-40f127ffaee9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\socket">
+      <UniqueIdentifier>{1167b056-47c6-4d7b-a6dd-296ef5835036}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\core\DllExport.hpp">
@@ -279,6 +282,18 @@
     <ClInclude Include="..\..\..\include\ui\ScrollView.hpp">
       <Filter>Header\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XPackageReciver.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XSocket.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XSocketClient.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XSocketServer.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -460,6 +475,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\ui\ScrollView.cpp">
       <Filter>Header\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XPackageReciver.cpp">
+      <Filter>Header\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XSocketClient.cpp">
+      <Filter>Header\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp">
+      <Filter>Header\socket</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
