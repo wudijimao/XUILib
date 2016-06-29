@@ -34,6 +34,9 @@ namespace XResource {
 		const wchar_t *getUinicodeCStr() {
 			return mUnicodeCacheStr.c_str();
 		}
+        const XString& getString() {
+            return mStr;
+        }
 		std::shared_ptr<XCoreTextFrame> createFrame(const XResource::XDisplaySize &mSize) const;
         void clearAttrs();
         void clearAttrs(XAttrStrKeyEnum type);

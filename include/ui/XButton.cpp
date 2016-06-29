@@ -24,6 +24,9 @@ namespace XUI {
                     _down();
                     break;
                 case TouchPhase::Ended:
+                    if (onClick) {
+                        onClick(*this);
+                    }
                 case TouchPhase::Cancelled:
                     _up();
                     break;
@@ -216,7 +219,11 @@ namespace XUI {
     void XButton::setTitle(const XResource::XString &text, ButtonStates state) {
         XButtonResHolder *res = _getRes(state);
         res->mText = text;
+        res->mAttrText = nullptr;
         if (state == mUsedResState) {
+            mTextView->setText(res->mText);
+            mTextView->setFont(res->mFont);
+            mTextView->setTextColor(res->mTextColor);
             setNeedLayout();
         }
     }

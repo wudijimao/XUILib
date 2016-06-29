@@ -34,7 +34,7 @@ namespace XUI
         const std::shared_ptr<XResource::XUIColor> &textColor();
         void setText(const XResource::XString &str);
         void setText(const XResource::XAttributedStringPtr &attrStr);
-        const XResource::XAttributedStringPtr &text();
+        const XResource::XAttributedStringPtr &text() const;
         void setAlignmentH(UITextAlignmentH align);
         void setAlignmentV(UITextAlignmentV align);
         UITextAlignmentH alignmentH();

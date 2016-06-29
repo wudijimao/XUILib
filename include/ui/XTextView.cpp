@@ -94,6 +94,10 @@ namespace  XUI {
         return frame->mSize;
     }
     
+    const XResource::XAttributedStringPtr &UITextView::text() const {
+        return mText;
+    }
+    
     void UITextView::drawRect(IXRender &render) {
         if (mText) {
             XResource::XRect rect = getFixRect();

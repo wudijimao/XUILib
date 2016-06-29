@@ -1,7 +1,6 @@
 ﻿#include <XDUILib.hpp>
 #pragma execution_character_set("utf-8")
 #include "LoginViewController.hpp"
-#include "ChatClient.hpp"
 #include "LoginViewController.hpp"
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******

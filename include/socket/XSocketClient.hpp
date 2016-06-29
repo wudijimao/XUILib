@@ -18,7 +18,6 @@
 class SIMPLEDIRECTUI_API XSocketClient {
 public:
     virtual ~XSocketClient(){}
-    asio::io_service io_service;
     asio::ip::tcp::socket *socket;
     void connect(const char *ip, int port);
     void connectHost(const char *host, int port);
@@ -41,6 +40,8 @@ private:
         }
         return err.value();
     }
+    void onRecvSome(const std::error_code& e, std::size_t bytes_transferred);
+    char buf[128];
     XPackageReciver mReciver;
     void onRecvInternal();
     void recv_async();

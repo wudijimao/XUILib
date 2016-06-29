@@ -7,7 +7,23 @@
 //
 
 #include "XSocketClient.hpp"
+#include <thread>
 
+static asio::io_service io_service;
+
+int runCount = 0;
+
+void runloop() {
+    io_service.run();
+    runCount = 0;
+}
+void runService() {
+    if (runCount == 0) {
+        std::thread thread(&runloop);
+        thread.detach();
+    }
+    ++runCount;
+}
 //
 //class shared_const_buffer
 //{
@@ -50,15 +66,22 @@ void XSocketClient::connect(const char *ip, int port) {
     
     auto addr = asio::ip::address::from_string(ip);
     asio::ip::tcp::endpoint endpoint(addr, port);
+    
+    
+    
     socket = new asio::ip::tcp::socket(io_service);
-    asio::error_code error;
-    socket->connect(endpoint, error);
-    if (!onErrorInternal(error)) {
-        if (this->onConnect) {
-            this->onConnect();
+    socket->async_connect(endpoint, [&](asio::error_code error) {
+        if (!onErrorInternal(error)) {
+            if (this->onConnect) {
+                this->onConnect();
+            }
+            if (socket->is_open()) {
+                recv_async();
+            }
         }
-        recv_async();
-    }
+    });
+    
+    runService();
 }
 
 void XSocketClient::connectHost(const char *host, int port) {
@@ -83,28 +106,30 @@ void XSocketClient::send(const XResource::XDataPtr &data) {
     });
 }
 
+void XSocketClient::onRecvSome(const asio::error_code& error, std::size_t len) {
+    //当Server关闭连接的时候,read_some返回boost::asio::error::eof
+    if(error == asio::error::eof) {
+        return;
+    } else if(error) {
+        //error
+        return;
+    } else if(buf > 0) {
+        mReciver.put(buf, len);
+    }
+    recv_async();
+}
 
 void XSocketClient::recv_async() {
-    char buf[128];
-    while (1) {
-        asio::error_code error;
-        //boost::asio::buffer确定缓冲大小并防止越界.
-        size_t len = socket->read_some(asio::buffer(buf), error);
-        
-        //当Server关闭连接的时候,read_some返回boost::asio::error::eof
-        if(error == asio::error::eof) {
-            break;
-        } else if(error) {
-            //error
-            break;
-        } else {
-            mReciver.put(buf, len);
-        }
-    }
+    socket->async_read_some(asio::buffer(buf), std::bind(&XSocketClient::onRecvSome, this, std::placeholders::_1, std::placeholders::_2));
 }
 
 void XSocketClient::send_async(const void *data, long size) {
     
 }
+
+
+
+
+
 
 

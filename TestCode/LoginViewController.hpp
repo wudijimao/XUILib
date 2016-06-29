@@ -14,6 +14,10 @@
 #pragma execution_character_set("utf-8")
 
 
+
 class LoginViewController : public XUI::UIViewController {
     virtual void viewDidLoad() override;
+private:
+    std::shared_ptr<XUI::UIEditView> _nameText;
+    std::shared_ptr<XUI::UITextView> _chatText;
 };

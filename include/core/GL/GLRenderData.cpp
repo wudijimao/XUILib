@@ -71,14 +71,14 @@ namespace XDUILib {
     void GLRenderSquareData::initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
         setSquare(rect);
         
-        _texturePos[0] = 0;
-        _texturePos[1] = 0;
-        _texturePos[2] = 0;
-        _texturePos[3] = 1;
-        _texturePos[4] = 1;
-        _texturePos[5] = 0;
-        _texturePos[6] = 1;
-        _texturePos[7] = 1;
+        _texturePos[0] = 0.0f;
+        _texturePos[1] = 0.0f;
+        _texturePos[2] = 0.0f;
+        _texturePos[3] = 1.0f;
+        _texturePos[4] = 1.0f;
+        _texturePos[5] = 0.0f;
+        _texturePos[6] = 1.0f;
+        _texturePos[7] = 1.0f;
         
         if (image.get() != nullptr) {
             _textureId = GLTextureManager::sharedInstance().getTextureID(image);

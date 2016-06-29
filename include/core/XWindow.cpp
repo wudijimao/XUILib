@@ -53,6 +53,7 @@ void XWindow::input(const std::shared_ptr<XTouch> &touch) {
             _lastTouchList.push_back(touch);
         }
             break;
+        case TouchPhase::Ended:
         case TouchPhase::Moved: {
             std::vector<std::shared_ptr<XTouch>>::iterator iter;
             if (findFitTouch(touch, iter)) {

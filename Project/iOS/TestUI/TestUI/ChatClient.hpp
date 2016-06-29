@@ -13,7 +13,7 @@
 //#progma pack (2)     /*set pack*/
 struct __attribute__((packed)) ChatPackage {
     uint16_t type; //0-999 底层类型 1000-19999消息类型
-    char json[];
+    char str[];
 };
 //type
 //0 heart beat
@@ -50,6 +50,13 @@ public:
     XSocketClient client;
     std::string mUserID = "test";
     std::string mPassword = "test";
+    static ChatClient&getInstance() {
+        static ChatClient client;
+        return client;
+    }
+    std::function<void(ChatClient&, std::error_code)> onLoginFinish;
+    //std::function<void(ChatClient&, std::error_code)> onSimpleTextSendFinish;
+    std::function<void(ChatClient&, const char*str)> onRecvSimpleText;
     void run() {
         XResource::XDataPtr data = XResource::XData::data();
         client.onConnect = [&](){
@@ -58,18 +65,24 @@ public:
         
         client.setOnRecvData([&](const void *dat, unsigned int size) {
             ChatPackage *package = (ChatPackage*)dat;
+            std::error_code e;
             switch(package->type) {
                 case MesType::cHeartBeat:
                     break;
                 case MesType::cDebugMes:
-                    std::cout << "debugMes:" << package->json << std::endl;
+                    std::cout << "debugMes:" << package->str << std::endl;
                     break;
                 case MesType::cLoginWithPassword:
                     std::cout << "loginSuccess" << std::endl;
-                    sendSimpleText("I'an Comming");
+                    if (onLoginFinish) {
+                        onLoginFinish(*this, e);
+                    }
                     break;
                 case MesType::cSimpleText:
-                    std::cout << "Recv SimpleText:" << package->json << std::endl;
+                    if (onRecvSimpleText) {
+                        onRecvSimpleText(*this, package->str);
+                    }
+                    std::cout << "Recv SimpleText:" << package->str << std::endl;
                     break;
             }
         });

@@ -49,6 +49,7 @@ namespace XUI
         virtual void setTitle(const std::shared_ptr<XResource::XAttributedString> &attrText, ButtonStates state = ButtonStates::NORMAL);
         
         virtual void layoutSubViews() override;
+        std::function<void(XButton&)> onClick;
 	private:
         bool mIsSelected = false;
         bool mIsEnable = true;

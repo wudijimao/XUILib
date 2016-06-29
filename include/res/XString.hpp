@@ -206,6 +206,6 @@ namespace XResource
             return _utf8Buf->substr(position, num);
         }
     private:
-        std::string *_utf8Buf;
+        std::string *_utf8Buf = new std::string();
     };
 }
