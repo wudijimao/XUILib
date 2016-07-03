@@ -1,5 +1,5 @@
 #pragma once
-#include <windows.h>
+#include "../core/stdafx.hpp"
 #include <gdiplus.h>
 #include "../core/IXCanvas.hpp"
 

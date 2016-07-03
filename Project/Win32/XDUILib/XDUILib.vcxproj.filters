@@ -291,6 +291,18 @@
     <ClInclude Include="..\..\..\include\http\XHttpRequestParams.hpp">
       <Filter>Header\http</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XPackageReciver.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XSocketClient.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\XSocket.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\socket\xsocketserver.hpp">
+      <Filter>Header\socket</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -481,6 +493,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\http\XHttpRequestParams.cpp">
       <Filter>Header\http</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XPackageReciver.cpp">
+      <Filter>Header\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XSocketClient.cpp">
+      <Filter>Header\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp">
+      <Filter>Header\socket</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

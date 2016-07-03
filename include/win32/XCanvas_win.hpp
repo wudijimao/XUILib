@@ -1,6 +1,5 @@
-#include <Windows.h>
-#include <gdiplus.h>
 #include "core\stdafx.hpp"
+#include <gdiplus.h>
 #include "core\GLCanvas.hpp"
 #include "GDIRender.hpp"
 

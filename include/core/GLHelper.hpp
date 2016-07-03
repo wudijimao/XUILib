@@ -1,5 +1,5 @@
 #pragma once
-#include<Windows.h>
+#include "stdafx.hpp"
 #define GLEW_STATIC
 #include <GL\glew.h>
 

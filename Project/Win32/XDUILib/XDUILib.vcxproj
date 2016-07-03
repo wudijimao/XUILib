@@ -84,6 +84,10 @@
     <ClInclude Include="..\..\..\include\res\XText\XStringAttr.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XPackageReciver.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XSocket.hpp" />
+    <ClInclude Include="..\..\..\include\socket\XSocketClient.hpp" />
+    <ClInclude Include="..\..\..\include\socket\xsocketserver.hpp" />
     <ClInclude Include="..\..\..\include\ui\ScrollView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XButton.hpp" />
     <ClInclude Include="..\..\..\include\ui\XEditView.hpp" />
@@ -150,6 +154,9 @@
     <ClCompile Include="..\..\..\include\res\XText\XFreeType.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XPackageReciver.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XSocketClient.cpp" />
+    <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp" />
     <ClCompile Include="..\..\..\include\ui\ScrollView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XButton.cpp" />
     <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />

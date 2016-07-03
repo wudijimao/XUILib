@@ -31,8 +31,8 @@
 
 #ifdef TARGET_OS_MSWINDOWS
 // Windows Header Files:
-//#include <winsock.h>
-//#include <WinSock2.h>
+#include <WinSock2.h>
+#define _WINSOCKAPI_
 //#define WIN32_LEAN_AND_MEAN 
 #include <Windows.h>
 #include <gdiplus.h>

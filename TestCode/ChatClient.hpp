@@ -10,11 +10,15 @@
 
 #include <XDUILib.hpp>
 
-//#progma pack (2)     /*set pack*/
-struct __attribute__((packed)) ChatPackage {
+#pragma pack push
+#pragma pack (1)     /*set pack*/
+//struct __attribute__((packed)) ChatPackage {
+struct ChatPackage {
     uint16_t type; //0-999 底层类型 1000-19999消息类型
     char str[];
 };
+#pragma pack pop
+
 //type
 //0 heart beat
 //1 debug mes

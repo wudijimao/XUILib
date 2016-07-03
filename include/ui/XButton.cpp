@@ -35,8 +35,24 @@ namespace XUI {
         UIView::onTouch(touch);
     }
     
-    void XButton::onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) {
-        UIView::onMouseEvent(mouseEvent);
+    void XButton::onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) {
+		for (auto e : mouseEvents) {
+			switch (e->eventType)
+			{
+			case MouseEventType::Down:
+				_down();
+				break;
+			case MouseEventType::Up:
+				if (onClick) {
+					onClick(*this);
+				}
+				_up();
+				break;
+			default:
+				break;
+			}
+		}
+        UIView::onMouseEvent(mouseEvents);
     }
     
     void XButton::select(bool bSel) {

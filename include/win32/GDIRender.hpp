@@ -1,6 +1,6 @@
 #pragma once
 #pragma warning( disable: 4251 )
-#include <windows.h>
+#include "../core/stdafx.hpp"
 #include <gdiplus.h>
 #include "../core/IXRender.hpp"
 

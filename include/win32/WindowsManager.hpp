@@ -1,6 +1,5 @@
 #pragma once
 #include "../core/stdafx.hpp"
-#include <windows.h>
 #include "XWindow_win.hpp"
 //#include <boost/signals2.hpp>
 

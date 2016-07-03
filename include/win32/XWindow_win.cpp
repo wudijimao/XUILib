@@ -3,7 +3,7 @@
 #include "WindowsManager.hpp"
 #include "XCanvas_win.hpp"
 #include "core\GLRender.hpp"
-
+#include "../core/UIResponder.hpp"
 #include "../core/input/XMouse.hpp"
 
 
@@ -74,7 +74,6 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 	switch (iMsg)
 	{
 	case WM_TIMER:
-
 		this->update();
 		return 0;
 	case WM_CREATE: {
@@ -88,7 +87,7 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		XResource::XSize size(LOWORD(lParam), HIWORD(lParam));
 		_canvas->setSize(size, 1.0);
 	}
-				  return 0;
+		return 0;
 	case WM_PAINT:
 		//狼由熔砿
 		return 0;
@@ -124,7 +123,30 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		//mRect.X((int)(short)LOWORD(lParam));
 		//mRect.Y((int)(short)HIWORD(lParam));
 		return 0;
+	case WM_IME_SETCONTEXT:{
+			// return 0;  <== これじゃダメ  
+			lParam &= ~ISC_SHOWUIALL;
+			break;
+		}
+	case WM_CHAR:
+		if (XUI::UIResponder::sFirstResponder != nullptr) {
+			switch (wParam) {
+			case VK_RETURN:
+				break;
+			case VK_BACK:
+				XUI::UIResponder::sFirstResponder->deleteBackward();
+				break;
+			default: {
+				char text[2];
+				text[0] = (char)wParam;
+				text[1] = '\0';
+				XUI::UIResponder::sFirstResponder->insertText(text);
+			}
+			}
+		}
+		break;
 	}
+	
 	return DefWindowProc(hwnd, iMsg, wParam, lParam);
 }
 
