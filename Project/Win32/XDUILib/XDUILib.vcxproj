@@ -27,6 +27,7 @@
     <ClInclude Include="..\..\..\include\core\GL\glheaders.h" />
     <ClInclude Include="..\..\..\include\core\GL\GLProgram.hpp" />
     <ClInclude Include="..\..\..\include\core\GL\GLRenderData.hpp" />
+    <ClInclude Include="..\..\..\include\core\GL\GLRenderNineGridData.hpp" />
     <ClInclude Include="..\..\..\include\core\GL\GLTexture.hpp" />
     <ClInclude Include="..\..\..\include\core\GL\GLTransform3D.hpp" />
     <ClInclude Include="..\..\..\include\core\IBaseControl.hpp" />
@@ -59,7 +60,9 @@
     <ClInclude Include="..\..\..\include\http\XHTTPHeader.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPRequest.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPRequestHandler.hpp" />
+    <ClInclude Include="..\..\..\include\http\XHttpRequestParams.hpp" />
     <ClInclude Include="..\..\..\include\http\XHTTPResponse.hpp" />
+    <ClInclude Include="..\..\..\include\http\XUrl.hpp" />
     <ClInclude Include="..\..\..\include\res\XColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XData.hpp" />
     <ClInclude Include="..\..\..\include\res\XError.hpp" />
@@ -81,10 +84,6 @@
     <ClInclude Include="..\..\..\include\res\XText\XStringAttr.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XStringAttrColor.hpp" />
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp" />
-    <ClInclude Include="..\..\..\include\socket\XPackageReciver.hpp" />
-    <ClInclude Include="..\..\..\include\socket\XSocket.hpp" />
-    <ClInclude Include="..\..\..\include\socket\XSocketClient.hpp" />
-    <ClInclude Include="..\..\..\include\socket\XSocketServer.hpp" />
     <ClInclude Include="..\..\..\include\ui\ScrollView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XButton.hpp" />
     <ClInclude Include="..\..\..\include\ui\XEditView.hpp" />
@@ -107,6 +106,7 @@
     <ClCompile Include="..\..\..\include\core\GLRender.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLProgram.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLRenderData.cpp" />
+    <ClCompile Include="..\..\..\include\core\GL\GLRenderNineGridData.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLTexture.cpp" />
     <ClCompile Include="..\..\..\include\core\GL\GLTransform3D.cpp" />
     <ClCompile Include="..\..\..\include\core\input\XInput.cpp" />
@@ -130,7 +130,9 @@
     <ClCompile Include="..\..\..\include\http\XHTTPHeader.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPRequest.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPRequestHandler.cpp" />
+    <ClCompile Include="..\..\..\include\http\XHttpRequestParams.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPResponse.cpp" />
+    <ClCompile Include="..\..\..\include\http\XUrl.cpp" />
     <ClCompile Include="..\..\..\include\res\XColor.cpp" />
     <ClCompile Include="..\..\..\include\res\XData.cpp" />
     <ClCompile Include="..\..\..\include\res\XError.cpp" />
@@ -148,9 +150,6 @@
     <ClCompile Include="..\..\..\include\res\XText\XFreeType.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttr.cpp" />
     <ClCompile Include="..\..\..\include\res\XText\XStringAttrColor.cpp" />
-    <ClCompile Include="..\..\..\include\socket\XPackageReciver.cpp" />
-    <ClCompile Include="..\..\..\include\socket\XSocketClient.cpp" />
-    <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp" />
     <ClCompile Include="..\..\..\include\ui\ScrollView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XButton.cpp" />
     <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />
@@ -236,8 +235,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINDOWS;_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -271,7 +270,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINDOWS;NDEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

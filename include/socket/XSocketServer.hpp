@@ -9,7 +9,6 @@
 #pragma once
 
 #include "../core/stdafx.hpp"
-#include "asio.hpp"
 #include "XSocketClient.hpp"
 
 class SIMPLEDIRECTUI_API XSocketServer {

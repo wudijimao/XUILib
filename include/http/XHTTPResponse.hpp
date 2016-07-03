@@ -32,7 +32,7 @@ class IXHTTPClient;
 class XHTTPClient;
 class XHTTPRequest;
 
-class XHTTPResponse {
+class SIMPLEDIRECTUI_API XHTTPResponse {
     friend XHTTPRequestHandler;
     friend XHTTPClient;
     friend IXHTTPClient;
@@ -55,7 +55,7 @@ protected:
     std::shared_ptr<XResource::XData> _headerBuf;
 };
 
-class XResponseData {
+class SIMPLEDIRECTUI_API XResponseData {
 public:
     virtual void parse(const rapidjson::Document& json) = 0;
 };

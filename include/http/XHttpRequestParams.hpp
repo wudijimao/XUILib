@@ -10,7 +10,7 @@
 #include "../core/stdafx.hpp"
 #include "XUrl.hpp"
 
-class XHttpRequestParams {
+class SIMPLEDIRECTUI_API XHttpRequestParams {
 public:
     void addParam(const char *name, const char *val);
     void addParam(const char *name, ...);

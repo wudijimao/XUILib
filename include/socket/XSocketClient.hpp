@@ -7,9 +7,7 @@
 //
 
 #pragma once
-
 #include "../core/stdafx.hpp"
-#include "asio/asio.hpp"
 #include <iostream>
 #include "../res/XData.hpp"
 #include "XPackageReciver.hpp"

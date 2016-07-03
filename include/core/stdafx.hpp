@@ -31,7 +31,9 @@
 
 #ifdef TARGET_OS_MSWINDOWS
 // Windows Header Files:
-#include <WinSock2.h>//#define WIN32_LEAN_AND_MEAN 
+//#include <winsock.h>
+//#include <WinSock2.h>
+//#define WIN32_LEAN_AND_MEAN 
 #include <Windows.h>
 #include <gdiplus.h>
 #endif
@@ -41,7 +43,7 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
-#define new ::new( _CLIENT_BLOCK, __FILE__, __LINE__)
+//#define new ::new( _CLIENT_BLOCK, __FILE__, __LINE__)
 #endif // DEBUG
 
 #include "DllExport.hpp"
