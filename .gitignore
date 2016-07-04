@@ -10,3 +10,12 @@ Project/Win32/TestUI/XDUILIB.bundle/
 GLLayeredWindow/.vs/
 .vs/
 OtherProject/TestGCDCPP/Build
+Project/Android/native-activity/.idea
+Project/Android/native-activity/nativeactivity/build
+Project/Android/native-activity/app/build
+Project/Android/native-activity/.gradle
+Project/Android/native-activity/build
+Project/Android/native-activity/local.properties
+Project/Android/native-activity/native-activity.iml
+Project/Android/native-activity/app/app.iml
+Project/Android/native-activity/nativeactivity/nativeactivity.iml
