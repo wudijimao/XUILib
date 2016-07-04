@@ -48,9 +48,9 @@ namespace XResource {
         frame->mLines.push_back(line);
         auto group = new XCoreTextGroup();
         line->mGroups.push_back(group);
-        double x = 0;
-        double y = 0;
-        double right = mSize.Width();
+        int x = 0;
+        int y = 0;
+        int right = mSize.Width();
         unsigned long size = mUnicodeCacheStr.length();
         
         unsigned long location = 0;
