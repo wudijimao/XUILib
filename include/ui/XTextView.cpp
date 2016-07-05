@@ -104,6 +104,8 @@ namespace  XUI {
             auto frame = mText->createFrame(rect.size());
             judgeRect(rect, frame->mSize);
             
+            //render.DrawBackGround(XResource::XUIColor::redColor()->_color, rect);
+            //TODO::draw TextFrame directly, whitch is built in sizeTathFit
             render.DrawString(*mText.get(), rect);
         }
     }

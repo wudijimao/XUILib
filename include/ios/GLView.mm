@@ -9,6 +9,12 @@
 #import "GLView.hpp"
 #include "../core/UIResponder.hpp"
 
+@interface GLView()
+
+@property (nonatomic, strong) NSString *intlInput;
+
+@end
+
 @implementation GLView {
     id<TextInputDelegate> _delegate;
 }
@@ -37,6 +43,18 @@
     if (XUI::UIResponder::sFirstResponder != nullptr) {
         XUI::UIResponder::sFirstResponder->insertText(pszText);
     }
+}
+
+- (void)setMarkedText:(NSString *)markedText selectedRange:(NSRange)selectedRange {
+    self.intlInput = markedText;
+}
+- (void) unmarkText {
+    if (!self.intlInput) return;
+    [self insertText:self.intlInput];
+//    for (int i=0;i<self.intlInput.length;i++) {
+//        [self sendChar:[self.intlInput characterAtIndex:i]];
+//    }
+    self.intlInput = nil;
 }
 
 - (void)deleteBackward
@@ -113,13 +131,6 @@
 - (NSDictionary *)markedTextStyle;
 {
     return nil;
-}
-- (void)setMarkedText:(NSString *)markedText selectedRange:(NSRange)selectedRange;
-{
-}
-- (void)unmarkText;
-{
-    
 }
 
 #pragma mark Methods for creating ranges and positions.

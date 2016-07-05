@@ -69,14 +69,16 @@ namespace XResource {
                 font = defaultFont;
             }
             XGlyphPtr *glyphs = XFreeType::sharedInstance()->getXGlyphs(font.get(), mUnicodeCacheStr.c_str() + location, effactRange.length);
+            lineMaxVertAdvance = (std::max)(lineMaxVertAdvance, glyphs[0]->mFontMetrics->max_advance);
             for (int i = 0; i < effactRange.length; ++i) {
                 auto textChar = new XCoreTextChar();
                 auto temp = glyphs[i];
                 textChar->mGlyph = glyphs[i];
                 textChar->mRect.setSize(textChar->mGlyph->mImage->size());
-                lineMaxVertAdvance = (std::max)(lineMaxVertAdvance, textChar->mRect.Height());
-                lineMaxAssender = (std::max)(lineMaxAssender, textChar->mGlyph->mMetrics.horiBearingY);
-                if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() > right) {
+                //lineMaxVertAdvance = (std::max)(lineMaxVertAdvance, textChar->mRect.Height());
+                //lineMaxAssender = (std::max)(lineMaxAssender, textChar->mGlyph->mMetrics.horiBearingY);
+                lineMaxAssender = (std::max)(lineMaxAssender,textChar->mGlyph->mFontMetrics->ascender);
+                if (x + textChar->mGlyph->mImageLeft + textChar->mRect.Width() - right > 1.0) {
                     for (auto g : line->mGroups) {
                         for (auto c : g->mChars) {
                             c->mRect.moveY(lineMaxAssender);
@@ -88,8 +90,9 @@ namespace XResource {
                     x = 0;
                     y += lineMaxVertAdvance;
                     y += lineHeight;
-                    lineMaxVertAdvance = 0;
-                    lineMaxAssender = textChar->mGlyph->mMetrics.horiBearingY;
+                    lineMaxVertAdvance = textChar->mGlyph->mFontMetrics->max_advance;
+                    //lineMaxAssender = textChar->mGlyph->mMetrics.horiBearingY;
+                    lineMaxAssender = textChar->mGlyph->mFontMetrics->ascender;
                     line = new XCoreTextLine();
                     line->mRect.X(x);
                     line->mRect.Y(y);
