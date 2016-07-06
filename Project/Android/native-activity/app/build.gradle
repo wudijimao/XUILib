@@ -1,5 +1,4 @@
 apply plugin: 'com.android.model.application'
-
 model {
     android {
         compileSdkVersion = 23
@@ -7,12 +6,12 @@ model {
 
         defaultConfig {
             applicationId = 'com.example.native_activity'
-            minSdkVersion.apiLevel    = 9
+            minSdkVersion.apiLevel = 9
             targetSdkVersion.apiLevel = 23
         }
         ndk {
             platformVersion = 9
-            moduleName ='native-activity'
+            moduleName = 'native-activity'
             toolchain = 'clang'
             stl = 'gnustl_static'
             cppFlags.add('-std=c++11')
@@ -23,6 +22,7 @@ model {
                 jni {
                     dependencies {
                         project ':nativeactivity' linkage 'static'
+                        project ':xduilib' linkage 'static'
                     }
                 }
             }

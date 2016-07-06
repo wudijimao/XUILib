@@ -17,3 +17,14 @@
 #define GLEW_STATIC
 #include <GL\glew.h>
 #endif // TARGET_OS_MSWINDOWS
+
+
+#if defined(ANDROID) || defined(__ANDROID__)
+#include <EGL/egl.h>
+#include <GLES/gl.h>
+#if DYNAMIC_ES3
+#include "gl3stub.h"
+#else
+#include <GLES3/gl3.h>
+#endif
+#endif
