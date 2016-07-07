@@ -1,2 +1,2 @@
-include ':app', ':xduilib'
+include ':app', ':xduilib', ':giflib'
 include ':nativeactivity'

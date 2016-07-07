@@ -1,0 +1,36 @@
+apply plugin: 'com.android.model.library'
+
+model {
+    android {
+        compileSdkVersion = 23
+        buildToolsVersion = "23.0.2"
+        defaultConfig.with {
+            minSdkVersion.apiLevel = 9
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = "0.0.1"
+        }
+        ndk {
+            moduleName = 'giflib'
+            stl = 'c++_static'
+            cppFlags.add("-std=c++11")
+            ldFlags.add("-c")
+            ldLibs.addAll(['log'])
+        }
+        sources {
+            main {
+                jniLibs {
+
+                }
+                jni {
+                    source {
+                    }
+                    exportedHeaders {
+                    }
+                    dependencies {
+                    }
+                }
+            }
+        }
+    }
+}
