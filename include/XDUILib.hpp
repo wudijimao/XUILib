@@ -35,3 +35,8 @@
     #define XDUI_RUN_PARAMS hInstance, hPrevInstance, szCmdLine, iCmdShow
 #endif
 
+#ifdef TARGET_OS_ANDROID
+    #define XDUIMain void android_main(struct android_app* state)
+    #define XDUI_RUN_PARAMS state
+#endif
+

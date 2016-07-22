@@ -21,6 +21,10 @@
 #endif
 #endif // WIN32
 
+#if defined(ANDROID) || defined(__ANDROID__)
+#define TARGET_OS_ANDROID
+#endif
+
 
 
 #ifdef TARGET_OS_IPHONE
@@ -36,6 +40,16 @@
 //#define WIN32_LEAN_AND_MEAN 
 #include <Windows.h>
 #include <gdiplus.h>
+#endif
+
+#ifdef TARGET_OS_ANDROID
+#include <initializer_list>
+#include <jni.h>
+#include <errno.h>
+#include <cassert>
+#include <android/sensor.h>
+#include <android/log.h>
+#include <android_native_app_glue.h>
 #endif
 
 

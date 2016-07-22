@@ -5,12 +5,13 @@ model {
         compileSdkVersion = 23
         buildToolsVersion = "23.0.2"
         defaultConfig.with {
-            minSdkVersion.apiLevel = 9
+            minSdkVersion.apiLevel = 21
             targetSdkVersion.apiLevel = 23
             versionCode = 1
             versionName = "0.0.1"
         }
         ndk {
+            platformVersion = 21
             moduleName = 'giflib'
             stl = 'c++_static'
             cppFlags.add("-std=c++11")
@@ -20,12 +21,13 @@ model {
         sources {
             main {
                 jniLibs {
-
                 }
                 jni {
                     source {
+                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/source/giflib-5.1.2/lib"
                     }
                     exportedHeaders {
+                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/source/giflib-5.1.2/lib"
                     }
                     dependencies {
                     }

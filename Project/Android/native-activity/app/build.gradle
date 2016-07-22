@@ -1,26 +1,95 @@
 apply plugin: 'com.android.model.application'
 model {
+    repositories {
+        libs(PrebuiltLibraries) {
+            curl {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libcurl.a")
+                }
+            }
+            curl_crypto {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libcrypto.a")
+                }
+            }
+            curl_ssl {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libssl.a")
+                }
+            }
+            png {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/png/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libpng.a")
+                }
+            }
+            jpeg {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/jpeg/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libjpeg.a")
+                }
+            }
+            freetype {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/freetype2/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libfreetype.a")
+                }
+            }
+            gif {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/gif"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libgiflib.a")
+                }
+            }
+            zlib {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/zlib"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libz.a")
+                }
+            }
+        }
+    }
     android {
         compileSdkVersion = 23
         buildToolsVersion = '23.0.2'
 
         defaultConfig {
             applicationId = 'com.example.native_activity'
-            minSdkVersion.apiLevel = 9
+            minSdkVersion.apiLevel = 21
             targetSdkVersion.apiLevel = 23
         }
         ndk {
-            platformVersion = 9
+            platformVersion = 21
             moduleName = 'native-activity'
-            toolchain = 'clang'
-            stl = 'gnustl_static'
+            //toolchain = 'clang'
+            stl = 'c++_static'
+            abiFilters.addAll(['armeabi', 'armeabi-v7a', 'armeabi-v8a'])
             cppFlags.add('-std=c++11')
-            ldLibs.addAll(['log', 'android', 'EGL', 'GLESv1_CM'])
+            cppFlags.add('-fexceptions')
+            cppFlags.add('-frtti')
+            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/include')
+            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/ThirdParty/')
+            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/ThirdParty/asio')
+            ldLibs.addAll(['log', 'android', 'EGL', 'GLESv3', 'atomic'])
         }
         sources {
             main {
                 jni {
+                    source {
+                        srcDir "/Users/ximiao/GCD-dispatch-/TestCode"
+                    }
                     dependencies {
+                        library "curl" linkage 'static'
+                        library "png" linkage 'static'
+                        library "jpeg" linkage 'static'
+                        library "zlib" linkage 'static'
+                        library "freetype" linkage 'static'
+                        library "curl_crypto" linkage 'static'
+                        library "curl_ssl" linkage 'static'
+                        library "gif" linkage 'static'
                         project ':nativeactivity' linkage 'static'
                         project ':xduilib' linkage 'static'
                     }

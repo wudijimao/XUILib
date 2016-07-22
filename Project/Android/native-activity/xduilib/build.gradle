@@ -3,9 +3,6 @@ apply plugin: 'com.android.model.library'
 model {
     repositories {
         libs(PrebuiltLibraries) {
-            rapidjson {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/"
-            }
             curl {
                 headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
                 binaries.withType(StaticLibraryBinary) {
@@ -18,24 +15,39 @@ model {
                     staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libpng.a")
                 }
             }
+            jpeg {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/jpeg/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libjpeg.a")
+                }
+            }
+            freetype {
+                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/freetype2/android"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libfreetype.a")
+                }
+            }
         }
     }
-
     android {
         compileSdkVersion = 23
         buildToolsVersion = "23.0.2"
         defaultConfig.with {
-            minSdkVersion.apiLevel = 9
+            minSdkVersion.apiLevel = 21
             targetSdkVersion.apiLevel = 23
             versionCode = 1
             versionName = "0.0.1"
         }
         ndk {
             moduleName = 'xduilib'
+            platformVersion = 21
+            abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86', 'armeabi-v8a'])
             stl = 'c++_static'
             cppFlags.add("-std=c++11")
+            cppFlags.add('-fexceptions')
+            cppFlags.add('-frtti')
             ldFlags.add("-c")
-            ldLibs.addAll(['log', 'android', 'EGL', 'GLESv1_CM'])
+            ldLibs.addAll(['log', 'android', 'EGL', 'GLESv3'])
         }
         sources {
             main {
@@ -50,17 +62,71 @@ model {
                         exclude "**/GlobalStatus.cpp"
                         exclude "/Users/ximiao/GCD-dispatch-/include/win32/*.cpp"
                         exclude "/Users/ximiao/GCD-dispatch-/include/ios/*.cpp"
+                        exclude "/Users/ximiao/GCD-dispatch-/include/win32/dllmain.cpp"
                     }
                     exportedHeaders {
                         srcDir "/Users/ximiao/GCD-dispatch-/include"
+                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/"
+                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/asio"
                     }
                     dependencies {
                         library "curl" linkage 'static'
                         library "png" linkage 'static'
-                        library "rapidjson" linkage 'static'
+                        library "jpeg" linkage 'static'
+                        library "freetype" linkage 'static'
+                        project ':giflib' linkage 'static'
+                        project ':nativeactivity' linkage 'static'
                     }
                 }
             }
         }
+
+        /*productFlavors {
+            // for detailed abiFilter descriptions, refer to "Supported ABIs" @
+            // https://developer.android.com/ndk/guides/abis.html#sa
+            create("arm") {
+                ndk.abiFilters.add("armeabi")
+            }
+            create("arm7") {
+                ndk.abiFilters.add("armeabi-v7a")
+            }
+            create("x86") {
+                ndk.abiFilters.add("x86")
+            }
+        }
+        abis {
+            create("x86") {
+                platformVersion "android-21"  // platformVersion option is available from 0.8.0.
+                CFlags.add("-DX86")
+            }
+            create("armeabi") {
+                platformVersion "android-21"  // platformVersion option is available from 0.8.0.
+                CFlags.add("-DX86")
+            }
+            create("armeabi-v7a") {
+                platformVersion "android-21"  // platformVersion option is available from 0.8.0.
+                CFlags.add("-DX86")
+            }
+        }*/
+        //        buildTypes {
+//            release {
+//                runProguard false
+//                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+//                ndk {
+//                    //moduleName "hellojni"
+//                    abiFilters "armeabi", "armeabi-v7a", "x86"
+//                }
+//            }
+//
+//            debug {
+//                ndk {
+//                    moduleName "xduilib"
+//                    //stl "stlport_shared"
+//                    //ldLibs "log", "z", "m"
+//                    //cFlags "-Wall -Wextra -I " + projectDir + "/src/main/jni/include"
+//                    abiFilters "x86"
+//                }
+//            }
+//        }
     }
 }

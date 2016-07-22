@@ -22,7 +22,7 @@ namespace XUI {
         //override
         virtual void viewDidLoad();
         //do not override
-        const std::shared_ptr<UIView> view();
+        std::shared_ptr<UIView> view();
         void setNeedRedraw();
         void setNeedLayout();
         //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);

@@ -10,8 +10,8 @@
 #include "../core/stdafx.hpp"
 #include "XHTTPHeader.hpp"
 #include "../res/XData.hpp"
-#include "rapidjson/rapidjson.h"
-#include "rapidjson/document.h"
+#include <rapidjson/rapidjson.h>
+#include <rapidjson/document.h>
 
 enum class XHTTPResponsStatus {
     Initializing,

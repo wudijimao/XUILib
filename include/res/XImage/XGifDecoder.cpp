@@ -7,7 +7,7 @@
 //
 
 #include "XGifDecoder.hpp"
-#include "gif_lib.h"
+#include <gif_lib.h>
 
 namespace XResource {
 

@@ -28,16 +28,18 @@ namespace XDUILib
 #ifdef TARGET_OS_MSWINDOWS
 		int run(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 #endif
+#ifdef TARGET_OS_ANDROID
+        void run(struct android_app* state);
+#endif
     //overWrite
         virtual bool init();
         virtual void onStatusChanged(XAppStatus status, XAppStatus lastStatus);
+        virtual ~XApp();
     public:
         //std::shared_ptr<WindowsManager> windowsManager;
-        void setMainWindow(std::shared_ptr<IXWindow> window) {
-            _mainWindow = window;
-        }
+        void setMainWindow(std::shared_ptr<IXWindow> window);
         inline std::shared_ptr<IXWindow> mainWindow() {
-            return _mainWindow;
+                return _mainWindow;
         }
         void internalInit();
     private:

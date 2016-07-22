@@ -21,7 +21,8 @@ void LoginViewController::viewDidLoad() {
     auto rect = XResource::XRectPro(0, 70, view()->getRect().size().Width(), 30);
     title->setRect(rect);
     title->setText("WeChat"); //WeTalk
-    title->setFont(XResource::XFont::font("FZMiaoWuS-GB", 60));
+    std::shared_ptr<XResource::XFont> font = XResource::XFont::font("FZMiaoWuS-GB", 60);
+    title->setFont(font);
     title->setBkgColor(XResource::XUIColor::clearColor());
     title->setTextColor(XResource::XUIColor::whiteColor());
     title->setAlignmentH(XUI::UITextAlignmentH::Center);

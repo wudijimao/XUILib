@@ -11,7 +11,7 @@
 namespace XUI
 {
 
-    const std::shared_ptr<UIView> UIViewController::view() {
+    std::shared_ptr<UIView> UIViewController::view() {
         if (!_isLoaded) {
             LoadView();
         }
