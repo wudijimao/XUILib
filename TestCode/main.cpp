@@ -38,9 +38,9 @@ private:
 #endif
 };
 
-
 XDUIMain {
-	DetectMemoryLeaks();
+	//DetectMemoryLeaks();
+	app_dummy();
 	auto thisApp = XTestApp();
 	thisApp.run(XDUI_RUN_PARAMS);
 }
