@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../core/XWindow.hpp"
+#include "../../include/core/XWindow.hpp"
 
 class XWindow_android : public XWindow {
 public:

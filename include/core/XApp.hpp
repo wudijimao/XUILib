@@ -8,7 +8,9 @@
 //#include "WindowsManager.h"
 #include "IXWindow.hpp"
 #include "stdafx.hpp"
-
+#ifdef TARGET_OS_ANDROID
+#include <android_native_app_glue.h>
+#endif
 
 namespace XDUILib
 {
@@ -29,7 +31,7 @@ namespace XDUILib
 		int run(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 #endif
 #ifdef TARGET_OS_ANDROID
-        void run(struct android_app* state);
+        int run(struct android_app* state);
 #endif
     //overWrite
         virtual bool init();

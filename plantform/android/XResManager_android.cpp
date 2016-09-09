@@ -2,7 +2,7 @@
 // Created by ximiao on 16/7/12.
 //
 
-#include "../core/XResManager.hpp"
+#include "../../include/core/XResManager.hpp"
 
 
 //#include <direct.h>

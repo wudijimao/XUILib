@@ -2,8 +2,10 @@
 // Created by ximiao on 16/7/8.
 //
 
-#include "../core/XApp.hpp"
-#include "../core/GL/GLHeaders.h"
+#include "../../include/core/XApp.hpp"
+#include "../../include/core/GL/GLHeaders.h"
+#include "XWindow_android.hpp"
+#include "XMainRunloop_android.hpp"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
@@ -230,7 +232,18 @@ static void engine_handle_cmd(struct android_app* app, int32_t cmd) {
 
 namespace XDUILib {
 
-    void XApp::run(struct android_app *state) {
+    int XApp::run(struct android_app *state) {
+        _thisApp = this;
+        init();
+        if (_mainWindow == nullptr)
+        {
+            return -1;
+        }
+        auto winWindow = std::dynamic_pointer_cast<XWindow_android>(_mainWindow);
+        //winWindow->init();
+        this->internalInit();
+
+
         struct engine engine;
 
         // Make sure glue isn't stripped.
@@ -257,6 +270,7 @@ namespace XDUILib {
             engine.state = *(struct saved_state*)state->savedState;
         }
 
+        initMainRunloop();
         // loop waiting for stuff to do.
 
         while (1) {
@@ -292,7 +306,7 @@ namespace XDUILib {
                 // Check if we are exiting.
                 if (state->destroyRequested != 0) {
                     engine_term_display(&engine);
-                    return;
+                    return -1;
                 }
             }
 
@@ -308,6 +322,6 @@ namespace XDUILib {
                 engine_draw_frame(&engine);
             }
         }
-        return;
+        return 0;
     }
 }

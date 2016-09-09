@@ -56,7 +56,8 @@ model {
                 }
                 jni {
                     source {
-                        srcDir "/Users/ximiao/GCD-dispatch-/include"
+                        srcDir "../../../../include"
+                        srcDir "../../../../plantform/android"
                         exclude "**/XLog.cpp"
                         exclude "**/XRenderFacotry.cpp"
                         exclude "**/GlobalStatus.cpp"

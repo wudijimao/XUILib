@@ -103,6 +103,9 @@
     <content url="file://$MODULE_DIR$/../../../../include">
       <sourceFolder url="file://$MODULE_DIR$/../../../../include" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/../../../../plantform/android">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../plantform/android" isTestSource="false" />
+    </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
