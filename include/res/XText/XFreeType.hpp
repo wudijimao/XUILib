@@ -231,7 +231,7 @@ namespace XResource {
             for (auto path : fontPaths) {
                 this->loadFace(path.c_str());
             }
-            assert(_faces.size() != 0);
+            //assert(_faces.size() != 0);
         }
         std::shared_ptr<XFreeTypeFace> loadFace(const char *path) {
             auto face = std::make_shared<XFreeTypeFace>();

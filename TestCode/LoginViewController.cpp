@@ -15,8 +15,9 @@
 void LoginViewController::viewDidLoad() {
     XUI::UIViewController::viewDidLoad();
     
-    
-    view()->setBkgImg(XResource::XImage::imageNamed("login_bkg.png"));
+    view()->setBkgColor(XResource::XUIColor::redColor());
+    //view()->setBkgImg(XResource::XImage::imageNamed("login_bkg.png"));
+    /*
     auto title = std::make_shared<XUI::UITextView>();
     auto rect = XResource::XRectPro(0, 70, view()->getRect().size().Width(), 30);
     title->setRect(rect);
@@ -75,7 +76,7 @@ void LoginViewController::viewDidLoad() {
         auto text = _chatText->text()->getString();
         _chatText->setText(text + "    " + str);
     };
-    
+    */
     /*addAnimation(XUI::ValueAnimation<int>::createAni(0, 100, [nameText](int a) {
      auto rect = nameText->getRect();
      rect.X(a);

@@ -17,7 +17,11 @@ XWindow_android::XWindow_android() {
 void XWindow_android::showInFront() {
 
 }
-bool init() {
-
-    return false;
+bool XWindow_android::init(struct engine *engine) {
+    auto canvas = std::make_shared<GLCanvas_android>();
+    canvas->init(engine);
+    _canvas = canvas;
+    initFinished();
+    this->update();
+    return true;
 }
