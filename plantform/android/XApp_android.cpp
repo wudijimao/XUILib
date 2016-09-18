@@ -9,6 +9,7 @@
 
 //暂时  之后弃用struct engine
 #include "GLCanvas_android.hpp"
+#include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
@@ -43,6 +44,8 @@
 
 
 
+
+
 /**
  * Tear down the EGL context currently associated with the display.
  */
@@ -67,9 +70,14 @@ static void engine_term_display(struct engine *engine) {
  */
 static int32_t engine_handle_input(struct android_app *app, AInputEvent *event) {
     struct engine *engine = (struct engine *) app->userData;
+    auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(XDUILib::XApp::thisApp().mainWindow());
     if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-        engine->state.x = AMotionEvent_getX(event, 0);
-        engine->state.y = AMotionEvent_getY(event, 0);
+        auto touch = std::make_shared<XTouch>();
+        touch->phase = TouchPhase::Ended;
+        touch->mPosition.X(AMotionEvent_getX(event, 0));
+        touch->mPosition.Y(AMotionEvent_getY(event, 0));
+        androidWindow->input(touch);
+        androidWindow->dispatchTouchs();
         return 1;
     }
     return 0;
@@ -117,6 +125,10 @@ static void engine_handle_cmd(struct android_app *app, int32_t cmd) {
                                                 engine->accelerometerSensor);
             }
             break;
+        case APP_CMD_CUSTOM:{
+            doMainRunloop();
+        }
+            break;
     }
 }
 
@@ -132,7 +144,7 @@ namespace XDUILib {
 
 
         this->internalInit();
-        initMainRunloop();
+        initMainRunloop(state);
 
         struct engine engine;
 
@@ -174,7 +186,6 @@ namespace XDUILib {
         while (1) {
             while ((ident = ALooper_pollAll(0, NULL, &events,
                                             (void **) &source)) >= 0) {
-
                 // Process this event.
                 if (source != NULL) {
                     source->process(state, source);
@@ -199,6 +210,8 @@ namespace XDUILib {
                     return -1;
                 }
             }
+            auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(XDUILib::XApp::thisApp().mainWindow());
+            androidWindow->update();
         }
         return 0;
     }

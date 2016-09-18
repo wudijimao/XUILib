@@ -223,9 +223,9 @@ namespace XResource {
         }
         void loadDefaultFaces() {
             std::vector<std::string> fontPaths;
-            fontPaths.push_back("/System/Library/Fonts/PingFang.ttc");
-            fontPaths.push_back("/Users/ximiao/Downloads/Signed_NotoColorEmoji/system/fonts/NotoColorEmoji.ttf");
-            fontPaths.push_back("C:\\Windows\\Fonts\\msyh.ttf");
+            //fontPaths.push_back("/System/Library/Fonts/PingFang.ttc");
+            //fontPaths.push_back("/Users/ximiao/Downloads/Signed_NotoColorEmoji/system/fonts/NotoColorEmoji.ttf");
+            //fontPaths.push_back("C:\\Windows\\Fonts\\msyh.ttf");
             auto path = XBundle::libBundle()->pathForResource("font/FZMWFont", "ttf");
             fontPaths.push_back(path.UTF8CStr());
             for (auto path : fontPaths) {

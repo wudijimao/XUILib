@@ -24,7 +24,7 @@ std::shared_ptr<XDictionaryInfo> XSandBox::appDict() {
     {
         char buf[1024];
         //_getcwd(buf, sizeof(buf));
-        std::string str = std::string("/Test").c_str();
+        std::string str = std::string("/sdcard/Test").c_str();
         mAppDict.reset(new XDictionaryInfo(str.c_str()));
     }
     return mAppDict;

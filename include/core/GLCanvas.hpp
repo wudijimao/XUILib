@@ -52,6 +52,7 @@ public:
     virtual void clear();
 private:
     GLTransform3D _transform;
+protected:
     //temp
     GLProgram _program;
 };

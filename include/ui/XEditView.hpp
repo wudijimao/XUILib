@@ -19,6 +19,7 @@ namespace XUI
 		virtual void layoutSubViews() override;
         virtual void insertText(const char *text) override;
         virtual void deleteBackward() override;
+		virtual void drawRect(IXRender &render) override;
 	private:
 		std::shared_ptr<UIView> mCursor;
     };

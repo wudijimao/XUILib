@@ -37,6 +37,10 @@ namespace  XUI {
 
 	}
 
+	void UIEditView::drawRect(IXRender &render) {
+		UITextView::drawRect(render);
+	}
+
     void UIEditView::insertText(const char *text) {
         if (!mText) {
             mText = XResource::XAttributedString::attrStr("");

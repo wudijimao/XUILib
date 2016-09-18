@@ -6,4 +6,6 @@
 
 #include "../../include/core/MutiThread/XRunLoop.hpp"
 
-void initMainRunloop();
+void initMainRunloop(struct android_app *state);
+
+void doMainRunloop();

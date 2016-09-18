@@ -82,7 +82,7 @@ namespace XResource {
     bool XFileData::open(const char *fileName) {
         clear();
         bool ret = false;
-        mFileName = "/data/FragmentShader.fsh";
+        mFileName = fileName;
         FILE *fp = fopen(fileName, "rb");
         if (fp != NULL) {
             fseek(fp, 0, SEEK_END);

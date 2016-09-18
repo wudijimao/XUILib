@@ -16,7 +16,8 @@ static int engine_init_display(struct engine *engine) {
      * component compatible with on-screen windows
      */
     const EGLint attribs[] = {
-            EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+            //EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+            EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
             EGL_BLUE_SIZE, 8,
             EGL_GREEN_SIZE, 8,
             EGL_RED_SIZE, 8,
@@ -58,13 +59,19 @@ static int engine_init_display(struct engine *engine) {
         config = supportedConfigs[0];
     }
 
+    const EGLint contextAttribs[] = {
+            EGL_CONTEXT_CLIENT_VERSION, 2,
+            EGL_NONE
+    };
+
+
     /* EGL_NATIVE_VISUAL_ID is an attribute of the EGLConfig that is
      * guaranteed to be accepted by ANativeWindow_setBuffersGeometry().
      * As soon as we picked a EGLConfig, we can safely reconfigure the
      * ANativeWindow buffers to match, using EGL_NATIVE_VISUAL_ID. */
     eglGetConfigAttrib(display, config, EGL_NATIVE_VISUAL_ID, &format);
     surface = eglCreateWindowSurface(display, config, engine->app->window, NULL);
-    context = eglCreateContext(display, config, NULL, NULL);
+    context = eglCreateContext(display, config, EGL_NO_CONTEXT, contextAttribs);
 
     if (eglMakeCurrent(display, surface, surface, context) == EGL_FALSE) {
         return -1;
@@ -102,11 +109,20 @@ GLCanvas_android::GLCanvas_android() {
 
 }
 
+
+
 bool GLCanvas_android::init(struct engine *engine) {
+
     mEngine = engine;
     engine_init_display(engine);
-    _size.Width(300);
-    _size.Height(500);
+    XResource::XSize size(engine->width / 3.0f,engine->height / 3.0f);
+    setSize(size, 3);
+
+    const char* versionStr = (const char*)glGetString(GL_VERSION);
+    if (strstr(versionStr, "OpenGL ES 3.") ) {
+    } else if (strstr(versionStr, "OpenGL ES 2.")) {
+    } else {
+    }
 
     glGenRenderbuffers(1, &_renderBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
@@ -114,15 +130,31 @@ bool GLCanvas_android::init(struct engine *engine) {
     if (!this->InitGLProgram()) {
         return false;
     }
-    if (!this->InitFrameBuffer()) {
-        return false;
-    }
+//    if (!this->InitFrameBuffer()) {
+//        return false;
+//    }
 
     this->enableGLSettings();
     return true;
 }
 
+#include "../../include/core/GL/GLProgram.hpp"
+
 bool GLCanvas_android::Present() {
-    this->GLCanvas::Present();
+    GLCanvas::Present();
+//    GLuint gvPositionHandle = _program.getAttributeIndex("vPosition");// glGetAttribLocation(_program, "vPosition");
+//    const GLfloat vertices[] = {
+//            0.0f,  0.5f,
+//            -0.5f, -0.5f,
+//            0.5f, -0.5f
+//    };
+//
+//    glClearColor(1.0f, 0.3f, 0.3f, 1.0f);
+//    glClear(GL_COLOR_BUFFER_BIT);
+//    _program.enable();
+//    glVertexAttribPointer(gvPositionHandle, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+//    glEnableVertexAttribArray(gvPositionHandle);
+//    glDrawArrays(GL_TRIANGLES, 0, 3);
+
     eglSwapBuffers(mEngine->display, mEngine->surface);
 }

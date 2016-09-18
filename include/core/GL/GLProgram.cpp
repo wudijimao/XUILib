@@ -51,6 +51,8 @@ bool GLProgram::checkProgramCompilState(GLuint program) {
     return true;
 }
 
+
+
 bool GLProgram::init(const char *vertexShaderText, const char *fragmentShaderText) {
     if (vertexShaderText == nullptr || fragmentShaderText == nullptr) {
         return false;
@@ -86,6 +88,19 @@ bool GLProgram::init(const char *vertexShaderText, const char *fragmentShaderTex
     glUseProgram(_program);
     return true;
 }
+
+const char gVertexShader[] =
+        "attribute vec4 vPosition;\n"
+                "void main() {\n"
+                "  gl_Position = vPosition;\n"
+                "}\n";
+
+
+const char gFragmentShader[] =
+        "precision mediump float;\n"
+                "void main() {\n"
+                "  gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);\n"
+                "}\n";
 
 bool GLProgram::initWithFilePath(const char *vFilePath, const char *fFilePath) {
     auto vsh = XResource::XString::stringWithContentOfFile(vFilePath);

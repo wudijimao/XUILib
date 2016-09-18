@@ -3,6 +3,8 @@
 //
 
 #include "XMainRunloop_android.hpp"
+#include <unistd.h>
+//#include <utils/Looper.h>
 
 static std::shared_ptr<IXRunLoop> gXMainRunloop = std::make_shared<XMainRunloop>();
 
@@ -13,13 +15,33 @@ static ALooper *androidMainLooper = nullptr;
     return gXMainRunloop;
 }
 
+//static inline Looper* ALooper_to_Looper(ALooper* alooper) {
+//    return reinterpret_cast<Looper*>(alooper);
+//}
 
 void XMainRunloop::run() {
 }
 
+//int _ALooper_callbackFunc(int fd, int events, void *data) {
+//    gXMainRunloop->_do();
+//    return 1;
+//}
+
+void doMainRunloop() {
+    gXMainRunloop->_do();
+}
+
+struct android_app *gAndroidApp;
+
+
+static void android_app_write_cmd(struct android_app* android_app, int8_t cmd) {
+    if (write(android_app->msgwrite, &cmd, sizeof(cmd)) != sizeof(cmd)) {
+    }
+}
+
 bool XMainRunloop::weakUp(XRunLoopSource *source) {
     IXRunLoop::weakUp(source);
-    ALooper_wake(androidMainLooper);
+    android_app_write_cmd(gAndroidApp, APP_CMD_CUSTOM);
     return true;
 }
 
@@ -31,11 +53,10 @@ bool XMainRunloop::waitUntil(std::chrono::time_point<std::chrono::system_clock> 
     return true;
 }
 
-int _ALooper_callbackFunc(int fd, int events, void *data) {
-    gXMainRunloop->_do();
-}
 
-void initMainRunloop() {
+
+void initMainRunloop(struct android_app *state) {
+    gAndroidApp = state;
     androidMainLooper = ALooper_forThread();
-    ALooper_addFd(androidMainLooper, 0, 0, ALOOPER_EVENT_INPUT, &_ALooper_callbackFunc, nullptr);
+    //ALooper_addFd(androidMainLooper, ALOOPER_POLL_CALLBACK, 0, ALOOPER_EVENT_INPUT, &_ALooper_callbackFunc, nullptr);
 }

@@ -20,6 +20,7 @@ XWindow::~XWindow() {
 }
 
 void XWindow::update() {
+    if(mIsFulllyInited) {
 	auto now = std::chrono::system_clock::now();
 	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
 	/*std::stringstream st;
@@ -37,6 +38,7 @@ void XWindow::update() {
 		_rootController->draw();
         _canvas->Present();
         _canvas->popCurrent();
+    }
     }
 }
 
