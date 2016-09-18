@@ -1,4 +1,4 @@
-#include "../core/XApp.hpp"
+#include "../../include/core/XApp.hpp"
 #include "XWindow_win.hpp"
 #include "XMainRunLoop_win32.hpp"
 
@@ -23,6 +23,9 @@ namespace XDUILib
 			}
 		}
 		return msg.wParam;
+	}
+	void XApp::showSoftKeyBoard(bool) {
+
 	}
 }
 	

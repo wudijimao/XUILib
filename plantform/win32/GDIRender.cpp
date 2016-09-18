@@ -1,4 +1,4 @@
-#include "../core/stdafx.hpp"
+#include "../../include/core/stdafx.hpp"
 #include "GDICanvas.hpp"
 #include "GDIRender.hpp"
 using namespace Gdiplus;

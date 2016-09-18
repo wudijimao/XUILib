@@ -93,9 +93,6 @@
     <ClInclude Include="..\..\..\include\res\XResource.hpp">
       <Filter>Header\res</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\core\IXWindow.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
@@ -153,29 +150,8 @@
     <ClInclude Include="..\..\..\include\core\XWindow.hpp">
       <Filter>Header\core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\GDICacheGraphics.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\GDICanvas.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\GDIRender.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\core\input\XMouse.hpp">
       <Filter>Header\core\input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\dirent.h">
-      <Filter>Header\win32</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\res\XText\XText.hpp">
       <Filter>Header\res\XText</Filter>
@@ -258,9 +234,6 @@
     <ClInclude Include="..\..\..\include\core\input\XKeyBoard.hpp">
       <Filter>Header\core\input</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\win32\XMainRunLoop_win32.hpp">
-      <Filter>Header\win32</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\res\XImage\XStretchableImage.hpp">
       <Filter>Header\res\XImage</Filter>
     </ClInclude>
@@ -303,6 +276,33 @@
     <ClInclude Include="..\..\..\include\socket\xsocketserver.hpp">
       <Filter>Header\socket</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\dirent.h">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\GDICacheGraphics.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\GDICanvas.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\GDIRender.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\GlobalStatus.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\WindowsManager.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\XCanvas_win.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\XMainRunLoop_win32.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\plantform\win32\XWindow_win.hpp">
+      <Filter>Header\win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -319,9 +319,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\res\XRect.cpp">
       <Filter>Header\res</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\dllmain.cpp">
-      <Filter>Header\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\res\XData.cpp">
       <Filter>Header\res</Filter>
@@ -362,32 +359,11 @@
     <ClCompile Include="..\..\..\include\core\XResManager.cpp">
       <Filter>Header\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\XResManager_win.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\include\core\UIView.cpp">
       <Filter>Header\core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\XApp_win.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\include\core\XWindow.cpp">
       <Filter>Header\core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\XWindow_win.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\WindowsManager.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\GDIRender.cpp">
-      <Filter>Header\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\GDICacheGraphics.cpp">
-      <Filter>Header\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\input\XMouse.cpp">
       <Filter>Header\core\input</Filter>
@@ -406,9 +382,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\core\MutiThread\XDispatch.cpp">
       <Filter>Header\core\MutiThread</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\include\win32\XMainRunLoop_win32.cpp">
-      <Filter>Header\win32</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\include\http\XHTTPClient.cpp">
       <Filter>Header\http</Filter>
@@ -502,6 +475,33 @@
     </ClCompile>
     <ClCompile Include="..\..\..\include\socket\XSocketServer.cpp">
       <Filter>Header\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\dllmain.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\GDICacheGraphics.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\GDIRender.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\WindowsManager.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\XApp_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\XCanvas_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\XMainRunLoop_win32.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\XResManager_win.cpp">
+      <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\plantform\win32\XWindow_win.cpp">
+      <Filter>Header\win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#include "../core/XResManager.hpp"
+#include "../../include/core/XResManager.hpp"
 #include <direct.h>
 
 

@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>  //TODO::put into .cpp
 #ifdef TARGET_OS_MSWINDOWS
-#include "../win32/dirent.h"
+#include "../../plantform/win32/dirent.h"
 //#include <direct.h>
 #include  <io.h>
 #include  <stdio.h>

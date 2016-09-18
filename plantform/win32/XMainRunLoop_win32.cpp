@@ -1,5 +1,5 @@
-#include "../core/MutiThread/XRunLoop.hpp"
-#include "../core/XApp.hpp"
+#include "../../include/core/MutiThread/XRunLoop.hpp"
+#include "../../include/core/XApp.hpp"
 
 static const unsigned int WM_USER_RunLoopMsg = WM_USER + 1152;
 static std::shared_ptr<IXRunLoop> gXMainRunloop = std::make_shared<XMainRunloop>();

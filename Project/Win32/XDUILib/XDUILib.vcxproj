@@ -94,15 +94,15 @@
     <ClInclude Include="..\..\..\include\ui\XTextView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XUIImageView.hpp" />
     <ClInclude Include="..\..\..\include\ui\XViews.hpp" />
-    <ClInclude Include="..\..\..\include\win32\dirent.h" />
-    <ClInclude Include="..\..\..\include\win32\GDICacheGraphics.hpp" />
-    <ClInclude Include="..\..\..\include\win32\GDICanvas.hpp" />
-    <ClInclude Include="..\..\..\include\win32\GDIRender.hpp" />
-    <ClInclude Include="..\..\..\include\win32\GlobalStatus.hpp" />
-    <ClInclude Include="..\..\..\include\win32\WindowsManager.hpp" />
-    <ClInclude Include="..\..\..\include\win32\XCanvas_win.hpp" />
-    <ClInclude Include="..\..\..\include\win32\XMainRunLoop_win32.hpp" />
-    <ClInclude Include="..\..\..\include\win32\XWindow_win.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\dirent.h" />
+    <ClInclude Include="..\..\..\plantform\win32\GDICacheGraphics.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\GDICanvas.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\GDIRender.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\GlobalStatus.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\WindowsManager.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\XCanvas_win.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\XMainRunLoop_win32.hpp" />
+    <ClInclude Include="..\..\..\plantform\win32\XWindow_win.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\Animation\Animation.cpp" />
@@ -162,15 +162,15 @@
     <ClCompile Include="..\..\..\include\ui\XEditView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XTextView.cpp" />
     <ClCompile Include="..\..\..\include\ui\XUIImageView.cpp" />
-    <ClCompile Include="..\..\..\include\win32\dllmain.cpp" />
-    <ClCompile Include="..\..\..\include\win32\GDICacheGraphics.cpp" />
-    <ClCompile Include="..\..\..\include\win32\GDIRender.cpp" />
-    <ClCompile Include="..\..\..\include\win32\WindowsManager.cpp" />
-    <ClCompile Include="..\..\..\include\win32\XApp_win.cpp" />
-    <ClCompile Include="..\..\..\include\win32\XCanvas_win.cpp" />
-    <ClCompile Include="..\..\..\include\win32\XMainRunLoop_win32.cpp" />
-    <ClCompile Include="..\..\..\include\win32\XResManager_win.cpp" />
-    <ClCompile Include="..\..\..\include\win32\XWindow_win.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\dllmain.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\GDICacheGraphics.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\GDIRender.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\WindowsManager.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\XApp_win.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\XCanvas_win.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\XMainRunLoop_win32.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\XResManager_win.cpp" />
+    <ClCompile Include="..\..\..\plantform\win32\XWindow_win.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1ECAD555-F3D3-4D35-9158-9A7463A279C0}</ProjectGuid>

@@ -1,4 +1,4 @@
 #pragma once
-#include "../core/stdafx.hpp"
+#include "../../include/core/stdafx.hpp"
 
 bool handleRunLoopMsg(UINT msg);

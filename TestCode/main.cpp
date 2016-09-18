@@ -40,7 +40,7 @@ private:
 
 XDUIMain {
 	//DetectMemoryLeaks();
-	app_dummy();
+	//app_dummy();
 	auto thisApp = XTestApp();
 	thisApp.run(XDUI_RUN_PARAMS);
 }

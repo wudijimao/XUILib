@@ -1,7 +1,7 @@
 #pragma once
-#include "../core/stdafx.hpp"
+#include "../../include/core/stdafx.hpp"
 #include <gdiplus.h>
-#include "../core/IXCanvas.hpp"
+#include "../../include/core/IXCanvas.hpp"
 
 
 class GDICanvas : public IXCanvas

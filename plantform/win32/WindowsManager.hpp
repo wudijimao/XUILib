@@ -1,5 +1,5 @@
 #pragma once
-#include "../core/stdafx.hpp"
+#include "../../include/core/stdafx.hpp"
 #include "XWindow_win.hpp"
 //#include <boost/signals2.hpp>
 

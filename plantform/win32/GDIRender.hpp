@@ -1,8 +1,8 @@
 #pragma once
 #pragma warning( disable: 4251 )
-#include "../core/stdafx.hpp"
+#include "../../include/core/stdafx.hpp"
 #include <gdiplus.h>
-#include "../core/IXRender.hpp"
+#include "../../include/core/IXRender.hpp"
 
 
 class GDIPlusInitHelper

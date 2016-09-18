@@ -3,8 +3,8 @@
 #include "WindowsManager.hpp"
 #include "XCanvas_win.hpp"
 #include "core\GLRender.hpp"
-#include "../core/UIResponder.hpp"
-#include "../core/input/XMouse.hpp"
+#include "../../include/core/UIResponder.hpp"
+#include "../../include/core/input/XMouse.hpp"
 
 
 
