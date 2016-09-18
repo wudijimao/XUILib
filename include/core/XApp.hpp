@@ -37,6 +37,7 @@ namespace XDUILib
         virtual bool init();
         virtual void onStatusChanged(XAppStatus status, XAppStatus lastStatus);
         virtual ~XApp();
+        void showSoftKeyBoard(bool bShow);
     public:
         //std::shared_ptr<WindowsManager> windowsManager;
         void setMainWindow(std::shared_ptr<IXWindow> window);

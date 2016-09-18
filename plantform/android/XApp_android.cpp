@@ -10,6 +10,7 @@
 //暂时  之后弃用struct engine
 #include "GLCanvas_android.hpp"
 #include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
+#include "../../include/core/UIResponder.hpp"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
@@ -65,22 +66,72 @@ static void engine_term_display(struct engine *engine) {
     engine->surface = EGL_NO_SURFACE;
 }
 
+static struct engine *gEngine;
+
 /**
  * Process the next input event.
  */
 static int32_t engine_handle_input(struct android_app *app, AInputEvent *event) {
     struct engine *engine = (struct engine *) app->userData;
-    auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(XDUILib::XApp::thisApp().mainWindow());
-    if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-        auto touch = std::make_shared<XTouch>();
-        touch->phase = TouchPhase::Ended;
-        touch->mPosition.X(AMotionEvent_getX(event, 0));
-        touch->mPosition.Y(AMotionEvent_getY(event, 0));
-        androidWindow->input(touch);
-        androidWindow->dispatchTouchs();
-        return 1;
+    gEngine = engine;
+    auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(
+            XDUILib::XApp::thisApp().mainWindow());
+
+    int32_t lEventType = AInputEvent_getType(event);
+    switch (lEventType) {
+        case AINPUT_EVENT_TYPE_MOTION:
+//motion类型的消息的来源有两种，所以要获取消息的来源
+            switch (AInputEvent_getSource(event)) {
+
+                case AINPUT_SOURCE_TOUCHSCREEN: {//消息来源于触摸屏
+                    auto touch = std::make_shared<XTouch>();
+                    int32_t id = AMotionEvent_getAction(event);
+                    switch (id) {
+                        case AMOTION_EVENT_ACTION_MOVE:  //触摸移动消息
+                            touch->phase = TouchPhase::Moved;
+                            break;
+                        case AMOTION_EVENT_ACTION_DOWN:   //触摸按下消息
+                            touch->phase = TouchPhase::Began;
+                            break;
+                        case AMOTION_EVENT_ACTION_UP:   //触摸弹起消息
+                            touch->phase = TouchPhase::Ended;
+                            break;
+                        default:
+                            touch->phase = TouchPhase::Cancelled;
+                            break;
+                    }
+
+                    touch->mPosition.X(AMotionEvent_getX(event, 0) / 3.0);
+                    touch->mPosition.Y(AMotionEvent_getY(event, 0) / 3.0);
+                    androidWindow->input(touch);
+                    androidWindow->dispatchTouchs();
+                }
+                    break;
+                case AINPUT_SOURCE_TRACKBALL: { //消息来源于trackball
+                }
+                    break;
+            }
+
+        case AINPUT_EVENT_TYPE_KEY: { //消息来源于物理键盘或虚拟键盘，这个处理是一样的
+            switch (AKeyEvent_getAction(event)) {
+                case AKEY_EVENT_ACTION_DOWN: {
+                    char text[2];
+                    text[0] = AKeyEvent_getKeyCode(event);
+                    text[1] = '\0';
+                    XUI::UIResponder::sFirstResponder->insertText(text);
+                }
+                    break;
+                case AKEY_EVENT_ACTION_UP:
+                    break;
+                case AKEY_EVENT_ACTION_MULTIPLE: {
+                    char text = AKeyEvent_getKeyCode(event);
+                    XUI::UIResponder::sFirstResponder->insertText(&text);
+                }
+                    break;
+            }
+        }
+            break;
     }
-    return 0;
 }
 
 /**
@@ -98,7 +149,8 @@ static void engine_handle_cmd(struct android_app *app, int32_t cmd) {
         case APP_CMD_INIT_WINDOW:
             // The window is being shown, get it ready.
             if (engine->app->window != NULL) {
-                auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(XDUILib::XApp::thisApp().mainWindow());
+                auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(
+                        XDUILib::XApp::thisApp().mainWindow());
                 androidWindow->init(engine);
             }
             break;
@@ -125,7 +177,7 @@ static void engine_handle_cmd(struct android_app *app, int32_t cmd) {
                                                 engine->accelerometerSensor);
             }
             break;
-        case APP_CMD_CUSTOM:{
+        case APP_CMD_CUSTOM: {
             doMainRunloop();
         }
             break;
@@ -133,7 +185,102 @@ static void engine_handle_cmd(struct android_app *app, int32_t cmd) {
 }
 
 
+void displayKeyboard(bool pShow, android_app* mApplication) {
+    // Attaches the current thread to the JVM.
+    jint lResult;
+    jint lFlags = 0;
+
+    JavaVM* lJavaVM = mApplication->activity->vm;
+    JNIEnv* lJNIEnv = mApplication->activity->env;
+
+    JavaVMAttachArgs lJavaVMAttachArgs;
+    lJavaVMAttachArgs.version = JNI_VERSION_1_6;
+    lJavaVMAttachArgs.name = "NativeThread";
+    lJavaVMAttachArgs.group = NULL;
+
+    lResult=lJavaVM->AttachCurrentThread(&lJNIEnv, &lJavaVMAttachArgs);
+    if (lResult == JNI_ERR) {
+        return;
+    }
+
+    // Retrieves NativeActivity.
+    jobject lNativeActivity = mApplication->activity->clazz;
+    jclass ClassNativeActivity = lJNIEnv->GetObjectClass(lNativeActivity);
+
+    // Retrieves Context.INPUT_METHOD_SERVICE.
+    jclass ClassContext = lJNIEnv->FindClass("android/content/Context");
+    jfieldID FieldINPUT_METHOD_SERVICE =
+            lJNIEnv->GetStaticFieldID(ClassContext,
+                                      "INPUT_METHOD_SERVICE", "Ljava/lang/String;");
+    jobject INPUT_METHOD_SERVICE =
+            lJNIEnv->GetStaticObjectField(ClassContext,
+                                          FieldINPUT_METHOD_SERVICE);
+    //jniCheck(INPUT_METHOD_SERVICE);
+
+    // Runs getSystemService(Context.INPUT_METHOD_SERVICE).
+    jclass ClassInputMethodManager = lJNIEnv->FindClass(
+            "android/view/inputmethod/InputMethodManager");
+    jmethodID MethodGetSystemService = lJNIEnv->GetMethodID(
+            ClassNativeActivity, "getSystemService",
+            "(Ljava/lang/String;)Ljava/lang/Object;");
+    jobject lInputMethodManager = lJNIEnv->CallObjectMethod(
+            lNativeActivity, MethodGetSystemService,
+            INPUT_METHOD_SERVICE);
+
+    // Runs getWindow().getDecorView().
+    jmethodID MethodGetWindow = lJNIEnv->GetMethodID(
+            ClassNativeActivity, "getWindow",
+            "()Landroid/view/Window;");
+    jobject lWindow = lJNIEnv->CallObjectMethod(lNativeActivity,
+                                                MethodGetWindow);
+    jclass ClassWindow = lJNIEnv->FindClass(
+            "android/view/Window");
+    jmethodID MethodGetDecorView = lJNIEnv->GetMethodID(
+            ClassWindow, "getDecorView", "()Landroid/view/View;");
+    jobject lDecorView = lJNIEnv->CallObjectMethod(lWindow,
+                                                   MethodGetDecorView);
+
+    if (pShow) {
+        // Runs lInputMethodManager.showSoftInput(...).
+        jmethodID MethodShowSoftInput = lJNIEnv->GetMethodID(
+                ClassInputMethodManager, "showSoftInput",
+                "(Landroid/view/View;I)Z");
+        jboolean lResult = lJNIEnv->CallBooleanMethod(
+                lInputMethodManager, MethodShowSoftInput,
+                lDecorView, lFlags);
+    } else {
+        // Runs lWindow.getViewToken()
+        jclass ClassView = lJNIEnv->FindClass(
+                "android/view/View");
+        jmethodID MethodGetWindowToken = lJNIEnv->GetMethodID(
+                ClassView, "getWindowToken", "()Landroid/os/IBinder;");
+        jobject lBinder = lJNIEnv->CallObjectMethod(lDecorView,
+                                                    MethodGetWindowToken);
+
+        // lInputMethodManager.hideSoftInput(...).
+        jmethodID MethodHideSoftInput = lJNIEnv->GetMethodID(
+                ClassInputMethodManager, "hideSoftInputFromWindow",
+                "(Landroid/os/IBinder;I)Z");
+        jboolean lRes = lJNIEnv->CallBooleanMethod(
+                lInputMethodManager, MethodHideSoftInput,
+                lBinder, lFlags);
+    }
+
+    // Finished with the JVM.
+    lJavaVM->DetachCurrentThread();
+}
+
+
 namespace XDUILib {
+
+    void XApp::showSoftKeyBoard(bool bShow) {
+//        if(bShow) {
+//            ANativeActivity_showSoftInput(gEngine->app->activity, ANATIVEACTIVITY_SHOW_SOFT_INPUT_FORCED);
+//        } else {
+//            ANativeActivity_hideSoftInput(gEngine->app->activity, ANATIVEACTIVITY_SHOW_SOFT_INPUT_FORCED);
+//        }
+        displayKeyboard(bShow, gEngine->app);
+    }
 
     int XApp::run(struct android_app *state) {
         _thisApp = this;
@@ -210,7 +357,8 @@ namespace XDUILib {
                     return -1;
                 }
             }
-            auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(XDUILib::XApp::thisApp().mainWindow());
+            auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(
+                    XDUILib::XApp::thisApp().mainWindow());
             androidWindow->update();
         }
         return 0;

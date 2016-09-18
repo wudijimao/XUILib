@@ -10,4 +10,6 @@ public:
     XWindow_android();
     virtual void showInFront();
     bool init(struct engine *engine);
+private:
+    struct engine *mEngine;
 };

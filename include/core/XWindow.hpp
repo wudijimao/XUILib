@@ -29,6 +29,7 @@ public:
 	void dispatchInput();
 	void dispatchTouchs();
 	void dispatchMouseEvents();
+	void insertText(const char *text);
 protected:
     bool mIsFulllyInited = false;
     void initFinished();

@@ -8,6 +8,7 @@
 
 #include "XEditView.hpp"
 #include "../core/MutiThread/XTimer.hpp"
+#include "../XDUILib.hpp"
 
 namespace  XUI {
 
@@ -30,7 +31,7 @@ namespace  XUI {
 	}
 
 	void UIEditView::onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
-		
+		XDUILib::XApp::thisApp().showSoftKeyBoard(true);
 	}
 
 	void UIEditView::onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) {

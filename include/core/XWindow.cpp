@@ -42,6 +42,10 @@ void XWindow::update() {
     }
 }
 
+void XWindow::insertText(const char *text) {
+    _rootController->insertText(text);
+}
+
 void XWindow::input(const std::shared_ptr<XTouch> &touch) {
     switch (touch->phase) {
         case TouchPhase::Began: {
