@@ -1,6 +1,6 @@
 #pragma once
-#include "../core/stdafx.hpp"
-#include "../core/GLCanvas.hpp"
+#include "../../include/core/stdafx.hpp"
+#include "../../include/core/GLCanvas.hpp"
 #import "XDUIViewController.h"
 
 

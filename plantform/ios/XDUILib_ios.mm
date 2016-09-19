@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "../XDUILib.hpp"
+#include "../../include/XDUILib.hpp"
 #import <UIKit/UIKit.h>
 #import "XDUIAppDelegate.h"
 
-#import "../core/XWindow.hpp"
+#import "../../include/core/XWindow.hpp"
 
 
 namespace XDUILib
@@ -21,5 +21,8 @@ namespace XDUILib
             _thisApp = this;
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([XDUIAppDelegate class]));
         }
+    }
+    void XApp::showSoftKeyBoard(bool bShow) {
+        
     }
 }

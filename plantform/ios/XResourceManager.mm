@@ -6,7 +6,7 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#include "../core/XResManager.hpp"
+#include "../../include/core/XResManager.hpp"
 #include <sys/stat.h>
 #define _mkdir(str) mkdir(str, S_IRWXU | S_IRWXG | S_IRWXO)
 

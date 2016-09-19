@@ -7,7 +7,7 @@
 //
 
 #import "GLView.hpp"
-#include "../core/UIResponder.hpp"
+#include "../../include/core/UIResponder.hpp"
 
 @interface GLView()
 

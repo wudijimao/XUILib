@@ -7,7 +7,7 @@
 //
 
 #include "XWindow_ios.hpp"
-#include "../core/GLRender.hpp"
+#include "../../include/core/GLRender.hpp"
 #include "GLCanvas_ios.hpp"
 
 std::shared_ptr<IXWindow> IXWindow::createWindow() {

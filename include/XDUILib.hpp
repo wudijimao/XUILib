@@ -21,7 +21,7 @@
 #include "socket/XSocket.hpp"
 
 #ifdef TARGET_OS_IPHONE
-    #include "ios/XDUILib_ios.hpp"
+    #include "../plantform/ios/XDUILib_ios.hpp"
     #define XDUIMain int main(int argc, char * argv[])
     #define XDUI_RUN_PARAMS argc, argv
 #endif

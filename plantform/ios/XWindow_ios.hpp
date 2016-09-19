@@ -7,8 +7,8 @@
 //
 #pragma once
 
-#include "../core/stdafx.hpp"
-#include "../core/XWindow.hpp"
+#include "../../include/core/stdafx.hpp"
+#include "../../include/core/XWindow.hpp"
 #import "XDUIViewController.h"
 
 class XWindow_ios : public XWindow {
