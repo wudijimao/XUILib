@@ -17,8 +17,10 @@ namespace XDispatch {
               std::chrono::time_point<std::chrono::system_clock> &&in_time);
         ~XTask();
         MyFun *fun;
-        std::shared_ptr<XTaskQueue> queue;
+        
         std::chrono::time_point<std::chrono::system_clock> time;
         bool operator <(const XTask& rh);
+    public:
+        std::shared_ptr<XTaskQueue> mRunningInTaskQueue;
     };
 }

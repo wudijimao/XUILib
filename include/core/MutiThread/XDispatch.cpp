@@ -13,11 +13,11 @@ namespace XDispatch {
 			}
 			else {
 				cv.wait_until(lk, (*mQueue.begin())->time);
-				auto taskIter = mQueue.begin(); //应该可以不存这个，用begin取并不耗时
+				auto taskIter = mQueue.begin(); //应锟矫匡拷锟皆诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟絙egin取锟斤拷锟斤拷锟斤拷时
 				auto task = *taskIter;
 				auto now = std::chrono::system_clock::now();
 				if (now >= task->time) {
-					auto taskQueue = task->queue;
+					auto taskQueue = task->mRunningInTaskQueue;
 					taskQueue->push(task->fun);
 					if (taskQueue->runInPool) {
 						taskQueue->runInPool->onQueueChanged();
@@ -30,7 +30,7 @@ namespace XDispatch {
 		} while (1);
 	}
 	MyFun* XDispatchManager::copyFunction(const MyFun &fun) {
-		//拷贝function会引起很大性能损失，如何避免？  看似不能放在后台线程执行？
+		//锟斤拷锟斤拷function锟斤拷锟斤拷锟斤拷艽锟斤拷锟斤拷锟斤拷锟绞э拷锟斤拷锟轿憋拷锟解？  锟斤拷锟狡诧拷锟杰凤拷锟节猴拷台锟竭筹拷执锟叫ｏ拷
 		MyFun*copyFun = new MyFun(fun);
 		//(*copyFun)();
 		//delete copyFun;
@@ -55,7 +55,7 @@ namespace XDispatch {
 	void XDispatchManager::dispatchAfter(std::shared_ptr<XTaskQueue> taskQueue, const MyFun &fun, long delayMS) {
 		XTask *task = new XTask(copyFunction(fun), taskQueue, std::chrono::system_clock::now() + std::chrono::milliseconds(delayMS));
 		mutex.lock();
-		//TODO::排序放到dispatch线程中执行，减少阻塞主线程时间
+		//TODO::锟斤拷锟斤拷诺锟絛ispatch锟竭筹拷锟斤拷执锟叫ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟竭筹拷时锟斤拷
 		mQueue.insert(std::upper_bound(mQueue.begin(), mQueue.end(), task, [](const XTask *lh, XTask *rh)->bool {
 			return lh->time < rh->time;
 		}), task);

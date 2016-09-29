@@ -42,6 +42,7 @@ protected:
     virtual void setSize(const XResource::XSize &size, double highResolutionPixelScale) {
         _size = size;
         mHighResolutionPixelScale = highResolutionPixelScale;
+        XResource::gHighResolutionPixelScale = highResolutionPixelScale;
         _pixelSize.Width(_size.Width() * highResolutionPixelScale);
         _pixelSize.Height(_size.Height() * highResolutionPixelScale);
         _transform.setScale(2.0 / (float)size.Width(), -2.0 / (float)size.Height());
