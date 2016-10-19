@@ -13,6 +13,7 @@ namespace XUI {
     
     enum class PresentAnimation {
         None,
+        Present,
         Custom,
     };
     
@@ -22,7 +23,7 @@ namespace XUI {
         //override
         virtual void viewDidLoad();
         //do not override
-        std::shared_ptr<UIView> view();
+        std::shared_ptr<XView> view();
         void setNeedRedraw();
         void setNeedLayout();
         //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
@@ -40,7 +41,9 @@ namespace XUI {
         bool mIsNeedLayout = true;
         void LoadView();
         bool _isLoaded = false;
-        std::shared_ptr<UIView> _view;
+        std::shared_ptr<XView> _view;
+    private:
+        std::shared_ptr<UIViewController> mPresentingViewController = nullptr;
     };
 }
 

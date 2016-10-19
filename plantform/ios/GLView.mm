@@ -359,10 +359,10 @@ UIInterfaceOrientation getFixedOrientation(UIInterfaceOrientation statusBarOrien
 
 -(void) doAnimationWhenKeyboardMoveWithDuration:(float)duration distance:(float)dis
 {
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDuration:duration];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [XView beginAnimations:nil context:nil];
+//    [XView setAnimationDelegate:self];
+//    [XView setAnimationDuration:duration];
+//    [XView setAnimationBeginsFromCurrentState:YES];
 //    
 //    //NSLog(@"[animation] dis = %f, scale = %f \n", dis, cocos2d::GLView::getInstance()->getScaleY());
 //    

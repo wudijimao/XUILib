@@ -32,7 +32,7 @@ namespace XUI {
                     break;
             }
         }
-        UIView::onTouch(touch);
+        XView::onTouch(touch);
     }
     
     void XButton::onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvents) {
@@ -52,7 +52,7 @@ namespace XUI {
 				break;
 			}
 		}
-        UIView::onMouseEvent(mouseEvents);
+        XView::onMouseEvent(mouseEvents);
     }
     
     void XButton::select(bool bSel) {

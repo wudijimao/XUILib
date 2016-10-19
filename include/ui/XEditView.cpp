@@ -13,7 +13,7 @@
 namespace  XUI {
 
 	UIEditView::UIEditView() {
-		mCursor.reset(new UIView());
+		mCursor.reset(new XView());
 		auto rect = XResource::XRectPro(10, 6, 0.5, 0);
 		rect.Y2(6);
 		rect.VAlign(XResource::XRectPro::VAlign_Stretch);

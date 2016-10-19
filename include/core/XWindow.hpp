@@ -30,12 +30,17 @@ public:
 	void dispatchTouchs();
 	void dispatchMouseEvents();
 	void insertText(const char *text);
+    float getFPS();
+    int _ms[5];
+    int _max = 5;
+    int _now = 0;
+    void setMSPerFrame(int ms);
 protected:
     bool mIsFulllyInited = false;
     void initFinished();
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
-    friend class XUI::UIView;
+    friend class XUI::XView;
 private:
     bool findFitTouch(const std::shared_ptr<XTouch> &touch, std::vector<std::shared_ptr<XTouch>>::iterator &out_iter);
     
@@ -43,7 +48,7 @@ private:
     XResource::XRect _rect;
     XResource::XRect mLocalRect;//x=0,y=0
 	std::vector<std::shared_ptr<XTouch>> _touchList;
-    std::map<XUI::UIView *, std::vector<std::shared_ptr<XTouch>>> _touchsMap;
+    std::map<XUI::XView *, std::vector<std::shared_ptr<XTouch>>> _touchsMap;
     
     std::vector<std::shared_ptr<XTouch>> _lastTouchList;
 	std::vector<std::shared_ptr<XMouse>> _mouseEventList;

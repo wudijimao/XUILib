@@ -1,18 +1,20 @@
 #pragma once
+
 #include "UIResponder.hpp"
 #include "../res/XRectPro.hpp"
 #include "Animation/Animation.h"
-
+#include "GL/GLTransform3D.hpp"
 
 namespace XUI
 {
 
-    class SIMPLEDIRECTUI_API UIView : public UIResponder {
+    class SIMPLEDIRECTUI_API XView : public UIResponder {
 	public:
+        void setTransform3D(GLTransform3D &transform);
         friend class ::XWindow;
         friend class XUI::UIViewController;
-        UIView();
-        virtual ~UIView();
+        XView();
+        virtual ~XView();
         virtual void setBkgColor(const std::shared_ptr<XResource::XUIColor> &color);
         virtual void setBkgImg(const std::shared_ptr<XResource::IXImage> &img);
         virtual void setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img);
@@ -41,12 +43,12 @@ namespace XUI
         void setNeedReDraw();
         void setNeedLayout();
 		void addAnimation();
-        std::shared_ptr<UIView> getSuperView();
-        void addSubView(const std::shared_ptr<UIView> &view);
-        bool removeSubView(UIView *view);
+        std::shared_ptr<XView> getSuperView();
+        void addSubView(const std::shared_ptr<XView> &view);
+        bool removeSubView(XView *view);
         bool removeFromSuperView();
         
-        const std::vector<std::shared_ptr<UIView>> subViews();
+        const std::vector<std::shared_ptr<XView>> subViews();
         //virtual const MouseStatusStruct& MouseStatus() = 0;
         void setIsInputEnable(bool enable) {
             _isInputEnable = enable;
@@ -54,7 +56,7 @@ namespace XUI
         bool isInputEnable() {
             return _isInputEnable;
         }
-        std::shared_ptr<XUI::UIView> getResponseSubView(const std::shared_ptr<XInputWithPostion> &touch) {
+        std::shared_ptr<XUI::XView> getResponseSubView(const std::shared_ptr<XInputWithPostion> &touch) {
             auto rIter =  _subViews.rbegin();
             auto rEnd = _subViews.rend();
             while (rIter != rEnd) {
@@ -91,8 +93,8 @@ namespace XUI
         
         IXRender *mRenderer = nullptr;
         bool _isInputEnable = true;
-        UIView *_superView = nullptr;
-        std::vector<std::shared_ptr<UIView>> _subViews;
+        XView *_superView = nullptr;
+        std::vector<std::shared_ptr<XView>> _subViews;
         XResource::XRectPro _layoutRect;
         XResource::XRect _rect;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
@@ -127,6 +129,8 @@ namespace XUI
 //		virtual void RefreshAbsRect() = 0;
 //		virtual void AbsRect(const XResource::XRect& rect) = 0;
 //		virtual XResource::XPoint GetMousePos() = 0;
+    private:
+        GLTransform3D mTransform;
 	};
     
 }

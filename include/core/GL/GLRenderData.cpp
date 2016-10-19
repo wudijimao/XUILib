@@ -83,7 +83,7 @@ namespace XDUILib {
         if (image.get() != nullptr) {
             _textureId = GLTextureManager::sharedInstance().getTextureID(image);
             if (image->pixelFormat() == XResource::XImagePixelFormat::Gray) {
-                mIsAlphaTexture = true;
+                mIsAlphaTexture = true;  //For draw text with color now, I had better use argument to replace this logic
             }
         }
         

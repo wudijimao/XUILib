@@ -113,6 +113,9 @@ static int32_t engine_handle_input(struct android_app *app, AInputEvent *event) 
             }
 
         case AINPUT_EVENT_TYPE_KEY: { //消息来源于物理键盘或虚拟键盘，这个处理是一样的
+            if (XUI::UIResponder::sFirstResponder == nullptr) {
+                break;
+            }
             switch (AKeyEvent_getAction(event)) {
                 case AKEY_EVENT_ACTION_DOWN: {
                     char text[2];

@@ -10,6 +10,7 @@
 #include "GLRender.hpp"
 #include "../core/UIViewController.hpp"
 #include <chrono>
+#include <iostream>
 
 XWindow::XWindow() {
 	setPositon(XResource::XDisplayPoint(0., 0.));
@@ -29,7 +30,10 @@ void XWindow::update() {
 	st >> str;*/
 	//OutputDebugStringA(str.c_str());
 	//tempLast = now_ms.time_since_epoch().count();
-	_rootController->update(now_ms.time_since_epoch().count() - mLastTimeMs);
+    auto ms = now_ms.time_since_epoch().count() - mLastTimeMs;
+    setMSPerFrame(ms);
+    std::cout << "time:" << ms << "      fps:" << getFPS() << std::endl;
+	_rootController->update(ms);
 	mLastTimeMs = now_ms.time_since_epoch().count();
     if(mNeedReDraw) {
         mNeedReDraw = false;
@@ -106,9 +110,24 @@ void XWindow::dispatchInput() {
 	dispatchMouseEvents();
 }
 
+
+float XWindow::getFPS() {
+    float total = 0;
+    for (int i = 0; i < _max; ++i) {
+        total += _ms[i];
+    }
+    return 1000.0f / (total / _max);
+}
+void XWindow::setMSPerFrame(int ms) {
+    _ms[_now++] = ms;
+    if (_now >= _max) {
+        _now = 0;
+    }
+}
+
 void XWindow::dispatchTouchs() {
-//	std::map<XUI::UIView *, std::vector<std::shared_ptr<XTouch>>> touchsMap;
-//	std::map<XUI::UIView *, std::shared_ptr<XUI::UIView>> viewPtrMap;
+//	std::map<XUI::XView *, std::vector<std::shared_ptr<XTouch>>> touchsMap;
+//	std::map<XUI::XView *, std::shared_ptr<XUI::XView>> viewPtrMap;
 //	for (auto touch : _touchList) {
 //		auto view = _rootController->view()->getResponseSubView(touch);
 //		if (view != nullptr) {
@@ -132,8 +151,8 @@ void XWindow::dispatchTouchs() {
 	_touchList.clear();
 }
 void XWindow::dispatchMouseEvents() {
-	std::map<XUI::UIView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
-	std::map<XUI::UIView *, std::shared_ptr<XUI::UIView>> viewPtrMap;
+	std::map<XUI::XView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
+	std::map<XUI::XView *, std::shared_ptr<XUI::XView>> viewPtrMap;
 	for (auto touch : _mouseEventList) {
 		auto view = _rootController->view()->getResponseSubView(touch);
 		if (view != nullptr) {

@@ -25,7 +25,7 @@ namespace XUI
         Bottom,
     };
     
-    class SIMPLEDIRECTUI_API UITextView : public UIView {
+    class SIMPLEDIRECTUI_API UITextView : public XView {
     public:
         UITextView();
         void setFont(const std::shared_ptr<XResource::XFont> &font);

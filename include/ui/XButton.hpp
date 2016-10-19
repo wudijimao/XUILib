@@ -28,7 +28,8 @@ namespace XUI
         void copyFrom(const XButtonResHolder &res);
     };
     
-	class SIMPLEDIRECTUI_API XButton : public UIView
+    //please set normal text firstly
+	class SIMPLEDIRECTUI_API XButton : public XView
 	{
 	public:
         XButton();

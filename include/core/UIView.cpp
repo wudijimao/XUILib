@@ -1,5 +1,5 @@
 //
-//  UIView.cpp
+//  XView.cpp
 //  XDUILib
 //
 //  Created by ximiao on 16/3/27.
@@ -12,76 +12,76 @@
 
 namespace XUI
 {
-    UIView::UIView() {
+    XView::XView() {
         mRenderer = new GLRender();
         _backGroundColor = XResource::XUIColor::whiteColor();
     }
-    UIView::~UIView() {
+    XView::~XView() {
         delete mRenderer;
     }
-    void UIView::setBkgColor(const std::shared_ptr<XResource::XUIColor> &color) {
+    void XView::setBkgColor(const std::shared_ptr<XResource::XUIColor> &color) {
         setNeedReDraw();
         _backGroundColor = color;
     }
-    void UIView::setBkgImg(const std::shared_ptr<XResource::IXImage> &img) {
+    void XView::setBkgImg(const std::shared_ptr<XResource::IXImage> &img) {
         _backGroundImage = img;
         setNeedReDraw();
     }
     
-    const std::shared_ptr<XResource::IXImage>& UIView::bkgImage() {
+    const std::shared_ptr<XResource::IXImage>& XView::bkgImage() {
         return _backGroundImage;
     }
     
-    const std::shared_ptr<XResource::XStretchableImage>& UIView::bkgStretchableImage() {
+    const std::shared_ptr<XResource::XStretchableImage>& XView::bkgStretchableImage() {
         return _backGroundStretchableImage;
     }
     
-    void UIView::setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img) {
+    void XView::setBkgImg(const std::shared_ptr<XResource::XStretchableImage> &img) {
         _backGroundStretchableImage = img;
         setNeedReDraw();
     }
     
     
-    void UIView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
+    void XView::setMaskImg(const std::shared_ptr<XResource::IXImage> &img) {
         _maskImage = img;
         setNeedReDraw();
     }
     
-    void UIView::drawRect(IXRender &render) {
+    void XView::drawRect(IXRender &render) {
     }
     
-    const XResource::XRectPro& UIView::getRect() {
+    const XResource::XRectPro& XView::getRect() {
         return _layoutRect;
     }
     //		virtual void setRect(double x, double y, double width, double height) = 0;
     //		virtual void setRect(const XResource::XRect& rect) = 0;
-    void UIView::setRect(const XResource::XRectPro& rect) {
+    void XView::setRect(const XResource::XRectPro& rect) {
         _layoutRect = rect;
         setNeedLayout();
     }
     
     //override
-    void UIView::layoutSubViews() {
+    void XView::layoutSubViews() {
         
     }
     
     //do not override these function below
-    void UIView::setNeedReDraw() {
+    void XView::setNeedReDraw() {
         _needReDraw = true;
         if(mBelongingViewController != nullptr) {
             mBelongingViewController->setNeedRedraw();
         }
     }
-    void UIView::setNeedLayout() {
+    void XView::setNeedLayout() {
 		_needLayout = true;
 		if (mBelongingViewController != nullptr) {
 			mBelongingViewController->setNeedLayout();
 		}
     }
-    std::shared_ptr<UIView> UIView::getSuperView() {
-        return std::shared_ptr<UIView>();
+    std::shared_ptr<XView> XView::getSuperView() {
+        return std::shared_ptr<XView>();
     }
-    void UIView::addSubView(const std::shared_ptr<UIView> &view) {
+    void XView::addSubView(const std::shared_ptr<XView> &view) {
         //view->mRenderer->Init(render->)
         _subViews.push_back(view);
         view->_superView = this;
@@ -96,7 +96,7 @@ namespace XUI
             mBelongingViewController->setNeedRedraw();
         }
     }
-    bool UIView::removeSubView(UIView *view) {
+    bool XView::removeSubView(XView *view) {
         auto iter = _subViews.begin();
         auto end = _subViews.end();
         while (iter != end) {
@@ -110,15 +110,15 @@ namespace XUI
         }
         return false;
     }
-    bool UIView::removeFromSuperView() {
+    bool XView::removeFromSuperView() {
         return _superView->removeSubView(this);
     }
     
     
-    const std::vector<std::shared_ptr<UIView>> UIView::subViews() {
+    const std::vector<std::shared_ptr<XView>> XView::subViews() {
         return _subViews;
     }
-	void UIView::layout(const XResource::XRect &absRect) {
+	void XView::layout(const XResource::XRect &absRect) {
 		XResource::XRect tempRect = _rect;
 		_rect = this->_layoutRect.MakeAbsRect(absRect);
 		bool posChanged = (tempRect.point() != _rect.point());
@@ -145,7 +145,7 @@ namespace XUI
 			subView->layout(_rect);
 		}
 	}
-    void UIView::draw() {
+    void XView::draw() {
 		if (!mIsVisable)
 		{
 			return;
@@ -170,7 +170,7 @@ namespace XUI
         }
     }
     
-    void UIView::setClipsToBounds(bool clips) {
+    void XView::setClipsToBounds(bool clips) {
         if (mIsClipsToBounds != clips) {
             mIsClipsToBoundsInternal = mIsClipsToBounds = clips;
             if (clips) {
@@ -190,11 +190,11 @@ namespace XUI
         }
     }
     
-    bool UIView::isClipsToBounds() {
+    bool XView::isClipsToBounds() {
         return mIsClipsToBounds;
     }
     
-    void UIView::makeClipsBounds() {
+    void XView::makeClipsBounds() {
         if (_superView->mIsClipsToBoundsInternal) {
             if (mIsClipsToBounds) {
                 mClipsBounds.X((std::max)(_rect.X(), _superView->mClipsBounds.X()));
@@ -208,7 +208,7 @@ namespace XUI
             mClipsBounds = _rect;
         }
     }
-    void UIView::setClipsToBoundsInternal() {
+    void XView::setClipsToBoundsInternal() {
         mIsClipsToBoundsInternal = true;
         if (!_needLayout) {
             makeClipsBounds();
@@ -217,7 +217,7 @@ namespace XUI
             subView->setClipsToBoundsInternal();
         }
     }
-    void UIView::clearClipsToBoundsInternal() {
+    void XView::clearClipsToBoundsInternal() {
         mIsClipsToBoundsInternal = mIsClipsToBounds;
         if (!mIsClipsToBoundsInternal) {
             for (auto subView : _subViews) {
@@ -228,7 +228,7 @@ namespace XUI
     
     
 
-	void UIView::setVisible(bool visible) {
+	void XView::setVisible(bool visible) {
 		if (visible != mIsVisable)
 		{
 			mIsVisable = visible;
@@ -238,11 +238,11 @@ namespace XUI
 		}
 	}
     
-	bool UIView::isVisible() {
+	bool XView::isVisible() {
 		return mIsVisable;
 	}
     
-	bool UIView::hitTest(const std::shared_ptr<XInputWithPostion> &input) {
+	bool XView::hitTest(const std::shared_ptr<XInputWithPostion> &input) {
 		if (_isInputEnable) {
 			return _rect.isPointIn(input->mPosition);
 		}
@@ -251,7 +251,7 @@ namespace XUI
 		}
 	}
     
-    UIResponder* UIView::nextResponder() {
+    UIResponder* XView::nextResponder() {
         if (_superView != nullptr) {
             return _superView;
         } else {

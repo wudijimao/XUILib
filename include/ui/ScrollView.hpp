@@ -11,10 +11,10 @@
 
 namespace XUI
 {
-    class SIMPLEDIRECTUI_API ScrollView : public UIView {
+    class SIMPLEDIRECTUI_API ScrollView : public XView {
     public:
         ScrollView();
-        void setContentView(const std::shared_ptr<UIView> &contentView) {
+        void setContentView(const std::shared_ptr<XView> &contentView) {
             if(mContentView.get() != contentView.get()) {
                 if(mContentView) {
                     removeSubView(mContentView.get());
@@ -24,7 +24,7 @@ namespace XUI
             }
             
         }
-        std::shared_ptr<UIView> &contentView() {
+        std::shared_ptr<XView> &contentView() {
             return mContentView;
         }
         
@@ -32,7 +32,7 @@ namespace XUI
     private:
         void movePos(double x, double y);
         
-        std::shared_ptr<UIView> mContentView;
+        std::shared_ptr<XView> mContentView;
         XResource::XDisplayPoint mTouchPos;
     };
     

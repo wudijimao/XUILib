@@ -1,7 +1,7 @@
 ﻿#include <XDUILib.hpp>
 #pragma execution_character_set("utf-8")
 #include "LoginViewController.hpp"
-#include "LoginViewController.hpp"
+#include "TestViewController.hpp"
 
 //  ****Important:please set main.cpp to Object-C++ Source Type in Xcode at the FilePropty; see Xcode Setting.png in Doc******
 
@@ -24,11 +24,11 @@ void DetectMemoryLeaks()
 
 class XTestApp : public XApp {
 public:
-    std::shared_ptr<LoginViewController> mVc;
+    std::shared_ptr<XUI::UIViewController> mVc;
 	virtual bool init() {
 		__super::init();
 		setMainWindow(IXWindow::createWindow());
-		mVc = std::make_shared<LoginViewController>();
+		mVc = std::make_shared<ViewController>();
 		mainWindow()->setRootViewController(mVc);
 		return true;
 	}
@@ -40,7 +40,9 @@ private:
 
 XDUIMain {
 	//DetectMemoryLeaks();
+#ifdef TARGET_OS_ANDROID
 	app_dummy();
+#endif
 	auto thisApp = XTestApp();
 	thisApp.run(XDUI_RUN_PARAMS);
 }

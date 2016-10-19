@@ -18,7 +18,7 @@ namespace XUI
         AspectFit,  // same x,y scale to fit
     };
     
-    class SIMPLEDIRECTUI_API XUIImageView : public UIView
+    class SIMPLEDIRECTUI_API XUIImageView : public XView
     {
     public:
         XUIImageView();

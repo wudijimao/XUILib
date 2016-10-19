@@ -7,11 +7,16 @@
 //
 
 #include "UIViewController.hpp"
+#include "Animation/Animation.h"
+
+
 
 namespace XUI
 {
+    
+    ValueAnimation<float> *gAni;
 
-    std::shared_ptr<UIView> UIViewController::view() {
+    std::shared_ptr<XView> UIViewController::view() {
         if (!_isLoaded) {
             LoadView();
         }
@@ -31,7 +36,7 @@ namespace XUI
     
     void UIViewController::LoadView() {
         _isLoaded = true;
-        _view = std::make_shared<XUI::UIView>();
+        _view = std::make_shared<XUI::XView>();
         _view->mBelongingViewController = this;
         XResource::XRectPro rect;
         rect.setSize(mBelongWindow->size());
@@ -43,7 +48,19 @@ namespace XUI
     }
     
     void UIViewController::presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani) {
-        this->mBelongWindow->setRootViewController(controller);
+        switch (ani) {
+            case PresentAnimation::Present:
+                mPresentingViewController = controller;
+                gAni = new ValueAnimation<float>(0.0f, 100.0f, [](float val) {
+                    
+                });
+                gAni->play();
+                break;
+            case PresentAnimation::None:
+            default:
+                this->mBelongWindow->setRootViewController(controller);
+                break;
+        }
     }
     
     void UIViewController::update(unsigned long passedMS) {
