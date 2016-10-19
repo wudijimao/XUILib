@@ -67,12 +67,12 @@
         btn->setRect(XResource::XRectPro(205, 20, 70, 25));
         this->view()->addSubView(btn);
         btn->onClick = [this](XUI::XButton&){
-            _testSubView = std::make_shared<XUI::XView>();
-            _testSubView->setBkgColor(XResource::XUIColor::redColor());
-            _testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
-            _testSubView->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
-            this->view()->addSubView(_testSubView);
-            //this->presentViewControler(std::make_shared<LoginViewController>());
+//            _testSubView = std::make_shared<XUI::XView>();
+//            _testSubView->setBkgColor(XResource::XUIColor::redColor());
+//            _testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
+//            _testSubView->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
+//            this->view()->addSubView(_testSubView);
+            this->presentViewController(std::make_shared<LoginViewController>(), XUI::PresentAnimation::Present);
         };
 
 
@@ -104,7 +104,7 @@
 
 
         //auto vc = std::make_shared<LoginViewController>();
-        //this->presentViewControler(vc);
+        //this->presentViewController(vc);
         //        clock_t t1 = clock();
         //        for (int i = 0; i < 4; ++i) {
         //            XDispatch::dispatchAsnyc(XDispatch::getGlobleQueue(XDispatch::XTaskPriority::XTaskPriority_Default), [this, i, t1](){

@@ -13,9 +13,6 @@
 
 namespace XUI
 {
-    
-    ValueAnimation<float> *gAni;
-
     std::shared_ptr<XView> UIViewController::view() {
         if (!_isLoaded) {
             LoadView();
@@ -47,14 +44,21 @@ namespace XUI
         viewDidLoad();
     }
     
-    void UIViewController::presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani) {
+    void UIViewController::presentViewController(std::shared_ptr<UIViewController> controller,
+                                                 PresentAnimation ani) {
         switch (ani) {
-            case PresentAnimation::Present:
+            case PresentAnimation::Present: {
                 mPresentingViewController = controller;
-                gAni = new ValueAnimation<float>(0.0f, 100.0f, [](float val) {
-                    
+                this->mBelongWindow->setPresentingViewController(controller);
+                auto ani = ValueAnimation<float>::createAni(0.0f, 800.0f, [this](float val) {
+                    XResource::XRectPro rect = mPresentingViewController->view()->getRect();
+                    rect.Y(800 - val);
+                    mPresentingViewController->view()->setRect(rect);
                 });
-                gAni->play();
+                ani->setDurationMS(500);
+                controller->addAnimation(ani);
+                ani->play();
+            }
                 break;
             case PresentAnimation::None:
             default:

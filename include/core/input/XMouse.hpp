@@ -42,4 +42,21 @@ public:
         return XInputType::Mouse;
     }
 };
+enum class KeyEventType {
+	UnSet,
+	Down,
+	Up
+};
+enum class KeyEventButton {
+	None,
+	BackForward,
+};
+class SIMPLEDIRECTUI_API XKeyInput : public XInput {
+public:
+	KeyEventType eventType;
+	KeyEventButton eventButton = KeyEventButton::None;
+	virtual XInputType type() {
+		return XInputType::Key;
+	}
+};
 

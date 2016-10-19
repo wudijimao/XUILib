@@ -12,6 +12,9 @@
 #include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
 #include "../../include/core/UIResponder.hpp"
 
+#include <vector>
+#include <memory>
+
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "native-activity", __VA_ARGS__))
 #define LOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, "native-activity", __VA_ARGS__))
 
@@ -121,7 +124,19 @@ static int32_t engine_handle_input(struct android_app *app, AInputEvent *event) 
                     char text[2];
                     text[0] = AKeyEvent_getKeyCode(event);
                     text[1] = '\0';
-                    XUI::UIResponder::sFirstResponder->insertText(text);
+                    switch (text[0]) {
+                        case 0x04: {
+                            std::vector<std::shared_ptr<XKeyInput>> inputs;
+                            auto input = std::make_shared<XKeyInput>();
+                            input->eventType = KeyEventType::Down;
+                            input->eventButton = KeyEventButton::BackForward;
+                            inputs.push_back(input);
+                            XUI::UIResponder::sFirstResponder->onKeyEvent(inputs);
+                        }
+                            break;
+                        default:
+                            XUI::UIResponder::sFirstResponder->insertText(text);
+                    }
                 }
                     break;
                 case AKEY_EVENT_ACTION_UP:

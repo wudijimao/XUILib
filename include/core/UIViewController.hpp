@@ -27,7 +27,8 @@ namespace XUI {
         void setNeedRedraw();
         void setNeedLayout();
         //void setCustomPresentAnimation(PresentAnimation ani = PresentAnimation::Custom);
-        void presentViewControler(std::shared_ptr<UIViewController> controller, PresentAnimation ani = PresentAnimation::None);
+        void presentViewController(std::shared_ptr<UIViewController> controller,
+                                   PresentAnimation ani = PresentAnimation::None);
         Animation& addAnimation(const std::shared_ptr<Animation> &ani);
         bool removeAnimation(const Animation *ani);
     protected:

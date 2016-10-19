@@ -13,36 +13,42 @@
 #include <iostream>
 
 XWindow::XWindow() {
-	setPositon(XResource::XDisplayPoint(0., 0.));
-	setSize(XResource::XDisplaySize(375.0, 625.0));
+    setPositon(XResource::XDisplayPoint(0., 0.));
+    setSize(XResource::XDisplaySize(375.0, 625.0));
 }
 
 XWindow::~XWindow() {
 }
 
 void XWindow::update() {
-    if(mIsFulllyInited) {
-	auto now = std::chrono::system_clock::now();
-	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
-	/*std::stringstream st;
-	st << "time:" << now_ms.time_since_epoch().count() - tempLast << std::endl;
-	std::string str;
-	st >> str;*/
-	//OutputDebugStringA(str.c_str());
-	//tempLast = now_ms.time_since_epoch().count();
-    auto ms = now_ms.time_since_epoch().count() - mLastTimeMs;
-    setMSPerFrame(ms);
-    std::cout << "time:" << ms << "      fps:" << getFPS() << std::endl;
-	_rootController->update(ms);
-	mLastTimeMs = now_ms.time_since_epoch().count();
-    if(mNeedReDraw) {
-        mNeedReDraw = false;
-        _canvas->clear();
-        _canvas->makeCurrent();
-		_rootController->draw();
-        _canvas->Present();
-        _canvas->popCurrent();
-    }
+    if (mIsFulllyInited) {
+        auto now = std::chrono::system_clock::now();
+        auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+        /*std::stringstream st;
+        st << "time:" << now_ms.time_since_epoch().count() - tempLast << std::endl;
+        std::string str;
+        st >> str;*/
+        //OutputDebugStringA(str.c_str());
+        //tempLast = now_ms.time_since_epoch().count();
+        auto ms = now_ms.time_since_epoch().count() - mLastTimeMs;
+        setMSPerFrame(ms);
+        std::cout << "time:" << ms << "      fps:" << getFPS() << std::endl;
+        _rootController->update(ms);
+        if (mIsPresenting) {
+            _presentingVC->update(ms);
+        }
+        mLastTimeMs = now_ms.time_since_epoch().count();
+        if (mNeedReDraw) {
+            mNeedReDraw = false;
+            _canvas->clear();
+            _canvas->makeCurrent();
+            _rootController->draw();
+            if (mIsPresenting) {
+                _presentingVC->draw();
+            }
+            _canvas->Present();
+            _canvas->popCurrent();
+        }
     }
 }
 
@@ -76,22 +82,23 @@ void XWindow::input(const std::shared_ptr<XTouch> &touch) {
                 } else {
                     //std::string("吭爹啊");
                 }
-                
+
             }
         }
-            
+
             break;
     }
     _touchList.push_back(touch);
 }
 
-bool XWindow::findFitTouch(const std::shared_ptr<XTouch> &touch, std::vector<std::shared_ptr<XTouch>>::iterator& out_iter) {
+bool XWindow::findFitTouch(const std::shared_ptr<XTouch> &touch,
+                           std::vector<std::shared_ptr<XTouch>>::iterator &out_iter) {
     auto iter = _lastTouchList.begin();
     auto end = _lastTouchList.end();
     bool ret = false;
     double distance = 4000000.0;
     while (iter != end) {
-        double temp =(*iter)->mPosition.quickDistance(touch->mPosition);
+        double temp = (*iter)->mPosition.quickDistance(touch->mPosition);
         if (temp < distance) {
             distance = temp;
             out_iter = iter;
@@ -105,9 +112,10 @@ bool XWindow::findFitTouch(const std::shared_ptr<XTouch> &touch, std::vector<std
 void XWindow::input(const std::shared_ptr<XMouse> &mouseEvent) {
     _mouseEventList.push_back(mouseEvent);
 }
+
 void XWindow::dispatchInput() {
-	dispatchTouchs();
-	dispatchMouseEvents();
+    dispatchTouchs();
+    dispatchMouseEvents();
 }
 
 
@@ -118,6 +126,7 @@ float XWindow::getFPS() {
     }
     return 1000.0f / (total / _max);
 }
+
 void XWindow::setMSPerFrame(int ms) {
     _ms[_now++] = ms;
     if (_now >= _max) {
@@ -143,64 +152,65 @@ void XWindow::dispatchTouchs() {
 //		_rootController->onTouch(iter.second);
 //	}
     for (auto touchs : _touchsMap) {
-        if(touchs.second.size() > 0) {
+        if (touchs.second.size() > 0) {
             touchs.first->onTouch(touchs.second);
         }
     }
     _touchsMap.clear();
-	_touchList.clear();
+    _touchList.clear();
 }
+
 void XWindow::dispatchMouseEvents() {
-	std::map<XUI::XView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
-	std::map<XUI::XView *, std::shared_ptr<XUI::XView>> viewPtrMap;
-	for (auto touch : _mouseEventList) {
-		auto view = _rootController->view()->getResponseSubView(touch);
-		if (view != nullptr) {
-			touch->_belongView = view.get();
-			touchsMap[view.get()];
-			auto iter = touchsMap.find(view.get());
-			iter->second.push_back(touch);
-			viewPtrMap[view.get()] = view;
-		}
-	}
-	for (auto iter : touchsMap) {
-		viewPtrMap[iter.first]->onMouseEvent(iter.second);
-		_rootController->onMouseEvent(iter.second);
-	}
-	_mouseEventList.clear();
+    std::map<XUI::XView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
+    std::map<XUI::XView *, std::shared_ptr<XUI::XView>> viewPtrMap;
+    for (auto touch : _mouseEventList) {
+        auto view = _rootController->view()->getResponseSubView(touch);
+        if (view != nullptr) {
+            touch->_belongView = view.get();
+            touchsMap[view.get()];
+            auto iter = touchsMap.find(view.get());
+            iter->second.push_back(touch);
+            viewPtrMap[view.get()] = view;
+        }
+    }
+    for (auto iter : touchsMap) {
+        viewPtrMap[iter.first]->onMouseEvent(iter.second);
+        _rootController->onMouseEvent(iter.second);
+    }
+    _mouseEventList.clear();
 }
 
 void XWindow::initFinished() {
     mIsFulllyInited = true;
-	auto now = std::chrono::system_clock::now();
-	auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
-	mLastTimeMs = now_ms.time_since_epoch().count();
+    auto now = std::chrono::system_clock::now();
+    auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
+    mLastTimeMs = now_ms.time_since_epoch().count();
     if (_rootController != nullptr) {
         _rootController->view();
     }
 }
 
-const XResource::XDisplaySize& XWindow::size() {
+const XResource::XDisplaySize &XWindow::size() {
     return _rect.size();
 }
 
-const XResource::XDisplayPoint& XWindow::position() {
+const XResource::XDisplayPoint &XWindow::position() {
     return _rect.point();
 }
 
 
 void XWindow::setSize(const XResource::XDisplaySize &size) {
-	_rect.Width(size.Width());
-	_rect.Height(size.Height());
+    _rect.Width(size.Width());
+    _rect.Height(size.Height());
     mLocalRect.setSize(_rect.size());
-	if (_rootController)
-	{
-		_rootController->onWindowSizeChange(size);
-	}
+    if (_rootController) {
+        _rootController->onWindowSizeChange(size);
+    }
 }
+
 void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
-	_rect.X(pos.X());
-	_rect.Y(pos.Y());
+    _rect.X(pos.X());
+    _rect.Y(pos.Y());
 }
 
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
@@ -210,8 +220,19 @@ void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootV
     if (mIsFulllyInited) {
         _rootController->view();
     }
+    _rootController->becomFirstResponder();
 }
 
+void XWindow::setPresentingViewController(std::shared_ptr<XUI::UIViewController> presentingVC) {
+    presentingVC->mBelongWindow = this;
+    _presentingVC = presentingVC;
+    _presentingVC->onWindowSizeChange(mLocalRect.size());
+    if (mIsFulllyInited) {
+        _presentingVC->view();
+    }
+    _presentingVC->becomFirstResponder();
+    mIsPresenting = true;
+}
 
 
 

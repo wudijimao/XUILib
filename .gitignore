@@ -21,3 +21,5 @@ Project/Android/native-activity/app/app.iml
 Project/Android/native-activity/nativeactivity/nativeactivity.iml
 Project/Android/native-activity/xduilib/build
 Project/Android/native-activity/giflib/build
+Project/Android/native-activity/giflib/giflib.iml
+Project/Android/native-activity/xduilib/xduilib.iml

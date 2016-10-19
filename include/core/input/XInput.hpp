@@ -13,6 +13,7 @@ class IXWindow;
 enum class XInputType {
     Touch,
 	Mouse,
+	Key,
 };
 
 class SIMPLEDIRECTUI_API XInput {

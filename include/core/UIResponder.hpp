@@ -36,6 +36,8 @@ namespace XUI
         }
         virtual void onMouseEvent(const std::vector<std::shared_ptr<XMouse>> &mouseEvent) {
         }
+        virtual void onKeyEvent(const std::vector<std::shared_ptr<XKeyInput>> &keyEvent) {
+        }
         virtual bool hitTest(const std::shared_ptr<XInputWithPostion> &touch) {
             return false;
         }

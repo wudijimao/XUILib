@@ -8,12 +8,14 @@
 #pragma once
 #include "stdafx.hpp"
 #include "../core/IXWindow.hpp"
+#include "UIViewController.hpp"
 
 
 class SIMPLEDIRECTUI_API_DEBUG XWindow : public IXWindow {
 public:
 	~XWindow();
-	virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController);
+	virtual void setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) override;
+	virtual void setPresentingViewController(std::shared_ptr<XUI::UIViewController> presentingVC) override;
     virtual const XResource::XDisplaySize &size() override;
     virtual const XResource::XDisplayPoint &position() override;
 	virtual void setSize(const XResource::XDisplaySize &size) override;
@@ -40,6 +42,8 @@ protected:
     void initFinished();
     XWindow();
     std::shared_ptr<XUI::UIViewController> _rootController;
+	std::shared_ptr<XUI::UIViewController> _presentingVC;
+	bool mIsPresenting = false;
     friend class XUI::XView;
 private:
     bool findFitTouch(const std::shared_ptr<XTouch> &touch, std::vector<std::shared_ptr<XTouch>>::iterator &out_iter);
