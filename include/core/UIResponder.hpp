@@ -23,6 +23,7 @@ namespace XUI
     };
     class SIMPLEDIRECTUI_API UIResponder {
     public:
+        virtual ~UIResponder(){}
         static UIResponder *sFirstResponder;
         //Lower Layer Interface
         virtual UIResponder* nextResponder() {

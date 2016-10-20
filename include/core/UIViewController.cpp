@@ -10,7 +10,6 @@
 #include "Animation/Animation.h"
 
 
-
 namespace XUI
 {
     std::shared_ptr<XView> UIViewController::view() {
@@ -18,6 +17,12 @@ namespace XUI
             LoadView();
         }
         return _view;
+    }
+    UIViewController::~UIViewController() {
+        for (auto ani : mAnimations) {
+            ani->stop();
+        }
+        mAnimations.clear();
     }
     //override
     void UIViewController::viewDidLoad() {
@@ -43,26 +48,81 @@ namespace XUI
         
         viewDidLoad();
     }
+
+    void UIViewController::onKeyEvent(const std::vector<std::shared_ptr<XKeyInput>> &keyEvent) {
+        auto event = *keyEvent.begin();
+        if (event->eventType == KeyEventType::Down) {
+            if (event->eventButton == KeyEventButton::BackForward) {
+                dismiss(DismissAnimation::Dismiss);
+            }
+        }
+    }
     
-    void UIViewController::presentViewController(std::shared_ptr<UIViewController> controller,
+    void UIViewController::presentViewController(const std::shared_ptr<UIViewController> &controller,
                                                  PresentAnimation ani) {
+        mChildViewController = controller.get();
+        controller->mParentViewController = this;
         switch (ani) {
             case PresentAnimation::Present: {
                 mPresentingViewController = controller;
-                this->mBelongWindow->setPresentingViewController(controller);
-                auto ani = ValueAnimation<float>::createAni(0.0f, 800.0f, [this](float val) {
+                mBelongWindow->perparToShow(controller.get());
+                //this->mBelongWindow->setPresentingViewController(controller);
+                auto ani = ValueAnimation<float>::createAni(0.0f, 625.0f, [this](float val) {
                     XResource::XRectPro rect = mPresentingViewController->view()->getRect();
-                    rect.Y(800 - val);
+                    rect.Y(625 - val);
                     mPresentingViewController->view()->setRect(rect);
                 });
-                ani->setDurationMS(500);
+                ani->setDurationMS(700);
+                auto interpolator = std::make_shared<TestInterpolator>();
+                ani->setAnimationInterpolator(interpolator);
                 controller->addAnimation(ani);
+                ani->onFinish = [this](){
+                    getNavigationManager()->push(mPresentingViewController);
+                    mPresentingViewController->becomFirstResponder(true);//temp  FirstResponder save in VC  All showing VC will recive input firstly
+                    mPresentingViewController.reset();
+                };
                 ani->play();
             }
                 break;
             case PresentAnimation::None:
             default:
-                this->mBelongWindow->setRootViewController(controller);
+                getNavigationManager()->push(controller);
+                break;
+        }
+    }
+
+    void UIViewController::dismiss(DismissAnimation ani) {
+        if (mIsDismising || !mParentViewController || !mBelongWindow) {
+            return;
+        }
+        switch (ani) {
+            case DismissAnimation::Dismiss: {
+                mIsDismising = true;
+                auto ani = ValueAnimation<float>::createAni(0.0f, 625.0f, [this](float val) {
+                    XResource::XRectPro rect = this->view()->getRect();
+                    rect.Y(val);
+                    this->view()->setRect(rect);
+                });
+                ani->setDurationMS(700);
+                auto interpolator = std::make_shared<TestInterpolator>();
+                ani->setAnimationInterpolator(interpolator);
+                addAnimation(ani);
+                ani->onFinish = [this](){
+                    dismiss();
+                };
+                ani->play();
+            }
+                break;
+            case DismissAnimation::None:
+            default:
+                if (!mChildViewController) {
+                    getNavigationManager()->pop();
+                } else {
+                    getNavigationManager()->pop(this);
+                }
+                mParentViewController->mChildViewController = nullptr;
+                mParentViewController->becomFirstResponder(true);
+                mBelongWindow->setNeedReDraw();
                 break;
         }
     }
@@ -75,11 +135,23 @@ namespace XUI
         }
         if (mIsNeedLayout)
         {
+            mIsNeedLayout = false;
             view()->layout(mFixRect);
+        }
+        if (mIsDismising) {
+            mParentViewController->update(passedMS);
+        } else if (mPresentingViewController) {
+            mPresentingViewController->update(passedMS);
         }
     }
     void UIViewController::draw() {
+        if (mIsDismising) {
+            mParentViewController->draw();
+        }
         view()->draw();
+        if (mPresentingViewController) {
+            mPresentingViewController->draw();
+        }
     }
     
     Animation& UIViewController::addAnimation(const std::shared_ptr<Animation> &ani) {
@@ -96,6 +168,24 @@ namespace XUI
     }
     void UIViewController::setNeedLayout() {
         mIsNeedLayout = true;
+    }
+
+
+    const UIViewController* UIViewController::getChildViewController() {
+        return mChildViewController;
+    }
+    const UIViewController* UIViewController::getParentViewController() {
+        return mParentViewController;
+    }
+    const std::shared_ptr<XNavigationManager>& UIViewController::getNavigationManager() {
+        return mBelongWindow->getNavigationManager();
+    }
+
+    void UIViewController::setChildViewController(UIViewController *vc) {
+        mChildViewController = vc;
+    }
+    void UIViewController::setParentViewController(UIViewController *vc) {
+        mParentViewController = vc;
     }
 
 }

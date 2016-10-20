@@ -9,10 +9,12 @@
 #include "XWindow.hpp"
 #include "GLRender.hpp"
 #include "../core/UIViewController.hpp"
+#include "XNavigationManager.hpp"
 #include <chrono>
 #include <iostream>
 
 XWindow::XWindow() {
+    _navigationManager.reset(new XUI::XNavigationManager());
     setPositon(XResource::XDisplayPoint(0., 0.));
     setSize(XResource::XDisplaySize(375.0, 625.0));
 }
@@ -33,7 +35,7 @@ void XWindow::update() {
         auto ms = now_ms.time_since_epoch().count() - mLastTimeMs;
         setMSPerFrame(ms);
         std::cout << "time:" << ms << "      fps:" << getFPS() << std::endl;
-        _rootController->update(ms);
+        _navigationManager->getTop()->update(ms);
         if (mIsPresenting) {
             _presentingVC->update(ms);
         }
@@ -42,7 +44,7 @@ void XWindow::update() {
             mNeedReDraw = false;
             _canvas->clear();
             _canvas->makeCurrent();
-            _rootController->draw();
+            _navigationManager->getTop()->draw();
             if (mIsPresenting) {
                 _presentingVC->draw();
             }
@@ -53,13 +55,13 @@ void XWindow::update() {
 }
 
 void XWindow::insertText(const char *text) {
-    _rootController->insertText(text);
+    _navigationManager->getTop()->insertText(text);
 }
 
 void XWindow::input(const std::shared_ptr<XTouch> &touch) {
     switch (touch->phase) {
         case TouchPhase::Began: {
-            auto view = _rootController->view()->getResponseSubView(touch);
+            auto view = _navigationManager->getTop()->view()->getResponseSubView(touch);
             if (view != nullptr) {
                 touch->_belongView = view.get();
                 _touchsMap[view.get()];
@@ -164,7 +166,7 @@ void XWindow::dispatchMouseEvents() {
     std::map<XUI::XView *, std::vector<std::shared_ptr<XMouse>>> touchsMap;
     std::map<XUI::XView *, std::shared_ptr<XUI::XView>> viewPtrMap;
     for (auto touch : _mouseEventList) {
-        auto view = _rootController->view()->getResponseSubView(touch);
+        auto view = _navigationManager->getTop()->view()->getResponseSubView(touch);
         if (view != nullptr) {
             touch->_belongView = view.get();
             touchsMap[view.get()];
@@ -175,7 +177,7 @@ void XWindow::dispatchMouseEvents() {
     }
     for (auto iter : touchsMap) {
         viewPtrMap[iter.first]->onMouseEvent(iter.second);
-        _rootController->onMouseEvent(iter.second);
+        _navigationManager->getTop()->onMouseEvent(iter.second); //save topVC to local when display
     }
     _mouseEventList.clear();
 }
@@ -185,8 +187,8 @@ void XWindow::initFinished() {
     auto now = std::chrono::system_clock::now();
     auto now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(now);
     mLastTimeMs = now_ms.time_since_epoch().count();
-    if (_rootController != nullptr) {
-        _rootController->view();
+    if (_navigationManager->getTop()) {
+        perparToShow(_navigationManager->getTop().get());
     }
 }
 
@@ -203,8 +205,11 @@ void XWindow::setSize(const XResource::XDisplaySize &size) {
     _rect.Width(size.Width());
     _rect.Height(size.Height());
     mLocalRect.setSize(_rect.size());
-    if (_rootController) {
-        _rootController->onWindowSizeChange(size);
+    if (_navigationManager->getTop()) {
+        _navigationManager->getTop()->onWindowSizeChange(size);
+    }
+    if (_presentingVC) {
+        _presentingVC->onWindowSizeChange(size);
     }
 }
 
@@ -214,27 +219,29 @@ void XWindow::setPositon(const XResource::XDisplayPoint &pos) {
 }
 
 void XWindow::setRootViewController(std::shared_ptr<XUI::UIViewController> rootViewController) {
-    rootViewController->mBelongWindow = this;
-    _rootController = rootViewController;
-    _rootController->onWindowSizeChange(mLocalRect.size());
+    _navigationManager->resetRoot(rootViewController);
+    perparToShow(rootViewController.get());
+    rootViewController->becomFirstResponder();
+}
+
+void XWindow::perparToShow(XUI::UIViewController *vc) {
+    vc->mBelongWindow = this;
     if (mIsFulllyInited) {
-        _rootController->view();
+        vc->onWindowSizeChange(mLocalRect.size());
+        vc->view();
     }
-    _rootController->becomFirstResponder();
 }
 
 void XWindow::setPresentingViewController(std::shared_ptr<XUI::UIViewController> presentingVC) {
-    presentingVC->mBelongWindow = this;
     _presentingVC = presentingVC;
-    _presentingVC->onWindowSizeChange(mLocalRect.size());
-    if (mIsFulllyInited) {
-        _presentingVC->view();
-    }
+    perparToShow(presentingVC.get());
     _presentingVC->becomFirstResponder();
     mIsPresenting = true;
 }
 
 
-
+const std::shared_ptr<XUI::XNavigationManager>& XWindow::getNavigationManager() {
+    return _navigationManager;
+}
 
 

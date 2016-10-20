@@ -51,6 +51,7 @@ void LoginViewController::viewDidLoad() {
         ChatClient &client = ChatClient::getInstance();
         client.mUserID = _nameText->text()->getString().getUTF8String();
         client.run();
+        this->dismiss(XUI::DismissAnimation::Dismiss);
     };
     view()->addSubView(btn);
     btn = std::make_shared<XUI::XButton>();

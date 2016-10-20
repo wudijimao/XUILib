@@ -20,6 +20,8 @@ public:
     virtual const XResource::XDisplayPoint &position() override;
 	virtual void setSize(const XResource::XDisplaySize &size) override;
 	virtual void setPositon(const XResource::XDisplayPoint &pos) override;
+	virtual const std::shared_ptr<XUI::XNavigationManager>& getNavigationManager() override;
+	virtual void perparToShow(XUI::UIViewController *vc) override;
 	const XResource::XRect& rect() {
 		return _rect;
 	}
@@ -41,7 +43,6 @@ protected:
     bool mIsFulllyInited = false;
     void initFinished();
     XWindow();
-    std::shared_ptr<XUI::UIViewController> _rootController;
 	std::shared_ptr<XUI::UIViewController> _presentingVC;
 	bool mIsPresenting = false;
     friend class XUI::XView;
@@ -56,4 +57,6 @@ private:
     
     std::vector<std::shared_ptr<XTouch>> _lastTouchList;
 	std::vector<std::shared_ptr<XMouse>> _mouseEventList;
+
+	std::shared_ptr<XUI::XNavigationManager> _navigationManager;
 };

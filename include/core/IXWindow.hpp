@@ -7,6 +7,7 @@
 
 namespace XUI {
     class UIViewController;
+    class XNavigationManager;
 }
  
 
@@ -27,7 +28,8 @@ public:
     void setNeedReDraw() {
         mNeedReDraw = true;
     }
-
+    virtual const std::shared_ptr<XUI::XNavigationManager>& getNavigationManager() = 0;
+    virtual void perparToShow(XUI::UIViewController *vc) = 0;
 #ifdef _WINDOWS
 	virtual HWND getHandler() = 0;
 #endif // _WINDOWS

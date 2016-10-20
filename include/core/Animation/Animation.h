@@ -21,6 +21,14 @@ namespace XUI
 		}
 	};
 
+	class SIMPLEDIRECTUI_API TestInterpolator : public AnimationInterpolator {
+	public:
+		virtual double calculate(unsigned long total, unsigned long x) override {
+			double y = (double)x / (double)total * 100.0;
+			return (-0.012244897959183789*y*y+2.2367346938775574*y-1.2244897959183738)/100.0;
+		}
+	};
+
 	enum class AnimatingStates {
 		Stopped,
 		Playing,
@@ -46,6 +54,9 @@ namespace XUI
 		AnimatingStates state();
 
 		void removeFromSystem(){}
+		std::function<void(void)> onFinish;
+		std::function<void(void)> onStart;
+		std::function<void(void)> onStop;
 	protected:
 		std::function<void(double)> mProcessFun;
 		unsigned long mProcessedMs = 0;

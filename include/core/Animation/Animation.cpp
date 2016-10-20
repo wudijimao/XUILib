@@ -34,6 +34,9 @@ namespace XUI
 			mProcessedMs = 0;
 			mRepeatedTimes = 0;
 			mState = AnimatingStates::Playing;
+			if (onStart) {
+				onStart();
+			}
 			return true;
 		}
 		return false;
@@ -49,6 +52,9 @@ namespace XUI
 		{
 			mState = AnimatingStates::Stopped;
 			mProcessedMs = 0;
+			if(onStop) {
+				onStop();
+			}
 		}
 	}
 	void Animation::process(unsigned long ms) {
@@ -63,6 +69,9 @@ namespace XUI
 			}
 			else {
 				mProcessedMs = 0;
+			}
+			if (onFinish) {
+				onFinish();
 			}
 		}
 		else {
