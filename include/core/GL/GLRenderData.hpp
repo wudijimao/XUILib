@@ -15,6 +15,8 @@
 #include "GLTransform3D.hpp"
 #include <sstream>
 
+class GLRender;
+
 namespace XDUILib {
     
     enum class GLRenderDataType {
@@ -36,7 +38,7 @@ namespace XDUILib {
     class GLRenderData {
     public:
         virtual ~GLRenderData();
-        GLRenderData();
+        GLRenderData(GLRender *render);
         GLuint _vectexArrayObject;
         virtual GLRenderDataType Type();
         virtual void render() = 0;
@@ -44,9 +46,11 @@ namespace XDUILib {
         virtual void move(const XResource::XDisplayPoint &point) final;
     protected:
         GLTransform3D _transform;
+        const GLRender *_belongRender;
     };
     class GLRenderSquareData : public GLRenderData {
     public:
+        GLRenderSquareData(GLRender *render);
         GLfloat _clipsX1, _clipsX2, _clipsY1, _clipsY2;
         bool mIsClips = false;
         

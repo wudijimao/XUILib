@@ -19,6 +19,10 @@ void GLRender::clear() {
     mCachedRenderData.clear();
 }
 
+void GLRender::setTransform3D(const GLTransform3D &transform) {
+
+}
+
 void GLRender::setPosition(const XResource::XDisplayPoint &point) {
     for (auto data : mCachedRenderData)
     {
@@ -34,7 +38,7 @@ void GLRender::move(const XResource::XDisplayPoint &point) {
 
 
 void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
-    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
     static std::shared_ptr<XResource::XImage> emptyImg;
     data->initWithRect(xRect, color, emptyImg);
     data->setMaskImage(mClipsImage);
@@ -46,7 +50,7 @@ void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::X
 }
 
 void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
-    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
     data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
     data->setMaskImage(mClipsImage);
     if (mIsClipsToBounds) {
@@ -57,13 +61,13 @@ void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const
 }
 
 void GLRender::DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) {
-    XDUILib::GLRenderNineGridData *data = new XDUILib::GLRenderNineGridData();
+    XDUILib::GLRenderNineGridData *data = new XDUILib::GLRenderNineGridData(this);
     data->initWithRect(rect, image);
     mCachedRenderData.push_back(data);
 }
 
 void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
-    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData();
+    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
     data->initWithRect(xRect, color, image);
     data->setMaskImage(mClipsImage);
     if (mIsClipsToBounds) {

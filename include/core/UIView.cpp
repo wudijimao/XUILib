@@ -225,8 +225,6 @@ namespace XUI
             }
         }
     }
-    
-    
 
 	void XView::setVisible(bool visible) {
 		if (visible != mIsVisable)
@@ -258,5 +256,15 @@ namespace XUI
             return mBelongingViewController;
         }
     }
-    
+
+    void XView::setTransform3D(const GLTransform3D &transform) {
+        mTransform = transform;
+    }
+    const GLTransform3D& XView::getTransForm3D() {
+        return mTransform;
+    }
+    const GLTransform3D& XView::getGloablTransForm3D() {
+        return mCululatedGlobalTransform;
+    }
+
 }

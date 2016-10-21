@@ -1,4 +1,6 @@
 #pragma once
+
+#include <core/GL/GLTransform3D.hpp>
 #include "IXCanvas.hpp"
 #include "../res/XResource.hpp"
 
@@ -6,7 +8,8 @@
 class SIMPLEDIRECTUI_API IXRender
 {
 public:
-	virtual ~IXRender(){};
+	virtual ~IXRender(){}
+	virtual void setTransform3D(const GLTransform3D &transform) = 0;
     virtual void setPosition(const XResource::XDisplayPoint &point) = 0;
     virtual void move(const XResource::XDisplayPoint &point) = 0;
 	//virtual bool Init(IXCanvas *canvas) = 0;  use CurentCanvas

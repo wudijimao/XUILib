@@ -10,34 +10,13 @@
 
 struct SIMPLEDIRECTUI_API GLTransform3D {
 public:
-    GLTransform3D() {
-        _transformMat[0] = 1;
-        _transformMat[5] = 1;
-        _transformMat[10] = 1;
-        _transformMat[15] = 1;
-    }
+    GLTransform3D();
+    GLTransform3D(const GLTransform3D &left, const GLTransform3D &right);
     GLfloat _transformMat[16];
-    void setScale(GLfloat x, GLfloat y) {
-        _transformMat[0] = x;
-        _transformMat[5] = y;
-    }
-    void setScale(GLfloat x, GLfloat y, GLfloat z) {
-        _transformMat[0] = x;
-        _transformMat[5] = y;
-        _transformMat[10] = z;
-    }
-    void setPosition(GLfloat x, GLfloat y) {
-        _transformMat[12] = x;
-        _transformMat[13] = y;
-    }
-    void move(GLfloat x, GLfloat y) {
-        _transformMat[12] += x;
-        _transformMat[13] += y;
-    }
-    
-    void setPosition(GLfloat x, GLfloat y, GLfloat z) {
-        _transformMat[12] = x;
-        _transformMat[13] = y;
-        _transformMat[14] = z;
-    }
+    void setScale(GLfloat x, GLfloat y);
+    void setScale(GLfloat x, GLfloat y, GLfloat z);
+    void setPosition(GLfloat x, GLfloat y);
+    void move(GLfloat x, GLfloat y);
+    void setPosition(GLfloat x, GLfloat y, GLfloat z);
+    GLTransform3D operator * (const GLTransform3D&right);
 };

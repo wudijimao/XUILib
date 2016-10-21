@@ -7,12 +7,15 @@
 //
 
 #include "GLRenderData.hpp"
+#include "../GLRender.hpp"
+
+
 
 namespace XDUILib {
     GLProgram GLRenderSquareData::sProgram;
     
     GLRenderData::~GLRenderData(){};
-    GLRenderData::GLRenderData() {
+    GLRenderData::GLRenderData(GLRender *render) : _belongRender(render) {
     }
     GLuint _vectexArrayObject;
     GLRenderDataType GLRenderData::Type() {
@@ -47,6 +50,10 @@ namespace XDUILib {
         } else {
             _maskTextureId = 0;
         }
+    }
+
+
+    GLRenderSquareData::GLRenderSquareData(GLRender *render) : GLRenderData(render) {
     }
     
     void GLRenderSquareData::setSquare(const XResource::XRect &rect) {

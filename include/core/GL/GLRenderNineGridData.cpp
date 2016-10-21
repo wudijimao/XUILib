@@ -15,6 +15,8 @@ namespace XDUILib {
     GLRenderDataType GLRenderNineGridData::Type() {
         return GLRenderDataType::NineGrid;
     }
+
+    GLRenderNineGridData::GLRenderNineGridData(GLRender *render) : GLRenderData(render) { }
     
     void GLRenderNineGridData::initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image) {
         setPosition(rect.point());

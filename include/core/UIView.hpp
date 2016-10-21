@@ -10,7 +10,8 @@ namespace XUI
 
     class SIMPLEDIRECTUI_API XView : public UIResponder {
 	public:
-        void setTransform3D(GLTransform3D &transform);
+        void setTransform3D(const GLTransform3D &transform);
+        const GLTransform3D& getTransForm3D();
         friend class ::XWindow;
         friend class XUI::UIViewController;
         XView();
@@ -81,6 +82,7 @@ namespace XUI
     private:
         void layout(const XResource::XRect &absRect);
         void draw();
+        const GLTransform3D& getGloablTransForm3D();
     private:
         //internal
         void makeClipsBounds();
@@ -131,6 +133,7 @@ namespace XUI
 //		virtual XResource::XPoint GetMousePos() = 0;
     private:
         GLTransform3D mTransform;
+        GLTransform3D mCululatedGlobalTransform;
 	};
     
 }

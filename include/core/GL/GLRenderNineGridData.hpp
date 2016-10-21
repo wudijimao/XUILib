@@ -13,6 +13,7 @@
 namespace XDUILib {
     class GLRenderNineGridData : public GLRenderData {
     public:
+        GLRenderNineGridData(GLRender *render);
         virtual GLRenderDataType Type() override;
         static GLProgram sProgram;
         GLPos3D _square[16];

@@ -5,6 +5,7 @@
 class SIMPLEDIRECTUI_API GLRender : public IXRender
 {
 public:
+    virtual void setTransform3D(const GLTransform3D &transform) override;
     virtual void setPosition(const XResource::XDisplayPoint &point) override;
     virtual void move(const XResource::XDisplayPoint &point) override;
 	virtual void Submit() override; //submit paint data to canvas
@@ -31,7 +32,6 @@ private:
     bool mIsClipsToBounds;
     XResource::XRect mClipsRect;
     std::shared_ptr<XResource::IXImage> mClipsImage;
-    
     std::vector<XDUILib::GLRenderData*> mCachedRenderData;
 };
 
