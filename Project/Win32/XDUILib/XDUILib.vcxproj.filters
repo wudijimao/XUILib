@@ -303,6 +303,9 @@
     <ClInclude Include="..\..\..\plantform\win32\XWindow_win.hpp">
       <Filter>Header\win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\core\XNavigationManager.hpp">
+      <Filter>Header\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\include\core\GLCanvas.cpp">
@@ -502,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\plantform\win32\XWindow_win.cpp">
       <Filter>Header\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\include\core\XNavigationManager.cpp">
+      <Filter>Header\core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

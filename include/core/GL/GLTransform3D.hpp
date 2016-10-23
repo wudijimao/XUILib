@@ -6,17 +6,18 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #pragma once
-#include "GLHeaders.h"
+
+#include "../stdafx.hpp"
 
 struct SIMPLEDIRECTUI_API GLTransform3D {
 public:
     GLTransform3D();
     GLTransform3D(const GLTransform3D &left, const GLTransform3D &right);
-    GLfloat _transformMat[16];
-    void setScale(GLfloat x, GLfloat y);
-    void setScale(GLfloat x, GLfloat y, GLfloat z);
-    void setPosition(GLfloat x, GLfloat y);
-    void move(GLfloat x, GLfloat y);
-    void setPosition(GLfloat x, GLfloat y, GLfloat z);
+	float _transformMat[16];
+    void setScale(float x, float y);
+    void setScale(float x, float y, float z);
+    void setPosition(float x, float y);
+    void move(float x, float y);
+    void setPosition(float x, float y, float z);
     GLTransform3D operator * (const GLTransform3D&right);
 };

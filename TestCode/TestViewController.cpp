@@ -6,8 +6,11 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 
+
 #include "TestViewController.hpp"
 #include "LoginViewController.hpp"
+
+#pragma execution_character_set("utf-8")
 
 //class TestData : public XResponseData {
 //public:
@@ -62,7 +65,7 @@
         scrollView->setContentView(textView);
 
         auto btn = std::make_shared<XUI::XButton>();
-        btn->setTitle("登陆页");
+        btn->setTitle("LoginPage");
         btn->setBackgroundColor(XResource::XUIColor::blueColor(), XUI::ButtonStates::DOWN);
         btn->setRect(XResource::XRectPro(205, 20, 70, 25));
         this->view()->addSubView(btn);

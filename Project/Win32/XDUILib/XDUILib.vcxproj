@@ -51,6 +51,7 @@
     <ClInclude Include="..\..\..\include\core\UIView.hpp" />
     <ClInclude Include="..\..\..\include\core\UIViewController.hpp" />
     <ClInclude Include="..\..\..\include\core\XApp.hpp" />
+    <ClInclude Include="..\..\..\include\core\XNavigationManager.hpp" />
     <ClInclude Include="..\..\..\include\core\XNode.hpp" />
     <ClInclude Include="..\..\..\include\core\XResManager.hpp" />
     <ClInclude Include="..\..\..\include\core\XRoot.hpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="..\..\..\include\core\UIView.cpp" />
     <ClCompile Include="..\..\..\include\core\UIViewController.cpp" />
     <ClCompile Include="..\..\..\include\core\XApp.cpp" />
+    <ClCompile Include="..\..\..\include\core\XNavigationManager.cpp" />
     <ClCompile Include="..\..\..\include\core\XResManager.cpp" />
     <ClCompile Include="..\..\..\include\core\XWindow.cpp" />
     <ClCompile Include="..\..\..\include\http\XHTTPClient.cpp" />
@@ -243,7 +245,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WIN32_WINDOWS;_DEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include\;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -278,7 +280,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINDOWS;NDEBUG;_WINDOWS;_USRDLL;XDUILIB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\..\include;$(ProjectDir)..\..\..\lib\include\;$(ProjectDir)..\..\..\ThirdParty\curl\win32\;$(ProjectDir)..\..\..\ThirdParty\freetype2\win32;$(ProjectDir)..\..\..\ThirdParty\gif;$(ProjectDir)..\..\..\ThirdParty\png\win32;$(ProjectDir)..\..\..\ThirdParty\jpeg\win32;$(ProjectDir)..\..\..\ThirdParty\;$(ProjectDir)..\..\..\ThirdParty\asio</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

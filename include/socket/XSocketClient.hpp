@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../core/stdafx.hpp"
+#define ASIO_STANDALONE
 #include "asio.hpp"
 #include <iostream>
 #include "../res/XData.hpp"

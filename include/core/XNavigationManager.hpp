@@ -7,7 +7,7 @@
 
 namespace XUI {
 
-    class XNavigationManager {
+    class SIMPLEDIRECTUI_API XNavigationManager {
     private:
         std::vector<std::shared_ptr<UIViewController>> mViewControllers;
         std::shared_ptr<UIViewController> mTopVC;

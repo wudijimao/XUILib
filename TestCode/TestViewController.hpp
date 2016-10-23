@@ -6,6 +6,7 @@
 //  Copyright © 2016年 wudijimao. All rights reserved.
 //
 #pragma once
+#pragma execution_character_set("utf-8")
 
 #include <XDUILib.hpp>
 

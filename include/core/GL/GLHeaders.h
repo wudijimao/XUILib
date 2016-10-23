@@ -15,7 +15,7 @@
 
 #ifdef TARGET_OS_MSWINDOWS
 #define GLEW_STATIC
-#include <GL\glew.h>
+#include "GL\glew.h"
 #endif // TARGET_OS_MSWINDOWS
 
 
