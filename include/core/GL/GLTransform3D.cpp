@@ -10,6 +10,7 @@
 
 
 GLTransform3D::GLTransform3D() {
+	memset(&_transformMat, 0, sizeof(_transformMat));
     _transformMat[0] = 1;
     _transformMat[5] = 1;
     _transformMat[10] = 1;
