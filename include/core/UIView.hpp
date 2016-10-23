@@ -28,6 +28,7 @@ namespace XUI
 //		virtual void setRect(double x, double y, double width, double height) = 0;
 //		virtual void setRect(const XResource::XRect& rect) = 0;
         virtual void setRect(const XResource::XRectPro& rect);
+        virtual void setTransformCenter(const XResource::XDisplayPoint &point);//Relative to self
         //must override
         //can override(not have defalut behavior)
         virtual void layoutSubViews();
@@ -133,6 +134,7 @@ namespace XUI
 //		virtual XResource::XPoint GetMousePos() = 0;
     private:
         GLTransform3D mTransform;
+        XResource::XDisplayPoint mTransformCenter;
         GLTransform3D mCululatedGlobalTransform;
 	};
     

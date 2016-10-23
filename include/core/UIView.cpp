@@ -59,6 +59,9 @@ namespace XUI
         _layoutRect = rect;
         setNeedLayout();
     }
+    void XView::setTransformCenter(const XResource::XDisplayPoint &point) {
+        mTransformCenter = point;
+    }
     
     //override
     void XView::layoutSubViews() {
@@ -113,15 +116,19 @@ namespace XUI
     bool XView::removeFromSuperView() {
         return _superView->removeSubView(this);
     }
-    
-    
+
     const std::vector<std::shared_ptr<XView>> XView::subViews() {
         return _subViews;
     }
+
 	void XView::layout(const XResource::XRect &absRect) {
+        if (_superView != nullptr) {
+            mCululatedGlobalTransform = _superView->getGloablTransForm3D();
+        } else {
+            mCululatedGlobalTransform = GLTransform3D();
+        }
 		XResource::XRect tempRect = _rect;
-		_rect = this->_layoutRect.MakeAbsRect(absRect);
-		bool posChanged = (tempRect.point() != _rect.point());
+		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (sizeChanged) {
 			setNeedReDraw();
@@ -131,11 +138,6 @@ namespace XUI
 					subView->setNeedLayout();
 				}
 			}
-        } else if(posChanged) {
-            mRenderer->move(_rect.point() - tempRect.point());
-            if(mBelongingViewController != nullptr) {
-                mBelongingViewController->setNeedRedraw();
-            }
         }
         if (_needLayout && mIsClipsToBoundsInternal) {
             makeClipsBounds();

@@ -33,7 +33,7 @@ model {
         compileSdkVersion = 23
         buildToolsVersion = "23.0.2"
         defaultConfig.with {
-            minSdkVersion.apiLevel = 21
+            minSdkVersion.apiLevel = 19
             targetSdkVersion.apiLevel = 23
             versionCode = 1
             versionName = "0.0.1"

@@ -59,7 +59,62 @@ namespace XResource
 		{
 			mVAlign = vAlign;
 		}
-		virtual XRect MakeAbsRect(const XRect& parentAbsRect) const
+		void makeRealativeAbsRect(const XDisplaySize& size, XRect &out_rect) const {
+			out_rect.Width(Width());
+			//正在把算绝对位置变成算相对位置
+			switch (mHAlign)
+			{
+			case XResource::XRectPro::HAlign_Left:
+				out_rect.Width(Width());
+					out_rect.X(X());
+				break;
+			case XResource::XRectPro::HAlign_Center:
+			{
+				out_rect.Width(Width());
+				double center = size.Width() / 2.0;
+				center += (X() - mX2);
+				out_rect.X(center - Width() / 2.0);
+				break;
+			}
+			case XResource::XRectPro::HAlign_Right:
+				out_rect.Width(Width());
+					out_rect.X(size.Width() - Width());
+				break;
+			case XResource::XRectPro::HAlign_Stretch:
+				out_rect.Width(size.Width() - X() - mX2);
+					out_rect.X(X());
+				break;
+			default:
+				break;
+			}
+			switch (mVAlign)
+			{
+			case XResource::XRectPro::VAlign_Top:
+				out_rect.Height(Height());
+					out_rect.Y(Y());
+				break;
+			case XResource::XRectPro::VAlign_Center:
+			{
+				out_rect.Height(Height());
+				double center = size.Height() / 2.0;
+				center += (Y() - mY2);
+				out_rect.Y(center - Height() / 2.0);
+				break;
+			}
+			case XResource::XRectPro::VAlign_Bottom:
+				out_rect.Height(Height());
+					out_rect.Y(size.Height() - Height());
+				break;
+			case XResource::XRectPro::VAlign_Stretch:
+				out_rect.Height(size.Height() - Y() - mY2);
+					out_rect.Y(Y());
+				break;
+			default:
+				break;
+			}
+			//绝对位置 靠父transfrom3D来偏移过去 （并且这样就可以支持父View旋转等复杂操作
+		}
+		XRect MakeAbsRect(const XRect& parentAbsRect) const
 		{
 			XRect temp;
 			switch (mHAlign)
@@ -71,9 +126,9 @@ namespace XResource
 			case XResource::XRectPro::HAlign_Center:
 			{
 				temp.Width(Width());
-				//���ĵ�
+				//���ĵ�
 				double center = parentAbsRect.X() + parentAbsRect.Width() / 2.0;
-				//���ĵ����X X2 ƫ��
+				//���ĵ����X X2 ƫ��
 				center += (X() - mX2);
 				temp.X(center - Width() / 2.0);
 				break;

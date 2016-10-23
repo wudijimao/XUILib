@@ -58,7 +58,7 @@ model {
 
         defaultConfig {
             applicationId = 'com.example.native_activity'
-            minSdkVersion.apiLevel = 21
+            minSdkVersion.apiLevel = 19
             targetSdkVersion.apiLevel = 23
         }
         ndk {
