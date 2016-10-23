@@ -71,7 +71,7 @@ namespace XDUILib {
         void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image);
         virtual void render() override;
     private:
-        bool mIsAlphaTexture;
+        bool mIsAlphaTexture = false;
         virtual ~GLRenderSquareData();
         GLuint bufObjects[3];//[4];
         void buildVAO();
