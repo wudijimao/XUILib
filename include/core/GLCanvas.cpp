@@ -82,8 +82,8 @@ GLfloat transformMat[] = {
 
 bool GLCanvas::Present() {
     glViewport(0, 0, _pixelSize.Width(), _pixelSize.Height());
-//    glClearColor(1, 1, 1, 1.0);
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(1, 1, 1, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::NineGrid:

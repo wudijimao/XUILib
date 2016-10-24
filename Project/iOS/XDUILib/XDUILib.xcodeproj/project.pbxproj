@@ -249,6 +249,7 @@
 		F83FF72E1D8F9220003A7B89 /* XWindow_ios.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F83FF7191D8F9220003A7B89 /* XWindow_ios.hpp */; };
 		F83FF72F1D8F9220003A7B89 /* XWindow_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = F83FF71A1D8F9220003A7B89 /* XWindow_ios.mm */; };
 		F83FF7301D8F9220003A7B89 /* XWindow_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = F83FF71A1D8F9220003A7B89 /* XWindow_ios.mm */; };
+		F8E4E7671DBDA3A700F732C4 /* XNavigationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F8E4E7661DBDA3A700F732C4 /* XNavigationManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -432,6 +433,8 @@
 		F83FF7181D8F9220003A7B89 /* XResourceManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XResourceManager.mm; sourceTree = "<group>"; };
 		F83FF7191D8F9220003A7B89 /* XWindow_ios.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XWindow_ios.hpp; sourceTree = "<group>"; };
 		F83FF71A1D8F9220003A7B89 /* XWindow_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = XWindow_ios.mm; sourceTree = "<group>"; };
+		F8E4E7651DBDA3A700F732C4 /* XNavigationManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = XNavigationManager.hpp; sourceTree = "<group>"; };
+		F8E4E7661DBDA3A700F732C4 /* XNavigationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XNavigationManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +511,8 @@
 		3E14169C1C9B93F600A84DF1 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				F8E4E7651DBDA3A700F732C4 /* XNavigationManager.hpp */,
+				F8E4E7661DBDA3A700F732C4 /* XNavigationManager.cpp */,
 				3E9D28221D055EC5000BBC87 /* output */,
 				3EB50FFB1CE8B8E7003FF455 /* Animation */,
 				3E7F4F111CC60A61001D0C58 /* MutiThread */,
@@ -979,6 +984,7 @@
 				3EF8A3251CE0CD5E0092F3F4 /* XTextView.cpp in Sources */,
 				F83FF7221D8F9220003A7B89 /* XDUIAppDelegate.mm in Sources */,
 				3EF9FE5D1CE21C27002E19DD /* XButton.cpp in Sources */,
+				F8E4E7671DBDA3A700F732C4 /* XNavigationManager.cpp in Sources */,
 				3E8BF0951CAC0A9500A61A69 /* XTouch.cpp in Sources */,
 				3E5BC8F91CE2F8DC00E57750 /* XAttributedString.cpp in Sources */,
 				3E7F4F201CC60A61001D0C58 /* XTask.cpp in Sources */,

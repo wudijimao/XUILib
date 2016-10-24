@@ -60,23 +60,24 @@ namespace XDUILib {
         setPosition(rect.point());
         _square[0] = 0;
         _square[1] = 0;
-        _square[2] = 0.5;
+        _square[2] = 0;
         
         _square[6] = rect.Width();
         _square[7] = 0;
-        _square[8] = 0.5;
+        _square[8] = 0;
         
         _square[9] = rect.Width();
         _square[10] = rect.Height();
-        _square[11] = 0.5;
+        _square[11] = 0;
         
         _square[3] = 0;
         _square[4] = rect.Height();
-        _square[5] = 0.5;
+        _square[5] = 0;
     }
     
     void GLRenderSquareData::initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
         setSquare(rect);
+        _transform = _transform * _belongRender->getTransFrom3D();
         
         _texturePos[0] = 0.0f;
         _texturePos[1] = 0.0f;

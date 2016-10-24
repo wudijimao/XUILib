@@ -20,7 +20,11 @@ void GLRender::clear() {
 }
 
 void GLRender::setTransform3D(const GLTransform3D &transform) {
+    mTransform3D = transform;
+}
 
+const GLTransform3D& GLRender::getTransFrom3D() const {
+    return mTransform3D;
 }
 
 void GLRender::setPosition(const XResource::XDisplayPoint &point) {

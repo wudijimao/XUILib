@@ -7,6 +7,7 @@
 //
 
 #include "XTextView.hpp"
+#include "../core/output/XLog.hpp"
 
 namespace  XUI {
     

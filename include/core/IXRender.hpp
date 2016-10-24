@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/GL/GLTransform3D.hpp>
+#include "GL/GLTransform3D.hpp"
 #include "IXCanvas.hpp"
 #include "../res/XResource.hpp"
 

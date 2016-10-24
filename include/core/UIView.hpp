@@ -11,7 +11,7 @@ namespace XUI
     class SIMPLEDIRECTUI_API XView : public UIResponder {
 	public:
         void setTransform3D(const GLTransform3D &transform);
-        const GLTransform3D& getTransForm3D();
+        const GLTransform3D& getTransForm3D() const;
         friend class ::XWindow;
         friend class XUI::UIViewController;
         XView();
@@ -28,7 +28,8 @@ namespace XUI
 //		virtual void setRect(double x, double y, double width, double height) = 0;
 //		virtual void setRect(const XResource::XRect& rect) = 0;
         virtual void setRect(const XResource::XRectPro& rect);
-        virtual void setTransformCenter(const XResource::XDisplayPoint &point);//Relative to self
+        virtual void setTransformCenter(const XResource::XDisplayPoint &point) final;//Relative to self
+        virtual const XResource::XDisplayPoint getTransformCenter() const final;
         //must override
         //can override(not have defalut behavior)
         virtual void layoutSubViews();

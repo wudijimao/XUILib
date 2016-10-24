@@ -122,13 +122,21 @@ namespace XUI
     }
 
 	void XView::layout(const XResource::XRect &absRect) {
-        if (_superView != nullptr) {
-            mCululatedGlobalTransform = _superView->getGloablTransForm3D();
-        } else {
-            mCululatedGlobalTransform = GLTransform3D();
-        }
+        GLTransform3D centerTransform3D;
+        centerTransform3D.move(-mTransformCenter.X(), -mTransformCenter.Y());
+        
+        GLTransform3D transform3D;
 		XResource::XRect tempRect = _rect;
 		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
+        transform3D.move(_rect.X() + mTransformCenter.X(), _rect.Y() + mTransformCenter.Y());
+        _rect.X(0);
+        _rect.Y(0);
+        if (_superView != nullptr) {
+            mCululatedGlobalTransform = centerTransform3D * mTransform * transform3D  * _superView->getGloablTransForm3D();
+        } else {
+            mCululatedGlobalTransform = centerTransform3D * mTransform * transform3D;
+        }
+        mRenderer->setTransform3D( mCululatedGlobalTransform);
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (sizeChanged) {
 			setNeedReDraw();
@@ -262,11 +270,15 @@ namespace XUI
     void XView::setTransform3D(const GLTransform3D &transform) {
         mTransform = transform;
     }
-    const GLTransform3D& XView::getTransForm3D() {
+    const GLTransform3D& XView::getTransForm3D() const {
         return mTransform;
     }
     const GLTransform3D& XView::getGloablTransForm3D() {
         return mCululatedGlobalTransform;
+    }
+    
+    const XResource::XDisplayPoint XView::getTransformCenter() const {
+        return mTransformCenter;
     }
 
 }
