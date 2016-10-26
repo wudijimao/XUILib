@@ -5,18 +5,24 @@
 #include "../res/XResource.hpp"
 
 
+class SIMPLEDIRECTUI_API IXRenderDataPovider {
+public:
+    virtual const GLTransform3D& rd_Transform() const = 0;
+    
+    virtual bool rd_NeedClipsChildren() const = 0;
+    virtual int rd_DrawLayerIndex() const = 0;
+    virtual int rd_BeClipsDrawLayerIndex() const = 0;
+};
+
 class SIMPLEDIRECTUI_API IXRender
 {
 public:
-	virtual ~IXRender(){}
-	virtual void setTransform3D(const GLTransform3D &transform) = 0;
-    virtual void setPosition(const XResource::XDisplayPoint &point) = 0;
-    virtual void move(const XResource::XDisplayPoint &point) = 0;
+    virtual const IXRenderDataPovider& getRenderDataPovider() const = 0;
 	//virtual bool Init(IXCanvas *canvas) = 0;  use CurentCanvas
     virtual void clear() = 0;
 	virtual void Submit() = 0;
-	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) = 0;
-    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) = 0;
+	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect, bool isClipsChildren = false) = 0;
+    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect, bool isClipsChildren = false) = 0;
     virtual void DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) = 0;
     virtual void DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) = 0;
 //	virtual void DrawLine(int x1, int y1, int x2, int y2) = 0;
@@ -29,7 +35,5 @@ public:
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect) = 0;
 //	virtual XResource::XRect MeasureString(const std::wstring &text) = 0;
     virtual void DrawString(const XResource::XAttributedString &attrStr, const XResource::XRect &xRect) = 0;
-    virtual void setClipsToBounds(bool clips) = 0;
-    virtual void setBounds(const XResource::XRect &xRect) = 0;
     virtual void setMask(const std::shared_ptr<XResource::IXImage> &image) = 0;
 };

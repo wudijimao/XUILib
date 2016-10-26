@@ -7,6 +7,10 @@
 #include "GL/GLRenderNineGridData.hpp"
 #include "../res/XResource.hpp"
 
+GLRender::GLRender(const IXRenderDataPovider *renderDataPovider) {
+    mRenderDataPovider = renderDataPovider;
+}
+
 void GLRender::Submit() {
     IXCanvas::gCurrentCanvas->pushRenderData(&mCachedRenderData[0], mCachedRenderData.size());
 }
@@ -19,49 +23,17 @@ void GLRender::clear() {
     mCachedRenderData.clear();
 }
 
-void GLRender::setTransform3D(const GLTransform3D &transform) {
-    mTransform3D = transform;
+const IXRenderDataPovider& GLRender::getRenderDataPovider() const {
+    return *mRenderDataPovider;
 }
 
-const GLTransform3D& GLRender::getTransFrom3D() const {
-    return mTransform3D;
-}
-
-void GLRender::setPosition(const XResource::XDisplayPoint &point) {
-    for (auto data : mCachedRenderData)
-    {
-        data->setPosition(point);
-    }
-}
-void GLRender::move(const XResource::XDisplayPoint &point) {
-    for (auto data : mCachedRenderData)
-    {
-        data->move(point);
-    }
-}
-
-
-void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) {
-    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
+void GLRender::DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect, bool isClipsChildren) {
     static std::shared_ptr<XResource::XImage> emptyImg;
-    data->initWithRect(xRect, color, emptyImg);
-    data->setMaskImage(mClipsImage);
-    if (mIsClipsToBounds) {
-        data->setClips(true);
-        data->setClipsBound(mClipsRect);
-    }
-    mCachedRenderData.push_back(data);
+    DrawBackGround(color, emptyImg, xRect, isClipsChildren);
 }
 
 void GLRender::DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) {
-    XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
-    data->initWithRect(rect, XResource::XUIColor::clearColor()->_color, image);
-    data->setMaskImage(mClipsImage);
-    if (mIsClipsToBounds) {
-        data->setClips(true);
-        data->setClipsBound(mClipsRect);
-    }
-    mCachedRenderData.push_back(data);
+    DrawBackGround(XResource::XUIColor::clearColor()->_color, image, rect, false);
 }
 
 void GLRender::DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) {
@@ -70,13 +42,12 @@ void GLRender::DrawImage(const std::shared_ptr<XResource::XStretchableImage> &im
     mCachedRenderData.push_back(data);
 }
 
-void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) {
+void GLRender::DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect, bool isClipsChildren) {
     XDUILib::GLRenderSquareData *data = new XDUILib::GLRenderSquareData(this);
     data->initWithRect(xRect, color, image);
     data->setMaskImage(mClipsImage);
-    if (mIsClipsToBounds) {
+    if (isClipsChildren) {
         data->setClips(true);
-        data->setClipsBound(mClipsRect);
     }
     mCachedRenderData.push_back(data);
 }
@@ -90,15 +61,6 @@ void GLRender::DrawString(const XResource::XAttributedString &attrStr, const XRe
             }
         }
     }
-}
-
-
-void GLRender::setClipsToBounds(bool clips) {
-    mIsClipsToBounds = clips;
-}
-
-void GLRender::setBounds(const XResource::XRect &xRect) {
-    mClipsRect = xRect;
 }
 
 void GLRender::setMask(const std::shared_ptr<XResource::IXImage> &image) {

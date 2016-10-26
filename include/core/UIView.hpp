@@ -8,7 +8,7 @@
 namespace XUI
 {
 
-    class SIMPLEDIRECTUI_API XView : public UIResponder {
+    class SIMPLEDIRECTUI_API XView : public UIResponder, public IXRenderDataPovider {
 	public:
         void setTransform3D(const GLTransform3D &transform);
         const GLTransform3D& getTransForm3D() const;
@@ -87,13 +87,9 @@ namespace XUI
         const GLTransform3D& getGloablTransForm3D();
     private:
         //internal
-        void makeClipsBounds();
-        void setClipsToBoundsInternal();
-        void clearClipsToBoundsInternal();
-        bool mIsClipsToBoundsInternal = false;  //if has clips to bound super or self is clips
-        XResource::XRect mClipsBounds;
-        //property var
-        bool mIsClipsToBounds = false;
+        void setClipsToBoundsInternal(const XView*view);
+        void clearClipsToBoundsInternal(const XView*view);
+        
         
         IXRender *mRenderer = nullptr;
         bool _isInputEnable = true;
@@ -136,7 +132,21 @@ namespace XUI
     private:
         GLTransform3D mTransform;
         XResource::XDisplayPoint mTransformCenter;
+        GLTransform3D mTransformCenterTransform3D;
+        GLTransform3D mReltiveTransformFromTransformCenterToParent;
         GLTransform3D mCululatedGlobalTransform;
+        static int sLayoutingTopLayerIndex;
+        int mDrawLayerIndex;
+        bool mIsClipsToBounds = false;
+        //the parent drawLayerIndex which clipsToBounds is true
+        XView *mClipsParentView = nullptr;
+        
+    public:
+        virtual const GLTransform3D& rd_Transform() const override;
+        
+        virtual bool rd_NeedClipsChildren() const override;
+        virtual int rd_DrawLayerIndex() const override;
+        virtual int rd_BeClipsDrawLayerIndex() const override;
 	};
     
 }

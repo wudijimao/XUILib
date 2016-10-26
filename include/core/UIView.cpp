@@ -12,8 +12,10 @@
 
 namespace XUI
 {
+    int XView::sLayoutingTopLayerIndex = 0;
+    
     XView::XView() {
-        mRenderer = new GLRender();
+        mRenderer = new GLRender(this);
         _backGroundColor = XResource::XUIColor::whiteColor();
     }
     XView::~XView() {
@@ -61,6 +63,7 @@ namespace XUI
     }
     void XView::setTransformCenter(const XResource::XDisplayPoint &point) {
         mTransformCenter = point;
+        mTransformCenterTransform3D.setPosition(-point.X(), -point.Y());
     }
     
     //override
@@ -88,8 +91,10 @@ namespace XUI
         //view->mRenderer->Init(render->)
         _subViews.push_back(view);
         view->_superView = this;
-        if (mIsClipsToBoundsInternal) {
-            view->setClipsToBoundsInternal();
+        if (mIsClipsToBounds) {
+            view->setClipsToBoundsInternal(this);
+        } else if(mClipsParentView != nullptr) {
+            view->setClipsToBoundsInternal(mClipsParentView);
         }
         if(mBelongingViewController != nullptr) {
             view->mBelongingViewController = mBelongingViewController;
@@ -105,6 +110,7 @@ namespace XUI
         while (iter != end) {
             if ((*iter).get() == view) {
                 _subViews.erase(iter);
+                view->clearClipsToBoundsInternal(this);
                 view->_superView = nullptr;
                 setNeedReDraw();
                 return true;
@@ -122,21 +128,22 @@ namespace XUI
     }
 
 	void XView::layout(const XResource::XRect &absRect) {
-        GLTransform3D centerTransform3D;
-        centerTransform3D.move(-mTransformCenter.X(), -mTransformCenter.Y());
-        
-        GLTransform3D transform3D;
 		XResource::XRect tempRect = _rect;
 		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
-        transform3D.move(_rect.X() + mTransformCenter.X(), _rect.Y() + mTransformCenter.Y());
-        _rect.X(0);
-        _rect.Y(0);
+        
+        mReltiveTransformFromTransformCenterToParent.setPosition(_rect.X() + mTransformCenter.X(), _rect.Y() + mTransformCenter.Y());
+        
+        
+        //可以判断 一定情况下只更新transform
         if (_superView != nullptr) {
-            mCululatedGlobalTransform = centerTransform3D * mTransform * transform3D  * _superView->getGloablTransForm3D();
+            mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent  * _superView->getGloablTransForm3D();
+            sLayoutingTopLayerIndex = 0;
         } else {
-            mCululatedGlobalTransform = centerTransform3D * mTransform * transform3D;
+            mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent;
+            
         }
-        mRenderer->setTransform3D( mCululatedGlobalTransform);
+        mDrawLayerIndex = sLayoutingTopLayerIndex++;
+        
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (sizeChanged) {
 			setNeedReDraw();
@@ -147,15 +154,13 @@ namespace XUI
 				}
 			}
         }
-        if (_needLayout && mIsClipsToBoundsInternal) {
-            makeClipsBounds();
-        }
         _needLayout = false;
 		for (auto subView : _subViews) {
 			subView->layout(_rect);
 		}
 	}
     void XView::draw() {
+        //transfrom 会将坐标系转换成本地坐标系，绘制时以本View左上角为0,0
 		if (!mIsVisable)
 		{
 			return;
@@ -163,12 +168,9 @@ namespace XUI
         if (_needReDraw) {
             _needReDraw = false;
             mRenderer->clear();
-            mRenderer->setClipsToBounds(mIsClipsToBoundsInternal);
             mRenderer->setMask(_maskImage);
-            if (mIsClipsToBoundsInternal) {
-                mRenderer->setBounds(mClipsBounds);
-            }
-            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _rect);
+            XResource::XRect rect(_rect.size());
+            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, rect);
             if(_backGroundStretchableImage) {
                 mRenderer->DrawImage(_backGroundStretchableImage, _rect);
             }
@@ -182,18 +184,14 @@ namespace XUI
     
     void XView::setClipsToBounds(bool clips) {
         if (mIsClipsToBounds != clips) {
-            mIsClipsToBoundsInternal = mIsClipsToBounds = clips;
+            mIsClipsToBounds = clips;
             if (clips) {
-                mClipsBounds = _rect;
                 for (auto subView : _subViews) {
-                    subView->setClipsToBoundsInternal();
+                    subView->setClipsToBoundsInternal(this);
                 }
             } else {
-                mIsClipsToBoundsInternal = _superView->mIsClipsToBoundsInternal;
-                if (!mIsClipsToBoundsInternal) {
-                    for (auto subView : _subViews) {
-                        clearClipsToBoundsInternal();
-                    }
+                for (auto subView : _subViews) {
+                    clearClipsToBoundsInternal(this);
                 }
             }
             setNeedReDraw();
@@ -204,34 +202,19 @@ namespace XUI
         return mIsClipsToBounds;
     }
     
-    void XView::makeClipsBounds() {
-        if (_superView->mIsClipsToBoundsInternal) {
-            if (mIsClipsToBounds) {
-                mClipsBounds.X((std::max)(_rect.X(), _superView->mClipsBounds.X()));
-                mClipsBounds.Y(std::max<double>(_rect.Y(), _superView->mClipsBounds.Y()));
-                mClipsBounds.Width(std::min<double>(_rect.rX(), _superView->mClipsBounds.rX()) - mClipsBounds.X());
-                mClipsBounds.Height(std::min<double>(_rect.bY(), _superView->mClipsBounds.bY()) - mClipsBounds.Y());
-            } else {
-                mClipsBounds = _superView->mClipsBounds;
-            }
-        } else if(mIsClipsToBounds) {
-            mClipsBounds = _rect;
-        }
-    }
-    void XView::setClipsToBoundsInternal() {
-        mIsClipsToBoundsInternal = true;
-        if (!_needLayout) {
-            makeClipsBounds();
-        }
-        for (auto subView : _subViews) {
-            subView->setClipsToBoundsInternal();
-        }
-    }
-    void XView::clearClipsToBoundsInternal() {
-        mIsClipsToBoundsInternal = mIsClipsToBounds;
-        if (!mIsClipsToBoundsInternal) {
+    void XView::setClipsToBoundsInternal(const XView*view) {
+        if (mClipsParentView == nullptr) {
+            mClipsParentView == view;
             for (auto subView : _subViews) {
-                subView->clearClipsToBoundsInternal();
+                subView->setClipsToBoundsInternal(view);
+            }
+        }
+    }
+    void XView::clearClipsToBoundsInternal(const XView *view) {
+        if (mClipsParentView == view) {
+            mClipsParentView = view->mClipsParentView;
+            for (auto subView : _subViews) {
+                subView->clearClipsToBoundsInternal(view);
             }
         }
     }
@@ -281,4 +264,22 @@ namespace XUI
         return mTransformCenter;
     }
 
+    
+    const GLTransform3D& XView::rd_Transform() const {
+        return this->mCululatedGlobalTransform;
+    }
+    
+    bool XView::rd_NeedClipsChildren() const {
+        return mIsClipsToBounds;
+    }
+    int XView::rd_DrawLayerIndex() const {
+        return mDrawLayerIndex;
+    }
+    int XView::rd_BeClipsDrawLayerIndex() const {
+        if (mClipsParentView == nullptr) {
+            return 0;
+        } else {
+            return mClipsParentView->mDrawLayerIndex;
+        }
+    }
 }

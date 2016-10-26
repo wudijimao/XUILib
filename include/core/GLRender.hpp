@@ -2,17 +2,17 @@
 #include "IXRender.hpp"
 #include "GLCanvas.hpp"
 
+
+
 class SIMPLEDIRECTUI_API GLRender : public IXRender
 {
 public:
-    virtual void setTransform3D(const GLTransform3D &transform) override;
-    const GLTransform3D& getTransFrom3D() const;
-    virtual void setPosition(const XResource::XDisplayPoint &point) override;
-    virtual void move(const XResource::XDisplayPoint &point) override;
+    GLRender(const IXRenderDataPovider *renderDataPovider);
+    virtual const IXRenderDataPovider& getRenderDataPovider() const override;
 	virtual void Submit() override; //submit paint data to canvas
     virtual void clear() override;
-	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect) override;
-    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect) override;
+	virtual void DrawBackGround(const XResource::XColor &color, const XResource::XRect &xRect, bool isClipsChildren = false) override;
+    virtual void DrawBackGround(const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &xRect, bool isClipsChildren = false) override;
     virtual void DrawImage(const std::shared_ptr<XResource::IXImage> &image, const XResource::XRect &rect) override;
     virtual void DrawImage(const std::shared_ptr<XResource::XStretchableImage> &image, const XResource::XRect &rect) override;
 //	virtual void DrawLine(int x1, int y1, int x2, int y2);
@@ -25,15 +25,12 @@ public:
 //	virtual XResource::XRect MeasureString(const XResource::XText &text, const XResource::XRect &xRect);
 //	virtual XResource::XRect MeasureString(const std::wstring &text);
     
-    virtual void setClipsToBounds(bool clips) override;
-    //setBounds
-    virtual void setBounds(const XResource::XRect &xRect) override;
     virtual void setMask(const std::shared_ptr<XResource::IXImage> &image) override;
 private:
-    bool mIsClipsToBounds;
-    XResource::XRect mClipsRect;
     std::shared_ptr<XResource::IXImage> mClipsImage;
     std::vector<XDUILib::GLRenderData*> mCachedRenderData;
-    GLTransform3D mTransform3D;
+    const IXRenderDataPovider * mRenderDataPovider;
+public:
+    int mDrawLayerIndex;
 };
 

@@ -16,19 +16,6 @@ uniform mat4 viewMat;
 
 void main() {
     vec4 tempPos = vec4(inPos, 1.0);
-//    if (uIsClipsToBounds) {
-//        if (tempPos.x < uClipsBounds.x) {
-//            vTexCoord.u = 
-//            tempPos.x = uClipsBounds.x;
-//        } else if(tempPos.x > uClipsBounds.y) {
-//            tempPos.x = uClipsBounds.y;
-//        }
-//        if (tempPos.y < uClipsBounds.z) {
-//            tempPos.y = uClipsBounds.z;
-//        } else if(tempPos.y > uClipsBounds.w) {
-//            tempPos.y = uClipsBounds.w;
-//        }
-//    }
     pos = tempPos * viewMat;
     gl_Position = pos * canvasMat;
     texCoord = vTexCoord;

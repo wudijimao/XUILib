@@ -12,20 +12,11 @@ uniform bool uIsTextureAlpha;
 uniform bool useTexture;
 uniform sampler2D s_texture;
 
-uniform vec4 uClipsBounds;
-uniform bool uIsClipsToBounds;
-
 uniform sampler2D s_mask_texture;
 uniform bool uHasMaskImage;
 
 
 void main() {
-    if (uIsClipsToBounds) {
-        if (pos.x < uClipsBounds.x || pos.x > uClipsBounds.y || pos.y < uClipsBounds.z || pos.y > uClipsBounds.w) {
-            discard;
-        }
-    }
-    
 	if(useTexture) {
 		fragmentColor = texture(s_texture, texCoord);
 		if(uIsTextureAlpha) {

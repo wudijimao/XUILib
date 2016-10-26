@@ -34,7 +34,7 @@ bool GLCanvas::InitGLProgram() {
 	}
 	return ret;
 }
-
+GLuint _renderBuffer;
 bool GLCanvas::InitFrameBuffer() {
     glGenFramebuffers(1, &_framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
@@ -49,11 +49,43 @@ bool GLCanvas::InitFrameBuffer() {
 }
 
 void GLCanvas::enableGLSettings() {
+//    glGenRenderbuffers(1, &_renderBuffer);
+//    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+//    if (true) {
+//        // Depth + Stencil
+//        
+//        // Allocate storage:
+//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
+//        
+//        // Attach to depth:
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
+//        
+//        // Attach to stencil:
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
+//    }
+//    else{
+//        // Depth only
+//        
+//        // Allocate storage:
+//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
+//        
+//        // Attachto depth:
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
+//        
+//    }
+    
+    
+    
     //see docoment https://www.opengl.org/wiki/Blending
     glEnable(GL_BLEND);
     //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    
+    
+    
+    glEnable(GL_STENCIL_TEST);  //DrawLayer & ClipsChildren
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 }
 
 void GLCanvas::clear() {
@@ -83,7 +115,7 @@ GLfloat transformMat[] = {
 bool GLCanvas::Present() {
     glViewport(0, 0, _pixelSize.Width(), _pixelSize.Height());
     glClearColor(1, 1, 1, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
     for (auto data : _needRenderDatas) {
         switch(data->Type()) {
             case XDUILib::GLRenderDataType::NineGrid:

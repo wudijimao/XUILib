@@ -51,7 +51,6 @@ namespace XDUILib {
     class GLRenderSquareData : public GLRenderData {
     public:
         GLRenderSquareData(GLRender *render);
-        GLfloat _clipsX1, _clipsX2, _clipsY1, _clipsY2;
         bool mIsClips = false;
         
 		static GLProgram sProgram;
@@ -64,13 +63,13 @@ namespace XDUILib {
         
         virtual GLRenderDataType Type();
         void setClips(bool clips);
-        void setClipsBound(const XResource::XRect &rect);
         void setMaskImage(const std::shared_ptr<XResource::IXImage> image);
         
         void setSquare(const XResource::XRect &rect);
         void initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image);
         virtual void render() override;
     private:
+        int getStencilReadWriteValue();
         bool mIsAlphaTexture = false;
         virtual ~GLRenderSquareData();
         GLuint bufObjects[3];//[4];

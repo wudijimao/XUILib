@@ -37,13 +37,6 @@ namespace XDUILib {
         mIsClips = clips;
     }
     
-    void GLRenderSquareData::setClipsBound(const XResource::XRect &rect) {
-        _clipsX1 = rect.X();
-        _clipsX2 = _clipsX1 + rect.Width();
-        _clipsY1 = rect.Y();
-        _clipsY2 = _clipsY1 + rect.Height();
-    }
-    
     void GLRenderSquareData::setMaskImage(const std::shared_ptr<XResource::IXImage> image) {
         if (image.get() != nullptr) {
             _maskTextureId = GLTextureManager::sharedInstance().getTextureID(image);
@@ -57,7 +50,7 @@ namespace XDUILib {
     }
     
     void GLRenderSquareData::setSquare(const XResource::XRect &rect) {
-        setPosition(rect.point());
+        setPosition(rect.point()); //之后删除transform  直接写入到_square顶点数据中， 移动不再移动单个RenderData 而是移动整体Render的transform
         _square[0] = 0;
         _square[1] = 0;
         _square[2] = 0;
@@ -77,7 +70,7 @@ namespace XDUILib {
     
     void GLRenderSquareData::initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
         setSquare(rect);
-        _transform = _transform * _belongRender->getTransFrom3D();
+        _transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
         
         _texturePos[0] = 0.0f;
         _texturePos[1] = 0.0f;
@@ -102,14 +95,20 @@ namespace XDUILib {
         }
         buildVAO();
     }
+    
+    int GLRenderSquareData::getStencilReadWriteValue() {
+        const IXRenderDataPovider &p = _belongRender->getRenderDataPovider();
+        int a = (p.rd_DrawLayerIndex() << 4) + (p.rd_BeClipsDrawLayerIndex() & 0x00001111);
+        return a;
+    }
+    
     void GLRenderSquareData::render() {
         GLRenderSquareData::sProgram.enable();
-        sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);
-        if (mIsClips) {
-            GLRenderSquareData::sProgram.setUniformValue("uClipsBounds", _clipsX1, _clipsX2, _clipsY1, _clipsY2);
-        }
-        GLRenderSquareData::sProgram.setUniformValue("uIsClipsToBounds", mIsClips);
         
+        glStencilMask(0xF0);
+        glStencilFunc(GL_GEQUAL, getStencilReadWriteValue(), 0x0F);
+        
+        sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);  
         if(_maskTextureId > 0) {
             glActiveTexture(GL_ACTIVE_TEXTURE - 2);
             glBindTexture(GL_TEXTURE_2D, _maskTextureId);
