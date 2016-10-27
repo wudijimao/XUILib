@@ -74,7 +74,7 @@
         
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
-        imgView->setRect(XResource::XRect(10,10,140,300));
+        imgView->setRect(XResource::XRect(10, 10, 140, 100));
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::blueColor());
         btn->addSubView(imgView);
@@ -95,10 +95,6 @@
 //                tr.setScale(v, v);
                 tr.setRotationY(v);
                 btn->setTransform3D(tr);
-                btn->setNeedReDraw();
-                btn->setNeedLayout();
-                btn->subViews()[0]->setNeedLayout();
-                btn->subViews()[0]->setNeedReDraw();
                 //btn->subViews()[1]->setNeedLayout();
                 //btn->subViews()[1]->setNeedReDraw();
             });

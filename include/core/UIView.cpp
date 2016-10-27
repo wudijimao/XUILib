@@ -126,14 +126,9 @@ namespace XUI
     const std::vector<std::shared_ptr<XView>> XView::subViews() {
         return _subViews;
     }
-
-	void XView::layout(const XResource::XRect &absRect) {
-		XResource::XRect tempRect = _rect;
-		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
-        
+    
+    void XView::updateThisTransformInternal() {
         mReltiveTransformFromTransformCenterToParent.setPosition(_rect.X() + mTransformCenter.X(), _rect.Y() + mTransformCenter.Y());
-        
-        
         //可以判断 一定情况下只更新transform
         if (_superView != nullptr) {
             mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent  * _superView->getGloablTransForm3D();
@@ -142,6 +137,21 @@ namespace XUI
             mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent;
             
         }
+    }
+    void XView::updateTransformInternal() {
+        updateThisTransformInternal();
+        setNeedReDraw();
+        layoutSubViews();
+        for (auto subView : _subViews) {
+            subView->updateTransformInternal();
+        }
+    }
+
+	void XView::layout(const XResource::XRect &absRect) {
+		XResource::XRect tempRect = _rect;
+		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
+        updateThisTransformInternal();
+        
         if (mIsClipsToBounds) {
             ++sLayoutingTopLayerIndex;
         }
@@ -255,6 +265,7 @@ namespace XUI
 
     void XView::setTransform3D(const GLTransform3D &transform) {
         mTransform = transform;
+        updateTransformInternal();
     }
     const GLTransform3D& XView::getTransForm3D() const {
         return mTransform;

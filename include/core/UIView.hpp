@@ -130,6 +130,8 @@ namespace XUI
 //		virtual void AbsRect(const XResource::XRect& rect) = 0;
 //		virtual XResource::XPoint GetMousePos() = 0;
     private:
+        void updateThisTransformInternal();
+        void updateTransformInternal();
         GLTransform3D mTransform;
         XResource::XDisplayPoint mTransformCenter;
         GLTransform3D mTransformCenterTransform3D;
