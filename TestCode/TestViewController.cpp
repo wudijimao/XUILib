@@ -71,11 +71,16 @@
         btn->setTransformCenter(XResource::XDisplayPoint(90, 60));
         this->view()->addSubView(btn);
         
+        
         auto imgView = std::make_shared<XUI::XUIImageView>();
         imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
-        imgView->setRect(XResource::XRect(300,40,140,300));
+        imgView->setRect(XResource::XRect(10,10,140,300));
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
-        view()->addSubView(imgView);
+        imgView->setBkgColor(XResource::XUIColor::blueColor());
+        btn->addSubView(imgView);
+        
+        
+        view()->setBkgColor(XResource::XUIColor::lightGrayColor());
         
         btn->onClick = [this, btn](XUI::XButton&){
 //            _testSubView = std::make_shared<XUI::XView>();

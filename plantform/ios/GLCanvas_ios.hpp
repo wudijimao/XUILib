@@ -26,6 +26,11 @@ public:
         
         glGenRenderbuffers(1, &_renderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+        //glRenderbufferStorage(GL_RENDERBUFFER, GL_STENCIL_INDEX8, _size.Width() * 2, _size.Height() + 2);
+        
+        NSMutableDictionary *dict = [drawable.drawableProperties mutableCopy];
+        dict[kEAGLDrawablePropertyColorFormat] = kEAGLColorFormatSRGBA8;
+        drawable.drawableProperties = dict;
         if(![_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:drawable]) {
             assert(false);
             return false;

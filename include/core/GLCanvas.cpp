@@ -34,11 +34,42 @@ bool GLCanvas::InitGLProgram() {
 	}
 	return ret;
 }
-GLuint _renderBuffer;
+
+GLuint _setlicRenderBuffer;
+
+
 bool GLCanvas::InitFrameBuffer() {
     glGenFramebuffers(1, &_framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
+    
+    glGenRenderbuffers(1, &_setlicRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, _setlicRenderBuffer);
+    if (true) {
+        // Depth + Stencil
+        
+        // Allocate storage:
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
+        
+        // Attach to depth:
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+        
+        // Attach to stencil:
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+    }
+    else{
+        // Depth only
+        
+        // Allocate storage:
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
+        
+        // Attachto depth:
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+        
+    }
+    
+    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBuffer);
+    //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
     //声明并赋值一个GL枚举变量，赋值为检测GL_FRAMEBUFFER状态的返回值，
     GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
     //如果状态不完全
@@ -49,33 +80,6 @@ bool GLCanvas::InitFrameBuffer() {
 }
 
 void GLCanvas::enableGLSettings() {
-//    glGenRenderbuffers(1, &_renderBuffer);
-//    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
-//    if (true) {
-//        // Depth + Stencil
-//        
-//        // Allocate storage:
-//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
-//        
-//        // Attach to depth:
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
-//        
-//        // Attach to stencil:
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
-//    }
-//    else{
-//        // Depth only
-//        
-//        // Allocate storage:
-//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
-//        
-//        // Attachto depth:
-//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _renderBuffer);
-//        
-//    }
-    
-    
-    
     //see docoment https://www.opengl.org/wiki/Blending
     glEnable(GL_BLEND);
     //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
@@ -83,9 +87,7 @@ void GLCanvas::enableGLSettings() {
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
     
-    
     glEnable(GL_STENCIL_TEST);  //DrawLayer & ClipsChildren
-    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 }
 
 void GLCanvas::clear() {

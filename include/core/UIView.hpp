@@ -139,14 +139,14 @@ namespace XUI
         int mDrawLayerIndex;
         bool mIsClipsToBounds = false;
         //the parent drawLayerIndex which clipsToBounds is true
-        XView *mClipsParentView = nullptr;
+        const XView *mClipsParentView = nullptr;
         
     public:
         virtual const GLTransform3D& rd_Transform() const override;
         
         virtual bool rd_NeedClipsChildren() const override;
         virtual int rd_DrawLayerIndex() const override;
-        virtual int rd_BeClipsDrawLayerIndex() const override;
+        virtual int rd_BeClipsDrawLayerIndex(bool isClipsChildren) const override;
 	};
     
 }

@@ -137,12 +137,15 @@ namespace XUI
         //可以判断 一定情况下只更新transform
         if (_superView != nullptr) {
             mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent  * _superView->getGloablTransForm3D();
-            sLayoutingTopLayerIndex = 0;
         } else {
+            sLayoutingTopLayerIndex = 0;
             mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent;
             
         }
-        mDrawLayerIndex = sLayoutingTopLayerIndex++;
+        if (mIsClipsToBounds) {
+            ++sLayoutingTopLayerIndex;
+        }
+        mDrawLayerIndex = sLayoutingTopLayerIndex;
         
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (sizeChanged) {
@@ -170,7 +173,7 @@ namespace XUI
             mRenderer->clear();
             mRenderer->setMask(_maskImage);
             XResource::XRect rect(_rect.size());
-            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, rect);
+            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, rect, mIsClipsToBounds);
             if(_backGroundStretchableImage) {
                 mRenderer->DrawImage(_backGroundStretchableImage, _rect);
             }
@@ -204,7 +207,7 @@ namespace XUI
     
     void XView::setClipsToBoundsInternal(const XView*view) {
         if (mClipsParentView == nullptr) {
-            mClipsParentView == view;
+            mClipsParentView = view;
             for (auto subView : _subViews) {
                 subView->setClipsToBoundsInternal(view);
             }
@@ -275,8 +278,10 @@ namespace XUI
     int XView::rd_DrawLayerIndex() const {
         return mDrawLayerIndex;
     }
-    int XView::rd_BeClipsDrawLayerIndex() const {
-        if (mClipsParentView == nullptr) {
+    int XView::rd_BeClipsDrawLayerIndex(bool isClipsChildren) const {
+        if (mIsClipsToBounds && !isClipsChildren) {
+            return mDrawLayerIndex;
+        } else if (mClipsParentView == nullptr) {
             return 0;
         } else {
             return mClipsParentView->mDrawLayerIndex;

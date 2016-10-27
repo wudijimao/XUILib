@@ -66,7 +66,8 @@ namespace XUI
     
     void XUIImageView::drawRect(IXRender &render) {
         if (mDisplayingImage) {
-            auto rect = getFixRect();
+            //TODO: do not need X Y  only need size()
+            auto rect = XResource::XRect(getFixRect().size());
             auto size = mDisplayingImage->size();
             switch (mScaleType) {
                 case XUIImageScaleType::Original:

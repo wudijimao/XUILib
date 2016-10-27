@@ -11,7 +11,7 @@ public:
     
     virtual bool rd_NeedClipsChildren() const = 0;
     virtual int rd_DrawLayerIndex() const = 0;
-    virtual int rd_BeClipsDrawLayerIndex() const = 0;
+    virtual int rd_BeClipsDrawLayerIndex(bool isClipsChildren) const = 0;
 };
 
 class SIMPLEDIRECTUI_API IXRender

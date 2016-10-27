@@ -98,15 +98,23 @@ namespace XDUILib {
     
     int GLRenderSquareData::getStencilReadWriteValue() {
         const IXRenderDataPovider &p = _belongRender->getRenderDataPovider();
-        int a = (p.rd_DrawLayerIndex() << 4) + (p.rd_BeClipsDrawLayerIndex() & 0x00001111);
+        int a = (p.rd_DrawLayerIndex() << 4) + (p.rd_BeClipsDrawLayerIndex(mIsClips) & 0x0F);
         return a;
     }
     
     void GLRenderSquareData::render() {
         GLRenderSquareData::sProgram.enable();
         
-        glStencilMask(0xF0);
-        glStencilFunc(GL_GEQUAL, getStencilReadWriteValue(), 0x0F);
+        if(mIsClips) {
+            glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
+            //glStencilMask(0xFF);
+            glStencilFunc(GL_EQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+        } else {
+            glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+            //glStencilMask(0x00);
+            glStencilFunc(GL_EQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+        }
+        
         
         sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);  
         if(_maskTextureId > 0) {
