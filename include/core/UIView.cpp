@@ -145,7 +145,7 @@ namespace XUI
         if (mIsClipsToBounds) {
             ++sLayoutingTopLayerIndex;
         }
-        mDrawLayerIndex = sLayoutingTopLayerIndex;
+        mClipsLayerIndex = sLayoutingTopLayerIndex;
         
 		bool sizeChanged = (tempRect.size() != _rect.size());
 		if (sizeChanged) {
@@ -275,16 +275,16 @@ namespace XUI
     bool XView::rd_NeedClipsChildren() const {
         return mIsClipsToBounds;
     }
-    int XView::rd_DrawLayerIndex() const {
-        return mDrawLayerIndex;
+    int XView::rd_ClipsLayerIndex() const {
+        return mClipsLayerIndex;
     }
     int XView::rd_BeClipsDrawLayerIndex(bool isClipsChildren) const {
         if (mIsClipsToBounds && !isClipsChildren) {
-            return mDrawLayerIndex;
+            return mClipsLayerIndex;
         } else if (mClipsParentView == nullptr) {
             return 0;
         } else {
-            return mClipsParentView->mDrawLayerIndex;
+            return mClipsParentView->mClipsLayerIndex;
         }
     }
 }

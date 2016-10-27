@@ -98,7 +98,7 @@ namespace XDUILib {
     
     int GLRenderSquareData::getStencilReadWriteValue() {
         const IXRenderDataPovider &p = _belongRender->getRenderDataPovider();
-        int a = (p.rd_DrawLayerIndex() << 4) + (p.rd_BeClipsDrawLayerIndex(mIsClips) & 0x0F);
+        int a = (p.rd_ClipsLayerIndex() << 4) + (p.rd_BeClipsDrawLayerIndex(mIsClips) & 0x0F);
         return a;
     }
     

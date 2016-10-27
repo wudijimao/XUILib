@@ -136,16 +136,16 @@ namespace XUI
         GLTransform3D mReltiveTransformFromTransformCenterToParent;
         GLTransform3D mCululatedGlobalTransform;
         static int sLayoutingTopLayerIndex;
-        int mDrawLayerIndex;
+        int mClipsLayerIndex;
         bool mIsClipsToBounds = false;
-        //the parent drawLayerIndex which clipsToBounds is true
+        //the parent clipsLayerIndex which clipsToBounds is true
         const XView *mClipsParentView = nullptr;
         
     public:
         virtual const GLTransform3D& rd_Transform() const override;
         
         virtual bool rd_NeedClipsChildren() const override;
-        virtual int rd_DrawLayerIndex() const override;
+        virtual int rd_ClipsLayerIndex() const override;
         virtual int rd_BeClipsDrawLayerIndex(bool isClipsChildren) const override;
 	};
     

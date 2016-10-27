@@ -31,6 +31,6 @@ private:
     std::vector<XDUILib::GLRenderData*> mCachedRenderData;
     const IXRenderDataPovider * mRenderDataPovider;
 public:
-    int mDrawLayerIndex;
+    int mClipsLayerIndex;
 };
 

@@ -10,7 +10,7 @@ public:
     virtual const GLTransform3D& rd_Transform() const = 0;
     
     virtual bool rd_NeedClipsChildren() const = 0;
-    virtual int rd_DrawLayerIndex() const = 0;
+    virtual int rd_ClipsLayerIndex() const = 0;
     virtual int rd_BeClipsDrawLayerIndex(bool isClipsChildren) const = 0;
 };
 
