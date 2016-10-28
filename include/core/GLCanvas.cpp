@@ -88,6 +88,12 @@ void GLCanvas::enableGLSettings() {
     
     
     glEnable(GL_STENCIL_TEST);  //DrawLayer & ClipsChildren
+
+//    // Initialize GL state.
+//    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+//    glEnable(GL_CULL_FACE);
+//    //glShadeModel(GL_SMOOTH);
+//    glDisable(GL_DEPTH_TEST);
 }
 
 void GLCanvas::clear() {

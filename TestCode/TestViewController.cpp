@@ -73,7 +73,7 @@
         
         
         auto imgView = std::make_shared<XUI::XUIImageView>();
-        imgView->setImage(XResource::XImage::imageNamed("test.jpg"));
+        imgView->setImage(XResource::XImage::imageNamed("test.png"));
         imgView->setRect(XResource::XRect(10, 10, 140, 100));
         imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
         imgView->setBkgColor(XResource::XUIColor::blueColor());

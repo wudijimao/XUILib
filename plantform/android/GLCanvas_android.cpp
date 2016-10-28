@@ -21,6 +21,9 @@ static int engine_init_display(struct engine *engine) {
             EGL_BLUE_SIZE, 8,
             EGL_GREEN_SIZE, 8,
             EGL_RED_SIZE, 8,
+            EGL_ALPHA_SIZE, 8,
+            EGL_DEPTH_SIZE, 0,
+            EGL_STENCIL_SIZE, 8,
             EGL_NONE
     };
     EGLint w, h, dummy, format;
@@ -44,12 +47,14 @@ static int engine_init_display(struct engine *engine) {
     auto i = 0;
     for (; i < numConfigs; i++) {
         auto &cfg = supportedConfigs[i];
-        EGLint r, g, b, d;
+        EGLint r, g, b, a, d, s;
         if (eglGetConfigAttrib(display, cfg, EGL_RED_SIZE, &r) &&
             eglGetConfigAttrib(display, cfg, EGL_GREEN_SIZE, &g) &&
             eglGetConfigAttrib(display, cfg, EGL_BLUE_SIZE, &b) &&
+//            eglGetConfigAttrib(display, cfg, EGL_ALPHA_SIZE, &a) &&
             eglGetConfigAttrib(display, cfg, EGL_DEPTH_SIZE, &d) &&
-            r == 8 && g == 8 && b == 8 && d == 0) {
+            eglGetConfigAttrib(display, cfg, EGL_STENCIL_SIZE, &s) &&
+            r == 8 && g == 8 && b == 8 /*&& a==8*/ && d == 0 && s == 8) {
 
             config = supportedConfigs[i];
             break;
@@ -92,11 +97,6 @@ static int engine_init_display(struct engine *engine) {
     for (auto name : opengl_info) {
         auto info = glGetString(name);
     }
-    // Initialize GL state.
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
-    glEnable(GL_CULL_FACE);
-    //glShadeModel(GL_SMOOTH);
-    glDisable(GL_DEPTH_TEST);
 
     return 0;
 }
@@ -124,9 +124,9 @@ bool GLCanvas_android::init(struct engine *engine) {
     } else {
     }
 
-    glGenRenderbuffers(1, &_renderBuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, _size.Width(), _size.Height());
+//    glGenRenderbuffers(1, &_renderBuffer);
+//    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+//    glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, _size.Width(), _size.Height());
     if (!this->InitGLProgram()) {
         return false;
     }
