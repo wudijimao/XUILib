@@ -1,4 +1,4 @@
-package xduilib;
+package com.moemiku.xduilib;
 
 import android.app.Activity;
 

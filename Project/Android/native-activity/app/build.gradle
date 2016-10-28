@@ -57,7 +57,7 @@ model {
         buildToolsVersion = '23.0.2'
 
         defaultConfig {
-            applicationId = 'com.example.native_activity'
+            applicationId = 'com.moemiku.test_app'
             minSdkVersion.apiLevel = 19
             targetSdkVersion.apiLevel = 23
         }
@@ -103,4 +103,8 @@ model {
             }
         }
     }
+}
+
+dependencies {
+    compile project(':xduilib')
 }

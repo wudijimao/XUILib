@@ -51,6 +51,11 @@ model {
         }
         sources {
             main {
+//                java {
+//                    source {
+//                        srcDir "src"
+//                    }
+//                }
                 jniLibs {
 
                 }
