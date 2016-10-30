@@ -45,10 +45,12 @@ protected:
         XResource::gHighResolutionPixelScale = highResolutionPixelScale;
         _pixelSize.Width(_size.Width() * highResolutionPixelScale);
         _pixelSize.Height(_size.Height() * highResolutionPixelScale);
+		_transform = GLTransform3D();
         _transform.setScale(2.0 / (float)size.Width(), -2.0 / (float)size.Height(), 0.3 / (float)size.Height());
+		_transform.move(-1, 1);
         //TODO:these must be has problem. to fix it
         GLTransform3D transform(90, 1, -1, 1);
-        _transform = _transform * transform;
+        //_transform = _transform * transform;
     }
 public:
     virtual bool Present();

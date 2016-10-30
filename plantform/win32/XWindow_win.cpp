@@ -77,15 +77,14 @@ LRESULT XWindow_win::RealWndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lPa
 		this->update();
 		return 0;
 	case WM_CREATE: {
-		auto canvas = std::make_shared<GLCanvas_ios>();
-		canvas->init(hwnd);
-		_canvas = canvas;
 		SetTimer(hwnd, 0, 16, NULL);
 	}
 					return 0;
 	case WM_SIZE: {
 		XResource::XSize size(LOWORD(lParam), HIWORD(lParam));
-		_canvas->setSize(size, 1.0);
+		auto canvas = std::make_shared<GLCanvas_ios>();
+		canvas->init(hwnd, size);
+		_canvas = canvas;
 	}
 		return 0;
 	case WM_PAINT:

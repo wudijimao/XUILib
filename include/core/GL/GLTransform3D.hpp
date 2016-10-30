@@ -37,20 +37,20 @@ struct SIMPLEDIRECTUI_API Vec4 {
     }
     Vec4(const Vec4 &in, const GLTransform3D &transform) {
         _vec[0] = in._vec[0] * transform._transformMat[0]
-                + in._vec[1] * transform._transformMat[4]
-                + in._vec[2] * transform._transformMat[8]
-                + in._vec[3] * transform._transformMat[12];
-        _vec[1] = in._vec[0] * transform._transformMat[1]
+                + in._vec[1] * transform._transformMat[1]
+                + in._vec[2] * transform._transformMat[2]
+                + in._vec[3] * transform._transformMat[3];
+        _vec[1] = in._vec[0] * transform._transformMat[4]
                 + in._vec[1] * transform._transformMat[5]
-                + in._vec[2] * transform._transformMat[9]
-                + in._vec[3] * transform._transformMat[13];
-        _vec[2] = in._vec[0] * transform._transformMat[2]
-                + in._vec[1] * transform._transformMat[6]
+                + in._vec[2] * transform._transformMat[6]
+                + in._vec[3] * transform._transformMat[7];
+        _vec[2] = in._vec[0] * transform._transformMat[8]
+                + in._vec[1] * transform._transformMat[9]
                 + in._vec[2] * transform._transformMat[10]
-                + in._vec[3] * transform._transformMat[14];
-        _vec[3] = in._vec[0] * transform._transformMat[3]
-                + in._vec[1] * transform._transformMat[7]
-                + in._vec[2] * transform._transformMat[11]
+                + in._vec[3] * transform._transformMat[11];
+        _vec[3] = in._vec[0] * transform._transformMat[12]
+                + in._vec[1] * transform._transformMat[13]
+                + in._vec[2] * transform._transformMat[14]
                 + in._vec[3] * transform._transformMat[15];
     }
 };

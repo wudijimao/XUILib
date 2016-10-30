@@ -15,10 +15,11 @@ public:
 	}
 	HWND mHWND = nullptr;
 	HDC mHDC = nullptr;
-	bool init(HWND hWnd) {
+	bool init(HWND hWnd, const XResource::XSize &size) {
 		RECT rct;
 		GetWindowRect(mHWND, &rct);
-		setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top), 1.0);
+		//setSize(XResource::XSize(rct.right - rct.left, rct.bottom - rct.top), 1.0);
+		setSize(size, 1.0);
 		mHWND = hWnd;
 		mHDC = ::GetDC(hWnd);
 		initMemDC();
@@ -97,8 +98,8 @@ private:
 			0,											// Shift Bit Ignored
 			0,											// No Accumulation Buffer
 			0, 0, 0, 0,									// Accumulation Bits Ignored
-			16,											// 16Bit Z-Buffer (Depth Buffer)  
-			0,											// No Stencil Buffer
+			24,											// 16Bit Z-Buffer (Depth Buffer)  
+			8,											// No Stencil Buffer
 			0,											// No Auxiliary Buffer
 			PFD_MAIN_PLANE,								// Main Drawing Layer
 			0,											// Reserved
@@ -122,9 +123,6 @@ private:
 		}
 
 		//::ReleaseDC(hWnd, mHDC);//一定要释放句柄
-		glGenRenderbuffers(1, &_renderBuffer);
-		glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, _size.Width(), _size.Height());
 		if (!this->InitGLProgram()) {
 			return false;
 		}
