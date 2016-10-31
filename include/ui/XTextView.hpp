@@ -54,3 +54,6 @@ namespace XUI
         void updateTextAttr();
     };
 }
+
+
+

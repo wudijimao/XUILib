@@ -14,6 +14,7 @@ namespace  XUI {
     UITextView::UITextView() {
         mFont = XResource::XFont::systemFont(16.0);
         mTextColor = XResource::XStringAttrColor::colorWithColor(XResource::XUIColor::blackColor());
+        setClipsToBounds(true);
     }
     
     void UITextView::setFont(const std::shared_ptr<XResource::XFont> &font) {
@@ -102,6 +103,8 @@ namespace  XUI {
     void UITextView::drawRect(IXRender &render) {
         if (mText) {
             XResource::XRect rect = getFixRect();
+            rect.X(0);
+            rect.Y(0);
             auto frame = mText->createFrame(rect.size());
             judgeRect(rect, frame->mSize);
             
