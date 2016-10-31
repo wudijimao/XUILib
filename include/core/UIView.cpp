@@ -185,7 +185,7 @@ namespace XUI
             XResource::XRect rect(_rect.size());
             mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, rect, mIsClipsToBounds);
             if(_backGroundStretchableImage) {
-                mRenderer->DrawImage(_backGroundStretchableImage, _rect);
+                mRenderer->DrawImage(_backGroundStretchableImage, rect);
             }
             drawRect(*mRenderer);
         }

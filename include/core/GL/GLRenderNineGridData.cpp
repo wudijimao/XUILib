@@ -7,7 +7,7 @@
 //
 
 #include "GLRenderNineGridData.hpp"
-
+#include "../GLRender.hpp"
 
 namespace XDUILib {
     GLProgram GLRenderNineGridData::sProgram;
@@ -19,10 +19,12 @@ namespace XDUILib {
     GLRenderNineGridData::GLRenderNineGridData(GLRender *render) : GLRenderData(render) { }
     
     void GLRenderNineGridData::initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image) {
+        memset(_square, 0, sizeof(_square));
         setPosition(rect.point());
-        for (auto square : _square) {
-            square.z = 0.5f;
-        }
+        _transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
+//        for (auto square : _square) {
+//            square.z = 0.5f;
+//        }
         double imageWidth = image->image()->size().Width();
         double imageHeight = image->image()->size().Height();
         GLfloat y = 0;
@@ -109,6 +111,11 @@ namespace XDUILib {
         sProgram.enable();
         sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);
         sProgram.setUniformValue("uIsClipsToBounds", false);
+        
+ 
+        glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+        //glStencilMask(0x00);
+        glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(false), 0xFF);
         
         if (_textureId > 0) {
             glActiveTexture(GL_ACTIVE_TEXTURE - 1);

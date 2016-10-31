@@ -573,17 +573,17 @@
 		3E3FF8911CA26F750070F6A5 /* GL */ = {
 			isa = PBXGroup;
 			children = (
+				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
 				3E9608311CA7E8E800FE8008 /* GLProgram.hpp */,
 				3E9608321CA7E8E800FE8008 /* GLProgram.cpp */,
+				3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */,
+				3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */,
+				3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */,
+				3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */,
 				3E3FF8941CA26FE20070F6A5 /* GLRenderData.hpp */,
 				3E3FF8931CA26FE20070F6A5 /* GLRenderData.cpp */,
-				3E3FF89B1CA29A330070F6A5 /* GLHeaders.h */,
-				3E10B2BD1CFD7C2A00522132 /* GLTransform3D.cpp */,
-				3E10B2BE1CFD7C2A00522132 /* GLTransform3D.hpp */,
-				3EEDCD041CFEE4F4004219DE /* GLTexture.cpp */,
-				3EEDCD051CFEE4F4004219DE /* GLTexture.hpp */,
-				3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */,
 				3E5CEB6A1D1D3E3B00F38EF6 /* GLRenderNineGridData.hpp */,
+				3E5CEB691D1D3E3B00F38EF6 /* GLRenderNineGridData.cpp */,
 			);
 			path = GL;
 			sourceTree = "<group>";

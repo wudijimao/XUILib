@@ -108,11 +108,11 @@ namespace XDUILib {
         if(mIsClips) {
             glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
             //glStencilMask(0xFF);
-            glStencilFunc(GL_EQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
         } else {
             glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
             //glStencilMask(0x00);
-            glStencilFunc(GL_EQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
         }
         
         
