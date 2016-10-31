@@ -42,22 +42,26 @@ bool GLCanvas::InitFrameBuffer() {
     glGenFramebuffers(1, &_framebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
     
+    
+    glGenRenderbuffers(1, &_setlicRenderBuffer);
+    glBindRenderbuffer(GL_RENDERBUFFER, _setlicRenderBuffer);
+    if (true) {
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+    } else {
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+    }
+    
+#ifdef TARGET_OS_MSWINDOWS
 	glGenRenderbuffers(1, &_renderBuffer);
 	glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_SRGB8_ALPHA8, _pixelSize.Width(), _pixelSize.Height());
+#else
+    glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+#endif
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBuffer);
-
-
-	glGenRenderbuffers(1, &_setlicRenderBuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, _setlicRenderBuffer);
-	if (true) {
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-	} else {
-		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-	}
 
 
     //声明并赋值一个GL枚举变量，赋值为检测GL_FRAMEBUFFER状态的返回值，
