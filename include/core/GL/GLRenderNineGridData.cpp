@@ -20,33 +20,33 @@ namespace XDUILib {
     
     void GLRenderNineGridData::initWithRect(const XResource::XRect &rect, const std::shared_ptr<XResource::XStretchableImage> &image) {
         memset(_square, 0, sizeof(_square));
-        setPosition(rect.point());
-        _transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
+        //setPosition(rect.point());
+        //_transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
 //        for (auto square : _square) {
 //            square.z = 0.5f;
 //        }
         double imageWidth = image->image()->size().Width();
         double imageHeight = image->image()->size().Height();
-        GLfloat y = 0;
+        GLfloat y = rect.Y();
         GLfloat v = 0;
         int i = 0;
         while (i < 4) {
             _texturePos[i].v = v;
             _square[i++].y = y;
         }
-        y = image->stretchEdge().top();
+        y += image->stretchEdge().top();
         v = image->stretchEdge().top() / imageHeight;
         while (i < 8) {
             _texturePos[i].v = v;
             _square[i++].y = y;
         }
-        y = rect.Height() - image->stretchEdge().bottom();
+        y = rect.bY() - image->stretchEdge().bottom();
         v = (imageHeight - image->stretchEdge().bottom()) / imageHeight;
         while (i < 12) {
             _texturePos[i].v = v;
             _square[i++].y = y;
         }
-        y = rect.Height();
+        y = rect.bY();
         v = 1.0f;
         while (i < 16) {
             _texturePos[i].v = v;
@@ -54,7 +54,7 @@ namespace XDUILib {
         }
         
         
-        GLfloat x = 0;
+        GLfloat x = rect.X();
         GLfloat u = 0;
         i = 0;
         while (i < 16) {
@@ -62,7 +62,7 @@ namespace XDUILib {
             _square[i].x = x;
             i += 4;
         }
-        x = image->stretchEdge().left();
+        x += image->stretchEdge().left();
         u = image->stretchEdge().left() / imageWidth;
         i = 1;
         while (i < 16) {
@@ -70,7 +70,7 @@ namespace XDUILib {
             _square[i].x = x;
             i += 4;
         }
-        x = rect.Width() - image->stretchEdge().right();
+        x = rect.rX() - image->stretchEdge().right();
         u = (imageWidth - image->stretchEdge().right()) / imageWidth;
         i = 2;
         while (i < 16) {
@@ -78,7 +78,7 @@ namespace XDUILib {
             _square[i].x = x;
             i += 4;
         }
-        x = rect.Width() ;
+        x = rect.rX();
         u = 1;
         i = 3;
         while (i < 16) {
@@ -109,7 +109,7 @@ namespace XDUILib {
     }
     void GLRenderNineGridData::render() {
         sProgram.enable();
-        sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);
+        sProgram.setUniformMatrix4fv("viewMat", 1, _belongRender->getRenderDataPovider().rd_Transform()._transformMat);
         sProgram.setUniformValue("uIsClipsToBounds", false);
         
  

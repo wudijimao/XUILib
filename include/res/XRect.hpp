@@ -296,6 +296,40 @@ namespace XResource
         XDisplayPoint mPoint;
 	};
     
+    //Please Do Not simple cast to XRect(change able)    can cast to const XRect&(must be const
+    class SIMPLEDIRECTUI_API XRelativeRect : public XRect {
+    public:
+        //Important for effective it is not vitual
+        XRect &moveX(double x) {
+            mPoint.moveX(x);
+            mRelativePosition.moveX(x);
+            return *this;
+        }
+        XRect &moveY(double y) {
+            mPoint.moveY(y);
+            mRelativePosition.moveY(y);
+            return *this;
+        }
+        inline void setRealativeX(double x) {
+            mRelativePosition.X(x);
+        }
+        inline double relativeX() const {
+            return mRelativePosition.X();
+        }
+        inline void setRealativeY(double y) {
+            mRelativePosition.Y(y);
+        }
+        inline double relativeY() const {
+            return mRelativePosition.Y();
+        }
+        void move(const XDisplayPoint &point) {
+            moveX(point.X());
+            moveY(point.Y());
+        }
+    protected:
+        XDisplayPoint mRelativePosition;
+    };
+    
     
     class SIMPLEDIRECTUI_API XEdge
     {

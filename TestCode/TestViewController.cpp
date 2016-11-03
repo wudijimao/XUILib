@@ -47,61 +47,61 @@
 
 
 
-//        auto scrollView = std::make_shared<XUI::ScrollView>();
-//        scrollView->setBkgColor(XResource::XUIColor::pinkColor());
-//        scrollView->setRect(XResource::XRectPro(20, 100, 100, 200));
-//        this->view()->addSubView(scrollView);
-//
-//        auto textView = std::make_shared<XUI::UITextView>();
-//        textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
-//        textView->setTextColor(XResource::XUIColor::blueColor());
-//        textView->setFont(XResource::XFont::systemFont(16));
-//        auto color = XResource::XUIColor::pinkColor()->copy();
-//        color->_color.a = 200;
-//        textView->setBkgColor(color);
-//        textView->setRect(XResource::XRectPro(0, 0, 100, 320));
-//        auto img = XResource::XImage::imageNamed("test.png");
-//        textView->setBkgImg(img);
-//        scrollView->setContentView(textView);
+        auto scrollView = std::make_shared<XUI::ScrollView>();
+        scrollView->setBkgColor(XResource::XUIColor::pinkColor());
+        scrollView->setRect(XResource::XRectPro(20, 100, 100, 200));
+        this->view()->addSubView(scrollView);
 
-        auto btn = std::make_shared<XUI::XButton>();
-        btn->setTitle("LoginPage");
-        btn->setBackgroundColor(XResource::XUIColor::blueColor(), XUI::ButtonStates::DOWN);
-        btn->setRect(XResource::XRectPro(100, 120, 180, 420));
-        btn->setTransformCenter(XResource::XDisplayPoint(90, 60));
-        this->view()->addSubView(btn);
-        
-        
-        auto imgView = std::make_shared<XUI::XUIImageView>();
-        imgView->setImage(XResource::XImage::imageNamed("test.png"));
-        imgView->setRect(XResource::XRect(10, 10, 140, 100));
-        imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
-        imgView->setBkgColor(XResource::XUIColor::blueColor());
-        btn->addSubView(imgView);
-        
-        
-        view()->setBkgColor(XResource::XUIColor::lightGrayColor());
-        
-        btn->onClick = [this, btn](XUI::XButton&){
-//            _testSubView = std::make_shared<XUI::XView>();
-//            _testSubView->setBkgColor(XResource::XUIColor::redColor());
-//            _testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
-//            _testSubView->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
-//            this->view()->addSubView(_testSubView);
-            //this->presentViewController(std::make_shared<LoginViewController>(), XUI::PresentAnimation::Present);
-            auto ani = XUI::ValueAnimation<float>::createAni(0, 360, [this, btn](float v){
-                GLTransform3D tr;
-//                tr.setPosition(0, v*50 - 50);
-//                tr.setScale(v, v);
-                tr.setRotationY(v);
-                btn->setTransform3D(tr);
-                //btn->subViews()[1]->setNeedLayout();
-                //btn->subViews()[1]->setNeedReDraw();
-            });
-            ani->setDurationMS(3000);
-            this->addAnimation(ani);
-            ani->play();
-        };
+        auto textView = std::make_shared<XUI::UITextView>();
+        textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
+        textView->setTextColor(XResource::XUIColor::blueColor());
+        textView->setFont(XResource::XFont::systemFont(16));
+        auto color = XResource::XUIColor::pinkColor()->copy();
+        color->_color.a = 200;
+        textView->setBkgColor(color);
+        textView->setRect(XResource::XRectPro(0, 0, 100, 320));
+        auto img = XResource::XImage::imageNamed("test.png");
+        textView->setBkgImg(img);
+        scrollView->setContentView(textView);
+
+//        auto btn = std::make_shared<XUI::XButton>();
+//        btn->setTitle("LoginPage");
+//        btn->setBackgroundColor(XResource::XUIColor::blueColor(), XUI::ButtonStates::DOWN);
+//        btn->setRect(XResource::XRectPro(100, 120, 180, 420));
+//        btn->setTransformCenter(XResource::XDisplayPoint(90, 60));
+//        this->view()->addSubView(btn);
+//        
+//        
+//        auto imgView = std::make_shared<XUI::XUIImageView>();
+//        imgView->setImage(XResource::XImage::imageNamed("test.png"));
+//        imgView->setRect(XResource::XRect(10, 10, 140, 100));
+//        imgView->setScaleType(XUI::XUIImageScaleType::AspectFill);
+//        imgView->setBkgColor(XResource::XUIColor::blueColor());
+//        btn->addSubView(imgView);
+//        
+//        
+//        view()->setBkgColor(XResource::XUIColor::lightGrayColor());
+//        
+//        btn->onClick = [this, btn](XUI::XButton&){
+////            _testSubView = std::make_shared<XUI::XView>();
+////            _testSubView->setBkgColor(XResource::XUIColor::redColor());
+////            _testSubView->setRect(XResource::XRectPro(20, 20, 320, 120));
+////            _testSubView->setBkgImg(XResource::XImage::imageNamed("test.jpg"));
+////            this->view()->addSubView(_testSubView);
+//            //this->presentViewController(std::make_shared<LoginViewController>(), XUI::PresentAnimation::Present);
+//            auto ani = XUI::ValueAnimation<float>::createAni(0, 360, [this, btn](float v){
+//                GLTransform3D tr;
+////                tr.setPosition(0, v*50 - 50);
+////                tr.setScale(v, v);
+//                tr.setRotationY(v);
+//                btn->setTransform3D(tr);
+//                //btn->subViews()[1]->setNeedLayout();
+//                //btn->subViews()[1]->setNeedReDraw();
+//            });
+//            ani->setDurationMS(3000);
+//            this->addAnimation(ani);
+//            ani->play();
+//        };
 
 
 //        auto request = std::make_shared<TestRequest>();

@@ -21,12 +21,12 @@ namespace XDUILib {
     GLRenderDataType GLRenderData::Type() {
         return GLRenderDataType::UnKnown;
     }
-    void GLRenderData::setPosition(const XResource::XDisplayPoint &point) {
-        _transform.setPosition(point.X(), point.Y());
-    }
-    void GLRenderData::move(const XResource::XDisplayPoint &point) {
-        _transform.move(point.X(), point.Y());
-    }
+//    void GLRenderData::setPosition(const XResource::XDisplayPoint &point) {
+//        _transform.setPosition(point.X(), point.Y());
+//    }
+//    void GLRenderData::move(const XResource::XDisplayPoint &point) {
+//        _transform.move(point.X(), point.Y());
+//    }
     
     
     GLRenderDataType GLRenderSquareData::Type() {
@@ -50,28 +50,28 @@ namespace XDUILib {
     }
     
     void GLRenderSquareData::setSquare(const XResource::XRect &rect) {
-        setPosition(rect.point()); //之后删除transform  直接写入到_square顶点数据中， 移动不再移动单个RenderData 而是移动整体Render的transform
-        _square[0] = 0;
-        _square[1] = 0;
+//setPosition(rect.point()); //之后删除transform  直接写入到_square顶点数据中， 移动不再移动单个RenderData 而是移动整体Render的transform
+        _square[0] = rect.X();
+        _square[1] = rect.Y();
         _square[2] = 0;
         
-        _square[6] = rect.Width();
-        _square[7] = 0;
+        _square[6] = rect.rX();
+        _square[7] = rect.Y();
         _square[8] = 0;
         
-        _square[9] = rect.Width();
-        _square[10] = rect.Height();
+        _square[9] = rect.rX();
+        _square[10] = rect.bY();
         _square[11] = 0;
         
-        _square[3] = 0;
-        _square[4] = rect.Height();
+        _square[3] = rect.X();
+        _square[4] = rect.bY();
         _square[5] = 0;
     }
     
     void GLRenderSquareData::initWithRect(const XResource::XRect &rect, const XResource::XColor &color, const std::shared_ptr<XResource::IXImage> &image) {
         setSquare(rect);
-        _transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
-        
+//        _transform = _transform * _belongRender->getRenderDataPovider().rd_Transform();
+//        
         _texturePos[0] = 0.0f;
         _texturePos[1] = 0.0f;
         _texturePos[2] = 0.0f;
@@ -116,7 +116,7 @@ namespace XDUILib {
         }
         
         
-        sProgram.setUniformMatrix4fv("viewMat", 1, (GLfloat*)&_transform._transformMat);  
+        sProgram.setUniformMatrix4fv("viewMat", 1, _belongRender->getRenderDataPovider().rd_Transform()._transformMat);
         if(_maskTextureId > 0) {
             glActiveTexture(GL_ACTIVE_TEXTURE - 2);
             glBindTexture(GL_TEXTURE_2D, _maskTextureId);

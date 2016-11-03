@@ -42,10 +42,10 @@ namespace XDUILib {
         GLuint _vectexArrayObject;
         virtual GLRenderDataType Type();
         virtual void render() = 0;
-        virtual void setPosition(const XResource::XDisplayPoint &point) final;
-        virtual void move(const XResource::XDisplayPoint &point) final;
+//        virtual void setPosition(const XResource::XDisplayPoint &point) final;
+//        virtual void move(const XResource::XDisplayPoint &point) final;
     protected:
-        GLTransform3D _transform;
+        //GLTransform3D _transform;
         const GLRender *_belongRender;
     };
     class GLRenderSquareData : public GLRenderData {

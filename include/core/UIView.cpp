@@ -128,7 +128,7 @@ namespace XUI
     }
     
     void XView::updateThisTransformInternal() {
-        mReltiveTransformFromTransformCenterToParent.setPosition(_rect.X() + mTransformCenter.X(), _rect.Y() + mTransformCenter.Y());
+        mReltiveTransformFromTransformCenterToParent.setPosition(_rect.relativeX() + mTransformCenter.X(), _rect.relativeY() + mTransformCenter.Y());
         //可以判断 一定情况下只更新transform
         if (_superView != nullptr) {
             mCululatedGlobalTransform = mTransformCenterTransform3D * mTransform * mReltiveTransformFromTransformCenterToParent  * _superView->getGloablTransForm3D();
@@ -148,26 +148,29 @@ namespace XUI
     }
 
 	void XView::layout(const XResource::XRect &absRect) {
-		XResource::XRect tempRect = _rect;
-		this->_layoutRect.makeRealativeAbsRect(absRect.size(), _rect);
-        updateThisTransformInternal();
-        
-        if (mIsClipsToBounds) {
-            ++sLayoutingTopLayerIndex;
+        if (_needLayout) {
+            XResource::XRect tempRect = _rect;
+            this->_layoutRect.makeRealativeAbsRect(absRect, _rect);
+            _bound.setSize(_rect.size());
+            updateThisTransformInternal();
+            
+            if (mIsClipsToBounds) {
+                ++sLayoutingTopLayerIndex;
+            }
+            mClipsLayerIndex = sLayoutingTopLayerIndex;
+            if(mBelongingViewController != nullptr) {
+                mBelongingViewController->setNeedRedraw();
+            }
+            bool sizeChanged = (tempRect.size() != _rect.size());
+            if (sizeChanged) {
+                setNeedReDraw();
+                layoutSubViews();
+                for (auto subView : _subViews) {
+                    subView->setNeedLayout();
+                }
+            }
+            _needLayout = false;
         }
-        mClipsLayerIndex = sLayoutingTopLayerIndex;
-        
-		bool sizeChanged = (tempRect.size() != _rect.size());
-		if (sizeChanged) {
-			setNeedReDraw();
-			if (_needLayout && sizeChanged) {
-				layoutSubViews();
-				for (auto subView : _subViews) {
-					subView->setNeedLayout();
-				}
-			}
-        }
-        _needLayout = false;
 		for (auto subView : _subViews) {
 			subView->layout(_rect);
 		}
@@ -182,10 +185,9 @@ namespace XUI
             _needReDraw = false;
             mRenderer->clear();
             mRenderer->setMask(_maskImage);
-            XResource::XRect rect(_rect.size());
-            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, rect, mIsClipsToBounds);
+            mRenderer->DrawBackGround(_backGroundColor->_color, _backGroundImage, _bound, mIsClipsToBounds);
             if(_backGroundStretchableImage) {
-                mRenderer->DrawImage(_backGroundStretchableImage, rect);
+                mRenderer->DrawImage(_backGroundStretchableImage, _bound);
             }
             drawRect(*mRenderer);
         }
@@ -277,7 +279,6 @@ namespace XUI
     const XResource::XDisplayPoint XView::getTransformCenter() const {
         return mTransformCenter;
     }
-
     
     const GLTransform3D& XView::rd_Transform() const {
         return this->mCululatedGlobalTransform;

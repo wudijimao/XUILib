@@ -96,7 +96,8 @@ namespace XUI
         XView *_superView = nullptr;
         std::vector<std::shared_ptr<XView>> _subViews;
         XResource::XRectPro _layoutRect;
-        XResource::XRect _rect;
+        XResource::XRelativeRect _rect;
+        XResource::XRect _bound;
         std::shared_ptr<XResource::XUIColor> _backGroundColor;
         std::shared_ptr<XResource::IXImage> _backGroundImage;
         std::shared_ptr<XResource::XStretchableImage> _backGroundStretchableImage;

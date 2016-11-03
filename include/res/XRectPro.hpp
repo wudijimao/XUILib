@@ -59,30 +59,32 @@ namespace XResource
 		{
 			mVAlign = vAlign;
 		}
-		void makeRealativeAbsRect(const XDisplaySize& size, XRect &out_rect) const {
+
+		void makeRealativeAbsRect(const XRect& parentAbsRect, XRelativeRect &out_rect) const {
+            const XDisplaySize& size = parentAbsRect.size();
 			out_rect.Width(Width());
 			//正在把算绝对位置变成算相对位置
 			switch (mHAlign)
 			{
 			case XResource::XRectPro::HAlign_Left:
 				out_rect.Width(Width());
-					out_rect.X(X());
+					out_rect.setRealativeX(X());
 				break;
 			case XResource::XRectPro::HAlign_Center:
 			{
 				out_rect.Width(Width());
 				double center = size.Width() / 2.0;
 				center += (X() - mX2);
-				out_rect.X(center - Width() / 2.0);
+				out_rect.setRealativeX(center - Width() / 2.0);
 				break;
 			}
 			case XResource::XRectPro::HAlign_Right:
 				out_rect.Width(Width());
-					out_rect.X(size.Width() - Width());
+                out_rect.setRealativeX(size.Width() - Width());
 				break;
 			case XResource::XRectPro::HAlign_Stretch:
 				out_rect.Width(size.Width() - X() - mX2);
-					out_rect.X(X());
+                out_rect.setRealativeX(X());
 				break;
 			default:
 				break;
@@ -91,28 +93,30 @@ namespace XResource
 			{
 			case XResource::XRectPro::VAlign_Top:
 				out_rect.Height(Height());
-					out_rect.Y(Y());
+                out_rect.setRealativeY(Y());
 				break;
 			case XResource::XRectPro::VAlign_Center:
 			{
 				out_rect.Height(Height());
 				double center = size.Height() / 2.0;
 				center += (Y() - mY2);
-				out_rect.Y(center - Height() / 2.0);
+				out_rect.setRealativeY(center - Height() / 2.0);
 				break;
 			}
 			case XResource::XRectPro::VAlign_Bottom:
 				out_rect.Height(Height());
-					out_rect.Y(size.Height() - Height());
+					out_rect.setRealativeY(size.Height() - Height());
 				break;
 			case XResource::XRectPro::VAlign_Stretch:
 				out_rect.Height(size.Height() - Y() - mY2);
-					out_rect.Y(Y());
+					out_rect.setRealativeY(Y());
 				break;
 			default:
 				break;
 			}
 			//绝对位置 靠父transfrom3D来偏移过去 （并且这样就可以支持父View旋转等复杂操作
+            out_rect.X(out_rect.relativeX() + parentAbsRect.X());
+            out_rect.Y(out_rect.relativeY() + parentAbsRect.Y());
 		}
 		XRect MakeAbsRect(const XRect& parentAbsRect) const
 		{
