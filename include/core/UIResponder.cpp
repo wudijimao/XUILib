@@ -21,10 +21,10 @@ namespace XUI {
     }
     
     void UIResponder::insertText(const char *text) {
-        
+        sFirstResponder->insertText(text);
     }
     void UIResponder::deleteBackward() {
-        
+        sFirstResponder->deleteBackward();
     }
     
 }

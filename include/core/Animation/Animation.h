@@ -39,12 +39,19 @@ namespace XUI
 	{
 	public:
 		Animation() {
-			mInterpolator = Animation::mDefaultInterpolator;
 		}
 		virtual ~Animation();
-		virtual bool setProcessFun(const std::function<void(double)> &fun);
+        static std::shared_ptr<Animation> createAni(const std::function<void(Animation*, unsigned long)> &fun) {
+            auto ani = std::make_shared<Animation>();
+            ani->setProcessFun(fun);
+            return ani;
+        }
+		virtual bool setProcessFun(const std::function<void(Animation*, unsigned long)> &fun);
+        inline unsigned long getProcessedMs() {
+            return mProcessedMs;
+        }
+        
 		Animation& setAutoRemove(bool autoRemove = true);
-		Animation& setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator);
 		Animation& setDurationMS(unsigned long ms);
 		Animation& setRepeatTimes(long times);
 		virtual bool play();
@@ -58,7 +65,7 @@ namespace XUI
 		std::function<void(void)> onStart;
 		std::function<void(void)> onStop;
 	protected:
-		std::function<void(double)> mProcessFun;
+		std::function<void(Animation*, unsigned long)> mProcessFun;
 		unsigned long mProcessedMs = 0;
 		unsigned long mRepeatedTimes = 0;
 
@@ -66,8 +73,8 @@ namespace XUI
 		long mRepeatTimes = 0;
 		unsigned long mDurationMS = 400;
 		AnimatingStates mState = AnimatingStates::Stopped;
-		std::shared_ptr<AnimationInterpolator> mInterpolator;
 	private:
+    public:
 		static std::shared_ptr<AnimationInterpolator> mDefaultInterpolator;
 	};
 
@@ -81,18 +88,27 @@ namespace XUI
 			mStartValue = startValue;
 			mEndValue = endValue;
 			mChangeValue = endValue - startValue;
-			mProcessFun = std::bind(&ValueAnimation<T>::_processFun, this, std::placeholders::_1);
+            mProcessFun = std::bind(&ValueAnimation<T>::_processFun, this, std::placeholders::_1, std::placeholders::_2);
 			mProcessValueFun = fun;
+            mInterpolator = Animation::mDefaultInterpolator;
 		}
-		virtual bool setProcessFun(const std::function<void(double)> &fun) override {
+		virtual bool setProcessFun(const std::function<void(Animation*, unsigned long)> &fun) override {
+            //assert(false);
 			return false;
 		}
 		void setProcessValueFun(const std::function<void(T)> &fun) {
 			mProcessValueFun = fun;
 		}
+        ValueAnimation<T>& setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator) {
+            mInterpolator = interpolator;
+            return *this;
+        }
+    protected:
+        std::shared_ptr<AnimationInterpolator> mInterpolator;
 	private:
-		void _processFun(double p) {
-			mProcessValueFun(mStartValue + mChangeValue * p);
+		void _processFun(Animation*, unsigned long ms) {
+            double percent = mInterpolator->calculate(mDurationMS, mProcessedMs);
+			mProcessValueFun(mStartValue + mChangeValue * percent);
 		}
 		std::function<void(T)> mProcessValueFun;
 		T mStartValue;
@@ -101,3 +117,6 @@ namespace XUI
 	};
 
 }
+
+
+

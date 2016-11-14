@@ -50,6 +50,12 @@ namespace XUI
         void addSubView(const std::shared_ptr<XView> &view);
         bool removeSubView(XView *view);
         bool removeFromSuperView();
+        const UIViewController* getBelongingViewController() const {
+            return mBelongingViewController;
+        }
+        UIViewController* getBelongingViewController() {
+            return mBelongingViewController;
+        }
         
         const std::vector<std::shared_ptr<XView>> subViews();
         //virtual const MouseStatusStruct& MouseStatus() = 0;

@@ -9,14 +9,11 @@ namespace XUI
 
 	}
 
-	bool Animation::setProcessFun(const std::function<void(double)> &fun) {
+	bool Animation::setProcessFun(const std::function<void(Animation*, unsigned long ms)> &fun) {
 		mProcessFun = fun;
 		return true;
 	}
-	Animation& Animation::setAnimationInterpolator(std::shared_ptr<AnimationInterpolator> interpolator) {
-		mInterpolator = interpolator;
-        return *this;
-	}
+	
 	Animation& Animation::setDurationMS(unsigned long ms) {
 		if (ms > 0)
 		{
@@ -61,7 +58,8 @@ namespace XUI
 		mProcessedMs += ms;
 		if (mProcessedMs >= mDurationMS)
 		{
-			mProcessFun(1);
+            mProcessedMs =  mDurationMS;
+			mProcessFun(this,ms - mProcessedMs + mDurationMS);
 			++mRepeatedTimes;
 			if (mRepeatedTimes > mRepeatTimes)
 			{
@@ -75,11 +73,12 @@ namespace XUI
 			}
 		}
 		else {
-			mProcessFun(mInterpolator->calculate(mDurationMS, mProcessedMs));
+			mProcessFun(this, ms);
 		}
 	}
 	AnimatingStates Animation::state() {
 		return mState;
 	}
+    
 
 }

@@ -24,7 +24,7 @@ namespace  XUI {
 		XDispatch::XTimer::timer(500)->setTickFun([this](const std::shared_ptr<XDispatch::XTimer>& t) {
 			mCursor->setVisible(!mCursor->isVisible());
 		}).start();
-        becomFirstResponder();
+		becomFirstResponder();
 	}
 
 	void UIEditView::layoutSubViews() {

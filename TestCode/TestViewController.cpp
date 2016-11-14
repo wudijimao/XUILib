@@ -176,6 +176,12 @@
         //            });
         //        }
 
+
+        auto editView = std::make_shared<XUI::UIEditView>();
+        editView->setRect(XResource::XRectPro(150, 100, 200, 30));
+        editView->setBkgColor(XResource::XUIColor::lightGrayColor());
+        editView->setText("");
+        view()->addSubView(editView);
     }
     void ViewController::onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) {
         //(*touch.begin())->_belongView->setBkgColor(XResource::XUIColor::greenColor());

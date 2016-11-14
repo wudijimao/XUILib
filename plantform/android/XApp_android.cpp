@@ -8,7 +8,8 @@
 #include "XMainRunloop_android.hpp"
 
 //暂时  之后弃用struct engine
-#include "GLCanvas_android.hpp"
+#include "XAndroidEnv.hpp"
+#include "JNIBridgeForNativeActivity.hpp"
 #include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
 #include "../../include/core/UIResponder.hpp"
 
@@ -46,44 +47,9 @@
 //};
 
 
-
-bool initJNIActivityBridge(android_app* mApplication){
-// Attaches the current thread to the JVM.
-    jint lResult;
-    jint lFlags = 0;
-
-    JavaVM* lJavaVM = mApplication->activity->vm;
-    JNIEnv* lJNIEnv = mApplication->activity->env;
-
-    JavaVMAttachArgs lJavaVMAttachArgs;
-    lJavaVMAttachArgs.version = JNI_VERSION_1_6;
-    lJavaVMAttachArgs.name = "NativeThread";
-    lJavaVMAttachArgs.group = NULL;
-
-    lResult=lJavaVM->AttachCurrentThread(&lJNIEnv, &lJavaVMAttachArgs);
-    if (lResult == JNI_ERR) {
-        return false;
-    }
-    bool ret = false;
-    // Retrieves NativeActivity.
-    jobject lNativeActivity = mApplication->activity->clazz;
-    jclass ClassNativeActivity = lJNIEnv->GetObjectClass(lNativeActivity);
-    jclass ClassJNIBridge = lJNIEnv->FindClass("com/moemiku/xduilib/JNIBrigeForNativeActivity");
-    if(ClassJNIBridge != nullptr) {
-        jmethodID construction_id = lJNIEnv->GetMethodID(ClassJNIBridge, "<init>", "()V");
-        jobject bridge = lJNIEnv->NewObject(ClassJNIBridge, construction_id);
-        jmethodID init_id = lJNIEnv->GetMethodID(ClassJNIBridge, "init",
-                                                 "(Landroid/app/Activity;)V");
-        lJNIEnv->CallObjectMethod(bridge, init_id, lNativeActivity);
-        ret = true;
-    }
-
-    // Finished with the JVM.
-    lJavaVM->DetachCurrentThread();
-    return ret;
+void android_created_at_main_thread(struct android_app* app) {
+    //initJNIActivityBridge(app);
 }
-
-
 
 /**
  * Tear down the EGL context currently associated with the display.
@@ -118,7 +84,7 @@ static int32_t engine_handle_input(struct android_app *app, AInputEvent *event) 
     int32_t lEventType = AInputEvent_getType(event);
     switch (lEventType) {
         case AINPUT_EVENT_TYPE_MOTION:
-//motion类型的消息的来源有两种，所以要获取消息的来源
+            //motion类型的消息的来源有两种，所以要获取消息的来源
             switch (AInputEvent_getSource(event)) {
 
                 case AINPUT_SOURCE_TOUCHSCREEN: {//消息来源于触摸屏
@@ -202,10 +168,10 @@ static void engine_handle_cmd(struct android_app *app, int32_t cmd) {
         case APP_CMD_INIT_WINDOW:
             // The window is being shown, get it ready.
             if (engine->app->window != NULL) {
-                initJNIActivityBridge(engine->app);
                 auto androidWindow = std::dynamic_pointer_cast<XWindow_android>(
                         XDUILib::XApp::thisApp().mainWindow());
                 androidWindow->init(engine);
+                JNIBridgeForNativeActivity::getInstance().init(engine->app);
             }
             break;
         case APP_CMD_TERM_WINDOW:
@@ -256,6 +222,8 @@ void displayKeyboard(bool pShow, android_app* mApplication) {
     if (lResult == JNI_ERR) {
         return;
     }
+
+    jclass ClassJNIBridge = lJNIEnv->FindClass("com/moemiku/xduilib/JNIBridgeForNativeActivity");
 
     // Retrieves NativeActivity.
     jobject lNativeActivity = mApplication->activity->clazz;
@@ -335,11 +303,12 @@ namespace XDUILib {
 //        } else {
 //            ANativeActivity_hideSoftInput(gEngine->app->activity, ANATIVEACTIVITY_SHOW_SOFT_INPUT_FORCED);
 //        }
-        displayKeyboard(bShow, gEngine->app);
+        //displayKeyboard(bShow, gEngine->app);
+        JNIBridgeForNativeActivity::getInstance().showIME();
     }
 
     int XApp::run(struct android_app *state) {
-        _thisApp = this;
+        XApp::_thisApp = this;
         init();
         if (_mainWindow == nullptr) {
             return -1;
@@ -368,10 +337,10 @@ namespace XDUILib {
         engine.sensorEventQueue = ASensorManager_createEventQueue(
                 engine.sensorManager,
                 state->looper, LOOPER_ID_USER,
-                NULL, NULL);
+            NULL, NULL);
 
         if (state->savedState != NULL) {
-            // We are starting with a previous saved state; restore from it.
+            // We are starting with a previous saved state; restore from it.chan
             engine.state = *(struct saved_state *) state->savedState;
         }
 

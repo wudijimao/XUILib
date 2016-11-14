@@ -61,6 +61,7 @@ model {
                 }
                 jni {
                     source {
+                        srcDir "src/main/jni"
                         srcDir "../../../../include"
                         srcDir "../../../../plantform/android"
                         exclude "**/XLog.cpp"

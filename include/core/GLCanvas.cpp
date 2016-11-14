@@ -43,16 +43,16 @@ bool GLCanvas::InitFrameBuffer() {
     glBindFramebuffer(GL_FRAMEBUFFER, _framebuffer);
     
     
-    glGenRenderbuffers(1, &_setlicRenderBuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, _setlicRenderBuffer);
-    if (true) {
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-    } else {
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
-    }
+//    glGenRenderbuffers(1, &_setlicRenderBuffer);
+//    glBindRenderbuffer(GL_RENDERBUFFER, _setlicRenderBuffer);
+//    if (true) {
+//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, _pixelSize.Width(), _pixelSize.Height());
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+//    } else {
+//        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, _pixelSize.Width(), _pixelSize.Height());
+//        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, _setlicRenderBuffer);
+//    }
     
 #ifdef TARGET_OS_MSWINDOWS
 	glGenRenderbuffers(1, &_renderBuffer);

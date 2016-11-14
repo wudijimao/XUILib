@@ -42,7 +42,9 @@ XDUIMain {
 	//DetectMemoryLeaks();
 #ifdef TARGET_OS_ANDROID
 	app_dummy();
+	keepJNIBridgeSampleInApk();
 #endif
-	auto thisApp = XTestApp();
-	thisApp.run(XDUI_RUN_PARAMS);
+	auto thisApp = new XTestApp();
+	thisApp->run(XDUI_RUN_PARAMS);
+	delete thisApp;
 }

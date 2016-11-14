@@ -30,8 +30,10 @@ namespace XUI
         
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override;
     private:
-        void movePos(double x, double y);
-        
+        void moveTo(double x, double y);
+        void moveTo(double x, double y, bool ani);
+        void decelerateMove();
+        double mVelocityY = 0;
         std::shared_ptr<XView> mContentView;
         XResource::XDisplayPoint mTouchPos;
     };

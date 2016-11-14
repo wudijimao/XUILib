@@ -63,7 +63,7 @@ model {
         }
         ndk {
             platformVersion = 21
-            moduleName = 'native-activity'
+            moduleName = 'xduilib' //warnning: Do not change this name, it will load in JNIBridgeForNativeActivity.java
             //toolchain = 'clang'
             stl = 'c++_static'
             abiFilters.addAll(['armeabi', 'armeabi-v7a', 'armeabi-v8a'])
@@ -94,8 +94,14 @@ model {
                         project ':xduilib' linkage 'static'
                     }
                 }
+                java {
+                    source {
+                        srcDir "src"
+                    }
+                }
             }
         }
+
         buildTypes {
             release {
                 minifyEnabled = false
@@ -107,4 +113,6 @@ model {
 
 dependencies {
     compile project(':xduilib')
+    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    //compile 'com.android.support:appcompat-v7:23.3.0'
 }

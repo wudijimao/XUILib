@@ -31,7 +31,8 @@ namespace XDUILib
 		int run(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow);
 #endif
 #ifdef TARGET_OS_ANDROID
-        int run(struct android_app* state);
+
+        virtual int run(struct android_app* state);
 #endif
     //overWrite
         virtual bool init();
