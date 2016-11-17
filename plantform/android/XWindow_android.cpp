@@ -3,7 +3,7 @@
 //
 
 #include "XWindow_android.hpp"
-#include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
+#include <android_native_app_glue.h>
 #include <android/native_activity.h>
 
 std::shared_ptr<IXWindow> IXWindow::createWindow() {

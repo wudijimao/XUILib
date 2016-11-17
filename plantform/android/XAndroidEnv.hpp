@@ -24,3 +24,5 @@ struct engine {
     int32_t height;
     struct saved_state state;
 };
+
+static const int32_t APP_CMD_CUSTOM = APP_CMD_DESTROY + 1;

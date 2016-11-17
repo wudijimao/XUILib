@@ -24,10 +24,10 @@ model {
                 }
                 jni {
                     source {
-                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/source/giflib-5.1.2/lib"
+                        srcDir "${xdui_third_path}source/giflib-5.1.2/lib"
                     }
                     exportedHeaders {
-                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/source/giflib-5.1.2/lib"
+                        srcDir "${xdui_third_path}source/giflib-5.1.2/lib"
                     }
                     dependencies {
                     }

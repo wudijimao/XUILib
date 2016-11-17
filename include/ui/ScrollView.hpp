@@ -34,7 +34,7 @@ namespace XUI
         void setContentSize(const XResource::XDisplaySize& size) {
             mContentSize = size;
         }
-        XResource::XDisplaySize& mContentSize;
+        XResource::XDisplaySize mContentSize;
     private:
         void moveTo(double x, double y);
         void moveTo(double x, double y, bool ani);

@@ -35,12 +35,6 @@ model {
                     staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libfreetype.a")
                 }
             }
-            gif {
-                headers.srcDir "${xdui_third_path}gif"
-                binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libgiflib.a")
-                }
-            }
             zlib {
                 headers.srcDir "${xdui_third_path}zlib"
                 binaries.withType(StaticLibraryBinary) {
@@ -62,7 +56,8 @@ model {
             moduleName = 'xduilib'
             platformVersion = 21
             abiFilters.addAll(['armeabi', 'armeabi-v7a', 'x86', 'armeabi-v8a'])
-            stl = 'c++_static'
+            stl = 'c++_static'// 'stlport_static'//''gnustl_static' https://developer.android.com/ndk/guides/cpp-support.html
+            //cppFlags.add("-std=gnu++11")
             cppFlags.add("-std=c++11")
             cppFlags.add('-fexceptions')
             cppFlags.add('-frtti')

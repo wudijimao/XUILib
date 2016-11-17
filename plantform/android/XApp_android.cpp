@@ -10,7 +10,7 @@
 //暂时  之后弃用struct engine
 #include "XAndroidEnv.hpp"
 #include "JNIBridgeForNativeActivity.hpp"
-#include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
+//#include "../../../Library/Android/sdk/ndk-bundle/sources/android/native_app_glue/android_native_app_glue.h"
 #include "../../include/core/UIResponder.hpp"
 
 #include <vector>

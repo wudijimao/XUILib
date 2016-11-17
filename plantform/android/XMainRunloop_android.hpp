@@ -4,7 +4,8 @@
 
 #pragma once
 
-#include "../../include/core/MutiThread/XRunLoop.hpp"
+#include <core/MutiThread/XRunLoop.hpp>
+#include "XAndroidEnv.hpp"
 
 void initMainRunloop(struct android_app *state);
 
