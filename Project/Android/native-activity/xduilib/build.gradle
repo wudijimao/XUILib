@@ -75,9 +75,6 @@ model {
                         exclude "**/XLog.cpp"
                         exclude "**/XRenderFacotry.cpp"
                         exclude "**/GlobalStatus.cpp"
-                        //exclude "/Users/ximiao/GCD-dispatch-/include/win32/*.cpp"
-                        //exclude "/Users/ximiao/GCD-dispatch-/include/ios/*.cpp"
-                        //exclude "/Users/ximiao/GCD-dispatch-/include/win32/dllmain.cpp"
                     }
                     exportedHeaders {
                         srcDir "${xdui_root_path}include"

@@ -16,19 +16,25 @@ namespace XUI
         ScrollView();
         void setContentView(const std::shared_ptr<XView> &contentView) {
             if(mContentView.get() != contentView.get()) {
-                if(mContentView) {
-                    removeSubView(mContentView.get());
-                }
+                //if(mContentView) {
+                    //removeSubView(mContentView.get());
+                //}
                 mContentView = contentView;
-                addSubView(mContentView);
+                //addSubView(mContentView);
+                setContentSize(mContentView->getRect().size());
             }
-            
         }
         std::shared_ptr<XView> &contentView() {
             return mContentView;
         }
         
         virtual void onTouch(const std::vector<std::shared_ptr<XTouch>> &touch) override;
+
+    protected:
+        void setContentSize(const XResource::XDisplaySize& size) {
+            mContentSize = size;
+        }
+        XResource::XDisplaySize& mContentSize;
     private:
         void moveTo(double x, double y);
         void moveTo(double x, double y, bool ani);
