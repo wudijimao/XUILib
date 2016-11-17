@@ -1,53 +1,54 @@
 apply plugin: 'com.android.model.application'
+
 model {
     repositories {
         libs(PrebuiltLibraries) {
             curl {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                headers.srcDir "${xdui_third_path}curl/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libcurl.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libcurl.a")
                 }
             }
             curl_crypto {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                headers.srcDir "${xdui_third_path}curl/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libcrypto.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libcrypto.a")
                 }
             }
             curl_ssl {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                headers.srcDir "${xdui_third_path}curl/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libssl.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libssl.a")
                 }
             }
             png {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/png/android"
+                headers.srcDir "${xdui_third_path}png/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libpng.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libpng.a")
                 }
             }
             jpeg {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/jpeg/android"
+                headers.srcDir "${xdui_third_path}jpeg/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libjpeg.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libjpeg.a")
                 }
             }
             freetype {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/freetype2/android"
+                headers.srcDir "${xdui_third_path}freetype2/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libfreetype.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libfreetype.a")
                 }
             }
             gif {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/gif"
+                headers.srcDir "${xdui_third_path}gif"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libgiflib.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libgiflib.a")
                 }
             }
             zlib {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/zlib"
+                headers.srcDir "${xdui_third_path}zlib"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libz.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libz.a")
                 }
             }
         }
@@ -61,6 +62,14 @@ model {
             minSdkVersion.apiLevel = 19
             targetSdkVersion.apiLevel = 23
         }
+
+        sourceSets {
+            main {
+                //assets.srcDirs = ["${xdui_root_path}XDUILIB.bundle/"]
+                //assets.srcDirs = ['assets']
+            }
+        }
+
         ndk {
             platformVersion = 21
             moduleName = 'xduilib' //warnning: Do not change this name, it will load in JNIBridgeForNativeActivity.java
@@ -70,16 +79,16 @@ model {
             cppFlags.add('-std=c++11')
             cppFlags.add('-fexceptions')
             cppFlags.add('-frtti')
-            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/include')
-            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/ThirdParty/')
-            cppFlags.add('-I/Users/ximiao/GCD-dispatch-/ThirdParty/asio')
+//            cppFlags.add("-I${xdui_root_path}include")
+//            cppFlags.add("-I${xdui_third_path}")
+//            cppFlags.add("-I${xdui_third_path}asio")
             ldLibs.addAll(['log', 'android', 'EGL', 'GLESv3', 'atomic'])
         }
         sources {
             main {
                 jni {
                     source {
-                        srcDir "/Users/ximiao/GCD-dispatch-/TestCode"
+                        srcDir "${xdui_root_path}TestCode/"
                     }
                     dependencies {
                         library "curl" linkage 'static'

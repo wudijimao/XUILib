@@ -12,4 +12,10 @@ allprojects {
     repositories {
         jcenter()
     }
+    ext {
+        xdui_root_path = "../../../../"
+        xdui_third_path = xdui_root_path + "ThirdParty/"
+        xdui_third_lib_path = xdui_third_path + "prebuilt/android/"
+
+    }
 }

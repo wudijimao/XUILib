@@ -1,30 +1,38 @@
 apply plugin: 'com.android.model.library'
 
+task printCustomVar {
+    doLast() {
+        println xdui_root_path
+        println xdui_third_path
+        println xdui_third_lib_path
+    }
+}
+
 model {
     repositories {
         libs(PrebuiltLibraries) {
             curl {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/curl/android"
+                headers.srcDir "${xdui_third_path}curl/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libcurl.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libcurl.a")
                 }
             }
             png {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/png/android"
+                headers.srcDir "${xdui_third_path}png/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libpng.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libpng.a")
                 }
             }
             jpeg {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/jpeg/android"
+                headers.srcDir "${xdui_third_path}jpeg/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libjpeg.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libjpeg.a")
                 }
             }
             freetype {
-                headers.srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/freetype2/android"
+                headers.srcDir "${xdui_third_path}freetype2/android"
                 binaries.withType(StaticLibraryBinary) {
-                    staticLibraryFile = file("/Users/ximiao/GCD-dispatch-/ThirdParty/prebuilt/android/${targetPlatform.getName()}/libfreetype.a")
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libfreetype.a")
                 }
             }
         }
@@ -62,19 +70,19 @@ model {
                 jni {
                     source {
                         srcDir "src/main/jni"
-                        srcDir "../../../../include"
-                        srcDir "../../../../plantform/android"
+                        srcDir "${xdui_root_path}include"
+                        srcDir "${xdui_root_path}plantform/android"
                         exclude "**/XLog.cpp"
                         exclude "**/XRenderFacotry.cpp"
                         exclude "**/GlobalStatus.cpp"
-                        exclude "/Users/ximiao/GCD-dispatch-/include/win32/*.cpp"
-                        exclude "/Users/ximiao/GCD-dispatch-/include/ios/*.cpp"
-                        exclude "/Users/ximiao/GCD-dispatch-/include/win32/dllmain.cpp"
+                        //exclude "/Users/ximiao/GCD-dispatch-/include/win32/*.cpp"
+                        //exclude "/Users/ximiao/GCD-dispatch-/include/ios/*.cpp"
+                        //exclude "/Users/ximiao/GCD-dispatch-/include/win32/dllmain.cpp"
                     }
                     exportedHeaders {
-                        srcDir "/Users/ximiao/GCD-dispatch-/include"
-                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/"
-                        srcDir "/Users/ximiao/GCD-dispatch-/ThirdParty/asio"
+                        srcDir "${xdui_root_path}include"
+                        srcDir "${xdui_root_path}ThirdParty/"
+                        srcDir "${xdui_root_path}ThirdParty/asio"
                     }
                     dependencies {
                         library "curl" linkage 'static'
