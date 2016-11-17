@@ -35,6 +35,18 @@ model {
                     staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libfreetype.a")
                 }
             }
+            gif {
+                headers.srcDir "${xdui_third_path}gif"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libgiflib.a")
+                }
+            }
+            zlib {
+                headers.srcDir "${xdui_third_path}zlib"
+                binaries.withType(StaticLibraryBinary) {
+                    staticLibraryFile = file("${xdui_third_lib_path}${targetPlatform.getName()}/libz.a")
+                }
+            }
         }
     }
     android {
