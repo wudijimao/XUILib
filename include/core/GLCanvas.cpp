@@ -79,9 +79,9 @@ void GLCanvas::enableGLSettings() {
     //glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-    
-    
-    glEnable(GL_STENCIL_TEST);  //ClipsChildren
+
+
+    glDisable(GL_STENCIL_TEST);  //ClipsChildren
 	glDisable(GL_DEPTH_TEST);
 
 //    // Initialize GL state.

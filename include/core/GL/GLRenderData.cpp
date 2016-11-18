@@ -105,15 +105,15 @@ namespace XDUILib {
     void GLRenderSquareData::render() {
         GLRenderSquareData::sProgram.enable();
         
-        if(mIsClips) {
-            glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
-            //glStencilMask(0xFF);
-            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
-        } else {
-            glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-            //glStencilMask(0x00);
-            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
-        }
+//        if(mIsClips) {
+//            glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
+//            //glStencilMask(0xFF);
+//            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+//        } else {
+//            glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
+//            //glStencilMask(0x00);
+//            glStencilFunc(GL_GEQUAL, _belongRender->getRenderDataPovider().rd_BeClipsDrawLayerIndex(mIsClips), 0xFF);
+//        }
         
         
         sProgram.setUniformMatrix4fv("viewMat", 1, _belongRender->getRenderDataPovider().rd_Transform()._transformMat);
