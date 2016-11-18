@@ -37,7 +37,7 @@
 //};
 
 
-
+    using namespace XResource;
     ViewController::~ViewController() {
     }
     void ViewController::viewDidLoad() {
@@ -53,13 +53,24 @@
         this->view()->addSubView(scrollView);
 
         auto textView = std::make_shared<XUI::UITextView>();
-        textView->setText("泉此方测试测试 test哈哈哈啊啊啊");
+        auto attrStr = XResource::XAttributedString::attrStr("红字蓝字大字小字大蓝字");
+        auto redAttr = XResource::XStringAttrColor::colorWithColor(XUIColor::redColor());
+        attrStr->addAttr(redAttr, XRange(0, 2));
+        auto blueAttr = XResource::XStringAttrColor::colorWithColor(XUIColor::blueColor());
+        attrStr->addAttr(blueAttr, XRange(2, 2));
+        auto bigFont = XResource::XFont::systemFont(30);
+        auto smallFont = XResource::XFont::systemFont(10);
+        attrStr->addAttr(bigFont, XRange(4, 2));
+        attrStr->addAttr(smallFont, XRange(6, 2));
+        attrStr->addAttr(bigFont, XRange(8, 3));
+        attrStr->addAttr(blueAttr, XRange(8, 3));
+        textView->setText(attrStr);
         textView->setTextColor(XResource::XUIColor::blueColor());
         textView->setFont(XResource::XFont::systemFont(16));
         auto color = XResource::XUIColor::pinkColor()->copy();
         color->_color.a = 200;
         textView->setBkgColor(color);
-        textView->setRect(XResource::XRectPro(0, 0, 100, 320));
+        textView->setRect(XResource::XRectPro(0, 0, 550, 650));
         auto img = XResource::XImage::imageNamed("test.png");
         textView->setBkgImg(img);
         scrollView->setContentView(textView);

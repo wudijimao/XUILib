@@ -16,11 +16,11 @@ namespace XUI
         ScrollView();
         void setContentView(const std::shared_ptr<XView> &contentView) {
             if(mContentView.get() != contentView.get()) {
-                //if(mContentView) {
-                    //removeSubView(mContentView.get());
-                //}
+                if(mContentView) {
+                    removeSubView(mContentView.get());
+                }
                 mContentView = contentView;
-                //addSubView(mContentView);
+                addSubView(mContentView);
                 setContentSize(mContentView->getRect().size());
             }
         }
@@ -36,6 +36,7 @@ namespace XUI
         }
         XResource::XDisplaySize mContentSize;
     private:
+        void move(double x, double y);
         void moveTo(double x, double y);
         void moveTo(double x, double y, bool ani);
         void decelerateMove();

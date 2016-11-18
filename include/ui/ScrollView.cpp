@@ -24,7 +24,7 @@ namespace XUI {
             case TouchPhase::Moved: {
                 auto temp = mTouchPos;
                 mTouchPos = touch.front()->mPosition;
-                this->moveTo(mTouchPos.X() - temp.X(), mTouchPos.Y() - temp.Y());
+                this->move(mTouchPos.X() - temp.X(), mTouchPos.Y() - temp.Y());
                 mVelocityY = (mTouchPos.Y() - temp.Y())/ 3;
             }
                 break;
@@ -36,12 +36,26 @@ namespace XUI {
                 break;
         }
     }
-    
-    void ScrollView::moveTo(double x, double y) {
+
+    void ScrollView::move(double x, double y) {
         if (mContentView) {
             auto rect = mContentView->getRect();
             rect.moveX(x);
             rect.moveY(y);
+            if (getFixRect().Height() - rect.Y() > mContentSize.Height()) {
+                rect.Y(getFixRect().Height() - mContentSize.Height());
+            } else if (rect.Y() > 0) {
+                rect.Y(0);
+            }
+            mContentView->setRect(rect);
+        }
+    }
+    
+    void ScrollView::moveTo(double x, double y) {
+        if (mContentView) {
+            auto rect = mContentView->getRect();
+            rect.X(x);
+            rect.Y(y);
             mContentView->setRect(rect);
         }
     }
@@ -57,9 +71,7 @@ namespace XUI {
             XResource::XRectPro re = mContentView->getRect();
             auto ani = Animation::createAni([vY1, re, a, this](Animation*ani, unsigned long ms){
                 double increacY = ((a * ani->getProcessedMs() * ani->getProcessedMs()) / 2) + vY1 * ani->getProcessedMs();
-                XResource::XRectPro rect = re;
-                rect.Y(rect.Y() + increacY);
-                mContentView->setRect(rect);
+                move(0, increacY);
             });
             ani->setDurationMS(vY1 / -a);
             vc->addAnimation(ani);

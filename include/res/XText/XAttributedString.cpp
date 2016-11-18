@@ -14,25 +14,24 @@ namespace XResource {
     void XAttributedString::clearFrameCache() {
         mFrameCache.reset();
     }
-    
+
     void XAttributedString::fillTextColor(XCoreTextFrame &frame) const {
         unsigned long location = 0;
         XResource::XRange effactRange;
         effactRange.location = 0;
         unsigned long size = mUnicodeCacheStr.length();
-        int i = 0;
         std::shared_ptr<XResource::XStringAttrColor> textColor;
         for (auto line : frame.mLines) {
             for (auto group : line->mGroups) {
                 for (auto c : group->mChars) {
-                    ++i;
-                    if (i > effactRange.rightPosition()) {
+                    if (location >= effactRange.rightPosition()) {
                         textColor = std::dynamic_pointer_cast<XResource::XStringAttrColor>(getAttr(location, XResource::XAttrStrKey_Color, effactRange));
                         if (!textColor) {
                             textColor = XStringAttrColor::colorWithColor(XResource::XUIColor::blackColor());
                         }
                     }
                     c->mFrontColor = textColor->mColor;
+                    ++location;
                 }
             }
         }
@@ -149,6 +148,8 @@ namespace XResource {
                 if (rIter->range.location <= in_loc && rIter->range.rightPosition() > in_loc) {
                     out_effactRange.location = rIter->range.location;
                     out_effactRange.length = rIter->range.length;
+                    //for nest color attr: e.g.:red (1,1) + blue(0,3) => 0:blue/1:red/2:blue (maybe have bugs
+                    //TODO::recode attr when addAttr()
                     auto tempIter = rIter;
                     while (i > 0) {
                         --tempIter;
@@ -168,6 +169,24 @@ namespace XResource {
                 ++i;
                 ++rIter;
             }
+
+            out_effactRange.location = in_loc;
+            out_effactRange.length = mUnicodeCacheStr.length();
+            auto tempIter = rIter;
+            while (i > 0) {
+                --tempIter;
+                if (tempIter->range.location >= out_effactRange.location && tempIter->range.rightPosition() <= out_effactRange.rightPosition()) {
+                    if (in_loc < tempIter->range.location) {
+                        out_effactRange.length = tempIter->range.location - out_effactRange.location;
+                    } else {
+                        unsigned long loc = tempIter->range.rightPosition();
+                        out_effactRange.length -= (loc - out_effactRange.location);
+                        out_effactRange.location = loc;
+                    }
+                }
+                --i;
+            }
+            return mEmptyAttr;
         }
         
         out_effactRange.location = in_loc;
